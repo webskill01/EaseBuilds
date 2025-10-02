@@ -1,103 +1,126 @@
-import Image from "next/image";
+import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
+import Hero from './components/home/Hero'
+import Services from './components/home/Services'
+import HowItWorks from './components/home/HowItWorks'
+import WhyChooseUs from './components/home/WhyChooseUs'
+import Projects from './components/home/Projects'
+import Testimonials from './components/home/Testimonials'
+import CTA from './components/home/CTA'
+import Contact from './components/home/Contact'
+
+// Enhanced metadata for SEO
+export const metadata = {
+  title: 'CodeNest - Professional Web Development Services | Fast, Beautiful Websites',
+  description: 'Building beautiful, fast websites that turn visitors into customers. Get online in weeks, not months. 50+ satisfied clients. Custom websites, e-commerce, and more.',
+  keywords: 'web development, website design, custom websites, e-commerce, business websites, responsive design, SEO optimization',
+  authors: [{ name: 'CodeNest' }],
+  creator: 'CodeNest',
+  publisher: 'CodeNest',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: 'CodeNest - Professional Web Development Services',
+    description: 'Transform your business with a stunning website. Fast delivery, 100% satisfaction guaranteed.',
+    url: 'https://codenest-service.vercel.app',
+    siteName: 'CodeNest',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'CodeNest Web Development Services',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CodeNest - Professional Web Development',
+    description: 'Beautiful websites that grow your business',
+    images: ['/og-image.jpg'],
+    creator: '@codenest',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://yourdomain.com',
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
+    // bing: 'your-bing-verification-code',
+  },
+}
+
+// Viewport configuration for responsive design
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#6366f1',
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <>
+      <Header />
+      <main className="relative overflow-hidden" role="main" aria-label="Main content">
+        {/* Hero Section - Above the fold */}
+        <section id="home" aria-labelledby="hero-heading">
+          <Hero />
+        </section>
+        
+        {/* Services Section */}
+        <section id="services" aria-labelledby="services-heading">
+          <Services />
+        </section>
+        
+        {/* How It Works Section */}
+        <section id="how-it-works" aria-labelledby="process-heading">
+          <HowItWorks />
+        </section>
+        
+        {/* Why Choose Us Section */}
+        <section id="why-choose-us" aria-labelledby="benefits-heading">
+          <WhyChooseUs />
+        </section>
+        
+        {/* Projects Section */}
+        <section id="projects" aria-labelledby="portfolio-heading">
+          <Projects />
+        </section>
+        
+        {/* Testimonials Section */}
+        <section id="testimonials" aria-labelledby="testimonials-heading">
+          <Testimonials />
+        </section>
+        
+        {/* Call to Action Section */}
+        <section id="cta" aria-labelledby="cta-heading">
+          <CTA />
+        </section>
+        
+        {/* Contact Section */}
+        <section id="contact" aria-labelledby="contact-heading">
+          <Contact />
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      <Footer />
+    </>
+  )
 }
