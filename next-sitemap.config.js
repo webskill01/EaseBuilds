@@ -3,38 +3,46 @@
 const config = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://codenest-service.vercel.app',
   generateRobotsTxt: true,
-  generateIndexSitemap: false, // Set to true if you have 50k+ pages
-  exclude: ['/api/*', '/admin/*', '/private/*', '/thank-you'],
+  generateIndexSitemap: false, // Your site is small, no need
+  exclude: ['/api/*', '/_not-found', '/404', '/500'],
+  
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/private/'],
+        disallow: ['/api/', '/_not-found'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
+        crawlDelay: 0,
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        crawlDelay: 0,
       },
     ],
-    additionalSitemaps: [
-      // Add additional sitemaps if needed
-      // `${process.env.NEXT_PUBLIC_SITE_URL}/server-sitemap.xml`,
-    ],
   },
-  // Add custom transform for additional metadata
+  
+  // Custom priority and changefreq based on your actual pages
   transform: async (config, path) => {
-    // Custom priority and changefreq based on path
     let priority = 0.7
     let changefreq = 'monthly'
 
+    // Homepage - highest priority
     if (path === '/') {
       priority = 1.0
       changefreq = 'daily'
-    } else if (path.startsWith('/services') || path.startsWith('/projects')) {
+    } 
+    // Main pages - high priority
+    else if (path === '/pricing' || path === '/about') {
       priority = 0.9
       changefreq = 'weekly'
-    } else if (path.startsWith('/blog')) {
+    }
+    // Future pages (if you add them)
+    else if (path.startsWith('/blog')) {
       priority = 0.8
       changefreq = 'weekly'
     }
