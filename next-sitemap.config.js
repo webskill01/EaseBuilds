@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 
-export const config = {
+const config = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://codenest-service.vercel.app',
   generateRobotsTxt: true,
   generateIndexSitemap: false, // Set to true if you have 50k+ pages
@@ -48,3 +48,5 @@ export const config = {
     }
   },
 }
+
+module.exports = config
