@@ -1,5 +1,6 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { FaLaptopCode, FaShoppingCart, FaMobile, FaRocket, FaPaintBrush, FaSearch } from 'react-icons/fa'
 
 const services = [
@@ -41,11 +42,155 @@ const services = [
   },
 ]
 
+// Individual Service Card Component
+function ServiceCard({ service, index }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const [isActive, setIsActive] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Auto-activate on mobile when in view with stagger
+  useEffect(() => {
+    if (isInView && isMobile) {
+      const timer = setTimeout(() => {
+        setIsActive(true)
+      }, index * 100)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [isInView, isMobile, index])
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ 
+        delay: index * 0.1, 
+        duration: 0.5,
+        ease: [0.25, 0.1, 0.25, 1] 
+      }}
+      onMouseEnter={() => !isMobile && setIsActive(true)}
+      onMouseLeave={() => !isMobile && setIsActive(false)}
+      className="group relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden"
+    >
+      {/* Gradient Background - subtle always, prominent on active */}
+      <motion.div 
+        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-opacity duration-500`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isActive ? 0.08 : 0.02 }}
+      />
+      
+      {/* Animated gradient border on hover/active */}
+      <motion.div 
+        className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.gradient} opacity-0 transition-opacity duration-500`}
+        animate={{ opacity: isActive ? 0.15 : 0 }}
+        style={{ 
+          mask: 'linear-gradient(white 0 0) content-box, linear-gradient(white 0 0)',
+          maskComposite: 'exclude',
+          padding: '2px'
+        }}
+      />
+      
+      <div className="relative flex flex-col items-center text-center">
+        {/* Icon Container with smooth morph animation */}
+        <motion.div 
+          className="relative mb-4"
+          animate={{ 
+            scale: isActive ? 1.05 : 1,
+            rotate: isActive ? [0, -5, 5, 0] : 0
+          }}
+          transition={{ 
+            scale: { duration: 0.3 },
+            rotate: { duration: 0.6, ease: "easeInOut" }
+          }}
+        > 
+          {/* Main icon container */}
+          <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center overflow-hidden">
+            {/* Background that morphs */}
+            <motion.div 
+              className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}
+              animate={{ 
+                opacity: isActive ? 1 : 0.1,
+                scale: isActive ? 1 : 0.8
+              }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+            
+            {/* Icon */}
+            <motion.div
+              animate={{ 
+                scale: isActive ? 1.1 : 1,
+                rotate: isActive ? 360 : 0
+              }}
+              transition={{ 
+                scale: { duration: 0.3 },
+                rotate: { duration: 0.6, ease: "easeInOut" }
+              }}
+            >
+              <service.icon 
+                className={`relative z-10 text-2xl sm:text-3xl transition-all duration-400`}
+                style={{ 
+                  color: isActive ? 'white' : 'rgb(59 130 246)',
+                  filter: isActive ? 'drop-shadow(0 0 8px rgba(255,255,255,0.5))' : 'none'
+                }}
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Title with gradient on active */}
+        <motion.h3 
+          className="text-lg sm:text-xl font-bold mb-1 transition-all duration-300"
+          animate={{
+            scale: isActive ? 1.02 : 1
+          }}
+        >
+          <span 
+            className={`transition-all duration-300 ${
+              isActive ? `bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent` : 'text-gray-900'
+            }`}
+          >
+            {service.title}
+          </span>
+        </motion.h3>
+
+        {/* Description */}
+        <p className="text-sm text-gray-600 leading-relaxed mb-2">
+          {service.description}
+        </p>
+
+        {/* Animated underline on active */}
+        <motion.div 
+          className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r ${service.gradient} rounded-full`}
+          initial={{ width: 0, x: '-50%' }}
+          animate={{ 
+            width: isActive ? '60%' : '0%',
+            opacity: isActive ? 1 : 0
+          }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
+      </div>
+    </motion.div>
+  )
+}
+
 export default function Services() {
   return (
-    <section id="services" className="relative py-12 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section id="services" className="relative py-10 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(0 0 0) 1px, transparent 0)',
           backgroundSize: '40px 40px'
@@ -53,73 +198,56 @@ export default function Services() {
       </div>
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header - Ultra-compact */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-8 sm:mb-10 lg:mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">
+          <motion.div
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-3"
+          >
+            <span className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold">
+              Our Services
+            </span>
+          </motion.div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
             What We Offer
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Everything you need to succeed online, all in one place
           </p>
         </motion.div>
 
-        {/* Services Grid - Optimized layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.08, duration: 0.4 }}
-              className="group relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-7 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-transparent hover:-translate-y-1"
-            >
-              {/* Gradient background on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 rounded-xl sm:rounded-2xl transition-opacity duration-300`} />
-              
-              <div className="relative flex flex-col items-center text-center">
-                {/* Icon Container - Compact with gradient */}
-                <div className={`relative w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl bg-gradient-to-br ${service.gradient} p-[2px] mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <div className="w-full h-full bg-white rounded-xl flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
-                    <service.icon className={`text-xl sm:text-2xl lg:text-3xl bg-gradient-to-br ${service.gradient} bg-clip-text text-transparent group-hover:text-white transition-all duration-300`} />
-                  </div>
-                </div>
-
-                {/* Title - Optimized sizing */}
-                <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-                  {service.title}
-                </h3>
-
-                {/* Description - Compact */}
-                <p className="text-xs sm:text-sm lg:text-base text-gray-600 leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Hover indicator */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-primary-600 to-transparent group-hover:w-3/4 transition-all duration-300" />
-              </div>
-            </motion.div>
+            <ServiceCard key={index} service={service} index={index} />
           ))}
         </div>
 
-        {/* Optional CTA - Very compact */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="text-center mt-8 sm:mt-10 lg:mt-12"
+          className="text-center mt-12 sm:mt-16"
         >
-          <p className="text-xs sm:text-sm text-gray-500">
+          <p className="text-sm text-gray-600">
             Need something specific?{' '}
-            <a href="#contact" className="text-primary-600 hover:text-primary-700 font-semibold underline underline-offset-2 transition-colors">
+            <a 
+              href="#contact" 
+              className="text-primary-600 hover:text-primary-700 font-semibold relative inline-block group"
+            >
               Let's talk
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
           </p>
         </motion.div>

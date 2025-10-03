@@ -2,11 +2,11 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaRupeeSign } from 'react-icons/fa'
+import { FaRupeeSign, FaTag } from 'react-icons/fa'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] sm:min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-blue-50">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-blue-50 pt-4">
       {/* Optimized Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -36,63 +36,90 @@ export default function Hero() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="container mx-auto relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 lg:pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
+      <div className="container mx-auto relative z-10 max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           
-          {/* Text Content - 7 columns */}
+          {/* Text Content - Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="lg:col-span-7 text-center lg:text-left"
+            className="text-center lg:text-left order-1"
           >
-            <div className="space-y-5 sm:space-y-6 lg:space-y-7">
-              {/* Badge with pulse animation */}
+            <div className="space-y-4 sm:space-y-5">
+              {/* Top Badge */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="inline-block"
               >
                 <motion.span 
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-blue-100 text-primary-700 px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-all duration-300 cursor-default"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-blue-100 text-primary-700 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-sm"
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <motion.span 
-                    className="text-base"
                     animate={{ rotate: [0, 10, -10, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
                   >
                     ✨
                   </motion.span>
-                  Your Success is Our Mission
+                  Professional Website Development
                 </motion.span>
               </motion.div>
 
-              {/* Heading with staggered animation */}
-              <div className="space-y-2">
-                <motion.h1 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                  <span className="block text-gray-900 mb-1">Grow Your Business</span>
-                  <span className="block bg-gradient-to-r from-primary-600 via-primary-500 to-blue-600 bg-clip-text text-transparent animate-gradient">
-                    With a Stunning Website
-                  </span>
-                </motion.h1>
-              </div>
+              {/* Main Heading */}
+              <motion.h1 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] tracking-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <span className="block text-gray-900 mb-2">
+                  Grow Your Business with
+                </span>
+                <span className="block bg-gradient-to-r from-primary-600 via-primary-500 to-blue-600 bg-clip-text text-transparent">
+                  Stunning Websites
+                </span>
+              </motion.h1>
+
+              {/* Eye-Catching Price Banner */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
+                <div className="relative inline-block">
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl sm:rounded-2xl blur-lg opacity-40 animate-pulse"></div>
+                  
+                  <div className="relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <motion.div
+                        animate={{ rotate: [0, 15, -15, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                      >
+                        <FaTag className="text-xl sm:text-2xl" />
+                      </motion.div>
+                      <div className="text-left">
+                        <p className="text-[10px] sm:text-xs font-medium opacity-90 leading-tight">Starting at just</p>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="text-2xl sm:text-3xl md:text-4xl font-black">₹2,999</span>
+                          <span className="text-sm sm:text-base line-through opacity-75">₹5,999</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
 
               {/* Description */}
               <motion.p 
-                className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+                className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
               >
-                We build beautiful, fast websites that turn visitors into customers. 
+                Expert website developer crafting beautiful, fast websites that turn visitors into customers. 
                 Get online in weeks, not months.
               </motion.p>
 
@@ -101,56 +128,68 @@ export default function Hero() {
                 className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
               >
                 <Link 
-                  href="#contact" 
-                  className="group btn-primary px-7 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+                  href="#projects" 
+                  className="group btn-primary px-6 py-3 sm:px-7 sm:py-3.5 text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                 >
                   <span className="flex items-center justify-center gap-2">
                     View Our Work
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </span>
                 </Link>
+                
                 <Link 
                   href="/pricing" 
-                  className="group btn-secondary px-7 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold rounded-xl border-2 border-gray-300 hover:border-primary-500 hover:bg-primary-50 transition-all duration-300"
+                  className="group relative btn-secondary px-6 py-3 sm:px-7 sm:py-3.5 text-sm sm:text-base font-semibold rounded-xl border-2 border-gray-300 hover:border-primary-500 hover:bg-primary-50 transition-all duration-300"
                 >
+                  {/* Discount Badge */}
+                  <motion.div
+                    initial={{ scale: 0, rotate: -45 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+                    className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-2 py-1 rounded-full shadow-lg"
+                  >
+                    <span className="text-[9px] sm:text-xs font-bold flex items-center gap-0.5">
+                      <FaTag className="text-[8px]" />
+                      50% OFF
+                    </span>
+                  </motion.div>
+                  
                   <span className="flex items-center justify-center gap-2">
-                    Check Plans
-                    <FaRupeeSign/>
+                    View Pricing
+                    <FaRupeeSign className="text-sm group-hover:scale-110 transition-transform" />
                   </span>
                 </Link>
               </motion.div>
 
               {/* Stats */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="pt-6 sm:pt-7 mt-6 sm:mt-7 border-t border-gray-200"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
+                className="pt-6 border-t border-gray-200"
               >
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 sm:gap-8 lg:gap-10">
+                <div className="grid grid-cols-3 gap-2 max-w-md mx-auto lg:mx-0">
                   {[
-                    { value: '50+', label: 'Happy Clients', delay: 0.7 },
-                    { value: '100%', label: 'Satisfaction', delay: 0.8 },
-                    { value: 'Fast', label: 'Delivery', delay: 0.9 }
+                    { value: '50+', label: 'Projects', delay: 0.8 },
+                    { value: '100%', label: 'Satisfaction', delay: 0.85 },
+                    { value: '2-4 Weeks', label: 'Delivery', delay: 0.9 }
                   ].map((stat, index) => (
                     <motion.div 
                       key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: stat.delay, duration: 0.4, type: "spring" }}
-                      whileHover={{ scale: 1.05 }}
-                      className="text-center lg:text-left"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: stat.delay, duration: 0.4 }}
+                      className="text-center"
                     >
-                      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent mb-1">
+                      <div className="text-lg sm:text-2xl lg:text-[27px] font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent mb-1">
                         {stat.value}
                       </div>
-                      <div className="text-xs sm:text-sm lg:text-base text-gray-500 font-medium">
+                      <div className="text-xs sm:text-sm text-gray-600 font-medium">
                         {stat.label}
                       </div>
                     </motion.div>
@@ -160,28 +199,69 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Image - 5 columns */}
+          {/* Image - Right Side */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            className="lg:col-span-5"
+            className="order-2"
           >
-            <div className="relative w-full aspect-[4/3] lg:aspect-square rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl ring-1 ring-gray-900/5 hover:shadow-primary-200/50 transition-shadow duration-500 group">
-              {/* Enhanced gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/10 via-transparent to-blue-500/10 z-10 pointer-events-none group-hover:from-primary-600/15 transition-colors duration-500" />
-              
-              {/* Decorative corner accent */}
-              <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-white/40 to-transparent rounded-full blur-2xl z-10" />
-              
-              <Image
-                src="/images/image4.jpg"
-                alt="Professional web development showcase"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 42vw"
-                priority
+            <div className="relative">
+              {/* Decorative elements around image */}
+              <motion.div
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -top-6 -right-6 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary-400/20 to-blue-400/20 rounded-full blur-2xl"
               />
+              <motion.div
+                animate={{ 
+                  rotate: [360, 0],
+                  scale: [1, 1.15, 1]
+                }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className="absolute -bottom-6 -left-6 w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-br from-blue-400/20 to-primary-400/20 rounded-full blur-2xl"
+              />
+
+              {/* Main image container */}
+              <div className="relative aspect-[4/3] sm:aspect-square rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-900/10 group">
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary-600/10 via-transparent to-blue-500/10 z-10 group-hover:from-primary-600/15 transition-all duration-500" />
+                
+                {/* Corner accent */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/30 to-transparent rounded-bl-[100px] z-10" />
+                
+                <Image
+                  src="/images/image4.jpg"
+                  alt="Professional website development services showcase"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
+
+                {/* Floating badge on image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.6 }}
+                  className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-xl p-3 sm:p-4 shadow-xl z-20"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-bold text-gray-900 truncate">Website Development</p>
+                      <p className="text-[10px] sm:text-xs text-gray-600">Fast, Modern & SEO-Ready</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 

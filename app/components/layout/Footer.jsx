@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaEnvelope, FaPhone } from 'react-icons/fa'
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -34,7 +35,7 @@ export default function Footer() {
                 className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
                 aria-label="Twitter"
               >
-                <FaTwitter className="text-lg" />
+                <FaXTwitter className="text-lg" />
               </a>
               <a 
                 href="https://www.linkedin.com/in/nitin-kumar-1110mn/" 

@@ -17,6 +17,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+
+        <meta name="google-site-verification" content="7J3zS-P8IEeaQ6lk9E494FAaKNMb9VgeSZ0LOZE7aAQ" />
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"

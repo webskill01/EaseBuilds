@@ -130,7 +130,7 @@ export default function HowItWorks() {
                   onClick={() => setActiveStep(index)}
                   className={`transition-all duration-300 rounded-full ${
                     activeStep === index 
-                      ? 'w-6 h-2 bg-primary-600' 
+                      ? 'w-2 h-2 bg-primary-600' 
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to step ${index + 1}`}

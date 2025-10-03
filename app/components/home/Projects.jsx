@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion'
 import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
@@ -41,6 +41,8 @@ export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [itemsPerView, setItemsPerView] = useState(3)
+  const [isDragging, setIsDragging] = useState(false)
+  const dragX = useMotionValue(0)
 
   // Determine items per view based on screen size
   useEffect(() => {
@@ -82,8 +84,38 @@ export default function Projects() {
     setTimeout(() => setIsAutoPlaying(true), 10000)
   }
 
+  // Handle drag end
+  const handleDragEnd = (event, info) => {
+    setIsDragging(false)
+    const offset = info.offset.x
+    const velocity = info.velocity.x
+    
+    // Determine swipe threshold based on velocity and offset
+    if (Math.abs(velocity) > 500 || Math.abs(offset) > 100) {
+      if (offset > 0 && currentIndex > 0) {
+        prevSlide()
+      } else if (offset < 0 && currentIndex < maxIndex) {
+        nextSlide()
+      }
+    }
+    
+    setIsAutoPlaying(false)
+    setTimeout(() => setIsAutoPlaying(true), 10000)
+  }
+
+  // Calculate transform value based on items per view
+  const getTransformValue = () => {
+    if (itemsPerView === 1) {
+      return `-${currentIndex * 100}%`
+    } else if (itemsPerView === 2) {
+      return `-${currentIndex * 50}%`
+    } else {
+      return '0%'
+    }
+  }
+
   return (
-    <section id="projects" className="relative pt-10 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section id="projects" className="relative pb-2 pt-6 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-primary-100 rounded-full blur-3xl opacity-20 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-20 pointer-events-none" />
@@ -97,22 +129,38 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8 sm:mb-10 lg:mb-12"
         >
+          <motion.div
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-3"
+          >
+            <span className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold">
+              Portfolio
+            </span>
+          </motion.div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">
             Our Recent Work
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto mb-2">
             Explore our portfolio of successful projects across various industries
+          </p>
+          {/* Mobile hint text */}
+          <p className="text-xs text-gray-500 lg:hidden flex items-center justify-center gap-1.5">
+            <span>👆</span>
+            <span className="font-medium">Swipe or click cards to visit</span>
           </p>
         </motion.div>
 
         {/* Carousel Container */}
         <div className="relative px-0 sm:px-12 lg:px-16">
-          {/* Navigation Buttons - Only show if navigation is needed */}
+          {/* Navigation Buttons - Lower opacity by default */}
           {maxIndex > 0 && (
             <>
               <button
                 onClick={() => handleManualNavigation('prev')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/70 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 hover:bg-opacity-100 active:scale-95 opacity-60 hover:opacity-100"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/50 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 opacity-30 hover:opacity-100"
                 aria-label="Previous project"
               >
                 <FaChevronLeft className="text-lg sm:text-xl" />
@@ -120,7 +168,7 @@ export default function Projects() {
 
               <button
                 onClick={() => handleManualNavigation('next')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/70 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 hover:bg-opacity-100 active:scale-95 opacity-60 hover:opacity-100"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/50 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 opacity-30 hover:opacity-100"
                 aria-label="Next project"
               >
                 <FaChevronRight className="text-lg sm:text-xl" />
@@ -128,23 +176,29 @@ export default function Projects() {
             </>
           )}
 
-          {/* Carousel Track */}
+          {/* Carousel Track with Drag */}
           <div className="overflow-hidden rounded-xl">
             <motion.div
-              className="flex"
+              className="flex cursor-grab active:cursor-grabbing"
+              drag={maxIndex > 0 ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragStart={() => setIsDragging(true)}
+              onDragEnd={handleDragEnd}
               animate={{ 
-                x: itemsPerView === 1 
-                  ? `-${currentIndex * 100}%`
-                  : itemsPerView === 2
-                    ? `-${currentIndex * 50}%`
-                    : '0%'
+                x: getTransformValue()
               }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30
+              }}
+              style={{ x: dragX }}
             >
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.4 }}
@@ -157,28 +211,40 @@ export default function Projects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => {
+                      // Prevent link navigation during drag
+                      if (isDragging) {
+                        e.preventDefault()
+                      }
+                    }}
                     className="group block cursor-pointer h-full"
                   >
                     <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full flex flex-col hover:-translate-y-1">
-                      {/* Project Image - Fixed aspect ratio */}
+                      {/* Project Image */}
                       <div className="relative w-full aspect-[16/10] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex-shrink-0">
-                        {/* Fallback gradient while image loads */}
+                        {/* Fallback gradient */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
                         
-                        {/* Image with proper sizing */}
+                        {/* Image */}
                         <Image
                           src={project.image}
                           alt={`${project.title} - ${project.category}`}
                           fill
                           className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, (max-width: 1536px) 400px, 450px"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           priority={index === 0}
+                          draggable={false}
                         />
 
-                        {/* Simple hover overlay with icon only */}
-                        {/* <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                          <FaExternalLinkAlt className="text-white text-2xl sm:text-3xl opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300" />
-                        </div> */}
+                        {/* Hover overlay with external link icon */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center gap-2">
+                            <FaExternalLinkAlt className="text-white text-2xl sm:text-3xl" />
+                            <span className="text-white text-xs sm:text-sm font-semibold bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
+                              Click to Visit
+                            </span>
+                          </div>
+                        </div>
 
                         {/* Featured Badge */}
                         {project.featured && (
@@ -188,7 +254,7 @@ export default function Projects() {
                         )}
                       </div>
 
-                      {/* Project Info - Flex grow to fill remaining space */}
+                      {/* Project Info */}
                       <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
                         <div className="flex-grow">
                           <span className="inline-block text-[10px] sm:text-xs font-semibold text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full">
@@ -220,7 +286,7 @@ export default function Projects() {
             </motion.div>
           </div>
 
-          {/* Progress Indicators - Only show if navigation is needed */}
+          {/* Progress Indicators */}
           {maxIndex > 0 && (
             <div className="flex justify-center items-center gap-2 mt-6 sm:mt-8">
               {Array.from({ length: maxIndex + 1 }).map((_, index) => (
@@ -256,7 +322,7 @@ export default function Projects() {
           </p>
           <a 
             href="#contact" 
-            className="inline-block btn-secondary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg border-2 border-gray-300 hover:border-primary-500 transition-all duration-300"
+            className="inline-block btn-secondary px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg border-2 border-gray-300 hover:border-primary-500 hover:bg-primary-50 transition-all duration-300"
           >
             Start Your Project
           </a>

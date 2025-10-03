@@ -196,7 +196,7 @@ export default function AboutPage() {
               {[
                 { value: '50+', label: 'Happy Clients', delay: 0 },
                 { value: '100%', label: 'Satisfaction Rate', delay: 0.1 },
-                { value: '2-4', label: 'Weeks Delivery', delay: 0.2 },
+                { value: '1-2', label: 'Weeks Delivery', delay: 0.2 },
                 { value: '24/7', label: 'Support Available', delay: 0.3 }
               ].map((stat, index) => (
                 <motion.div

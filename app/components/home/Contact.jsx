@@ -1,65 +1,96 @@
-'use client'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { FaPhone, FaEnvelope, FaWhatsapp, FaPaperPlane, FaClock } from 'react-icons/fa'
+"use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaWhatsapp,
+  FaPaperPlane,
+  FaClock,
+  FaBolt,
+} from "react-icons/fa";
+import { useFomoCountdown } from "@/hooks/useFomoCountdown";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState(null)
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  // Check if user is within FOMO offer window
+  const { showFomo } = useFomoCountdown();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus(null)
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+      // Include FOMO status in submission
+      const submissionData = {
+        ...formData,
+        withinFomoOffer: showFomo,
+        submittedAt: new Date().toISOString(),
+      };
 
-      const data = await response.json()
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
+      });
+
+      const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitStatus('success')
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' })
-        setTimeout(() => setSubmitStatus(null), 5000)
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+        setTimeout(() => setSubmitStatus(null), 8000);
       } else {
-        setSubmitStatus('error')
+        setSubmitStatus("error");
       }
     } catch (error) {
-      console.error('Submission error:', error)
-      setSubmitStatus('error')
+      console.error("Submission error:", error);
+      setSubmitStatus("error");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <section id="contact" className="relative py-8 sm:py10 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section
+      id="contact"
+      className="relative py-8 sm:py-10 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, rgb(0 0 0) 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 2px 2px, rgb(0 0 0) 1px, transparent 0)",
+            backgroundSize: "40px 40px",
+          }}
+        />
       </div>
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -77,6 +108,19 @@ export default function Contact() {
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
             Ready to grow your business? Let's discuss your project
           </p>
+
+          {/* FOMO Indicator */}
+          {showFomo && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg"
+            >
+              <FaBolt className="animate-pulse" />
+              <span>Contact now to claim your 1 Month FREE Hosting offer!</span>
+            </motion.div>
+          )}
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -90,7 +134,9 @@ export default function Contact() {
           >
             <div className="bg-gradient-to-br from-primary-600 to-primary-800 rounded-2xl p-6 sm:p-8 text-white h-full flex flex-col shadow-xl">
               <div className="mb-6">
-                <h3 className="text-xl sm:text-2xl font-bold mb-2">Let's Start Something Great</h3>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                  Let's Start Something Great
+                </h3>
                 <p className="text-primary-100 text-sm">
                   Reach us directly through any channel below
                 </p>
@@ -98,7 +144,7 @@ export default function Contact() {
 
               <div className="space-y-5 flex-grow">
                 {/* Phone */}
-                <a 
+                <a
                   href="tel:+916283380110"
                   className="flex items-center gap-3 group hover:translate-x-1 transition-transform"
                 >
@@ -112,7 +158,7 @@ export default function Contact() {
                 </a>
 
                 {/* Email */}
-                <a 
+                <a
                   href="mailto:nitinemailss@gmail.com"
                   className="flex items-center gap-3 group hover:translate-x-1 transition-transform"
                 >
@@ -126,7 +172,7 @@ export default function Contact() {
                 </a>
 
                 {/* WhatsApp */}
-                <a 
+                <a
                   href="https://wa.me/916283380110?text=Hi%20CodeNest,%20I'm%20interested%20in%20your%20services"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -148,8 +194,11 @@ export default function Contact() {
                   <FaClock className="text-lg text-white mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-primary-100 leading-relaxed">
-                      <span className="font-semibold text-white block mb-1">Business Hours</span>
-                      Mon-Fri: 9 AM - 6 PM<br />
+                      <span className="font-semibold text-white block mb-1">
+                        Business Hours
+                      </span>
+                      Mon-Fri: 9 AM - 6 PM
+                      <br />
                       Sat: 10 AM - 4 PM
                     </p>
                   </div>
@@ -204,7 +253,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="phone" className="label-field">
-                    Phone
+                    WhatsApp Number *
                   </label>
                   <input
                     type="tel"
@@ -212,8 +261,9 @@ export default function Contact() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    required
                     className="input-field"
-                    placeholder="+1 (234) 567-890"
+                    placeholder="+91 98765-43210"
                   />
                 </div>
               </div>
@@ -277,26 +327,37 @@ export default function Contact() {
               </button>
 
               {/* Success Message */}
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-green-50 border-2 border-green-500 text-green-800 rounded-xl p-4 text-center font-medium"
+                  className="bg-green-50 border-2 border-green-500 text-green-800 rounded-xl p-4 text-center"
                 >
                   <span className="text-2xl mb-2 block">✓</span>
-                  Thank you! We'll respond within 24 hours.
+                  <p className="font-semibold mb-1">
+                    Thank you for contacting us!
+                  </p>
+                  <p className="text-sm">
+                    We'll reach out to you on WhatsApp at{" "}
+                    <strong>{formData.phone}</strong> within 24 hours.
+                  </p>
+                  {showFomo && (
+                    <p className="text-xs mt-2 font-bold text-green-700">
+                      🎉 You're eligible for 1 Month FREE Hosting!
+                    </p>
+                  )}
                 </motion.div>
               )}
 
               {/* Error Message */}
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-red-50 border-2 border-red-500 text-red-800 rounded-xl p-4 text-center font-medium"
                 >
                   <span className="text-2xl mb-2 block">✕</span>
-                  Oops! Please try again or email us directly.
+                  Oops! Please try again or contact us directly via WhatsApp.
                 </motion.div>
               )}
             </form>
@@ -304,5 +365,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

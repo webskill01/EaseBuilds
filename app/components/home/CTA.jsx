@@ -5,7 +5,7 @@ import { FaRocket, FaCheckCircle, FaHeadset } from 'react-icons/fa'
 
 export default function CTA() {
   return (
-    <section className="relative py-12 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 overflow-hidden">
+    <section className="relative py-8 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 overflow-hidden">
       {/* Enhanced Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse" />
@@ -81,7 +81,7 @@ export default function CTA() {
                 <FaRocket className="text-lg sm:text-xl text-white" />
               </div>
               <div className="text-left">
-                <div className="text-xl sm:text-2xl font-extrabold leading-tight">2-4 Weeks</div>
+                <div className="text-xl sm:text-2xl font-extrabold leading-tight">1-2 Weeks</div>
                 <div className="text-[10px] sm:text-xs text-white/80 font-medium">Fast Delivery</div>
               </div>
             </div>
