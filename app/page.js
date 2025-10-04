@@ -11,8 +11,8 @@ import Contact from './components/home/Contact'
 
 // Enhanced metadata for LOCAL SEO - Optimized for Patiala
 export const metadata = {
-  title: 'CodeNest - Web Developer in Patiala | Website Development Company',
-  description: 'Leading web development company in Patiala, Punjab. Expert web developer near you specializing in custom website design, e-commerce, and SEO services. Transform your business with professional websites.',
+  title: 'CodeNest - Web Developer in Patiala | Website Design',
+  description: 'Expert web developer in Patiala, Punjab. Custom website design, e-commerce & SEO services. Transform your business with professional websites. Call now!',
   keywords: 'web developer in patiala, web developer near me, website development company in patiala, website development patiala, web development services patiala punjab, best web developer patiala, custom website development patiala, responsive website design patiala, e-commerce development patiala, SEO services patiala',
   authors: [{ name: 'CodeNest' }],
   creator: 'CodeNest',
@@ -27,14 +27,6 @@ export const metadata = {
     description: 'Leading web development company in Patiala, Punjab. Expert web developer near you. Transform your business with professional websites. Fast delivery, 100% satisfaction guaranteed.',
     url: 'https://codenest-service.vercel.app',
     siteName: 'CodeNest',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'CodeNest - Professional Web Developer in Patiala, Punjab',
-      },
-    ],
     locale: 'en_IN', // Changed for India
     type: 'website',
   },
@@ -42,7 +34,6 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'CodeNest - Web Developer in Patiala | Website Development',
     description: 'Leading web development company in Patiala, Punjab. Beautiful websites that grow your business.',
-    images: ['/og-image.jpg'],
     creator: '@codenest',
   },
   robots: {

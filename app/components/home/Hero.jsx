@@ -78,7 +78,7 @@ export default function Hero() {
                   Grow Your Business with
                 </span>
                 <span className="block bg-gradient-to-r from-primary-600 via-primary-500 to-blue-600 bg-clip-text text-transparent">
-                  Stunning Websites
+                  Stunning Websites 
                 </span>
               </motion.h1>
 

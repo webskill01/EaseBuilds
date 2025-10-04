@@ -10,6 +10,7 @@ import {
   FaBolt,
 } from "react-icons/fa";
 import { useFomoCountdown } from "@/hooks/useFomoCountdown";
+import { FaLocationDot, FaLocationPin, FaLocationPinLock } from "react-icons/fa6";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -186,6 +187,17 @@ export default function Contact() {
                     </div>
                   </div>
                 </a>
+                <span
+                  className="flex items-center gap-3 group hover:translate-x-1 transition-transform"
+                >
+                  <FaLocationDot className="text-2xl text-white group-hover:scale-110 transition-transform flex-shrink-0" />
+                  <div>
+                    <div className="font-semibold text-sm">Location</div>
+                    <div className="text-primary-100 group-hover:text-white transition-colors text-sm">
+                      Patiala, Punjab 147001 
+                    </div>
+                  </div>
+                </span>
               </div>
 
               {/* Business Hours */}
