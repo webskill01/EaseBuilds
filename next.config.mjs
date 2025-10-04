@@ -16,20 +16,17 @@ const nextConfig = {
   // Enable compression (Gzip/Brotli)
   compress: true,
   
-  // Optimize production builds
-  swcMinify: true, // Use SWC for faster minification (3x faster)
-  
   // Remove trailing slashes for consistent URLs (FIXES MOBILE REDIRECT)
   trailingSlash: false,
   
   // Skip type checking during build (do it separately)
   typescript: {
-    ignoreBuildErrors: false, // Set to true only if needed
+    ignoreBuildErrors: false,
   },
   
   // Skip ESLint during build (run separately)
   eslint: {
-    ignoreDuringBuilds: false, // Set to true only if needed
+    ignoreDuringBuilds: false,
   },
   
   
@@ -41,32 +38,26 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: [
-          // DNS prefetch for faster external resource loading
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
-          // Force HTTPS
           {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload'
           },
-          // Prevent clickjacking
           {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN'
           },
-          // Prevent MIME sniffing
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
           },
-          // Referrer policy
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin'
           },
-          // Permissions policy
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
@@ -75,7 +66,7 @@ const nextConfig = {
       },
       // Cache static assets aggressively (1 YEAR)
       {
-        source: '/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg|ico)$',
+        source: '/:path*\\.(jpg|jpeg|png|gif|webp|avif|svg|ico)',
         headers: [
           {
             key: 'Cache-Control',
@@ -85,7 +76,7 @@ const nextConfig = {
       },
       // Cache fonts (1 YEAR)
       {
-        source: '/fonts/(.*)',
+        source: '/fonts/:path*',
         headers: [
           {
             key: 'Cache-Control',
@@ -96,16 +87,13 @@ const nextConfig = {
     ]
   },
   
-  
   async redirects() {
-    return [
-      // Keep this empty to avoid redirect chains
-    ]
+    return []
   },
   
   experimental: {
-    // Optimize CSS (removes unused styles)
-    optimizeCss: true,
+    // DISABLED optimizeCss temporarily (missing critters dependency)
+    // optimizeCss: true,
     
     // Optimize icon libraries (tree-shaking)
     optimizePackageImports: ['lucide-react', '@heroicons/react'],
