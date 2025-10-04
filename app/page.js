@@ -9,22 +9,22 @@ import Testimonials from './components/home/Testimonials'
 import CTA from './components/home/CTA'
 import Contact from './components/home/Contact'
 
-// Enhanced metadata for SEO
+// Enhanced metadata for LOCAL SEO - Optimized for Patiala
 export const metadata = {
-  title: 'CodeNest - Professional Web Development Services | Fast, Beautiful Websites',
-  description: 'Building beautiful, fast websites that turn visitors into customers. Get online in weeks, not months. 50+ satisfied clients. Custom websites, e-commerce, and more.',
-  keywords: 'web development, website design, custom websites, e-commerce, business websites, responsive design, SEO optimization',
+  title: 'CodeNest - Web Developer in Patiala | Website Development Company',
+  description: 'Leading web development company in Patiala, Punjab. Expert web developer near you specializing in custom website design, e-commerce, and SEO services. Transform your business with professional websites.',
+  keywords: 'web developer in patiala, web developer near me, website development company in patiala, website development patiala, web development services patiala punjab, best web developer patiala, custom website development patiala, responsive website design patiala, e-commerce development patiala, SEO services patiala',
   authors: [{ name: 'CodeNest' }],
   creator: 'CodeNest',
   publisher: 'CodeNest',
   formatDetection: {
     email: false,
     address: false,
-    telephone: false,
+    telephone: true, // Enable click-to-call
   },
   openGraph: {
-    title: 'CodeNest - Professional Web Development Services',
-    description: 'Transform your business with a stunning website. Fast delivery, 100% satisfaction guaranteed.',
+    title: 'CodeNest - Web Developer in Patiala | Website Development Company',
+    description: 'Leading web development company in Patiala, Punjab. Expert web developer near you. Transform your business with professional websites. Fast delivery, 100% satisfaction guaranteed.',
     url: 'https://codenest-service.vercel.app',
     siteName: 'CodeNest',
     images: [
@@ -32,16 +32,16 @@ export const metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CodeNest Web Development Services',
+        alt: 'CodeNest - Professional Web Developer in Patiala, Punjab',
       },
     ],
-    locale: 'en_US',
+    locale: 'en_IN', // Changed for India
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CodeNest - Professional Web Development',
-    description: 'Beautiful websites that grow your business',
+    title: 'CodeNest - Web Developer in Patiala | Website Development',
+    description: 'Leading web development company in Patiala, Punjab. Beautiful websites that grow your business.',
     images: ['/og-image.jpg'],
     creator: '@codenest',
   },
@@ -57,16 +57,14 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: 'https://yourdomain.com',
+    canonical: 'https://codenest-service.vercel.app', // FIXED
   },
   verification: {
-    google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
-    // bing: 'your-bing-verification-code',
+    google: 'C3Vd1zR24YyWt984buHbYkmHPnROQREj6SwwOpErj5U',
   },
 }
 
-// Viewport configuration for responsive design
+// Viewport configuration
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -80,42 +78,34 @@ export default function Home() {
     <>
       <Header />
       <main className="relative overflow-hidden" role="main" aria-label="Main content">
-        {/* Hero Section - Above the fold */}
         <section id="home" aria-labelledby="hero-heading">
           <Hero />
         </section>
         
-        {/* Services Section */}
         <section id="services" aria-labelledby="services-heading">
           <Services />
         </section>
         
-        {/* How It Works Section */}
         <section id="how-it-works" aria-labelledby="process-heading">
           <HowItWorks />
         </section>
         
-        {/* Why Choose Us Section */}
         <section id="why-choose-us" aria-labelledby="benefits-heading">
           <WhyChooseUs />
         </section>
         
-        {/* Projects Section */}
         <section id="projects" aria-labelledby="portfolio-heading">
           <Projects />
         </section>
         
-        {/* Testimonials Section */}
         <section id="testimonials" aria-labelledby="testimonials-heading">
           <Testimonials />
         </section>
         
-        {/* Call to Action Section */}
         <section id="cta" aria-labelledby="cta-heading">
           <CTA />
         </section>
         
-        {/* Contact Section */}
         <section id="contact" aria-labelledby="contact-heading">
           <Contact />
         </section>
