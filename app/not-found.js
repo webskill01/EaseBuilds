@@ -39,33 +39,6 @@ export default function NotFound() {
               View Pricing
             </Link>
           </div>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div>
-              <h3 className="font-bold mb-2">Our Services</h3>
-              <ul className="space-y-1 text-sm text-gray-600">
-                <li><Link href="/#services" className="hover:text-indigo-600">Web Development</Link></li>
-                <li><Link href="/#services" className="hover:text-indigo-600">E-Commerce</Link></li>
-                <li><Link href="/#services" className="hover:text-indigo-600">Website Redesign</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-2">About Us</h3>
-              <ul className="space-y-1 text-sm text-gray-600">
-                <li><Link href="/about" className="hover:text-indigo-600">Our Story</Link></li>
-                <li><Link href="/#testimonials" className="hover:text-indigo-600">Testimonials</Link></li>
-                <li><Link href="/#projects" className="hover:text-indigo-600">Portfolio</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-2">Contact</h3>
-              <ul className="space-y-1 text-sm text-gray-600">
-                <li><Link href="/#contact" className="hover:text-indigo-600">Get in Touch</Link></li>
-                <li>Patiala, Punjab</li>
-                <li>+91 62833 80110</li>
-              </ul>
-            </div>
-          </div>
         </div>
       </main>
       <Footer />

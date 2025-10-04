@@ -70,7 +70,11 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#6366f1',
+    themeColor: [
+      { media: '(prefers-color-scheme: light)', color: '#6366f1' },
+      { media: '(prefers-color-scheme: dark)', color: '#4f46e5' },
+    ],
+    
 }
 
 export default function Home() {

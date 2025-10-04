@@ -7,13 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postbuild": "next-sitemap",
     "clean": "rmdir /s /q node_modules && del /f /q package-lock.json && rmdir /s /q .next"
   },
   "dependencies": {
     "framer-motion": "^12.23.22",
     "next": "15.5.4",
-    "next-sitemap": "^4.2.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
