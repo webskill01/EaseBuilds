@@ -3,37 +3,30 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Hero from './components/home/Hero'
 
+// ✅ LAZY LOAD - Below-fold components (SSR enabled for SEO)
 const Services = dynamic(() => import('./components/home/Services'), {
-  ssr: false,
   loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
 })
 
 const HowItWorks = dynamic(() => import('./components/home/HowItWorks'), {
-  ssr: false,
   loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
 })
 
 const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), {
-  ssr: false,
   loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
 })
 
 const Projects = dynamic(() => import('./components/home/Projects'), {
-  ssr: false,
   loading: () => <div className="min-h-[600px] animate-pulse bg-gray-50" />
 })
 
 const Testimonials = dynamic(() => import('./components/home/Testimonials'), {
-  ssr: false,
   loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
 })
 
-const CTA = dynamic(() => import('./components/home/CTA'), {
-  ssr: false
-})
+const CTA = dynamic(() => import('./components/home/CTA'))
 
 const Contact = dynamic(() => import('./components/home/Contact'), {
-  ssr: false,
   loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
 })
 
