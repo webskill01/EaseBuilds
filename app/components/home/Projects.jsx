@@ -1,7 +1,7 @@
 'use client'
-import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useMotionValue, useAnimation } from 'framer-motion'
 import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 
 const projects = [
@@ -42,7 +42,8 @@ export default function Projects() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [itemsPerView, setItemsPerView] = useState(3)
   const [isDragging, setIsDragging] = useState(false)
-  const dragX = useMotionValue(0)
+  const dragStartX = useRef(0)
+  const controls = useAnimation()
 
   // Determine items per view based on screen size
   useEffect(() => {
@@ -84,35 +85,60 @@ export default function Projects() {
     setTimeout(() => setIsAutoPlaying(true), 10000)
   }
 
-  // Handle drag end
-  const handleDragEnd = (event, info) => {
-    setIsDragging(false)
-    const offset = info.offset.x
-    const velocity = info.velocity.x
-    
-    // Determine swipe threshold based on velocity and offset
-    if (Math.abs(velocity) > 500 || Math.abs(offset) > 100) {
-      if (offset > 0 && currentIndex > 0) {
-        prevSlide()
-      } else if (offset < 0 && currentIndex < maxIndex) {
-        nextSlide()
-      }
-    }
-    
-    setIsAutoPlaying(false)
-    setTimeout(() => setIsAutoPlaying(true), 10000)
+  // Calculate transform percentage
+  const getTransformPercentage = () => {
+    return -(currentIndex * (100 / itemsPerView))
   }
 
-  // Calculate transform value based on items per view
-  const getTransformValue = () => {
-    if (itemsPerView === 1) {
-      return `-${currentIndex * 100}%`
-    } else if (itemsPerView === 2) {
-      return `-${currentIndex * 50}%`
-    } else {
-      return '0%'
-    }
+  // Improved drag handlers
+  const handleDragStart = () => {
+    setIsDragging(true)
+    dragStartX.current = 0
   }
+
+  const handleDrag = (event, info) => {
+    dragStartX.current = info.offset.x
+  }
+
+  const handleDragEnd = (event, info) => {
+    const dragThreshold = 50
+    const velocityThreshold = 300
+    const offset = info.offset.x
+    const velocity = info.velocity.x
+
+    // Determine if drag was significant enough to change slides
+    const shouldNavigate = 
+      Math.abs(velocity) > velocityThreshold || Math.abs(offset) > dragThreshold
+
+    if (shouldNavigate) {
+      if (offset > 0 && currentIndex > 0) {
+        // Dragged right - go to previous
+        setCurrentIndex(prev => prev - 1)
+        setIsAutoPlaying(false)
+        setTimeout(() => setIsAutoPlaying(true), 10000)
+      } else if (offset < 0 && currentIndex < maxIndex) {
+        // Dragged left - go to next
+        setCurrentIndex(prev => prev + 1)
+        setIsAutoPlaying(false)
+        setTimeout(() => setIsAutoPlaying(true), 10000)
+      }
+    }
+
+    // Delay resetting isDragging to prevent accidental clicks
+    setTimeout(() => setIsDragging(false), 150)
+  }
+
+  // Animate to current position
+  useEffect(() => {
+    controls.start({
+      x: `${getTransformPercentage()}%`,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30
+      }
+    })
+  }, [currentIndex, itemsPerView, controls])
 
   return (
     <section id="projects" className="relative pb-2 pt-6 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
@@ -155,12 +181,17 @@ export default function Projects() {
 
         {/* Carousel Container */}
         <div className="relative px-0 sm:px-12 lg:px-16">
-          {/* Navigation Buttons - Lower opacity by default */}
+          {/* Navigation Buttons */}
           {maxIndex > 0 && (
             <>
               <button
                 onClick={() => handleManualNavigation('prev')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/50 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 opacity-30 hover:opacity-100"
+                disabled={currentIndex === 0}
+                className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/50 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
+                  currentIndex === 0 
+                    ? 'opacity-20 cursor-not-allowed' 
+                    : 'text-gray-600 hover:bg-primary-600 hover:text-white opacity-30 hover:opacity-100'
+                }`}
                 aria-label="Previous project"
               >
                 <FaChevronLeft className="text-lg sm:text-xl" />
@@ -168,7 +199,12 @@ export default function Projects() {
 
               <button
                 onClick={() => handleManualNavigation('next')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/50 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 opacity-30 hover:opacity-100"
+                disabled={currentIndex === maxIndex}
+                className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/50 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
+                  currentIndex === maxIndex 
+                    ? 'opacity-20 cursor-not-allowed' 
+                    : 'text-gray-600 hover:bg-primary-600 hover:text-white opacity-30 hover:opacity-100'
+                }`}
                 aria-label="Next project"
               >
                 <FaChevronRight className="text-lg sm:text-xl" />
@@ -176,24 +212,22 @@ export default function Projects() {
             </>
           )}
 
-          {/* Carousel Track with Drag */}
-          <div className="overflow-hidden rounded-xl">
+          {/* Carousel Track with Improved Drag */}
+          <div className="overflow-hidden rounded-xl touch-pan-y">
             <motion.div
-              className="flex cursor-grab active:cursor-grabbing"
+              className="flex"
               drag={maxIndex > 0 ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragStart={() => setIsDragging(true)}
+              dragElastic={0.1}
+              dragMomentum={false}
+              onDragStart={handleDragStart}
+              onDrag={handleDrag}
               onDragEnd={handleDragEnd}
-              animate={{ 
-                x: getTransformValue()
+              animate={controls}
+              style={{
+                cursor: isDragging ? 'grabbing' : maxIndex > 0 ? 'grab' : 'default',
+                touchAction: 'pan-y'
               }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 30
-              }}
-              style={{ x: dragX }}
             >
               {projects.map((project, index) => (
                 <motion.div
@@ -204,20 +238,24 @@ export default function Projects() {
                   transition={{ delay: index * 0.1, duration: 0.4 }}
                   className="px-2 sm:px-3"
                   style={{ 
-                    minWidth: itemsPerView === 1 ? '100%' : itemsPerView === 2 ? '50%' : '33.333%'
+                    minWidth: `${100 / itemsPerView}%`,
+                    maxWidth: `${100 / itemsPerView}%`
                   }}
                 >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <div
                     onClick={(e) => {
-                      // Prevent link navigation during drag
-                      if (isDragging) {
+                      // Prevent navigation if dragging or if it was a drag gesture
+                      if (isDragging || Math.abs(dragStartX.current) > 10) {
                         e.preventDefault()
+                        return
+                      }
+                      // Otherwise open link
+                      if (project.link) {
+                        window.open(project.link, '_blank', 'noopener,noreferrer')
                       }
                     }}
-                    className="group block cursor-pointer h-full"
+                    className="group cursor-pointer h-full"
+                    style={{ userSelect: 'none' }}
                   >
                     <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 h-full flex flex-col hover:-translate-y-1">
                       {/* Project Image */}
@@ -280,7 +318,7 @@ export default function Projects() {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 </motion.div>
               ))}
             </motion.div>

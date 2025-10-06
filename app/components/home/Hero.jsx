@@ -155,7 +155,7 @@ export default function Hero() {
                   >
                     <span className="text-[9px] sm:text-xs font-bold flex items-center gap-0.5">
                       <FaTag className="text-[8px]" />
-                      50% OFF
+                      40% OFF
                     </span>
                   </motion.div>
                   

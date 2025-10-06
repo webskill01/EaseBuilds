@@ -22,6 +22,12 @@ export const metadata = genMeta({})
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* ✅ ADDED: Preload hints for faster loading */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
+      </head>
+      
       <body 
         className={`${inter.className} antialiased`}
         suppressHydrationWarning
