@@ -3,42 +3,23 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Hero from './components/home/Hero'
 
-// ✅ LAZY LOAD - Below-fold components (SSR enabled for SEO)
-const Services = dynamic(() => import('./components/home/Services'), {
-  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
-})
-
-const HowItWorks = dynamic(() => import('./components/home/HowItWorks'), {
-  loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
-})
-
-const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), {
-  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
-})
-
-const Projects = dynamic(() => import('./components/home/Projects'), {
-  loading: () => <div className="min-h-[600px] animate-pulse bg-gray-50" />
-})
-
-const Testimonials = dynamic(() => import('./components/home/Testimonials'), {
-  loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
-})
-
+// Lazy load below-fold components
+const Services = dynamic(() => import('./components/home/Services'))
+const HowItWorks = dynamic(() => import('./components/home/HowItWorks'))
+const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'))
+const Projects = dynamic(() => import('./components/home/Projects'))
+const Testimonials = dynamic(() => import('./components/home/Testimonials'))
 const CTA = dynamic(() => import('./components/home/CTA'))
-
-const Contact = dynamic(() => import('./components/home/Contact'), {
-  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
-})
+const Contact = dynamic(() => import('./components/home/Contact'))
 
 export default function Home() {
   return (
     <>
       <Header />
       <main>
-        {/* Above fold - loads immediately */}
-        <Hero />
+        <Hero />  {/* Above fold - loads immediately */}
         
-        {/* Below fold - lazy loads when scrolling */}
+        {/* Below fold - lazy loads */}
         <Services />
         <HowItWorks />
         <WhyChooseUs />

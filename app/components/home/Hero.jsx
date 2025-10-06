@@ -237,7 +237,7 @@ export default function Hero() {
                   src="/images/image4.jpg"
                   alt="Professional website development services showcase"
                   fill
-                   priority
+                  priority
                   fetchPriority="high" 
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
@@ -249,7 +249,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.6 }}
-                  className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-xl p-3 sm:p-4 shadow-xl z-20"
+                  className="absolute bottom-4 left-4 right-4 sm:bottom-6 hidden sm:block sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-xl p-3 sm:p-4 shadow-xl z-20"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
