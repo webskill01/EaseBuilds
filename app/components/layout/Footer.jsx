@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaEnvelope, FaPhone } from 'react-icons/fa'
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
@@ -112,6 +112,18 @@ export default function Footer() {
             </p>
           </div>
         </div>
+      </div>
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-40 lg:hidden">
+        <a
+          href="https://wa.me/6283380110?text=Hi CodeNest, I'm intrested in your services"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl hover:shadow-green-500/25 transform hover:scale-110 transition-all duration-300"
+          aria-label="Contact us on WhatsApp"
+        >
+          <FaWhatsapp className="w-7 h-7 text-white" />
+        </a>
       </div>
     </footer>
   )
