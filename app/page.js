@@ -3,23 +3,49 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Hero from './components/home/Hero'
 
-// Lazy load below-fold components
-const Services = dynamic(() => import('./components/home/Services'))
-const HowItWorks = dynamic(() => import('./components/home/HowItWorks'))
-const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'))
-const Projects = dynamic(() => import('./components/home/Projects'))
-const Testimonials = dynamic(() => import('./components/home/Testimonials'))
-const CTA = dynamic(() => import('./components/home/CTA'))
-const Contact = dynamic(() => import('./components/home/Contact'))
+const Services = dynamic(() => import('./components/home/Services'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
+})
+
+const HowItWorks = dynamic(() => import('./components/home/HowItWorks'), {
+  ssr: false,
+  loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
+})
+
+const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
+})
+
+const Projects = dynamic(() => import('./components/home/Projects'), {
+  ssr: false,
+  loading: () => <div className="min-h-[600px] animate-pulse bg-gray-50" />
+})
+
+const Testimonials = dynamic(() => import('./components/home/Testimonials'), {
+  ssr: false,
+  loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
+})
+
+const CTA = dynamic(() => import('./components/home/CTA'), {
+  ssr: false
+})
+
+const Contact = dynamic(() => import('./components/home/Contact'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
+})
 
 export default function Home() {
   return (
     <>
       <Header />
       <main>
-        <Hero />  {/* Above fold - loads immediately */}
+        {/* Above fold - loads immediately */}
+        <Hero />
         
-        {/* Below fold - lazy loads */}
+        {/* Below fold - lazy loads when scrolling */}
         <Services />
         <HowItWorks />
         <WhyChooseUs />
