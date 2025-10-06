@@ -1,13 +1,9 @@
 # .browserslistrc
-# Target modern browsers only (drops IE11, old Safari)
-
-# Production
 > 0.5%
 last 2 versions
 not dead
 not op_mini all
 
-# Modern ESM support
 Chrome >= 90
 Edge >= 90
 Safari >= 14
