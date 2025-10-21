@@ -27,7 +27,7 @@ const projects = [
     title: 'Tape India - E-commerce Store',
     category: 'E-Commerce Development',
     description: 'Modern online store for adhesive tape products serving Chennai with advanced product catalog, secure payment gateway (Razorpay, PayPal), automated inventory management, and lightning-fast checkout. Sales tripled in 3 months.',
-    image: '/images/tapeindia.png',
+    image: '/images/tapeindia.jpg',
     gradient: 'from-orange-500 to-red-600',
     tags: ['E-commerce', 'Payment Integration', 'Inventory System', 'Fast Checkout'],
     link: 'https://tapeindia.shop',

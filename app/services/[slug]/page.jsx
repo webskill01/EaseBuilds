@@ -127,6 +127,7 @@ export default function DynamicServicePage() {
         <header 
           ref={heroRef}
           className="relative min-h-screen flex items-center justify-center overflow-hidden pt-5"
+          style={{ overflow: 'hidden', maxWidth: '100%' }} 
         >
           <motion.div style={{ y }} className="absolute inset-0 z-0">
             <HeroImage
@@ -134,7 +135,7 @@ export default function DynamicServicePage() {
               alt={`${serviceData.name} Services in Patiala Punjab India - Professional ${serviceData.name} Company`}
             />
              <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
-            <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 opacity-5" style={{ maxWidth: '100%' }}>
               <div className="absolute inset-0" style={{
                 backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)',
                 backgroundSize: '50px 50px'
@@ -142,7 +143,7 @@ export default function DynamicServicePage() {
           </div>
           </motion.div>
 
-          <div className="container-custom relative z-10 py-16">
+          <div className="container-custom relative z-10 py-16"style={{ maxWidth: '100%' }}>
             <div className="max-w-4xl mx-auto text-center">
               
               <motion.div
@@ -234,8 +235,8 @@ export default function DynamicServicePage() {
         </header>
 
         {/* ✅ SEO: Section with proper H2 */}
-        <section className="pt-12 pb-5 bg-white" aria-labelledby="benefits-heading">
-          <div className="container-custom">
+        <section className="pt-12 pb-5 bg-white" aria-labelledby="benefits-heading" style={{ maxWidth: '100%' }}>
+          <div className="container-custom" style={{ maxWidth: '100%' }}>
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
                 {/* ✅ SEO: H2 for major section */}

@@ -564,12 +564,15 @@ export default function AboutPage() {
             <ScrollReveal direction="up">
               <div className="max-w-5xl mx-auto relative">
                 {/* Background with gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-gray-900/95 rounded-3xl" />
                 <div
-                  className="absolute inset-0 rounded-3xl opacity-30"
+                  className="absolute inset-0 rounded-3xl opacity-80"
                   style={{
                     backgroundImage:
-                      'url("/images/hero2.jpg")',
+                      'url("/images/services/custom4.jpg")',
+                       backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
                   }}
                 />
 

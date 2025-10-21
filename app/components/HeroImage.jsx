@@ -20,7 +20,7 @@ export default function HeroImage({ src, alt, overlay = true }) {
         fill
         priority
         fetchPriority="high"
-        quality={90}
+        quality={96}
         sizes="100vw"
         className={`object-cover transition-opacity duration-700 ${
           isLoaded ? 'opacity-100' : 'opacity-0'

@@ -334,7 +334,7 @@ export default function ClientReviews() {
           </ScrollReveal>
 
           {/* Google CTA */}
-          <ScrollReveal direction="up" delay={0.5}>
+          <ScrollReveal direction="up" delay={0.2}>
             <div className="text-center mt-8">
               <motion.a
                 href="https://g.page/r/YOUR_GOOGLE_BUSINESS_PROFILE_LINK/review"

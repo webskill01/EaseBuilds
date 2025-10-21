@@ -190,7 +190,7 @@ export default function HowItWorks() {
                   onClick={() => setActiveStep(index)}
                   className={`transition-all duration-300 rounded-full ${
                     activeStep === index 
-                      ? `w-8 h-2 bg-gradient-to-r ${step.gradient}` 
+                      ? `w-2 h-2 bg-gradient-to-r ${step.gradient}` 
                       : 'w-2 h-2 bg-gray-300'
                   }`}
                   role="tab"

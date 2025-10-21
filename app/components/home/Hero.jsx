@@ -1,6 +1,6 @@
 'use client'
 
-// FINAL Hero - Background Actually Visible + Compact Parallax Stats
+// FIXED Hero - No Horizontal Scroll
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
@@ -9,7 +9,6 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import RotatingText from '../animations/RotatingText'
 import CountUp from '../animations/CountUp'
-import HeroImage from '../HeroImage'
 
 export default function Hero() {
   const statsRef = useRef(null)
@@ -25,10 +24,10 @@ export default function Hero() {
   const { scrollYProgress: scroll2 } = useScroll({ target: card2Ref, offset: ["start end", "end start"] })
   const { scrollYProgress: scroll3 } = useScroll({ target: card3Ref, offset: ["start end", "end start"] })
   
-  // Parallax transforms
-  const y1 = useTransform(scroll1, [0, 1], [50, -50])
-  const y2 = useTransform(scroll2, [0, 1], [70, -70])
-  const y3 = useTransform(scroll3, [0, 1], [90, -90])
+  // FIXED: Reduced parallax range to prevent overflow
+  const y1 = useTransform(scroll1, [0, 1], [30, -30])  // Was 50, -50
+  const y2 = useTransform(scroll2, [0, 1], [40, -40])  // Was 70, -70
+  const y3 = useTransform(scroll3, [0, 1], [50, -50])  // Was 90, -90
 
   const rotatingTexts = [
     'Stunning Websites',
@@ -39,24 +38,31 @@ export default function Hero() {
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-10 pb-8">
-      
-      {/* FIXED: Background Image Now Visible */}
-      <HeroImage 
-        src="/images/main-hero.jpg"
-        alt="Hero"
-      />
-      
-      {/* REDUCED Gradient Overlay so image shows through */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/65 to-cyan-50/10" style={{ zIndex: 1 }} />
+    <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20" style={{ overflow: 'hidden' }}>
+      {/* Background Image - FIXED: Added max-width */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/images/main-hero.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          zIndex: 0,
+          maxWidth: '100%', /* ADD THIS */
+          overflow: 'hidden' /* ADD THIS */
+        }}
+      >        
+        {/* REDUCED Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/65 to-cyan-50/10" style={{ zIndex: 1 }} />
+      </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl" style={{ zIndex: 3 }} />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl" style={{ zIndex: 3 }} />
+      {/* Gradient Orbs - FIXED: Constrained positioning */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" style={{ zIndex: 3, maxWidth: '40%' }} />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" style={{ zIndex: 3, maxWidth: '40%' }} />
 
-      {/* Main Content */}
-      <div className="container-custom relative" style={{ zIndex: 10 }}>
-        <div className="max-w-5xl mx-auto">
+      {/* Main Content - FIXED: Added max-width constraint */}
+      <div className="container-custom relative" style={{ zIndex: 10, maxWidth: '100%', overflow: 'hidden' }}>
+        <div className="max-w-5xl mx-auto" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           
           {/* Centered Content */}
           <div className="text-center space-y-5 sm:space-y-6">
@@ -66,7 +72,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full shadow-lg hover:scale-105 transition-transform">
                 <FaRocket className="text-base" />
@@ -104,7 +110,8 @@ export default function Hero() {
                   Professional
                 </span>
                 
-                <div className="mb-2 flex justify-center" style={{ minHeight: '1.5em' }}>
+                {/* FIXED: Added overflow constraint */}
+                <div className="mb-2 flex justify-center" style={{ minHeight: '1.5em', maxWidth: '100%', overflow: 'hidden' }}>
                   <RotatingText
                     texts={rotatingTexts}
                     mainClassName="inline-block font-extrabold"
@@ -142,7 +149,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2 px-4"
+              className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2 px-4 flex-wrap"
             >
               <a
                 href="tel:+916283380110"
@@ -172,8 +179,8 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* COMPACT Stats Cards with Parallax Scroll */}
-            <div ref={statsRef} className="pt-6 sm:pt-8 px-4">
+            {/* COMPACT Stats Cards with Parallax - FIXED: Overflow constraint */}
+            <div ref={statsRef} className="pt-6 sm:pt-8 px-4" style={{ overflow: 'hidden', maxWidth: '100%' }}>
               <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
                 {[
                   { ref: card1Ref, y: y1, icon: FaUsers, value: 50, suffix: '+', label: 'Clients', gradient: 'from-blue-50 to-cyan-50', iconGradient: 'from-blue-600 to-cyan-500', textColor: 'text-blue-600', borderColor: 'border-blue-100', delay: 0 },
@@ -208,7 +215,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Trust Indicators - Compact */}
+            {/* Trust Indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
