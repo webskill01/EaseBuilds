@@ -3,49 +3,65 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Hero from './components/home/Hero'
 
-const Services = dynamic(() => import('./components/home/Services'), {
-  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
+// Dynamic imports for below-the-fold components (performance optimization)
+const Services = dynamic(() => import('./components/home/Services'), { 
+  loading: () => <div className="min-h-[400px] bg-gray-50 animate-pulse" />
 })
 
-const HowItWorks = dynamic(() => import('./components/home/HowItWorks'), {
-  loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
+const ClientReviews = dynamic(() => import('./components/home/ClientReviews'), { 
+  loading: () => <div className="min-h-[400px] bg-white animate-pulse" />
 })
 
-const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), {
-  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
+const HowItWorks = dynamic(() => import('./components/home/HowItWorks'), { 
+  loading: () => <div className="min-h-[400px] bg-gray-50 animate-pulse" />
 })
 
-const Projects = dynamic(() => import('./components/home/Projects'), {
-  loading: () => <div className="min-h-[600px] animate-pulse bg-gray-50" />
+const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), { 
+  loading: () => <div className="min-h-[400px] bg-white animate-pulse" />
 })
 
-const Testimonials = dynamic(() => import('./components/home/Testimonials'), {
-  loading: () => <div className="min-h-[500px] animate-pulse bg-gray-50" />
+const Projects = dynamic(() => import('./components/home/Projects'), { 
+  loading: () => <div className="min-h-[400px] bg-gray-50 animate-pulse" />
 })
 
-const CTA = dynamic(() => import('./components/home/CTA'))
+const FAQ = dynamic(() => import('./components/home/FAQ'), { 
+  loading: () => <div className="min-h-[400px] bg-white animate-pulse" />
+})
 
-const Contact = dynamic(() => import('./components/home/Contact'), {
-  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-50" />
+
+const Contact = dynamic(() => import('./components/home/Contact'), { 
+  loading: () => <div className="min-h-[500px] bg-gray-50 animate-pulse" />
 })
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
-        {/* Above fold - loads immediately */}
-        <Hero />
-        
-        {/* Below fold - lazy loads when scrolling */}
-        <Services />
-        <HowItWorks />
-        <WhyChooseUs />
-        <Projects />
-        <Testimonials />
-        <CTA />
-        <Contact />
-      </main>
+      
+      {/* Hero Section - Above the fold, loaded immediately */}
+      <Hero />
+      
+      {/* Services Section */}
+      <Services />
+      
+      {/* Client Reviews Section - NEW - Critical for Local SEO */}
+      <ClientReviews />
+      
+      {/* How It Works Section */}
+      <HowItWorks />
+      
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
+      
+      {/* Projects Portfolio Section */}
+      <Projects />
+      
+      {/* FAQ Section - NEW - Critical for Rich Snippets */}
+      <FAQ />
+            
+      {/* Contact Section */}
+      <Contact />
+      
       <Footer />
     </>
   )

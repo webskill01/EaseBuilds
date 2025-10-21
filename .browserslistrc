@@ -1,10 +1,14 @@
 # .browserslistrc
+# Modern browsers (99.5% coverage)
 > 0.5%
 last 2 versions
 not dead
 not op_mini all
 
+# Explicit modern versions
 Chrome >= 90
 Edge >= 90
 Safari >= 14
 Firefox >= 88
+iOS >= 14
+Samsung >= 15

@@ -1,256 +1,501 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { FaLaptopCode, FaShoppingCart, FaMobile, FaRocket, FaPaintBrush, FaSearch } from 'react-icons/fa'
+
+import { motion, useMotionValue, useSpring, useTransform, useInView, AnimatePresence } from 'framer-motion'
+import { 
+  FaLaptopCode, 
+  FaShoppingCart, 
+  FaMobile, 
+  FaRocket, 
+  FaPaintBrush, 
+  FaSearch,
+  FaArrowRight,
+  FaStar,
+  FaCheckCircle,
+  FaEye,
+  FaTimes
+} from 'react-icons/fa'
+import { useState, useRef, useEffect } from 'react'
+import ScrollReveal from '../animations/ScrollReveal'
+import Link from 'next/link'
 
 const services = [
   {
+    id: 'custom-web',
     icon: FaLaptopCode,
-    title: 'Custom Websites',
-    description: 'Beautiful, professional websites tailored to your business needs.',
-    gradient: 'from-blue-500 to-primary-600'
+    title: 'Custom Website Development',
+    description: 'Professional, tailor-made websites designed specifically for your business.',
+    fullDescription: 'We create stunning custom websites tailored to your brand identity. Every pixel is crafted with care, from responsive layouts to seamless user experiences. Perfect for businesses looking to establish a strong online presence.',
+    gradient: 'from-blue-400 to-blue-600',
+    bgGradient: 'from-blue-50 to-blue-100',
+    iconColor: 'text-blue-600',
+    features: ['Responsive Design', 'Fast Loading', 'SEO Ready', 'Custom Features'],
+    link: '/services/custom-website-design',
+    rating: 5,
+    clients: '20+',
+    deliveryTime: '2-3 weeks'
   },
   {
+    id: 'ecommerce',
     icon: FaShoppingCart,
-    title: 'Online Stores',
-    description: 'Start selling online with powerful e-commerce solutions.',
-    gradient: 'from-green-500 to-emerald-600'
+    title: 'E-commerce Development',
+    description: 'Powerful online stores with secure payment integration for businesses.',
+    fullDescription: 'Launch your online store with our complete e-commerce solutions. From product catalogs to secure checkout, we handle everything. Perfect for retail businesses ready to sell online.',
+    gradient: 'from-green-400 to-emerald-600',
+    bgGradient: 'from-green-50 to-emerald-100',
+    iconColor: 'text-green-600',
+    features: ['Payment Gateway', 'Inventory', 'Analytics', 'Mobile Shopping'],
+    link: '/services/ecommerce-development',
+    rating: 5,
+    clients: '15+',
+    deliveryTime: '3-4 weeks'
   },
   {
+    id: 'mobile-design',
     icon: FaMobile,
-    title: 'Mobile-Friendly',
-    description: 'Perfect experience on all devices - phones, tablets, and computers.',
-    gradient: 'from-purple-500 to-violet-600'
+    title: 'Mobile-First Design',
+    description: 'Perfect user experience on all devices - phones, tablets, and computers.',
+    fullDescription: 'With 60%+ mobile traffic, we design mobile-first. Your website will look stunning and perform flawlessly on every device. Optimized for users on 4G networks.',
+    gradient: 'from-purple-400 to-violet-600',
+    bgGradient: 'from-purple-50 to-violet-100',
+    iconColor: 'text-purple-600',
+    features: ['Mobile First', 'Touch Optimized', 'Fast on 4G', 'PWA Ready'],
+    link: '/services/custom-website-design',
+    rating: 5,
+    clients: '50+',
+    deliveryTime: '2 weeks'
   },
   {
+    id: 'performance',
     icon: FaRocket,
-    title: 'Fast Loading',
-    description: 'Lightning-fast websites that rank higher and convert better.',
-    gradient: 'from-orange-500 to-red-600'
+    title: 'Speed Optimization',
+    description: 'Lightning-fast websites that rank higher on Google and convert better.',
+    fullDescription: 'Speed matters! We optimize every aspect - images, code, server response. Your website will load in under 2 seconds, improving rankings and user satisfaction.',
+    gradient: 'from-orange-400 to-red-600',
+    bgGradient: 'from-orange-50 to-red-100',
+    iconColor: 'text-orange-600',
+    features: ['Core Web Vitals', 'Image Optimization', 'Code Splitting', 'CDN Setup'],
+    link: '/services/website-maintenance',
+    rating: 5,
+    clients: '30+',
+    deliveryTime: '1 week'
   },
   {
+    id: 'design',
     icon: FaPaintBrush,
-    title: 'Modern Design',
-    description: 'Eye-catching designs with smooth animations that impress.',
-    gradient: 'from-pink-500 to-rose-600'
+    title: 'Modern UI/UX Design',
+    description: 'Beautiful, user-friendly designs that engage visitors and drive conversions.',
+    fullDescription: 'Great design sells! We create interfaces that users love. From wireframes to final designs, every element is purposefully crafted for maximum engagement and conversions.',
+    gradient: 'from-pink-400 to-rose-600',
+    bgGradient: 'from-pink-50 to-rose-100',
+    iconColor: 'text-pink-600',
+    features: ['Brand Identity', 'User Research', 'Wireframing', 'Prototyping'],
+    link: '/services/custom-website-design',
+    rating: 5,
+    clients: '40+',
+    deliveryTime: '2-3 weeks'
   },
   {
+    id: 'seo',
     icon: FaSearch,
-    title: 'SEO Optimized',
-    description: 'Get found on Google with built-in search optimization.',
-    gradient: 'from-cyan-500 to-blue-600'
+    title: 'SEO Services',
+    description: 'Rank higher on Google with expert SEO services.',
+    fullDescription: 'Get found by local customers! Our SEO services help you rank #1 for keywords like "best [your business] in Patiala". More visibility = more customers.',
+    gradient: 'from-cyan-400 to-blue-600',
+    bgGradient: 'from-cyan-50 to-blue-100',
+    iconColor: 'text-cyan-600',
+    features: ['Local SEO', 'Keyword Research', 'On-Page SEO', 'Link Building'],
+    link: '/services/seo-services',
+    rating: 5,
+    clients: '25+',
+    deliveryTime: 'Ongoing'
   },
 ]
 
-// Individual Service Card Component
-function ServiceCard({ service, index }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-  const [isActive, setIsActive] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+// Floating Particles - NO BLUR
+function FloatingParticles() {
+  const [particles, setParticles] = useState([])
 
-  // Detect mobile
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    setParticles(
+      Array.from({ length: 15 }, (_, i) => ({
+        id: i,
+        left: (i * 7 + 13) % 100,
+        top: (i * 11 + 5) % 100,
+        duration: 3 + (i % 3),
+        delay: i * 0.2,
+      }))
+    )
   }, [])
 
-  // Auto-activate on mobile when in view with stagger
-  useEffect(() => {
-    if (isInView && isMobile) {
-      const timer = setTimeout(() => {
-        setIsActive(true)
-      }, index * 100)
-      
-      return () => clearTimeout(timer)
-    }
-  }, [isInView, isMobile, index])
+  if (particles.length === 0) return null
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ 
-        delay: index * 0.1, 
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1] 
-      }}
-      onMouseEnter={() => !isMobile && setIsActive(true)}
-      onMouseLeave={() => !isMobile && setIsActive(false)}
-      className="group relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden"
-    >
-      {/* Gradient Background - subtle always, prominent on active */}
-      <motion.div 
-        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-opacity duration-500`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isActive ? 0.08 : 0.02 }}
-      />
-      
-      {/* Animated gradient border on hover/active */}
-      <motion.div 
-        className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.gradient} opacity-0 transition-opacity duration-500`}
-        animate={{ opacity: isActive ? 0.15 : 0 }}
-        style={{ 
-          mask: 'linear-gradient(white 0 0) content-box, linear-gradient(white 0 0)',
-          maskComposite: 'exclude',
-          padding: '2px'
-        }}
-      />
-      
-      <div className="relative flex flex-col items-center text-center">
-        {/* Icon Container with smooth morph animation */}
-        <motion.div 
-          className="relative mb-4"
-          animate={{ 
-            scale: isActive ? 1.05 : 1,
-            rotate: isActive ? [0, -5, 5, 0] : 0
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
+          style={{
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, (particle.id % 3) * 5 - 5, 0],
+            opacity: [0.1, 0.3, 0.1],
+            scale: [1, 1.5, 1]
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: 'easeInOut'
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Service Card - NO BLUR, REDUCED HEIGHT
+function ServiceCard({ service, index }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const [isFlipped, setIsFlipped] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const cardRef = useRef(null)
+  const isInView = useInView(cardRef, { once: true, margin: '-100px' })
+  
+  const mouseX = useMotionValue(0.5)
+  const mouseY = useMotionValue(0.5)
+  const smoothMouseX = useSpring(mouseX, { stiffness: 100, damping: 20 })
+  const smoothMouseY = useSpring(mouseY, { stiffness: 100, damping: 20 })
+  
+  const rotateX = useTransform(smoothMouseY, [0, 1], [5, -5])
+  const rotateY = useTransform(smoothMouseX, [0, 1], [-5, 5])
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current || isFlipped) return
+    const rect = cardRef.current.getBoundingClientRect()
+    mouseX.set((e.clientX - rect.left) / rect.width)
+    mouseY.set((e.clientY - rect.top) / rect.height)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    mouseX.set(0.5)
+    mouseY.set(0.5)
+  }
+
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped)
+  }
+
+  return (
+    <>
+      <motion.div
+        ref={cardRef}
+        className="group relative"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: index * 0.1, type: 'spring' }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{ perspective: '1500px' }}
+      >
+        {/* REDUCED HEIGHT: auto with min */}
+        <motion.div
+          className="relative h-full min-h-[380px]"
+          style={{
+            transformStyle: 'preserve-3d',
+          }}
+          animate={{
+            rotateY: isFlipped ? 180 : 0,
+            rotateX: !isFlipped && isHovered ? rotateX.get() : 0,
           }}
           transition={{ 
-            scale: { duration: 0.3 },
-            rotate: { duration: 0.6, ease: "easeInOut" }
+            rotateY: { duration: 0.6, type: 'spring', stiffness: 100, damping: 15 },
+            rotateX: { duration: 0.1 },
           }}
-        > 
-          {/* Main icon container */}
-          <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center overflow-hidden">
-            {/* Background that morphs */}
-            <motion.div 
-              className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}
-              animate={{ 
-                opacity: isActive ? 1 : 0.1,
-                scale: isActive ? 1 : 0.8
-              }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-            />
-            
-            {/* Icon */}
+        >
+          {/* FRONT SIDE - NO BLUR */}
+          <div
+            className="absolute inset-0 bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-gray-200 overflow-hidden cursor-pointer"
+            style={{
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+            }}
+            onClick={handleFlip}
+          >
             <motion.div
-              animate={{ 
-                scale: isActive ? 1.1 : 1,
-                rotate: isActive ? 360 : 0
+              className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient}`}
+              animate={{
+                opacity: isHovered && !isFlipped ? 0.4 : 0,
+                scale: isHovered && !isFlipped ? 1.05 : 1
               }}
-              transition={{ 
-                scale: { duration: 0.3 },
-                rotate: { duration: 0.6, ease: "easeInOut" }
-              }}
-            >
-              <service.icon 
-                className={`relative z-10 text-2xl sm:text-3xl transition-all duration-400`}
-                style={{ 
-                  color: isActive ? 'white' : 'rgb(59 130 246)',
-                  filter: isActive ? 'drop-shadow(0 0 8px rgba(255,255,255,0.5))' : 'none'
+              transition={{ duration: 0.4 }}
+            />
+
+            {!isFlipped && (
+              <motion.div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(600px circle at ${smoothMouseX.get() * 100}% ${smoothMouseY.get() * 100}%, rgba(59, 130, 246, 0.12), rgba(0, 0, 0, 0) 40%)`,
+                  opacity: isHovered ? 1 : 0,
                 }}
+                transition={{ duration: 0.3 }}
               />
-            </motion.div>
+            )}
+
+            <div className="relative h-full flex flex-col">
+              <div className="flex-grow space-y-3">
+                <motion.div
+                  className={`relative inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${service.gradient} rounded-2xl shadow-lg`}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: [0, -5, 5, -5, 0],
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <service.icon className="text-2xl sm:text-3xl text-white" />
+                </motion.div>
+
+                <h3 className={`text-lg sm:text-xl font-bold transition-all duration-300 ${
+                  isHovered && !isFlipped 
+                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500' 
+                    : 'text-gray-900'
+                }`}>
+                  {service.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
+
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(service.rating)].map((_, i) => (
+                      <FaStar key={i} className="text-yellow-400 text-xs" />
+                    ))}
+                  </div>
+                  <span className="text-xs font-semibold text-blue-600">{service.clients} Projects</span>
+                </div>
+
+                <div className="space-y-1.5">
+                  {service.features.map((feature, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="flex items-center gap-1.5"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.3 + idx * 0.1 }}
+                      whileHover={{ x: 5, scale: 1.02 }}
+                    >
+                      <FaCheckCircle className={`${service.iconColor} text-xs`} />
+                      <span className="text-xs text-gray-700">{feature}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex gap-2 mt-4">
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setShowModal(true)
+                  }}
+                  className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r ${service.gradient} text-white rounded-xl text-xs font-semibold shadow-lg`}
+                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaEye className="text-xs" />
+                  <span>Details</span>
+                </motion.button>
+                
+                <Link
+                  href={service.link}
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-9 h-9 flex items-center justify-center bg-gray-100 hover:bg-blue-50 rounded-xl transition-colors flex-shrink-0"
+                >
+                  <FaArrowRight className={`${service.iconColor} text-sm`} />
+                </Link>
+              </div>
+            </div>
+
+            {/* NO BLUR decorative corner */}
+            <div className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full pointer-events-none`} />
+          </div>
+
+          {/* BACK SIDE - NO BLUR */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl p-5 sm:p-6 shadow-xl overflow-hidden cursor-pointer`}
+            style={{
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)',
+            }}
+            onClick={handleFlip}
+          >
+            <div className="relative h-full flex flex-col text-white">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">{service.title}</h3>
+              <p className="text-xs sm:text-sm text-white/90 leading-relaxed mb-3">
+                {service.fullDescription}
+              </p>
+              
+              <div className="space-y-2 mb-3">
+                <div className="flex justify-between items-center p-2 bg-white/20 rounded-lg">
+                  <span className="text-xs">Delivery Time</span>
+                  <span className="text-sm font-bold">{service.deliveryTime}</span>
+                </div>
+                <div className="flex justify-between items-center p-2 bg-white/20 rounded-lg">
+                  <span className="text-xs">Completed Projects</span>
+                  <span className="text-sm font-bold">{service.clients}</span>
+                </div>
+              </div>
+
+              <div className="mt-auto space-y-2">
+                <Link
+                  href={service.link}
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-white text-gray-900 rounded-xl text-xs font-bold hover:bg-gray-100 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Learn More
+                  <FaArrowRight />
+                </Link>
+                
+                <div className="text-center text-xs text-white/80">
+                  Click anywhere to flip back
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Title with gradient on active */}
-        <motion.h3 
-          className="text-lg sm:text-xl font-bold mb-1 transition-all duration-300"
-          animate={{
-            scale: isActive ? 1.02 : 1
-          }}
-        >
-          <span 
-            className={`transition-all duration-300 ${
-              isActive ? `bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent` : 'text-gray-900'
-            }`}
+        {!isFlipped && (
+          <motion.div
+            className="absolute -top-2 -right-2 px-2 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full shadow-lg pointer-events-none z-10"
+            animate={{
+              y: [0, -5, 0],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            {service.title}
-          </span>
-        </motion.h3>
+            Click to Flip
+          </motion.div>
+        )}
+      </motion.div>
 
-        {/* Description */}
-        <p className="text-sm text-gray-600 leading-relaxed mb-2">
-          {service.description}
-        </p>
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowModal(false)}
+          >
+            <motion.div
+              className="relative max-w-2xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.8, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 50 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10"
+              >
+                <FaTimes />
+              </button>
 
-        {/* Animated underline on active */}
-        <motion.div 
-          className={`absolute bottom-0 left-1/2 h-1 bg-gradient-to-r ${service.gradient} rounded-full`}
-          initial={{ width: 0, x: '-50%' }}
-          animate={{ 
-            width: isActive ? '60%' : '0%',
-            opacity: isActive ? 1 : 0
-          }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        />
-      </div>
-    </motion.div>
+              <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl mb-6`}>
+                <service.icon className="text-3xl text-white" />
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">{service.title}</h3>
+              <p className="text-gray-600 leading-relaxed mb-6">{service.fullDescription}</p>
+
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {service.features.map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-2 p-2.5 bg-gray-50 rounded-lg">
+                    <FaCheckCircle className={service.iconColor} />
+                    <span className="text-xs sm:text-sm font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link
+                href={service.link}
+                className={`flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r ${service.gradient} text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all`}
+              >
+                Get Started
+                <FaArrowRight />
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
 export default function Services() {
+  const sectionRef = useRef(null)
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+
   return (
-    <section id="services" className="relative py-10 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(0 0 0) 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
-      </div>
+    <section 
+      id="services" 
+      ref={sectionRef}
+      className="relative py-12 bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden"
+    >
+      <FloatingParticles />
 
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
-          <motion.div
-            initial={{ scale: 0.9 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-block mb-3"
-          >
-            <span className="bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold">
-              Our Services
-            </span>
-          </motion.div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
-            What We Offer
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Everything you need to succeed online, all in one place
-          </p>
-        </motion.div>
+      {/* NO BLUR on decorative blobs */}
+      <div className="absolute top-20 left-0 w-96 h-96 bg-blue-200/30 rounded-full -translate-x-1/2" />
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-purple-200/30 rounded-full translate-x-1/2" />
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => (
-            <ServiceCard key={index} service={service} index={index} />
-          ))}
+      <div className="container-custom relative z-10">
+        <div className="text-center mb-12 sm:mb-16">
+          <ScrollReveal direction="up">
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg border border-blue-100 mb-6"
+              whileHover={{ scale: 1.05 }}
+            >
+              <FaLaptopCode className="text-blue-600 text-xl" />
+              <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Our Services
+              </span>
+            </motion.div>
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
+              Web Development Services in
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600">
+                Patiala
+              </span>
+            </h2>
+          </ScrollReveal>
+          
+          <ScrollReveal direction="up" delay={0.2}>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+              Complete solutions from the{' '}
+              <span className="font-bold text-blue-600">best web developer in Patiala</span>
+              . Click cards to explore!
+            </p>
+          </ScrollReveal>
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-12 sm:mt-16"
-        >
-          <p className="text-sm text-gray-600">
-            Need something specific?{' '}
-            <a 
-              href="#contact" 
-              className="text-primary-600 hover:text-primary-700 font-semibold relative inline-block group"
-            >
-              Let's talk
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          {services.map((service, index) => (
+            <ServiceCard 
+              key={service.id} 
+              service={service} 
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

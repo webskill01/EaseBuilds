@@ -2,40 +2,38 @@
 const nextConfig = {
   reactStrictMode: true,
 
-   compiler: {
+  compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000, // 1 year cache - HUGE SPEED BOOST
+    imageSizes: [16, 32, 48, 64, 90, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
-  
-  // Enable compression (Gzip/Brotli)
   compress: true,
-  
-  // Remove trailing slashes for consistent URLs (FIXES MOBILE REDIRECT)
   trailingSlash: false,
   
-  // Skip type checking during build (do it separately)
   typescript: {
     ignoreBuildErrors: false,
   },
   
-  // Skip ESLint during build (run separately)
   eslint: {
     ignoreDuringBuilds: false,
   },
   
-  
-  // Remove X-Powered-By header
   poweredByHeader: false,
+  
+  // ✅ ADD: Generate ETags for better caching
+  generateEtags: true,
+  
+  // ✅ ADD: Production source maps (for error tracking)
+  productionBrowserSourceMaps: false, // Set to true if using Sentry
   
   async headers() {
     return [
@@ -65,12 +63,17 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
+          },
+          // ✅ ADD: Additional security header
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block'
           }
         ]
       },
-      // Cache static assets aggressively (1 YEAR)
+      // Cache static assets (1 YEAR)
       {
-        source: '/:path*\\.(jpg|jpeg|png|gif|webp|avif|svg|ico)',
+        source: '/:path*\\.(jpg|jpeg|png|gif|webp|avif|svg|ico|woff|woff2)',
         headers: [
           {
             key: 'Cache-Control',
@@ -78,7 +81,17 @@ const nextConfig = {
           }
         ]
       },
-      // Cache fonts (1 YEAR)
+      // ✅ ADD: Cache CSS/JS files
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      // Cache fonts
       {
         source: '/fonts/:path*',
         headers: [
@@ -92,15 +105,43 @@ const nextConfig = {
   },
   
   async redirects() {
-    return []
+    return [
+      // ✅ ADD: Common redirects
+      // {
+      //   source: '/old-blog/:slug',
+      //   destination: '/blog/:slug',
+      //   permanent: true,
+      // },
+    ]
   },
   
   experimental: {
-    // DISABLED optimizeCss temporarily (missing critters dependency)
-    // optimizeCss: true,
+    // ✅ ADD: Additional optimizations
+    optimizePackageImports: [
+      'lucide-react', 
+      '@heroicons/react',
+      'react-icons', // ✅ ADD: Optimize react-icons
+      'framer-motion', // ✅ ADD: Optimize framer-motion
+    ],
     
-    // Optimize icon libraries (tree-shaking)
-    optimizePackageImports: ['lucide-react', '@heroicons/react'],
+    // ✅ ADD: Server actions (if using)
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
+  
+  // ✅ ADD: Webpack customization (if needed)
+  webpack: (config, { isServer }) => {
+    // Optimize bundle size
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      }
+    }
+    return config
   },
 }
 

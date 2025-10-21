@@ -1,29 +1,57 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
+import { z } from 'zod'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
+
+// Zod validation schema
+const contactSchema = z.object({
+  name: z.string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name is too long'),
+  email: z.string()
+    .email('Please enter a valid email address'),
+  phone: z.string()
+    .min(10, 'Phone number must be at least 10 digits')
+    .max(15, 'Phone number is too long')
+    .optional()
+    .or(z.literal('')),
+  service: z.string()
+    .min(1, 'Please select a service'),
+  message: z.string()
+    .min(10, 'Message must be at least 10 characters')
+    .max(1000, 'Message is too long'),
+  honeypot: z.string().optional(), // Spam protection
+  withinFomoOffer: z.boolean().optional(),
+  submittedAt: z.string().optional(),
+})
 
 export async function POST(request) {
   console.log('✅ Contact API route hit!')
 
   try {
     const body = await request.json()
-    const { name, email, phone, service, message, withinFomoOffer, submittedAt } = body
-
-    console.log('📧 Form data received:', { name, email, service, withinFomoOffer })
-
-    // Validate required fields
-    if (!name || !email || !service || !message) {
+    
+    // Check honeypot (spam protection)
+    if (body.honeypot && body.honeypot.trim() !== '') {
+      console.log('🚫 Spam detected via honeypot')
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { success: false, error: 'Invalid submission' },
         { status: 400 }
       )
     }
 
+    // Validate with Zod
+    const validatedData = contactSchema.parse(body)
+    
+    const { name, email, phone, service, message, withinFomoOffer, submittedAt } = validatedData
+
+    console.log('📧 Form data received:', { name, email, service, withinFomoOffer })
+
     // Send notification email to you (business owner)
     const { data, error } = await resend.emails.send({
-      from: 'CodeNest <onboarding@resend.dev>',
-      to: ['nitinemailss@gmail.com'],
+      from: 'EaseBuilds <onboarding@resend.dev>',
+      to: ['easebuilds.in@gmail.com'],
       replyTo: email,
       subject: `${withinFomoOffer ? '🔥 FOMO OFFER!' : '📬'} New Contact: ${service} - ${name}`,
       html: `
@@ -33,12 +61,12 @@ export async function POST(request) {
           <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; text-align: center; }
+            .header { background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; text-align: center; }
             .fomo-badge { background: #f59e0b; color: white; padding: 10px 20px; border-radius: 25px; display: inline-block; font-weight: bold; margin-top: 12px; font-size: 14px; animation: pulse 2s infinite; }
             @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
             .content { background: white; padding: 30px; border: 1px solid #e5e7eb; border-top: none; }
             .field { margin-bottom: 20px; }
-            .label { font-weight: bold; color: #667eea; display: block; margin-bottom: 5px; font-size: 14px; }
+            .label { font-weight: bold; color: #0ea5e9; display: block; margin-bottom: 5px; font-size: 14px; }
             .value { background: #f3f4f6; padding: 12px; border-radius: 5px; font-size: 15px; }
             .footer { text-align: center; padding: 20px; color: #6b7280; font-size: 13px; }
             .whatsapp-btn { display: inline-block; background: #25D366; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; margin-top: 15px; font-weight: bold; font-size: 14px; }
@@ -51,7 +79,7 @@ export async function POST(request) {
           <div class="container">
             <div class="header">
               <h1 style="margin: 0; font-size: 28px;">🎉 New Contact Form Submission</h1>
-              <p style="margin: 10px 0 0 0; font-size: 16px;">CodeNest Website</p>
+              <p style="margin: 10px 0 0 0; font-size: 16px;">EaseBuilds Website</p>
               ${withinFomoOffer ? '<div class="fomo-badge">⚡ WITHIN 24HR FOMO OFFER WINDOW! 🔥</div>' : ''}
             </div>
             <div class="content">
@@ -72,7 +100,7 @@ export async function POST(request) {
 
               <div class="field">
                 <span class="label">📧 Email Address</span>
-                <div class="value"><a href="mailto:${email}" style="color: #667eea; text-decoration: none;">${email}</a></div>
+                <div class="value"><a href="mailto:${email}" style="color: #0ea5e9; text-decoration: none;">${email}</a></div>
               </div>
 
               <div class="field">
@@ -93,7 +121,7 @@ export async function POST(request) {
 
               <div class="field">
                 <span class="label">🕒 Received At</span>
-                <div class="value">${new Date(submittedAt).toLocaleString('en-US', {
+                <div class="value">${new Date(submittedAt || Date.now()).toLocaleString('en-US', {
                   dateStyle: 'full',
                   timeStyle: 'short',
                   timeZone: 'Asia/Kolkata'
@@ -114,7 +142,7 @@ export async function POST(request) {
               ` : ''}
               <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;">
               <p style="color: #9ca3af; font-size: 12px;">
-                CodeNest - Professional Web Development Services
+                EaseBuilds - Professional Web Development Services - Patiala Punjab
               </p>
             </div>
           </div>
@@ -144,6 +172,21 @@ export async function POST(request) {
     )
 
   } catch (error) {
+    // Zod validation error
+    if (error instanceof z.ZodError) {
+      const firstError = error.errors[0]
+      console.error('❌ Validation error:', firstError.message)
+      return NextResponse.json(
+        {
+          success: false,
+          error: firstError.message,
+          errors: error.errors
+        },
+        { status: 400 }
+      )
+    }
+
+    // Generic error
     console.error('❌ API error:', error)
     return NextResponse.json(
       {

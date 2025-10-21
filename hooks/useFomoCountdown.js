@@ -1,13 +1,22 @@
-// hooks/useFomoCountdown.js
 'use client'
+
 import { useState, useEffect } from 'react'
 
 export function useFomoCountdown() {
   const [showFomo, setShowFomo] = useState(false)
   const [timeRemaining, setTimeRemaining] = useState(0)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    const STORAGE_KEY = 'codenest_fomo_offer'
+    // Mark that we're now on the client side
+    setIsClient(true)
+  }, [])
+
+  useEffect(() => {
+    // Only run localStorage logic on client side
+    if (!isClient) return
+
+    const STORAGE_KEY = 'easebuilds_fomo_offer'
     const DURATION = 30 * 24 * 60 * 60 * 1000 // 30 days in milliseconds
 
     try {
@@ -45,11 +54,19 @@ export function useFomoCountdown() {
         } else {
           // Offer expired, waiting for next month
           setShowFomo(false)
+          setTimeRemaining(0)
         }
       }
     } catch (error) {
       console.error('Error with FOMO countdown:', error)
+      // Fallback: show countdown for safety
+      setShowFomo(false)
     }
+  }, [isClient])
+
+  useEffect(() => {
+    // Only start countdown if we should show FOMO and we're on client
+    if (!isClient || !showFomo || timeRemaining <= 0) return
 
     // Update countdown every second
     const interval = setInterval(() => {
@@ -57,6 +74,22 @@ export function useFomoCountdown() {
         const newTime = prev - 1000
         if (newTime <= 0) {
           setShowFomo(false)
+          
+          // Update localStorage to mark offer as expired
+          try {
+            const STORAGE_KEY = 'easebuilds_fomo_offer'
+            const stored = localStorage.getItem(STORAGE_KEY)
+            if (stored) {
+              const data = JSON.parse(stored)
+              localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                ...data,
+                expired: true
+              }))
+            }
+          } catch (error) {
+            console.error('Error updating localStorage:', error)
+          }
+          
           return 0
         }
         return newTime
@@ -64,7 +97,7 @@ export function useFomoCountdown() {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isClient, showFomo, timeRemaining])
 
   const hours = Math.floor(timeRemaining / (1000 * 60 * 60))
   const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))

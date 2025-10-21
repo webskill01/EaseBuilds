@@ -1,129 +1,282 @@
+'use client'
+
+import Image from 'next/image'
+// Compact Footer - Restructured with 2-col mobile grid
+// Industries/Areas integrated into link sections
+// EaseBuilds - Best Web Developer in Patiala Punjab India
+
 import Link from 'next/link'
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa'
-import { FaXTwitter } from "react-icons/fa6";
+import { 
+  FaFacebook, 
+  FaLinkedin, 
+  FaInstagram, 
+  FaEnvelope, 
+  FaPhone, 
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaArrowRight,
+  FaStar,
+  FaClock,
+} from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
+  const footerData = {
+    company: [
+      { name: 'Home', href: '/' },
+      { name: 'About Us', href: '/about' },
+      { name: 'Portfolio', href: '/portfolio' },
+      { name: 'Pricing', href: '/pricing' },
+      { name: 'Blog', href: '/blog' },
+      { name: 'Contact', href: '/contact' },
+    ],
+    services: [
+      { name: 'Custom Website Design', href: '/services/custom-website-design' },
+      { name: 'E-commerce Development', href: '/services/ecommerce-development' },
+      { name: 'SEO Services', href: '/services/seo-services' },
+      { name: 'Website Maintenance', href: '/services/website-maintenance' },
+    ],
+    industries: [
+      { name: 'Dental Clinics', href: '/industries/dental-clinics' },
+      { name: 'Architects', href: '/industries/architects' },
+      { name: 'Coaching Institutes', href: '/industries/coaching-institutes' },
+      { name: 'Retail Stores', href: '/industries/retail-stores' },
+      { name: 'Manufacturers', href: '/industries/manufacturers' },
+    ],
+    socialLinks: [
+      { 
+        icon: FaFacebook, 
+        href: 'https://facebook.com/easebuilds', 
+        label: 'Facebook',
+        color: 'hover:bg-blue-600'
+      },
+      { 
+        icon: FaXTwitter, 
+        href: 'https://twitter.com/easebuilds', 
+        label: 'Twitter',
+        color: 'hover:bg-gray-700'
+      },
+      { 
+        icon: FaLinkedin, 
+        href: 'https://linkedin.com/company/easebuilds', 
+        label: 'LinkedIn',
+        color: 'hover:bg-blue-700'
+      },
+      { 
+        icon: FaInstagram, 
+        href: 'https://instagram.com/easebuilds', 
+        label: 'Instagram',
+        color: 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600'
+      },
+    ]
+  }
+
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        {/* Main Footer Content - Fixed Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-gray-300">
+      
+      {/* Main Footer - Compact 2-col mobile grid */}
+      <div className="container-custom pt-12 sm:pt-14 lg:pt-16 pb-8">
+        {/* Mobile: 2 cols, Tablet: 3 cols, Desktop: 5 cols */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
           
-          {/* Brand Section - Spans 2 columns on mobile */}
-          <div className="col-span-2">
-            <Link href="/" className="inline-block mb-4">
-              <h3 className="text-2xl sm:text-3xl font-extrabold">
-                <span className="text-primary-400">Code</span>
-                <span className="text-white">Nest</span>
-              </h3>
-            </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Building beautiful, fast websites that turn visitors into customers. Your success is our mission.
-            </p>
+          {/* Column 1 - Brand (spans 2 cols on mobile) */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
+            <Link 
+  href="/" 
+  className="inline-flex items-center gap-2.5 mb-4 group"
+>
+  {/* Custom JPG Logo */}
+  <div className="relative w-10 h-10 rounded-lg overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-300">
+    <Image
+      src="/images/tlogo.png"  // Your logo path
+      alt="EaseBuilds Logo"
+      width={40}
+      height={40}
+      className="w-full h-full object-contain"
+    />
+  </div>
+
+  <div>
+    <div className="text-lg font-bold text-white">EaseBuilds</div>
+    <div className="text-[10px] text-blue-400 font-medium">Web Developer Patiala</div>
+  </div>
+</Link>
+
             
-            {/* Social Links */}
-            <div className="flex items-center gap-3">
-              <a 
-                href="https://www.facebook.com/profile.php?id=100014537138957" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label="Facebook"
-              >
-                <FaFacebook className="text-lg" />
-              </a>
-              <a 
-                href="https://x.com/NitinKumar22655" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label="Twitter"
-              >
-                <FaXTwitter className="text-lg" />
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/nitin-kumar-1110mn/" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="text-lg" />
-              </a>
-              <a 
-                href="https://www.instagram.com/nitin.kumar.01" 
-                className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="text-lg" />
-              </a>
+            <p className="text-sm leading-relaxed mb-4 text-gray-400 max-w-xs">
+              <strong className="text-white">Best web development</strong> in Patiala Punjab. 
+              Fast, SEO-optimized websites.
+            </p>
+
+            {/* Rating */}
+            <div className="inline-flex items-center gap-2 px-3 py-2 bg-white/5 rounded-lg border border-white/10 mb-4">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <FaStar key={i} className="text-yellow-400 text-xs" />
+                ))}
+              </div>
+              <span className="text-xs font-bold text-white">5.0</span>
+              <span className="text-xs text-gray-400">• 50+ Reviews</span>
+            </div>
+
+            {/* Social */}
+            <div className="flex gap-2">
+              {footerData.socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-9 h-9 flex items-center justify-center bg-white/5 ${social.color} rounded-lg transition-all duration-300 hover:scale-110 border border-white/10`}
+                  aria-label={social.label}
+                >
+                  <social.icon className="text-base" />
+                </a>
+              ))}
             </div>
           </div>
-          
-          {/* Quick Links - 1 column on mobile */}
-          <div className="col-span-1">
-            <h4 className="text-base font-bold mb-4 text-white">Quick Links</h4>
+
+          {/* Column 2 - Company */}
+          <div>
+            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+              Company
+            </h3>
+            <ul className="space-y-2">
+              {footerData.company.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-xs text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                  >
+                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3 - Services */}
+          <div>
+            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+              Services
+            </h3>
+            <ul className="space-y-2">
+              {footerData.services.map((service) => (
+                <li key={service.name}>
+                  <Link
+                    href={service.href}
+                    className="text-xs text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                  >
+                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4 - Industries */}
+          <div>
+            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+              Industries
+            </h3>
+            <ul className="space-y-2">
+              {footerData.industries.map((industry) => (
+                <li key={industry.name}>
+                  <Link
+                    href={industry.href}
+                    className="text-xs text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                  >
+                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {industry.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5 - Contact */}
+          <div>
+            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+              Contact
+            </h3>
             <ul className="space-y-2.5">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-primary-400 transition-colors text-sm inline-block hover:translate-x-1 duration-300">
-                  Home
-                </Link>
+              <li className='text-sm'>
+                <a
+                  href="tel:+916283380110"
+                  className="flex items-center gap-2 text-xs text-gray-400 hover:text-blue-400 transition-colors group"
+                >
+                  <FaPhone className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
+                  <span>+91 6283380110</span>
+                </a>
               </li>
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-primary-400 transition-colors text-sm inline-block hover:translate-x-1 duration-300">
-                  About Us
-                </Link>
+                <a
+                  href="https://wa.me/916283380110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-xs text-gray-400 hover:text-green-400 transition-colors group"
+                >
+                  <FaWhatsapp className="text-green-400 text-xs group-hover:scale-110 transition-transform" />
+                  <span>WhatsApp</span>
+                </a>
               </li>
               <li>
-                <Link href="/pricing" className="text-gray-400 hover:text-primary-400 transition-colors text-sm inline-block hover:translate-x-1 duration-300">
-                  Pricing
-                </Link>
+                <a
+                  href="mailto:info@easebuilds.in"
+                  className="flex items-center gap-2 text-xs text-gray-400 hover:text-blue-400 transition-colors group"
+                >
+                  <FaEnvelope className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
+                  <span>info@easebuilds.in</span>
+                </a>
               </li>
-              <li>
-                <Link href="/#services" className="text-gray-400 hover:text-primary-400 transition-colors text-sm inline-block hover:translate-x-1 duration-300">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/#projects" className="text-gray-400 hover:text-primary-400 transition-colors text-sm inline-block hover:translate-x-1 duration-300">
-                  Our Work
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="text-gray-400 hover:text-primary-400 transition-colors text-sm inline-block hover:translate-x-1 duration-300">
-                  Contact
-                </Link>
+              <li className="flex items-start gap-2 text-xs text-gray-400">
+                <FaMapMarkerAlt className="text-blue-400 text-xs mt-0.5" />
+                <span>Patiala, Punjab 147001</span>
               </li>
             </ul>
-          </div>
-          
-          {/* Services - 1 column on mobile */}
-          <div className="col-span-1">
-            <h4 className="text-base font-bold mb-4 text-white">Services</h4>
-            <ul className="space-y-2.5 text-gray-400 text-sm">
-              <li className="hover:text-primary-400 transition-colors cursor-default">Custom Websites</li>
-              <li className="hover:text-primary-400 transition-colors cursor-default">Online Stores</li>
-              <li className="hover:text-primary-400 transition-colors cursor-default">Mobile Design</li>
-              <li className="hover:text-primary-400 transition-colors cursor-default">SEO Optimization</li>
-              <li className="hover:text-primary-400 transition-colors cursor-default">Maintenance</li>
-            </ul>
-          </div>
-        </div>
-        
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-6 pt-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-xs sm:text-sm text-center ">
-              &copy; {new Date().getFullYear()} CodeNest. All rights reserved.
-            </p>
+
+            {/* Business Hours - Compact */}
+            <div className="mt-4 p-3 bg-blue-600/10 rounded-lg border border-blue-500/20">
+              <div className="flex items-center gap-1.5 mb-2">
+                <FaClock className="text-blue-400 text-xs" />
+                <h4 className="text-xs font-semibold text-white">Hours</h4>
+              </div>
+              <div className="space-y-0.5 text-[11px] text-gray-400">
+                <p className='text-xs'>Mon-Fri: <span className="text-white">9AM-6PM</span></p>
+                <p className='text-xs'>Sat: <span className="text-white">10AM-4PM</span></p>
+                <p className='text-red-600 text-xs'>Sun: <span className="text-white">Closed</span></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      {/* Floating WhatsApp Button */}
-      <div className="fixed bottom-6 right-6 z-40 lg:hidden">
-        <a
-          href="https://wa.me/6283380110?text=Hi CodeNest, I'm intrested in your services"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-2xl hover:shadow-green-500/25 transform hover:scale-110 transition-all duration-300"
-          aria-label="Contact us on WhatsApp"
-        >
-          <FaWhatsapp className="w-7 h-7 text-white" />
-        </a>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 bg-black/30">
+        <div className="container-custom py-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div className="text-center sm:text-left text-gray-400">
+              <p>© {currentYear} <strong className="text-white">EaseBuilds</strong>. All rights reserved.</p>
+              <p className="mt-0.5 text-[11px]">Best Web Developer in Patiala Punjab</p>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-4 text-gray-400">
+              <Link href="/privacy" className="hover:text-blue-400 transition-colors">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-blue-400 transition-colors">
+                Terms
+              </Link>
+              <Link href="/sitemap.xml" className="hover:text-blue-400 transition-colors">
+                Sitemap
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   )

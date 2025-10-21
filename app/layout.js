@@ -1,18 +1,18 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { generateMetadata as genMeta } from '@/lib/seo'
+import FloatingWhatsApp from '@/app/components/FloatingWhatsApp'
 import { 
   organizationSchema, 
   localBusinessSchema, 
-  websiteSchema,
+  websiteSchema, 
   faqSchema 
 } from '@/lib/seo'
 import Script from 'next/script'
-import LoadingBar from './components/LoadingBar'
 
 const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
+  subsets: ['latin'], 
+  display: 'swap', 
   variable: '--font-inter',
 })
 
@@ -21,91 +21,83 @@ export const metadata = genMeta({})
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={inter.variable}>
       <head>
-        <link
-    rel="preload"
-    href="/_next/static/media/8e9860b6e62d6359-s.woff2"
-    as="font"
-    type="font/woff2"
-    crossOrigin="anonymous"
-  />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
-      </head>
-      
-      <body 
-        className={`${inter.className} antialiased`}
-        suppressHydrationWarning
-      >
         {/* Structured Data for SEO - Multiple Schemas for Local Business */}
         <Script
           id="organization-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema)
+            __html: JSON.stringify(organizationSchema),
           }}
+          strategy="beforeInteractive"
         />
-        
         <Script
           id="local-business-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema)
+            __html: JSON.stringify(localBusinessSchema),
           }}
+          strategy="beforeInteractive"
         />
-        
         <Script
           id="website-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema)
+            __html: JSON.stringify(websiteSchema),
           }}
+          strategy="beforeInteractive"
         />
-        
         <Script
           id="faq-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema)
+            __html: JSON.stringify(faqSchema),
+          }}
+          strategy="beforeInteractive"
+        />
+
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Favicon and App Icons */}
+        <link rel="icon" href="/favicon.png" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        
+        {/* Theme Color for Mobile Browsers */}
+        <meta name="theme-color" content="#2563eb" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
+      
+      <body className="antialiased min-h-screen bg-white text-gray-900 overflow-x-hidden">
+        {/* Skip to main content for accessibility */}
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-blue-600 focus:text-white focus:rounded-md focus:m-2"
+        >
+          Skip to main content
+        </a>
+        
+        {/* Main Content */}
+        <main id="main-content">
+          <FloatingWhatsApp /> 
+          {children}
+        </main>
+
+        {/* Global Scripts - Load after content */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Add Google Tag Manager or Analytics here
+              // window.dataLayer = window.dataLayer || [];
+            `,
           }}
         />
-        
-        {/* Loading indicator */}
-        <LoadingBar />
-        
-        {/* Main content */}
-        <div id="root">
-          {children}
-        </div>
-        
-        {/* NoScript fallback */}
-        <noscript>
-          <div style={{ padding: '20px', textAlign: 'center', background: '#fef3c7' }}>
-            Please enable JavaScript for the best experience.
-          </div>
-        </noscript>
-        
-        {/* Google Analytics - Optimized */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                  page_path: window.location.pathname,
-                  send_page_view: true
-                });
-              `}
-            </Script>
-          </>
-        )}
       </body>
     </html>
   )
