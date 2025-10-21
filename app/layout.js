@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { generateMetadata as genMeta } from '@/lib/seo'
-import FloatingWhatsApp from '@/app/components/FloatingWhatsApp'
+import FloatingWhatsApp from '@/app/components/FloatingWhatsapp'
 import { 
   organizationSchema, 
   localBusinessSchema, 
