@@ -52,6 +52,7 @@ import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import portfolioProjects from '@/lib/portfolioData'
+import HeroImage from '../components/HeroImage'
 
 
 export default function PortfolioPage() {
@@ -149,13 +150,9 @@ const processSteps = [
         >
           {/* Light overlay for readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 to-gray-600/10 z-10" />
-          <Image
+          <HeroImage
   src="/images/portfolio-hero.jpg"
   alt="Web Development Portfolio Patiala Punjab"
-  fill
-  className="object-cover opacity-80"
-  priority
-  quality={96}
 />
         </motion.div>
 

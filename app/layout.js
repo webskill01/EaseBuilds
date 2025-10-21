@@ -16,8 +16,16 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-// Generate metadata from seo.js configuration
+// Generate metadata from seo.js configuration (without viewport)
 export const metadata = genMeta({})
+
+// Export viewport separately (Next.js 15 requirement)
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -61,9 +69,37 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
+        {/* Preload Critical Hero Images for Instant Loading */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/images/main-hero.jpg"
+          fetchPriority="high"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/images/about-hero.jpg"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/images/contact-hero.jpg"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/images/blog-hero.jpg"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/images/portfolio-hero.jpg"
+        />
+        
         {/* Favicon and App Icons */}
         <link rel="icon" href="/favicon.png" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/favicon.png" />
         
         {/* Theme Color for Mobile Browsers */}
@@ -72,7 +108,7 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       
-      <body className="antialiased min-h-screen bg-white text-gray-900 overflow-x-hidden">
+      <body className="antialiased min-h-screen bg-white text-gray-900">
         {/* Skip to main content for accessibility */}
         <a 
           href="#main-content" 

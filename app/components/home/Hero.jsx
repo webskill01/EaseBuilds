@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import RotatingText from '../animations/RotatingText'
 import CountUp from '../animations/CountUp'
+import HeroImage from '../HeroImage'
 
 export default function Hero() {
   const statsRef = useRef(null)
@@ -38,19 +39,12 @@ export default function Hero() {
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 pb-8">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-10 pb-8">
       
       {/* FIXED: Background Image Now Visible */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'url(/images/main-hero.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 1,
-          zIndex: 0
-        }}
+      <HeroImage 
+        src="/images/main-hero.jpg"
+        alt="Hero"
       />
       
       {/* REDUCED Gradient Overlay so image shows through */}

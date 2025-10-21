@@ -48,25 +48,25 @@ export default function Footer() {
     socialLinks: [
       { 
         icon: FaFacebook, 
-        href: 'https://facebook.com/easebuilds', 
+        href: 'https://www.facebook.com/profile.php?id=100014537138957', 
         label: 'Facebook',
         color: 'hover:bg-blue-600'
       },
       { 
         icon: FaXTwitter, 
-        href: 'https://twitter.com/easebuilds', 
+        href: 'https://x.com/NitinKumar22655', 
         label: 'Twitter',
         color: 'hover:bg-gray-700'
       },
       { 
         icon: FaLinkedin, 
-        href: 'https://linkedin.com/company/easebuilds', 
+        href: 'https://www.linkedin.com/in/nitin-kumar-1110mn/', 
         label: 'LinkedIn',
         color: 'hover:bg-blue-700'
       },
       { 
         icon: FaInstagram, 
-        href: 'https://instagram.com/easebuilds', 
+        href: 'https://www.instagram.com/nitin.kumar.01', 
         label: 'Instagram',
         color: 'hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600'
       },

@@ -32,6 +32,7 @@ import AnimatedCard from '@/app/components/animations/AnimatedCard'
 import CountUp from '@/app/components/animations/CountUp'
 import { industries } from '@/lib/industriesData'
 import { FaChevronDown, FaPlus, FaMinus } from 'react-icons/fa'
+import HeroImage from '@/app/components/HeroImage'
 
 const industryData = industries.retailStores
 
@@ -65,14 +66,9 @@ export default function RetailStoresPage() {
           style={{ y }}
           className="absolute inset-0 z-0"
         >
-          <Image
+          <HeroImage
             src="/images/industries/retail/hero.jpg"
             alt="Modern retail store - E-commerce website development in Patiala"
-            fill
-            priority
-            quality={90}
-            className="object-cover"
-            sizes="100vw"
           />
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
             <div className="absolute inset-0 opacity-5">

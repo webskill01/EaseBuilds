@@ -19,6 +19,7 @@ import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import { services } from '@/lib/servicesData'
 import { notFound } from 'next/navigation'
 import HorizontalStepper from '@/app/components/HorizontallStepper'
+import HeroImage from '@/app/components/HeroImage'
 
 // ✅ SEO: FAQ Component with proper H3 tags
 const FAQItem = ({ faq, index }) => {
@@ -112,7 +113,7 @@ export default function DynamicServicePage() {
       return serviceData.valueProps[index].image
     }
     // Fallback to placeholder or hero image
-    return serviceData.hero.image || '/images/placeholder.jpg'
+    return serviceData.hero.image || '/images/main-hero.jpg'
   }
 
   return (
@@ -128,13 +129,9 @@ export default function DynamicServicePage() {
           className="relative min-h-screen flex items-center justify-center overflow-hidden pt-5"
         >
           <motion.div style={{ y }} className="absolute inset-0 z-0">
-            <Image
+            <HeroImage
               src={serviceData.hero.image}
               alt={`${serviceData.name} Services in Patiala Punjab India - Professional ${serviceData.name} Company`}
-              fill
-              className="object-cover"
-              priority
-              quality={90}
             />
              <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
             <div className="absolute inset-0 opacity-5">

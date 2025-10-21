@@ -31,6 +31,7 @@ import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import AnimatedCard from '@/app/components/animations/AnimatedCard'
+import HeroImage from '../components/HeroImage'
 
 export default function WebDeveloperNearMePage() {
   const heroRef = useRef(null)
@@ -139,13 +140,9 @@ export default function WebDeveloperNearMePage() {
           style={{ y }}
           className="absolute inset-0 z-0"
         >
-          <Image
+          <HeroImage
             src="/images/patiala-hero.jpg"
             alt="Web Developer Office in Patiala Punjab"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
           />
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
             <div className="absolute inset-0 opacity-5">

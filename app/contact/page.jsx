@@ -23,6 +23,7 @@ import {
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
+import HeroImage from '../components/HeroImage'
 
 // Zod validation schema
 const contactSchema = z.object({
@@ -195,13 +196,9 @@ const handleSubmit = async (e) => {
       >
         {/* Background Image with Light Overlay */}
         <motion.div style={{ y }} className="absolute inset-0 z-0">
-          <Image
+          <HeroImage
             src="/images/contact-hero.jpg"
             alt="Contact Us - EaseBuilds Patiala"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
           />
           {/* LIGHT Gradient Overlay - 40% opacity */}
            <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />

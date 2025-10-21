@@ -14,6 +14,7 @@ import {
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import { getAllPosts, categories } from '@/lib/blogData'
+import HeroImage from '../components/HeroImage'
 
 export default function BlogPage() {
   const allPosts = getAllPosts()
@@ -53,13 +54,9 @@ export default function BlogPage() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-7">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/blog-hero.jpg" 
-            alt="EaseBuilds Blog - Web Development Insights"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
+          <HeroImage
+          src="/images/blog-hero.jpg" 
+          alt="EaseBuilds Blog - Web Development Insights"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-gray-600/40 via-gray-500/30 to-gray-700/40" />
             <div className="absolute inset-0 opacity-5">
@@ -434,40 +431,6 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-
-      {/* Newsletter CTA */}
-      <section className="py-10 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <FaLightbulb className="text-6xl mx-auto mb-6" />
-            <h2 className="text-4xl font-bold mb-4">Stay Updated!</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Get notified when we publish new articles. Web development tips delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-xl text-gray-900 font-semibold focus:outline-none focus:ring-4 focus:ring-white/50"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-blue-600 rounded-xl font-bold shadow-lg hover:shadow-xl transition"
-              >
-                Subscribe
-              </motion.button>
-            </div>
-            <p className="text-sm mt-4 opacity-75">No spam. Unsubscribe anytime.</p>
-          </motion.div>
-        </div>
-      </section>
-
       <Footer />
     </>
   )

@@ -120,7 +120,7 @@ export default function FomoBanner({ hours, minutes, seconds }) {
         {/* Bottom Info */}
         <div className="relative px-4 sm:px-6 pb-3 sm:pb-4">
           <p className="text-center text-white/90 text-xs sm:text-sm">
-            ⭐ Available for new clients in only
+            ⭐ Available for new clients only
           </p>
         </div>
       </div>

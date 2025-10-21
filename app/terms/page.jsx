@@ -29,6 +29,7 @@ import {
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
+import HeroImage from '../components/HeroImage'
 
 export default function TermsPage() {
   const lastUpdated = 'January 1, 2025'
@@ -41,13 +42,9 @@ export default function TermsPage() {
       {/* Hero Section - Light Overlay */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <HeroImage
             src="/images/terms-hero.jpg"
             alt="Terms of Service"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
           />
         </div>
           {/* Light Brand Overlay */}

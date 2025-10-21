@@ -16,6 +16,7 @@ import { useFomoCountdown } from '@/hooks/useFomoCountdown'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaBoltLightning } from 'react-icons/fa6'
+import HeroImage from '../components/HeroImage'
 
 export default function PricingPage() {
   const [selectedAddons, setSelectedAddons] = useState({})
@@ -94,13 +95,9 @@ export default function PricingPage() {
   
   {/* Custom Image Background Layer */}
   <div className="absolute inset-0 opacity-50">
-    <Image
+    <HeroImage
       src="/images/blog2.jpg"
       alt="Website development pricing background - EaseBuilds office in Patiala Punjab India"
-      fill
-      className="object-cover"
-      quality={75}
-      priority={false}
     />
   </div>
 

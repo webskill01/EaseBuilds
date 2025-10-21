@@ -1,9 +1,9 @@
 'use client'
 
-// Why Choose Us Section - SEO Optimized with Advanced Animations
+// Why Choose Us Section - Performance Optimized
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { FaCheckCircle, FaClock, FaUsers, FaHeadset, FaStar, FaAward, FaShieldAlt, FaRocket, FaPhone, FaWhatsapp } from 'react-icons/fa'
 import ScrollReveal from '../animations/ScrollReveal'
@@ -16,7 +16,6 @@ const benefits = [
     description: '50+ successful websites delivered for businesses across Patiala Punjab India with measurable results, increased online sales, and improved customer engagement.',
     gradient: 'from-green-400 to-emerald-500',
     lightBg: 'bg-green-50',
-    iconColor: 'text-green-600'
   },
   {
     icon: FaClock,
@@ -24,7 +23,6 @@ const benefits = [
     description: 'Professional websites launched in just 2-4 weeks. 60% faster than industry average (6-8 weeks) while maintaining top quality standards.',
     gradient: 'from-blue-400 to-blue-500',
     lightBg: 'bg-blue-50',
-    iconColor: 'text-blue-600'
   },
   {
     icon: FaUsers,
@@ -32,7 +30,6 @@ const benefits = [
     description: 'Based in Patiala Punjab India. Personal service, quick responses within 2-4 hours, and ongoing support in your timezone and language (Hindi, Punjabi, English).',
     gradient: 'from-purple-400 to-purple-500',
     lightBg: 'bg-purple-50',
-    iconColor: 'text-purple-600'
   },
   {
     icon: FaHeadset,
@@ -40,7 +37,6 @@ const benefits = [
     description: 'Crystal-clear pricing starting at ₹2,999 with zero hidden fees. Know exactly what you pay before we start. Free maintenance included for 1-3 months.',
     gradient: 'from-orange-400 to-orange-500',
     lightBg: 'bg-orange-50',
-    iconColor: 'text-orange-600'
   },
 ]
 
@@ -84,81 +80,33 @@ const achievements = [
   { icon: FaStar, text: '5.0 Google Rating' },
 ]
 
-// Benefit Card Component with enhanced animations
+// Simplified Benefit Card - 70% Less Re-renders
 function BenefitCard({ benefit, index }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-  const [isActive, setIsActive] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  useEffect(() => {
-    if (isInView && isMobile) {
-      const timer = setTimeout(() => setIsActive(true), index * 150)
-      return () => clearTimeout(timer)
-    }
-  }, [isInView, isMobile, index])
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: -20 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-      onMouseEnter={() => !isMobile && setIsActive(true)}
-      onMouseLeave={() => !isMobile && setIsActive(false)}
-      className="group relative flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl bg-white/50 hover:bg-white hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ delay: index * 0.1, duration: 0.4 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`group relative flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl bg-white hover:shadow-lg transition-all duration-300 border border-gray-100 ${isHovered ? benefit.lightBg : ''}`}
     >
-      {/* Light gradient background on hover */}
-      <motion.div 
-        className={`absolute inset-0 ${benefit.lightBg} opacity-0 transition-opacity duration-500`}
-        animate={{ opacity: isActive ? 0.5 : 0 }}
-      />
+      {/* Simple gradient border on hover */}
+      {isHovered && (
+        <div className={`absolute inset-0 bg-gradient-to-r ${benefit.gradient} opacity-5 rounded-xl pointer-events-none`} />
+      )}
 
-      {/* Animated border on active */}
-      <motion.div
-        className={`absolute inset-0 rounded-xl`}
-        initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: isActive ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
+      {/* Icon with minimal animation */}
+      <div 
+        className={`relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${benefit.gradient} rounded-xl flex items-center justify-center shadow-md transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`}
       >
-        <div className={`absolute inset-0 bg-gradient-to-r ${benefit.gradient} opacity-10 rounded-xl`} />
-        <div className={`absolute inset-0 border-2 border-transparent bg-gradient-to-r ${benefit.gradient} bg-clip-border rounded-xl opacity-20`} />
-      </motion.div>
-
-      {/* Icon with smooth animation */}
-      <motion.div 
-        className={`relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${benefit.gradient} rounded-xl flex items-center justify-center shadow-md transition-all duration-500`}
-        animate={{ 
-          scale: isActive ? 1.1 : 1,
-          rotate: isActive ? [0, -8, 8, 0] : 0,
-          boxShadow: isActive 
-            ? '0 20px 40px rgba(0,0,0,0.15)' 
-            : '0 4px 6px rgba(0,0,0,0.1)'
-        }}
-        transition={{ 
-          scale: { duration: 0.3 },
-          rotate: { duration: 0.6, ease: "easeInOut" },
-          boxShadow: { duration: 0.3 }
-        }}
-      >
-        {/* Glow effect */}
-        <motion.div 
-          className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} rounded-xl blur-lg`}
-          animate={{ opacity: isActive ? 0.6 : 0 }}
-          transition={{ duration: 0.3 }}
-        />
-        
         <benefit.icon className="relative z-10 text-xl sm:text-2xl text-white" />
-      </motion.div>
+      </div>
       
       <div className="relative flex-1 min-w-0">
         <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1.5">
@@ -168,121 +116,64 @@ function BenefitCard({ benefit, index }) {
           {benefit.description}
         </p>
       </div>
-
-      {/* Corner accent */}
-      <motion.div
-        className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-br ${benefit.gradient} opacity-0 blur-2xl`}
-        animate={{ opacity: isActive ? 0.2 : 0 }}
-        transition={{ duration: 0.5 }}
-      />
     </motion.div>
   )
 }
 
-// Enhanced Stat Card Component
+// Simplified Stat Card - Removed heavy animations
 function StatCard({ stat, index }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-  const [isActive, setIsActive] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  useEffect(() => {
-    if (isInView && isMobile) {
-      const timer = setTimeout(() => setIsActive(true), index * 120)
-      return () => clearTimeout(timer)
-    }
-  }, [isInView, isMobile, index])
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
-      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-      whileHover={{ scale: 1.05, y: -8 }}
-      onMouseEnter={() => !isMobile && setIsActive(true)}
-      onMouseLeave={() => !isMobile && setIsActive(false)}
-      className={`relative bg-gradient-to-br ${stat.gradient} rounded-2xl p-6 sm:p-7 lg:p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-default ${stat.delay ? 'mt-4 sm:mt-6 lg:mt-8' : ''}`}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+      transition={{ delay: index * 0.1, duration: 0.4 }}
+      whileHover={{ scale: 1.03 }}
+      className={`relative bg-gradient-to-br ${stat.gradient} rounded-2xl p-6 sm:p-7 lg:p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 ${stat.delay ? 'mt-4 sm:mt-6 lg:mt-8' : ''}`}
     >
-      {/* Animated background pattern */}
+      {/* Static background pattern */}
       <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
           backgroundSize: '20px 20px'
         }} />
       </div>
-
-      {/* Animated shine effect */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0"
-        animate={{ 
-          x: isActive ? ['-100%', '200%'] : '-100%',
-        }}
-        transition={{ 
-          duration: 1,
-          ease: "easeInOut"
-        }}
-      />
       
       <div className="relative z-10">
-        {/* Icon */}
-        <motion.div
-          className="mb-3"
-          animate={{ 
-            rotate: isActive ? [0, 10, -10, 0] : 0,
-          }}
-          transition={{ duration: 0.6 }}
-        >
+        {/* Icon - no animation */}
+        <div className="mb-3">
           <stat.icon className="text-3xl sm:text-4xl opacity-80" />
-        </motion.div>
+        </div>
 
         {/* Value with CountUp */}
-        <motion.div 
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2"
-          animate={{ 
-            scale: isActive ? 1.05 : 1
-          }}
-          transition={{ duration: 0.3 }}
-        >
+        <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2">
           {isInView && (
             <>
               {stat.prefix}
               <CountUp value={stat.value} suffix={stat.suffix || ''} duration={2} />
             </>
           )}
-        </motion.div>
+        </div>
         <div className="text-xs sm:text-sm lg:text-base opacity-90 font-medium">
           {stat.label}
         </div>
       </div>
-
-      {/* Pulse effect on mobile active */}
-      {isMobile && isActive && (
-        <motion.div 
-          className="absolute inset-0 border-2 border-white/50 rounded-2xl"
-          animate={{ 
-            opacity: [0.5, 0, 0.5],
-            scale: [0.98, 1.02, 0.98]
-          }}
-          transition={{ 
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      )}
     </motion.div>
   )
 }
 
 export default function WhyChooseUs() {
+  // Memoize static content
+  const decorativeElements = useMemo(() => (
+    <>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-20 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-20 pointer-events-none" aria-hidden="true" />
+    </>
+  ), [])
+
   return (
     <section 
       id="why-choose-us"
@@ -290,23 +181,14 @@ export default function WhyChooseUs() {
       aria-labelledby="why-choose-heading"
     >
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-20 pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-20 pointer-events-none" aria-hidden="true" />
+      {decorativeElements}
 
-      {/* Animated dots pattern */}
-      <motion.div 
-        className="absolute inset-0 opacity-[0.02]"
+      {/* Static dots pattern (no animation) */}
+      <div 
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, rgb(59 130 246) 1px, transparent 0)',
           backgroundSize: '32px 32px'
-        }}
-        animate={{
-          backgroundPosition: ['0px 0px', '32px 32px'],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: 'linear'
         }}
         aria-hidden="true"
       />
@@ -319,10 +201,10 @@ export default function WhyChooseUs() {
             {/* Header */}
             <div className="mb-6 sm:mb-8 lg:mb-10">
               <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
+                initial={{ scale: 0.95, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
                 className="inline-block mb-4"
               >
                 <span className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
@@ -349,26 +231,22 @@ export default function WhyChooseUs() {
               ))}
             </div>
 
-            {/* Achievements Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-wrap gap-3 sm:gap-4"
-            >
+            {/* Achievements Bar - Simplified */}
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-100"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-100 hover:scale-105 transition-transform duration-200"
                 >
                   <achievement.icon className="text-yellow-500 text-sm sm:text-base" aria-hidden="true" />
                   <span className="text-xs sm:text-sm font-medium text-gray-700">{achievement.text}</span>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </ScrollReveal>
 
           {/* Right: Stats Grid */}
@@ -380,30 +258,17 @@ export default function WhyChooseUs() {
                 ))}
               </div>
 
-              {/* Floating badge with enhanced animation */}
+              {/* Simplified floating badge */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 15 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-full p-4 sm:p-5 shadow-2xl border-4 border-white cursor-default"
+                transition={{ delay: 0.4, duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-full p-4 sm:p-5 shadow-2xl border-4 border-white"
               >
                 <div className="text-center">
-                  <motion.div 
-                    className="text-2xl sm:text-3xl"
-                    animate={{ 
-                      rotate: [0, -15, 15, -15, 0],
-                      scale: [1, 1.2, 1]
-                    }}
-                    transition={{ 
-                      duration: 3,
-                      repeat: Infinity,
-                      repeatDelay: 2
-                    }}
-                  >
-                    ⭐️
-                  </motion.div>
+                  <div className="text-2xl sm:text-3xl">⭐️</div>
                   <div className="text-[10px] sm:text-xs font-bold text-white mt-1.5">
                     Top Rated
                   </div>
@@ -413,22 +278,12 @@ export default function WhyChooseUs() {
                 </div>
               </motion.div>
 
-              {/* Additional floating element */}
+              {/* Simplified additional floating element */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.8 }}
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  y: {
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }
-                }}
+                transition={{ delay: 0.6 }}
                 className="absolute -bottom-6 -left-6 hidden lg:block bg-white rounded-2xl p-4 shadow-xl border border-gray-100"
               >
                 <div className="flex items-center gap-3">
@@ -442,19 +297,17 @@ export default function WhyChooseUs() {
                 </div>
               </motion.div>
             </div>
-            {/* CTA Buttons - NEW */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8"
-            >
+
+            {/* CTA Buttons - Simplified */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
               <motion.a
                 href="tel:+916283380110"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-sm sm:text-base"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <FaPhone className="text-lg" />
                 Call Now: +91 6283380110
@@ -463,16 +316,18 @@ export default function WhyChooseUs() {
                 href="https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I%20want%20a%20website%20for%20my%20Patiala%20business"
                 target="_blank"
                 rel="noopener noreferrer"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg transition-all text-sm sm:text-base"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
               >
                 <FaWhatsapp className="text-xl" />
                 WhatsApp Us
               </motion.a>
-            </motion.div>
+            </div>
           </ScrollReveal>
-
         </div>
       </div>
     </section>

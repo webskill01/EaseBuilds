@@ -25,6 +25,7 @@ import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import { FaGear } from 'react-icons/fa6'
+import HeroImage from '../components/HeroImage'
 
 export default function PrivacyPage() {
   const lastUpdated = 'January 1, 2025'
@@ -36,13 +37,9 @@ export default function PrivacyPage() {
       {/* Hero Section - Light Overlay */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
-          <Image
+          <HeroImage
             src="/images/privacy-hero.jpg"
             alt="Privacy and Security"
-            fill
-            className="object-cover"
-            priority
-            quality={90}
           />
         </div>
           <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />

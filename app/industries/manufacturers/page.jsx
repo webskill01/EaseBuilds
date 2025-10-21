@@ -31,6 +31,7 @@ import AnimatedCard from '@/app/components/animations/AnimatedCard'
 import CountUp from '@/app/components/animations/CountUp'
 import { industries } from '@/lib/industriesData'
 import { FaChevronDown, FaPlus, FaMinus } from 'react-icons/fa'
+import HeroImage from '@/app/components/HeroImage'
 
 const industryData = industries.manufacturers
 
@@ -348,12 +349,9 @@ export default function ManufacturersPage() {
             <ScrollReveal direction="right">
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
-                  <Image
+                  <HeroImage
                     src="/images/industries/manufacturer/invoice.jpg"
                     alt="Automatic invoice generation system"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent" />
                   <div className="absolute bottom-4 left-4 text-white z-10">

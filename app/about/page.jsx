@@ -29,6 +29,7 @@ import Footer from "../components/layout/Footer";
 import ScrollReveal from "../components/animations/ScrollReveal";
 import CountUp from "../components/animations/CountUp";
 import Link from "next/link";
+import HeroImage from "../components/HeroImage";
 
 export default function AboutPage() {
   const heroRef = useRef(null);
@@ -161,16 +162,10 @@ export default function AboutPage() {
           className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden"
         >
           {/* Background Image Layer */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/about-hero.jpg"
-              alt="EaseBuilds Web Development Team Background"
-              fill
-              className="object-cover object-center"
-              priority
-              quality={90}
-            />
-          </div>
+          <HeroImage
+         src="/images/about-hero.jpg"
+        alt="EaseBuilds Web Development Team Background"
+      />
 
            <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
             <div className="absolute inset-0 opacity-5">

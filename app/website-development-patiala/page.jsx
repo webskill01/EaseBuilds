@@ -33,6 +33,7 @@ import ScrollReveal from '../components/animations/ScrollReveal'
 import AnimatedCard from '../components/animations/AnimatedCard'
 import CountUp from '../components/animations/CountUp'
 import GridBackground from '../components/animations/GridBackground'
+import HeroImage from '../components/HeroImage'
 
 export default function WebsiteDevelopmentPatiala() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null)
@@ -95,14 +96,9 @@ export default function WebsiteDevelopmentPatiala() {
 <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 sm:pt-24 pb-12 sm:pb-16">
   {/* Background Image */}
   <div className="absolute inset-0 z-0">
-    <Image
+    <HeroImage
       src="/images/webdev-hero.jpg"
       alt="Best Web Developer in Patiala Punjab India - EaseBuilds"
-      fill
-      className="object-cover"
-      priority
-      quality={96}
-      sizes="100vw"
     />
     {/* Multi-layer Overlay for Better Readability */}
     <div className="absolute inset-0 bg-gradient-to-br from-gray-50/10 via-gray-50/60 to-gray-50/10" />
