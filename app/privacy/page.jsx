@@ -22,8 +22,6 @@ import {
   FaServicestack,
   FaPhoneAlt
 } from 'react-icons/fa'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import { FaGear } from 'react-icons/fa6'
 import HeroImage from '../components/HeroImage'
@@ -33,7 +31,6 @@ export default function PrivacyPage() {
 
   return (
     <>
-      <Header />
 
       {/* Hero Section - Light Overlay */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-10">
@@ -532,8 +529,6 @@ export default function PrivacyPage() {
           </div>
         </section>
       </div>
-
-      <Footer />
     </>
   )
 }

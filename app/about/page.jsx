@@ -25,8 +25,6 @@ import {
   FaChartLine,
   FaPhoneAlt,
 } from "react-icons/fa";
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
 import ScrollReveal from "../components/animations/ScrollReveal";
 import CountUp from "../components/animations/CountUp";
 import Link from "next/link";
@@ -155,7 +153,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <Header />
       <main className="py-10 bg-gradient-to-b from-slate-50 via-white to-slate-50">
         {/* Hero Section with Custom Background Image */}
         <section
@@ -642,7 +639,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

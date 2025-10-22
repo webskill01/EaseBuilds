@@ -28,8 +28,6 @@ import {
   FaPhoneAlt
 } from 'react-icons/fa'
 import { useState } from 'react'
-import Header from '../components/layout/Header'
-import Footer from '../components/layout/Footer'
 import ScrollReveal from '../components/animations/ScrollReveal'
 import AnimatedCard from '../components/animations/AnimatedCard'
 import CountUp from '../components/animations/CountUp'
@@ -91,7 +89,6 @@ export default function WebsiteDevelopmentPatiala() {
 
   return (
     <>
-      <Header />
       
       {/* Hero Section - With Background Image & Overlay */}
 <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden pt-20 sm:pt-24 pb-12 sm:pb-16">
@@ -663,8 +660,6 @@ export default function WebsiteDevelopmentPatiala() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

@@ -11,8 +11,6 @@ import {
   FaSearch, FaClock, FaCalendar, FaTag, FaArrowRight, 
   FaBookOpen, FaFire, FaLightbulb
 } from 'react-icons/fa'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import { getAllPosts, categories } from '@/lib/blogData'
 import HeroImage from '../components/HeroImage'
 
@@ -48,7 +46,6 @@ export default function BlogPage() {
 
   return (
     <>
-      <Header />
 
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-7">
@@ -431,7 +428,6 @@ export default function BlogPage() {
           )}
         </div>
       </section>
-      <Footer />
     </>
   )
 }

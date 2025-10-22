@@ -13,8 +13,6 @@ import {
 } from 'react-icons/fa'
 import { useParams } from 'next/navigation'
 import { notFound } from 'next/navigation'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import { getPostBySlug, getRelatedPosts } from '@/lib/blogData'
 
 export default function BlogPostPage() {
@@ -108,7 +106,6 @@ export default function BlogPostPage() {
 
   return (
     <>
-      <Header />
 
       {/* Reading Progress Bar */}
       <motion.div
@@ -472,8 +469,6 @@ export default function BlogPostPage() {
           </div>
         )}
       </article>
-
-      <Footer />
     </>
   )
 }

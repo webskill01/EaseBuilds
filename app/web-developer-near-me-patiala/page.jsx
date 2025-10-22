@@ -28,8 +28,6 @@ import {
   FaChevronDown,
   FaPhoneAlt
 } from 'react-icons/fa'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import AnimatedCard from '@/app/components/animations/AnimatedCard'
 import HeroImage from '../components/HeroImage'
@@ -130,7 +128,6 @@ export default function WebDeveloperNearMePage() {
 
   return (
     <>
-      <Header />
 
       {/* Hero Section */}
       <section 
@@ -772,8 +769,6 @@ export default function WebDeveloperNearMePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

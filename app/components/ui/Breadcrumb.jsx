@@ -6,6 +6,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { FaHome, FaChevronRight } from 'react-icons/fa'
+import Script from 'next/script'
 
 export default function Breadcrumb() {
   const pathname = usePathname()
@@ -64,17 +65,17 @@ export default function Breadcrumb() {
         label: formatLabel(segment),
         href: href,
         isHome: false,
-        isClickable: !nonClickableRoutes.includes(href), // Check if route is clickable
+        isClickable: !nonClickableRoutes.includes(href),
       }
     }),
   ]
 
-  // Generate JSON-LD Schema for SEO (only include clickable routes)
+  // Generate JSON-LD Schema for SEO
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     'itemListElement': breadcrumbItems
-      .filter(item => item.isClickable) // Only include clickable items in schema
+      .filter(item => item.isClickable)
       .map((item, index) => ({
         '@type': 'ListItem',
         'position': index + 1,
@@ -88,46 +89,45 @@ export default function Breadcrumb() {
   return (
     <>
       {/* JSON-LD Schema for SEO */}
-      <script
+      <Script
+        id="breadcrumb-schema"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Breadcrumb Navigation with High Z-Index */}
+      {/* Breadcrumb Navigation */}
       <nav 
         aria-label="Breadcrumb" 
-        className="top-14 sm:top-20 z-40 bg-gradient-to-r from-gray-50 to-blue-50/30 border-b border-gray-200 shadow-sm"
+        className="absolute top-14 sm:top-16 z-30 w-full shadow-sm"
       >
         <div className="container-custom py-2 sm:py-3">
-          <ol className="flex flex-wrap items-center gap-2 text-sm">
+          <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
             {breadcrumbItems.map((item, index) => (
               <li key={item.href} className="flex items-center gap-2">
                 {/* Breadcrumb Link/Text */}
                 {isLastItem(index) ? (
-                  // Current page - not clickable (always)
                   <span 
-                    className="flex items-center gap-1.5 text-blue-600 font-semibold"
+                    className="flex items-center gap-1.5 text-blue-200 font-semibold"
                     aria-current="page"
                   >
-                    {item.isHome && <FaHome className="text-base" aria-hidden="true" />}
+                    {item.isHome && <FaHome className="text-sm sm:text-base" aria-hidden="true" />}
                     {item.label}
                   </span>
                 ) : item.isClickable ? (
-                  // Previous pages with actual pages - clickable
                   <Link
                     href={item.href}
-                    className="flex items-center gap-1.5 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                    className="flex items-center gap-1.5 text-white hover:text-blue-200 transition-colors duration-200"
                   >
-                    {item.isHome && <FaHome className="text-base" aria-hidden="true" />}
+                    {item.isHome && <FaHome className="text-sm sm:text-base" aria-hidden="true" />}
                     {item.label}
                   </Link>
                 ) : (
-                  // Parent routes without pages - not clickable (styled as text)
                   <span 
-                    className="flex items-center gap-1.5 text-gray-500 cursor-default"
+                    className="flex items-center gap-1.5 text-white cursor-default"
                     title="This section only contains sub-pages"
                   >
-                    {item.isHome && <FaHome className="text-base" aria-hidden="true" />}
+                    {item.isHome && <FaHome className="text-sm sm:text-base" aria-hidden="true" />}
                     {item.label}
                   </span>
                 )}
@@ -135,7 +135,7 @@ export default function Breadcrumb() {
                 {/* Separator */}
                 {!isLastItem(index) && (
                   <FaChevronRight 
-                    className="text-gray-400 text-xs" 
+                    className="text-white text-[10px] sm:text-xs" 
                     aria-hidden="true" 
                   />
                 )}

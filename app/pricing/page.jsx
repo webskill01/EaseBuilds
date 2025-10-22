@@ -3,8 +3,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaStar, FaPhone, FaWhatsapp, FaCheckCircle, FaTimes, FaLock, FaGift, FaCheck, FaMoneyBill, FaRupeeSign, FaHospital, FaBuilding, FaBook, FaStore, FaPhoneAlt } from 'react-icons/fa'
-import Header from '../components/layout/Header'
-import Footer from '../components/layout/Footer'
 import FomoBanner from './components/FomoBanner'
 import PricingCard from './components/PricingCard'
 import PricingFAQ from './components/PricingFAQ'
@@ -88,7 +86,6 @@ export default function PricingPage() {
 
   return (
     <>
-      <Header />
       <main className="pt-10">
         
        <section className="relative pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8  overflow-hidden">
@@ -430,7 +427,6 @@ export default function PricingPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }

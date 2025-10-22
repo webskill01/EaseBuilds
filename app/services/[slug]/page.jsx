@@ -14,8 +14,6 @@ import {
 } from 'react-icons/fa'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import { services } from '@/lib/servicesData'
 import { notFound } from 'next/navigation'
@@ -119,7 +117,6 @@ export default function DynamicServicePage() {
 
   return (
     <>
-      <Header />
 
       {/* ✅ SEO: Main article wrapper with semantic HTML */}
       <article itemScope itemType="https://schema.org/Service">
@@ -774,8 +771,6 @@ export default function DynamicServicePage() {
         </section>
 
       </article>
-
-      <Footer />
     </>
   )
 }

@@ -1,7 +1,6 @@
 'use client'
 
-// Simplified Header - Permanent White BG with Black Text
-// No scroll color changes - consistent across all pages
+// Simplified Header - Mobile Menu Fixed Overlay
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { useState, useEffect } from 'react'
@@ -35,6 +34,10 @@ export default function Header() {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    return () => {
       document.body.style.overflow = 'unset'
     }
   }, [isMobileMenuOpen])
@@ -121,7 +124,7 @@ export default function Header() {
 
   return (
     <>
-      {/* Fixed White Header - No scroll effects */}
+      {/* Fixed White Header - Only header bar, no menu panel inside */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
         <nav className="container-custom">
           <div className="flex items-center justify-between h-14 sm:h-16">
@@ -129,7 +132,7 @@ export default function Header() {
             {/* Logo */}
             <Link 
               href="/" 
-              className="flex items-center gap-2 sm:gap-3 group relative z-50"
+              className="flex items-center gap-2 sm:gap-3 group"
               onClick={() => {
                 setIsMobileMenuOpen(false)
                 setOpenDropdown(null)
@@ -191,13 +194,13 @@ export default function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden"
+                        className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
                       >
                         {item.items.map((subItem) => (
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="flex items-start gap-3 px-4 py-3 hover:bg-blue-50 transition-colors group "
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-blue-50 transition-colors group"
                             onClick={() => setOpenDropdown(null)}
                           >
                             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-blue-200 transition-colors">
@@ -262,13 +265,13 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - OUTSIDE header, positioned fixed */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -276,9 +279,9 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Menu Panel */}
+            {/* Menu Panel - Fixed positioned, floats above content */}
             <motion.div
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-white z-50 shadow-2xl lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-white z-[70] shadow-2xl lg:hidden overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -376,7 +379,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <FaPhoneAlt />
-                    Call Us
+                    Call +91 6283380110
                   </a>
                   <a
                     href="https://wa.me/916283380110"
@@ -395,8 +398,8 @@ export default function Header() {
                   <p className="font-semibold text-gray-900 mb-2">EaseBuilds</p>
                   <p>Patiala, Punjab 147001</p>
                   <p className="mt-2">
-                    <a href="mailto:easebuilds.in@gmail.com" className="text-blue-600 underline">
-                      Email Us
+                    <a href="mailto:easebuilds.in@gmail.com" className="text-blue-600 hover:underline">
+                      easebuilds.in@gmail.com
                     </a>
                   </p>
                 </div>

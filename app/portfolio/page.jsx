@@ -49,8 +49,6 @@ import {
 } from 'react-icons/si'
 
 import Link from 'next/link'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import portfolioProjects from '@/lib/portfolioData'
 import HeroImage from '../components/HeroImage'
@@ -137,8 +135,6 @@ const processSteps = [
 
   return (
     <>
-      <Header />
-
       {/* Hero Section with Light Opacity Background */}
       <section 
         ref={heroRef}
@@ -698,8 +694,6 @@ const processSteps = [
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

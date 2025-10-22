@@ -21,8 +21,6 @@ import {
   FaExclamationCircle,
   FaPhoneAlt
 } from 'react-icons/fa'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import HeroImage from '../components/HeroImage'
 
@@ -188,7 +186,6 @@ const handleSubmit = async (e) => {
 
   return (
     <>
-      <Header />
 
       {/* Hero Section - Light Overlay */}
       <section 
@@ -805,8 +802,6 @@ const handleSubmit = async (e) => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

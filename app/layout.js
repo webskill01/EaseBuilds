@@ -12,7 +12,6 @@ import {
   faqSchema 
 } from '@/lib/seo'
 import Script from 'next/script'
-import GoogleTagManager from './components/GoogleTagManager'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -32,57 +31,15 @@ export const viewport = {
 }
 
 export default function RootLayout({ children }) {
+  const GTM_ID = 'GTM-NWRSKZBL'
+  const GA_ID = 'G-LHQTTB0B0Q'
+
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        {/* Google Analytics & Tag Manager */}
-      <GoogleTagManager/>
-      
-        {/* Structured Data for SEO */}
-        <Script
-          id="organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-          strategy="beforeInteractive"
-        />
-        <Script
-          id="local-business-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
-          }}
-          strategy="beforeInteractive"
-        />
-        <Script
-          id="website-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-          strategy="beforeInteractive"
-        />
-        <Script
-          id="faq-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
-          }}
-          strategy="beforeInteractive"
-        />
-
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* Preload Critical Images */}
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/images/main-hero.jpg"
-          fetchPriority="high"
-        />
         
         {/* Favicon and App Icons */}
         <link rel="icon" href="/favicon.png" />
@@ -96,6 +53,16 @@ export default function RootLayout({ children }) {
       </head>
       
       <body className="antialiased min-h-screen bg-white text-gray-900">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         {/* Skip to main content for accessibility */}
         <a 
           href="#main-content" 
@@ -115,20 +82,76 @@ export default function RootLayout({ children }) {
           {children}
         </main>
 
-        {/* Footer */}
+        {/* Footer - ONLY IN LAYOUT */}
         <Footer />
         
         {/* Floating WhatsApp Button */}
         <FloatingWhatsApp />
 
-        {/* Global Scripts */}
+        {/* Structured Data for SEO */}
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
+          }}
+          strategy="afterInteractive"
+        />
+
+        {/* Google Tag Manager */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              // Add Google Tag Manager or Analytics here
-              // window.dataLayer = window.dataLayer || [];
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+
+        {/* Google Analytics 4 */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        />
+        
+        <Script
+          id="ga-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
             `,
           }}
         />

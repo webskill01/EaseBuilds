@@ -24,8 +24,6 @@ import {
 } from 'react-icons/fa'
 import { useRef } from 'react'
 import Link from 'next/link'
-import Header from '@/app/components/layout/Header'
-import Footer from '@/app/components/layout/Footer'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import AnimatedCard from '@/app/components/animations/AnimatedCard'
 import CountUp from '@/app/components/animations/CountUp'
@@ -49,8 +47,6 @@ export default function DentalClinicsPage() {
 
   return (
     <>
-      <Header />
-
       {/* Hero Section - FIXED with Next.js Image */}
       <section 
         ref={heroRef}
@@ -673,7 +669,6 @@ export default function DentalClinicsPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   )
 }
