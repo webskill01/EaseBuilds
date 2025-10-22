@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 // Contact Section - With Zod Validation & Anti-Spam Protection
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { z } from 'zod'
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { z } from "zod";
 import {
   FaPhone,
   FaEnvelope,
@@ -18,187 +18,196 @@ import {
   FaExclamationCircle,
   FaHeadset,
   FaPhoneAlt,
-} from 'react-icons/fa'
-import ScrollReveal from '../animations/ScrollReveal'
+} from "react-icons/fa";
+import ScrollReveal from "../animations/ScrollReveal";
 
 // Zod validation schema
 const contactSchema = z.object({
-  name: z.string()
-    .min(2, 'Name must be at least 2 characters')
-    .max(100, 'Name is too long'),
-  email: z.string()
-    .email('Please enter a valid email address'),
-  phone: z.string()
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name is too long"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z
+    .string()
     .refine(
-      (val) => val === '' || (val.length >= 10 && val.length <= 15),
-      'Phone number must be 10-15 digits if provided'
+      (val) => val === "" || (val.length >= 10 && val.length <= 15),
+      "Phone number must be 10-15 digits if provided"
     ),
-  service: z.string()
-    .min(1, 'Please select a service'),
-  message: z.string()
-    .min(20, 'Message must be at least 20 characters')
-    .max(1000, 'Message is too long'),
-})
+  service: z.string().min(1, "Please select a service"),
+  message: z
+    .string()
+    .min(20, "Message must be at least 20 characters")
+    .max(1000, "Message is too long"),
+});
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-    honeypot: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState(null)
-  const [validationErrors, setValidationErrors] = useState({})
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+    honeypot: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
+    }));
     // Clear validation error for this field
     if (validationErrors[name]) {
-      setValidationErrors(prev => ({
+      setValidationErrors((prev) => ({
         ...prev,
-        [name]: null
-      }))
+        [name]: null,
+      }));
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     // Honeypot spam check
-    if (formData.honeypot && formData.honeypot.trim() !== '') {
-      return
+    if (formData.honeypot && formData.honeypot.trim() !== "") {
+      return;
     }
-    
+
     // Prepare data for validation
     const dataToValidate = {
       name: formData.name,
       email: formData.email,
-      phone: formData.phone || '',
+      phone: formData.phone || "",
       service: formData.service,
       message: formData.message,
-    }
-    
+    };
+
     // Client-side validation with Zod
-    const validation = contactSchema.safeParse(dataToValidate)
-    
+    const validation = contactSchema.safeParse(dataToValidate);
+
     if (!validation.success) {
-      const errors = {}
-      validation.error.issues.forEach(issue => {
+      const errors = {};
+      validation.error.issues.forEach((issue) => {
         if (issue.path.length > 0) {
-          errors[issue.path[0]] = issue.message
+          errors[issue.path[0]] = issue.message;
         }
-      })
-      setValidationErrors(errors)
-      
+      });
+      setValidationErrors(errors);
+
       // Scroll to first error
-      const firstErrorField = Object.keys(errors)[0]
+      const firstErrorField = Object.keys(errors)[0];
       if (firstErrorField) {
-        const element = document.getElementById(firstErrorField)
+        const element = document.getElementById(firstErrorField);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       }
-      return
+      return;
     }
-    
-    setValidationErrors({})
-    setIsSubmitting(true)
-    setSubmitStatus(null)
+
+    setValidationErrors({});
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
       const submissionData = {
         name: formData.name,
         email: formData.email,
-        phone: formData.phone || '',
+        phone: formData.phone || "",
         service: formData.service,
         message: formData.message,
         submittedAt: new Date().toISOString(),
-        source: 'Contact Form - EaseBuilds Website - Patiala Punjab India',
-        location: 'Patiala Punjab India',
+        source: "Contact Form - EaseBuilds Website - Patiala Punjab India",
+        location: "Patiala Punjab India",
         withinFomoOffer: false,
-      }
+      };
 
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(submissionData),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (response.ok && data.success) {
-        setSubmitStatus('success')
+        if (typeof window !== "undefined" && window.dataLayer) {
+          window.dataLayer.push({
+            event: "form_submission",
+            form_name: "contact_form",
+            form_location: "homepage",
+            form_id: "contact-form",
+          });
+        }
+        setSubmitStatus("success");
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          service: '',
-          message: '',
-          honeypot: '',
-        })
-        
-        setTimeout(() => setSubmitStatus(null), 12000)
+          name: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+          honeypot: "",
+        });
+
+        setTimeout(() => setSubmitStatus(null), 12000);
       } else {
-        setSubmitStatus('error')
-        setTimeout(() => setSubmitStatus(null), 8000)
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus(null), 8000);
       }
     } catch (error) {
-      console.error('Submission error:', error)
-      setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus(null), 8000)
+      console.error("Submission error:", error);
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus(null), 8000);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const contactMethods = [
     {
       icon: FaPhoneAlt,
-      title: 'Call Us Anytime',
-      value: '+91 6283380110',
-      href: 'tel:+916283380110',
-      gradient: 'from-blue-500 to-blue-600',
-      description: 'Mon-Sat: 9 AM - 6 PM',
-      ariaLabel: 'Call EaseBuilds at +91 6283380110',
+      title: "Call Us Anytime",
+      value: "+91 6283380110",
+      href: "tel:+916283380110",
+      gradient: "from-blue-500 to-blue-600",
+      description: "Mon-Sat: 9 AM - 6 PM",
+      ariaLabel: "Call EaseBuilds at +91 6283380110",
     },
     {
       icon: FaWhatsapp,
-      title: 'WhatsApp Chat',
-      value: 'Instant Response',
-      href: 'https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I%20need%20a%20professional%20website%20for%20my%20business',
-      gradient: 'from-green-500 to-green-600',
-      description: '24/7 Quick Replies',
-      ariaLabel: 'Chat with EaseBuilds on WhatsApp',
+      title: "WhatsApp Chat",
+      value: "Instant Response",
+      href: "https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I%20need%20a%20professional%20website%20for%20my%20business",
+      gradient: "from-green-500 to-green-600",
+      description: "24/7 Quick Replies",
+      ariaLabel: "Chat with EaseBuilds on WhatsApp",
     },
     {
       icon: FaEnvelope,
-      title: 'Email Us',
-      value: 'Click to Email',
-      href: 'mailto:easebuilds.in@gmail.com?subject=Website Development Inquiry',
-      gradient: 'from-purple-500 to-purple-600',
-      description: 'Detailed Inquiries',
-      ariaLabel: 'Email EaseBuilds',
+      title: "Email Us",
+      value: "Click to Email",
+      href: "mailto:easebuilds.in@gmail.com?subject=Website Development Inquiry",
+      gradient: "from-purple-500 to-purple-600",
+      description: "Detailed Inquiries",
+      ariaLabel: "Email EaseBuilds",
       isEmail: true,
     },
     {
       icon: FaMapMarkerAlt,
-      title: 'Visit Us',
-      value: 'Patiala, Punjab',
-      gradient: 'from-orange-500 to-orange-600',
-      description: 'Local Service',
+      title: "Visit Us",
+      value: "Patiala, Punjab",
+      gradient: "from-orange-500 to-orange-600",
+      description: "Local Service",
       isLocation: true,
-      ariaLabel: 'EaseBuilds location in Patiala Punjab India',
+      ariaLabel: "EaseBuilds location in Patiala Punjab India",
     },
-  ]
+  ];
 
   return (
     <section
@@ -207,23 +216,36 @@ export default function Contact() {
       aria-labelledby="contact-heading"
     >
       {/* Static Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" aria-hidden="true">
+      <div
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        aria-hidden="true"
+      >
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, rgb(59 130 246) 1px, transparent 0)',
-            backgroundSize: '40px 40px',
+            backgroundImage:
+              "radial-gradient(circle at 2px 2px, rgb(59 130 246) 1px, transparent 0)",
+            backgroundSize: "40px 40px",
           }}
         />
       </div>
 
       {/* Decorative Shapes */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full opacity-10 pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full opacity-10 pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full opacity-10 pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-0 left-0 w-96 h-96 bg-purple-100 rounded-full opacity-10 pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div className="container-custom relative z-10">
         {/* Header */}
-        <ScrollReveal direction="up" className="text-center mb-10 sm:mb-14 lg:mb-16">
+        <ScrollReveal
+          direction="up"
+          className="text-center mb-10 sm:mb-14 lg:mb-16"
+        >
           <div className="inline-block mb-4">
             <span className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
               <FaPaperPlane className="text-sm" aria-hidden="true" />
@@ -231,16 +253,23 @@ export default function Contact() {
             </span>
           </div>
 
-          <h2 id="contact-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-            Contact the{' '}
+          <h2
+            id="contact-heading"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4"
+          >
+            Contact the{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
               Best Web Developer in Patiala
             </span>
           </h2>
 
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4 mb-4">
-            Ready to grow your business online? Contact <strong className="text-blue-600">EaseBuilds - Best Web Developer in Patiala</strong> for professional website development. 
-            Fast response guaranteed within 2-4 hours!
+            Ready to grow your business online? Contact{" "}
+            <strong className="text-blue-600">
+              EaseBuilds - Best Web Developer in Patiala
+            </strong>{" "}
+            for professional website development. Fast response guaranteed
+            within 2-4 hours!
           </p>
 
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full">
@@ -258,13 +287,19 @@ export default function Contact() {
               <a
                 key={index}
                 href={method.isLocation ? undefined : method.href}
-                target={method.href?.startsWith('http') ? '_blank' : undefined}
-                rel={method.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                target={method.href?.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  method.href?.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 aria-label={method.ariaLabel}
-                className={`group relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden ${method.isLocation ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`group relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden ${method.isLocation ? "cursor-default" : "cursor-pointer"}`}
               >
                 <div className="relative z-10">
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br ${method.gradient} rounded-xl flex items-center justify-center mb-3 sm:mb-4 shadow-md`}>
+                  <div
+                    className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br ${method.gradient} rounded-xl flex items-center justify-center mb-3 sm:mb-4 shadow-md`}
+                  >
                     <method.icon className="text-xl sm:text-2xl text-white" />
                   </div>
 
@@ -288,10 +323,14 @@ export default function Contact() {
           <ScrollReveal direction="left" className="lg:col-span-2">
             <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white h-full flex flex-col shadow-2xl relative overflow-hidden">
               <div className="absolute inset-0 opacity-10" aria-hidden="true">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: 'radial-gradient(circle at 20px 20px, white 2px, transparent 0)',
-                  backgroundSize: '40px 40px'
-                }} />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle at 20px 20px, white 2px, transparent 0)",
+                    backgroundSize: "40px 40px",
+                  }}
+                />
               </div>
 
               <div className="relative z-10">
@@ -300,18 +339,22 @@ export default function Contact() {
                     Why Choose EaseBuilds?
                   </h3>
                   <p className="text-blue-100 text-sm sm:text-base leading-relaxed">
-                    We're the <strong className="text-white">best web development company in Patiala</strong>, 
-                    delivering professional websites that drive real business results for local companies.
+                    We're the{" "}
+                    <strong className="text-white">
+                      best web development company in Patiala
+                    </strong>
+                    , delivering professional websites that drive real business
+                    results for local companies.
                   </p>
                 </div>
 
                 {/* Trust Indicators */}
                 <div className="space-y-4 sm:space-y-5 mb-6 sm:mb-8">
                   {[
-                    { text: '50+ Successful Projects' },
-                    { text: 'Fast 2-4 Weeks Delivery' },
-                    { text: '100% Client Satisfaction Rate' },
-                    { text: 'Free Consultation & Ongoing Support' },
+                    { text: "50+ Successful Projects" },
+                    { text: "Fast 2-4 Weeks Delivery" },
+                    { text: "100% Client Satisfaction Rate" },
+                    { text: "Free Consultation & Ongoing Support" },
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <FaCheckCircle className="text-lg text-green-300 mt-0.5 flex-shrink-0" />
@@ -323,7 +366,10 @@ export default function Contact() {
                 {/* Business Address - Protected */}
                 <div className="mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-white/20">
                   <div className="flex items-start gap-3">
-                    <FaMapMarkerAlt className="text-xl text-white mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <FaMapMarkerAlt
+                      className="text-xl text-white mt-0.5 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <p className="text-sm sm:text-base leading-relaxed">
                         <span className="font-bold text-white block mb-2">
@@ -336,7 +382,8 @@ export default function Contact() {
                         </span>
                       </p>
                       <p className="text-xs text-blue-200 mt-2">
-                        Serving: Patiala, Rajpura, Sangrur, Nabha, Mohali, Chandigarh & All Over India
+                        Serving: Patiala, Rajpura, Sangrur, Nabha, Mohali,
+                        Chandigarh & All Over India
                       </p>
                     </div>
                   </div>
@@ -345,7 +392,10 @@ export default function Contact() {
                 {/* Business Hours */}
                 <div className="pb-6 sm:pb-8 border-b border-white/20">
                   <div className="flex items-start gap-3">
-                    <FaClock className="text-xl text-white mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <FaClock
+                      className="text-xl text-white mt-0.5 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <p className="text-sm sm:text-base leading-relaxed">
                         <span className="font-bold text-white block mb-2">
@@ -371,11 +421,21 @@ export default function Contact() {
                 <div className="mt-6 sm:mt-8 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm rounded-xl p-4 border border-yellow-400/30">
                   <div className="flex items-center gap-2 mb-2">
                     <FaBolt className="text-yellow-300 text-lg animate-pulse" />
-                    <span className="font-bold text-sm sm:text-base text-yellow-100">Limited Time Offer!</span>
+                    <span className="font-bold text-sm sm:text-base text-yellow-100">
+                      Limited Time Offer!
+                    </span>
                   </div>
                   <p className="text-xs sm:text-sm text-blue-100">
-                    Get <strong className="text-white">FREE hosting for 1 month</strong> + 
-                    <strong className="text-white"> FREE SSL certificate</strong> with any website package
+                    Get{" "}
+                    <strong className="text-white">
+                      FREE hosting for 1 month
+                    </strong>{" "}
+                    +
+                    <strong className="text-white">
+                      {" "}
+                      FREE SSL certificate
+                    </strong>{" "}
+                    with any website package
                   </p>
                 </div>
               </div>
@@ -384,7 +444,11 @@ export default function Contact() {
 
           {/* Right: Contact Form */}
           <ScrollReveal direction="right" delay={0.2} className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" noValidate>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5 sm:space-y-6"
+              noValidate
+            >
               {/* Honeypot field */}
               <input
                 type="text"
@@ -399,7 +463,10 @@ export default function Contact() {
 
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm sm:text-base font-semibold text-gray-700 mb-2"
+                >
                   Your Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -410,7 +477,9 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className={`w-full px-4 py-3 sm:py-4 rounded-xl border-2 ${
-                    validationErrors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                    validationErrors.name
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                      : "border-gray-200 focus:border-blue-500 focus:ring-blue-100"
                   } focus:ring-4 outline-none transition-all duration-300 text-sm sm:text-base`}
                   placeholder="e.g., Rajesh Kumar"
                 />
@@ -425,7 +494,10 @@ export default function Contact() {
               {/* Email & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <div>
-                  <label htmlFor="email" className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm sm:text-base font-semibold text-gray-700 mb-2"
+                  >
                     Email Address <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -436,7 +508,9 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className={`w-full px-4 py-3 sm:py-4 rounded-xl border-2 ${
-                      validationErrors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                      validationErrors.email
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                        : "border-gray-200 focus:border-blue-500 focus:ring-blue-100"
                     } focus:ring-4 outline-none transition-all duration-300 text-sm sm:text-base`}
                     placeholder="your@email.com"
                   />
@@ -449,7 +523,10 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm sm:text-base font-semibold text-gray-700 mb-2"
+                  >
                     WhatsApp Number
                   </label>
                   <input
@@ -459,7 +536,9 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     className={`w-full px-4 py-3 sm:py-4 rounded-xl border-2 ${
-                      validationErrors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                      validationErrors.phone
+                        ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                        : "border-gray-200 focus:border-blue-500 focus:ring-blue-100"
                     } focus:ring-4 outline-none transition-all duration-300 text-sm sm:text-base`}
                     placeholder="+91 98765-43210"
                   />
@@ -474,7 +553,10 @@ export default function Contact() {
 
               {/* Service */}
               <div>
-                <label htmlFor="service" className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="service"
+                  className="block text-sm sm:text-base font-semibold text-gray-700 mb-2"
+                >
                   Service Required <span className="text-red-500">*</span>
                 </label>
                 <select
@@ -484,14 +566,22 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className={`w-full px-4 py-3 sm:py-4 rounded-xl border-2 ${
-                    validationErrors.service ? 'border-red-500 focus:border-red-500 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                    validationErrors.service
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                      : "border-gray-200 focus:border-blue-500 focus:ring-blue-100"
                   } focus:ring-4 outline-none transition-all duration-300 text-sm sm:text-base bg-white`}
                 >
                   <option value="">Select a service</option>
-                  <option value="custom-website">Custom Website Development</option>
+                  <option value="custom-website">
+                    Custom Website Development
+                  </option>
                   <option value="ecommerce">E-commerce Website</option>
-                  <option value="redesign">Website Redesign & Modernization</option>
-                  <option value="maintenance">Website Maintenance & Support</option>
+                  <option value="redesign">
+                    Website Redesign & Modernization
+                  </option>
+                  <option value="maintenance">
+                    Website Maintenance & Support
+                  </option>
                   <option value="seo">SEO & Digital Marketing</option>
                   <option value="logo-design">Logo & Branding Design</option>
                   <option value="other">Other Services</option>
@@ -506,7 +596,10 @@ export default function Contact() {
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-sm sm:text-base font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm sm:text-base font-semibold text-gray-700 mb-2"
+                >
                   Project Details <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -517,7 +610,9 @@ export default function Contact() {
                   required
                   rows="5"
                   className={`w-full px-4 py-3 sm:py-4 rounded-xl border-2 ${
-                    validationErrors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-100' : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                    validationErrors.message
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                      : "border-gray-200 focus:border-blue-500 focus:ring-blue-100"
                   } focus:ring-4 outline-none transition-all duration-300 resize-none text-sm sm:text-base`}
                   placeholder="Tell us about your business and website requirements... (minimum 20 characters)"
                 />
@@ -540,7 +635,11 @@ export default function Contact() {
                     <motion.div
                       className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     />
                     Sending Message...
                   </>
@@ -553,14 +652,15 @@ export default function Contact() {
               </button>
 
               {/* Success Message */}
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-500 text-green-800 rounded-2xl p-5 sm:p-6 text-center shadow-lg">
                   <FaCheckCircle className="text-4xl sm:text-5xl text-green-600 mx-auto mb-3" />
                   <p className="font-bold text-lg sm:text-xl mb-2">
                     Thank You for Contacting EaseBuilds!
                   </p>
                   <p className="text-sm sm:text-base mb-2">
-                    We've received your message! Our team will contact you within <strong>2-4 hours</strong> (during business hours).
+                    We've received your message! Our team will contact you
+                    within <strong>2-4 hours</strong> (during business hours).
                   </p>
                   <p className="text-xs sm:text-sm font-semibold text-green-700 bg-green-100 px-4 py-2 rounded-lg inline-block mt-2">
                     🎉 You're eligible for FREE hosting & SSL certificate!
@@ -569,7 +669,7 @@ export default function Contact() {
               )}
 
               {/* Error Message */}
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <div className="bg-red-50 border-2 border-red-500 text-red-800 rounded-2xl p-5 sm:p-6 text-center shadow-lg">
                   <FaExclamationCircle className="text-4xl sm:text-5xl text-red-600 mx-auto mb-3" />
                   <p className="font-bold text-lg sm:text-xl mb-2">
@@ -579,17 +679,35 @@ export default function Contact() {
                     Please try again or contact us directly via:
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                    <a 
-                      href="https://wa.me/916283380110" 
+                    <a
+                      href="https://wa.me/916283380110"
                       className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors text-sm"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        if (typeof window !== "undefined" && window.dataLayer) {
+                          window.dataLayer.push({
+                            event: "whatsapp_click",
+                            button_name: "WhatsApp",
+                            phone_number: "+91 6283380110",
+                          });
+                        }
+                      }}
                     >
                       <FaWhatsapp /> WhatsApp
                     </a>
-                    <a 
-                      href="tel:+916283380110" 
+                    <a
+                      href="tel:+916283380110"
                       className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition-colors text-sm"
+                      onClick={() => {
+                        if (typeof window !== "undefined" && window.dataLayer) {
+                          window.dataLayer.push({
+                            event: "phone_click",
+                            button_name: "Call Now",
+                            phone_number: "+91 6283380110",
+                          });
+                        }
+                      }}
                     >
                       <FaPhoneAlt /> Call Now
                     </a>
@@ -601,5 +719,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

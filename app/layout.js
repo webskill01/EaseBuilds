@@ -12,6 +12,7 @@ import {
   faqSchema 
 } from '@/lib/seo'
 import Script from 'next/script'
+import GoogleTagManager from './components/GoogleTagManager'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -34,6 +35,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        {/* Google Analytics & Tag Manager */}
+      <GoogleTagManager/>
+      
         {/* Structured Data for SEO */}
         <Script
           id="organization-schema"
