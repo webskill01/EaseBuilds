@@ -20,7 +20,8 @@ import {
   FaArrowRight,
   FaLaptop,
   FaFileDownload,
-  FaCube
+  FaCube,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import { useRef , useState } from 'react'
 import Link from 'next/link'
@@ -129,7 +130,7 @@ export default function ManufacturersPage() {
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5  py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl transition-all text-sm sm:text-base lg:text-lg"
               >
-                <FaPhone className="text-lg sm:text-xl" />
+                <FaPhoneAlt className="text-lg sm:text-xl" />
                 Call Now
               </motion.a>
 
@@ -648,7 +649,7 @@ export default function ManufacturersPage() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-lg"
                 >
-                  <FaPhone />
+                  <FaPhoneAlt />
                   Call Now
                 </motion.a>
                 

@@ -27,7 +27,8 @@ import {
   FaAws,
   FaDocker,
   FaPython,
-  FaPhp
+  FaPhp,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import { 
   SiNextdotjs, 
@@ -681,7 +682,7 @@ const processSteps = [
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-lg"
                 >
-                  <FaPhone />
+                  <FaPhoneAlt />
                   Call Us
                 </motion.a>
                 

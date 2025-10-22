@@ -5,7 +5,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaChevronDown, FaPhone, FaQuestionCircle, FaWhatsapp } from 'react-icons/fa'
+import { FaChevronDown, FaPhone, FaPhoneAlt, FaQuestionCircle, FaWhatsapp } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 
 export default function PricingFAQ({ faqs }) {
@@ -128,7 +128,7 @@ export default function PricingFAQ({ faqs }) {
                                    whileHover={{ scale: 1.05, y: -3 }}
                                    whileTap={{ scale: 0.95 }}
                                  >
-                                   <FaPhone className="text-xl" />
+                                   <FaPhoneAlt className="text-xl" />
                                    <span>Call: +91 6283380110</span>
                                  </motion.a>
                                  <motion.a

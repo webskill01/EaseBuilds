@@ -1,10 +1,9 @@
 'use client'
 
-// Enhanced Google-Style Reviews Component - Mobile-First
-// True infinite scroll with centered cards
+// Optimized Google-Style Reviews Component - No Autoplay, No Duplicates
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaStar } from 'react-icons/fa'
 import ScrollReveal from '../animations/ScrollReveal'
@@ -16,75 +15,14 @@ export default function ClientReviews() {
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const autoScrollRef = useRef(null)
 
-  // Filter featured reviews
+  // Filter featured reviews (NO duplicates)
   const featuredReviews = clientReviews.filter(r => r.featured)
   const reviews = featuredReviews.length > 0 ? featuredReviews : clientReviews.slice(0, 8)
-  
-  // Triple the reviews for infinite scroll effect
-  const infiniteReviews = [...reviews, ...reviews, ...reviews]
-
-  // Auto-scroll with infinite loop
-  useEffect(() => {
-    if (!isAutoPlaying || !scrollContainerRef.current) return
-
-    const container = scrollContainerRef.current
-    const cardWidth = container.querySelector('.review-card')?.offsetWidth || 400
-    const gap = 24 // gap-6 = 24px
-
-    autoScrollRef.current = setInterval(() => {
-      container.scrollLeft += cardWidth + gap
-    }, 4000)
-
-    return () => {
-      if (autoScrollRef.current) clearInterval(autoScrollRef.current)
-    }
-  }, [isAutoPlaying])
-
-  // Infinite scroll effect - reset position when reaching end
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = container
-      const cardWidth = container.querySelector('.review-card')?.offsetWidth || 400
-      const gap = 24
-      const oneSetWidth = (cardWidth + gap) * reviews.length
-
-      // If scrolled past second set, jump back to first set
-      if (scrollLeft >= oneSetWidth * 2) {
-        container.scrollLeft = oneSetWidth
-      }
-      // If scrolled before first set, jump to second set
-      else if (scrollLeft <= 0) {
-        container.scrollLeft = oneSetWidth
-      }
-    }
-
-    container.addEventListener('scroll', handleScroll)
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [reviews.length])
-
-  // Initialize scroll position to middle set
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-
-    setTimeout(() => {
-      const cardWidth = container.querySelector('.review-card')?.offsetWidth || 400
-      const gap = 24
-      const oneSetWidth = (cardWidth + gap) * reviews.length
-      container.scrollLeft = oneSetWidth
-    }, 100)
-  }, [reviews.length])
 
   // Mouse drag handlers for desktop
   const handleMouseDown = (e) => {
     setIsDragging(true)
-    setIsAutoPlaying(false)
     setStartX(e.pageX - scrollContainerRef.current.offsetLeft)
     setScrollLeft(scrollContainerRef.current.scrollLeft)
   }
@@ -105,11 +43,6 @@ export default function ClientReviews() {
     setIsDragging(false)
   }
 
-  // Touch handlers for mobile
-  const handleTouchStart = () => {
-    setIsAutoPlaying(false)
-  }
-
   return (
     <section className="py-6 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       <div className="w-full max-w-[100vw]">
@@ -124,7 +57,7 @@ export default function ClientReviews() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-3 px-6 py-3 bg-white rounded-2xl shadow-lg border border-gray-200 mb-6"
             >
-              {/* Google Icon - Multicolor */}
+              {/* Google Icon */}
               <div className="relative w-8 h-8">
                 <svg viewBox="0 0 48 48" className="w-full h-full">
                   <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -137,14 +70,7 @@ export default function ClientReviews() {
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.1 + i * 0.1, type: 'spring' }}
-                    >
-                      <FaStar className="text-yellow-400 text-lg" />
-                    </motion.div>
+                    <FaStar key={i} className="text-yellow-400 text-lg" />
                   ))}
                 </div>
                 <span className="text-xl font-bold text-gray-900">5.0</span>
@@ -182,7 +108,7 @@ export default function ClientReviews() {
             <span>Swipe to see more reviews</span>
           </div>
 
-          {/* Reviews Scroll Container - Centered with padding */}
+          {/* Reviews Scroll Container */}
           <div className="overflow-hidden">
             <div
               ref={scrollContainerRef}
@@ -190,7 +116,6 @@ export default function ClientReviews() {
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseLeave}
-              onTouchStart={handleTouchStart}
               className={`flex gap-6 overflow-x-auto hide-scrollbar pb-4 ${
                 isDragging ? 'cursor-grabbing' : 'cursor-grab'
               } px-4 sm:px-6 lg:px-8`}
@@ -200,18 +125,18 @@ export default function ClientReviews() {
                 scrollBehavior: isDragging ? 'auto' : 'smooth'
               }}
             >
-              {infiniteReviews.map((review, index) => (
+              {reviews.map((review) => (
                 <div
-                  key={`${review.id}-${index}`}
+                  key={review.id}
                   className="review-card flex-shrink-0 w-[85vw] sm:w-[400px] lg:w-[450px]"
                   style={{ scrollSnapAlign: 'center' }}
                 >
                   {/* Google-Style Review Card */}
-                  <div className="h-full bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 border border-gray-100 flex flex-col">
+                  <div className="h-full bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6 sm:p-8 border border-gray-100 flex flex-col">
                     
                     {/* Header with Profile */}
                     <div className="flex items-start gap-4 mb-4">
-                      {/* Profile Picture with Google-Style Ring */}
+                      {/* Profile Picture */}
                       <div className="relative flex-shrink-0">
                         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden ring-4 ring-blue-100 shadow-md">
                           {review.avatar ? (
@@ -235,7 +160,7 @@ export default function ClientReviews() {
                             <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                             <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                             <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.30-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                           </svg>
                         </div>
                       </div>
@@ -259,7 +184,7 @@ export default function ClientReviews() {
                           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                           <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                           <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.30-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                         </svg>
                       </div>
                     </div>
@@ -299,7 +224,7 @@ export default function ClientReviews() {
           </div>
         </div>
 
-        {/* Stats Grid - Enhanced */}
+        {/* Stats Grid */}
         <div className="container-custom">
           <ScrollReveal direction="up" delay={0.3}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-10 max-w-4xl mx-auto">
@@ -312,14 +237,10 @@ export default function ClientReviews() {
                 <motion.div
                   key={index}
                   className="relative group" 
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {/* Gradient Border Effect */}
-                  
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
-                  
-                  <div className="relative h-full flex justify-center items-center flex-col text-center p-1 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border-2 border-gray-100 group-hover:border-transparent transition-all duration-300">
+                  <div className="relative h-full flex justify-center items-center flex-col text-center p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border-2 border-gray-100 hover:border-blue-200 transition-all duration-300">
                     <div className="text-3xl sm:text-4xl mb-2">{stat.icon}</div>
                     <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-1 sm:mb-2">
                       {stat.value}
@@ -348,7 +269,7 @@ export default function ClientReviews() {
                   <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                   <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                   <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.30-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
                 </svg>
                 <span className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                   Write a Google Review
@@ -362,7 +283,7 @@ export default function ClientReviews() {
         </div>
       </div>
 
-      {/* Custom CSS for animations */}
+      {/* Custom CSS */}
       <style jsx>{`
         @keyframes bounce-horizontal {
           0%, 100% {

@@ -9,7 +9,8 @@ import { useRef, useState } from 'react'
 import { 
   FaPhone, FaWhatsapp, FaCheck, FaRocket, FaArrowRight, FaCrown, 
   FaBolt, FaTimes, FaShieldAlt, FaStar, FaHome, FaChevronRight,
-  FaMapMarkerAlt, FaQuoteLeft
+  FaMapMarkerAlt, FaQuoteLeft,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -192,7 +193,7 @@ export default function DynamicServicePage() {
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 w-72 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-lg"
                   aria-label="Call EaseBuilds for service inquiry"
                 >
-                  <FaPhone />
+                  <FaPhoneAlt />
                   Call Now
                 </motion.a>
 
@@ -754,7 +755,7 @@ export default function DynamicServicePage() {
                     whileHover={{ scale: 1.05 }}
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-lg"
                     >
-                    <FaPhone />
+                    <FaPhoneAlt />
                     Call Us
                   </motion.a>
                   

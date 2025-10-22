@@ -22,7 +22,8 @@ import {
   FaGraduationCap,
   FaStore,
   FaIndustry,
-  FaWhatsapp
+  FaWhatsapp,
+  FaPhoneAlt
 } from 'react-icons/fa'
 
 export default function Header() {
@@ -227,7 +228,7 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FaPhone className="text-sm" />
+                <FaPhoneAlt className="text-sm" />
                 <span className="text-sm font-bold">Call Now</span>
               </motion.a>
             </div>
@@ -240,7 +241,7 @@ export default function Header() {
                 className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg focus:outline-none"
                 whileTap={{ scale: 0.9 }}
               >
-                <FaPhone className="text-sm" />
+                <FaPhoneAlt className="text-sm" />
               </motion.a>
 
               {/* Hamburger Menu */}
@@ -374,7 +375,7 @@ export default function Header() {
                     className="flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg shadow-lg text-sm focus:outline-none"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <FaPhone />
+                    <FaPhoneAlt />
                     Call Us
                   </a>
                   <a
@@ -394,8 +395,8 @@ export default function Header() {
                   <p className="font-semibold text-gray-900 mb-2">EaseBuilds</p>
                   <p>Patiala, Punjab 147001</p>
                   <p className="mt-2">
-                    <a href="mailto:easebuilds.in@gmail.com" className="text-blue-600 hover:underline">
-                      easebuilds.in@gmail.com
+                    <a href="mailto:easebuilds.in@gmail.com" className="text-blue-600 underline">
+                      Email Us
                     </a>
                   </p>
                 </div>

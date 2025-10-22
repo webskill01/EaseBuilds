@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FaStar, FaPhone, FaWhatsapp, FaCheckCircle, FaTimes, FaLock, FaGift, FaCheck, FaMoneyBill, FaRupeeSign, FaHospital, FaBuilding, FaBook, FaStore } from 'react-icons/fa'
+import { FaStar, FaPhone, FaWhatsapp, FaCheckCircle, FaTimes, FaLock, FaGift, FaCheck, FaMoneyBill, FaRupeeSign, FaHospital, FaBuilding, FaBook, FaStore, FaPhoneAlt } from 'react-icons/fa'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import FomoBanner from './components/FomoBanner'
@@ -142,7 +142,7 @@ export default function PricingPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FaPhone className="text-lg" />
+                  <FaPhoneAlt className="text-lg" />
                   <span>Call Us</span>
                 </motion.a>
                 <motion.a
@@ -415,7 +415,7 @@ export default function PricingPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <FaPhone />
+                <FaPhoneAlt />
                 Call for Custom Quote
               </motion.a>
               <motion.a

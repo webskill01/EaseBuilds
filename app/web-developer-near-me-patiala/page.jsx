@@ -25,7 +25,8 @@ import {
   FaGlobe,
   FaChevronLeft,
   FaChevronRight,
-  FaChevronDown
+  FaChevronDown,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
@@ -219,7 +220,7 @@ export default function WebDeveloperNearMePage() {
                   animate={{ rotate: [0, 15, -15, 0] }}
                   transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
                 >
-                  <FaPhone className="text-lg sm:text-xl" />
+                  <FaPhoneAlt className="text-lg sm:text-xl" />
                 </motion.div>
                 <span className="group-hover:text-blue-700 transition-colors">Call Us</span>
               </motion.a>
@@ -405,7 +406,7 @@ export default function WebDeveloperNearMePage() {
                   alt="EaseBuilds at Patiala"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  quality={85}
+                  quality={90}
                 />
               </motion.div>
             </ScrollReveal>
@@ -493,7 +494,7 @@ export default function WebDeveloperNearMePage() {
                   {[
                     { icon: FaMapMarkerAlt, label: 'Address', value: 'Patiala, Punjab 147001, India' },
                     { icon: FaClock, label: 'Hours', value: 'Mon-Fri: 9AM-6PM\nSat: 10AM-4PM' },
-                    { icon: FaPhone, label: 'Phone', value: '+91 6283380110', link: 'tel:+916283380110' },
+                    { icon: FaPhoneAlt, label: 'Phone', value: '+91 6283380110', link: 'tel:+916283380110' },
                   ].map((detail, idx) => (
                     <motion.div
                       key={idx}
@@ -754,7 +755,7 @@ export default function WebDeveloperNearMePage() {
               whileTap={{ scale: 0.95 }}
               className="px-5 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl hover:bg-blue-50 transition-all"
             >
-              <FaPhone className="inline mr-2" />
+              <FaPhoneAlt className="inline mr-2" />
               Call Us
             </motion.a>
             <motion.a

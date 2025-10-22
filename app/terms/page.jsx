@@ -24,7 +24,8 @@ import {
   FaCreditCard,
   FaAndroid,
   FaPhoneSquare,
-  FaMobile
+  FaMobile,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
@@ -581,13 +582,13 @@ export default function TermsPage() {
                     className="inline-flex items-center gap-2 px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-gray-100 transition-colors"
                   >
                     <FaEnvelope />
-                   easebuilds.in@gmail.com
+                  Click to Email Us
                   </Link>
                   <Link
                     href="tel:+916283380110"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-bold rounded-xl border-2 border-white hover:bg-white hover:text-blue-600 transition-all"
                   >
-                    <FaPhone />
+                    <FaPhoneAlt />
                     +91 6283380110
                   </Link>
                 </div>

@@ -1,10 +1,10 @@
 'use client'
 
-// FIXED Hero - No Horizontal Scroll
+// OPTIMIZED Hero - High Performance
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
-import { FaRocket, FaPhone, FaWhatsapp, FaStar, FaUsers, FaAward, FaClock, FaRupeeSign } from 'react-icons/fa'
+import { motion, useInView } from 'framer-motion'
+import { FaRocket, FaPhone, FaWhatsapp, FaStar, FaUsers, FaAward, FaClock, FaRupeeSign, FaPhoneAlt } from 'react-icons/fa'
 import Link from 'next/link'
 import { useRef } from 'react'
 import RotatingText from '../animations/RotatingText'
@@ -13,21 +13,6 @@ import CountUp from '../animations/CountUp'
 export default function Hero() {
   const statsRef = useRef(null)
   const isInView = useInView(statsRef, { once: true, margin: "-50px" })
-  
-  // Individual card refs for parallax
-  const card1Ref = useRef(null)
-  const card2Ref = useRef(null)
-  const card3Ref = useRef(null)
-  
-  // Scroll progress for each card
-  const { scrollYProgress: scroll1 } = useScroll({ target: card1Ref, offset: ["start end", "end start"] })
-  const { scrollYProgress: scroll2 } = useScroll({ target: card2Ref, offset: ["start end", "end start"] })
-  const { scrollYProgress: scroll3 } = useScroll({ target: card3Ref, offset: ["start end", "end start"] })
-  
-  // FIXED: Reduced parallax range to prevent overflow
-  const y1 = useTransform(scroll1, [0, 1], [30, -30])  // Was 50, -50
-  const y2 = useTransform(scroll2, [0, 1], [40, -40])  // Was 70, -70
-  const y3 = useTransform(scroll3, [0, 1], [50, -50])  // Was 90, -90
 
   const rotatingTexts = [
     'Stunning Websites',
@@ -38,31 +23,26 @@ export default function Hero() {
   ]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20" style={{ overflow: 'hidden' }}>
-      {/* Background Image - FIXED: Added max-width */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'url(/images/main-hero.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          zIndex: 0,
-          maxWidth: '100%', /* ADD THIS */
-          overflow: 'hidden' /* ADD THIS */
-        }}
-      >        
-        {/* REDUCED Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/65 to-cyan-50/10" style={{ zIndex: 1 }} />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
+      {/* Background Image - Optimized */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/images/main-hero.jpg)',
+          }}
+        />
+        {/* Lighter Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/65 to-cyan-50/10" />
       </div>
 
-      {/* Gradient Orbs - FIXED: Constrained positioning */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl pointer-events-none" style={{ zIndex: 3, maxWidth: '40%' }} />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" style={{ zIndex: 3, maxWidth: '40%' }} />
+      {/* Simplified Gradient Orbs - Removed blur for performance */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/5 rounded-full pointer-events-none z-[1]" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-400/5 rounded-full pointer-events-none z-[1]" />
 
-      {/* Main Content - FIXED: Added max-width constraint */}
-      <div className="container-custom relative" style={{ zIndex: 10, maxWidth: '100%', overflow: 'hidden' }}>
-        <div className="max-w-5xl mx-auto" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+      {/* Main Content */}
+      <div className="container-custom relative z-10">
+        <div className="max-w-5xl mx-auto">
           
           {/* Centered Content */}
           <div className="text-center space-y-5 sm:space-y-6">
@@ -74,14 +54,14 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-3 flex-wrap"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full shadow-lg hover:scale-105 transition-transform">
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full shadow-lg">
                 <FaRocket className="text-base" />
                 <span className="text-xs sm:text-sm font-bold">
                   #1 Web Developer in Patiala Punjab
                 </span>
               </div>
 
-              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white rounded-full shadow-lg border-2 border-gray-100 hover:scale-105 transition-transform">
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white rounded-full shadow-lg border-2 border-gray-100">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                   <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -110,8 +90,7 @@ export default function Hero() {
                   Professional
                 </span>
                 
-                {/* FIXED: Added overflow constraint */}
-                <div className="mb-2 flex justify-center" style={{ minHeight: '1.5em', maxWidth: '100%', overflow: 'hidden' }}>
+                <div className="mb-2 flex justify-center min-h-[1.5em]">
                   <RotatingText
                     texts={rotatingTexts}
                     mainClassName="inline-block font-extrabold"
@@ -144,7 +123,7 @@ export default function Hero() {
               </span>
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Simplified animations */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -153,11 +132,10 @@ export default function Hero() {
             >
               <a
                 href="tel:+916283380110"
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-sm sm:text-base relative overflow-hidden"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <FaPhone className="text-lg relative z-10" />
-                <span className="relative z-10">Call Us</span>
+                <FaPhoneAlt className="text-lg" />
+                <span>Call Us</span>
               </a>
 
               <a
@@ -179,26 +157,23 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* COMPACT Stats Cards with Parallax - FIXED: Overflow constraint */}
-            <div ref={statsRef} className="pt-6 sm:pt-8 px-4" style={{ overflow: 'hidden', maxWidth: '100%' }}>
+            {/* Simplified Stats Cards - NO PARALLAX */}
+            <div ref={statsRef} className="pt-6 sm:pt-8 px-4">
               <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
                 {[
-                  { ref: card1Ref, y: y1, icon: FaUsers, value: 50, suffix: '+', label: 'Clients', gradient: 'from-blue-50 to-cyan-50', iconGradient: 'from-blue-600 to-cyan-500', textColor: 'text-blue-600', borderColor: 'border-blue-100', delay: 0 },
-                  { ref: card2Ref, y: y2, icon: FaAward, value: 100, suffix: '%', label: 'Satisfied', gradient: 'from-green-50 to-emerald-50', iconGradient: 'from-green-600 to-emerald-500', textColor: 'text-green-600', borderColor: 'border-green-100', delay: 0.1 },
-                  { ref: card3Ref, y: y3, icon: FaClock, text: '2-4', label: 'Weeks', gradient: 'from-orange-50 to-red-50', iconGradient: 'from-orange-600 to-red-500', textColor: 'text-orange-600', borderColor: 'border-orange-100', delay: 0.2 }
+                  { icon: FaUsers, value: 50, suffix: '+', label: 'Clients', gradient: 'from-blue-50 to-cyan-50', iconGradient: 'from-blue-600 to-cyan-500', textColor: 'text-blue-600', borderColor: 'border-blue-100', delay: 0 },
+                  { icon: FaAward, value: 100, suffix: '%', label: 'Satisfied', gradient: 'from-green-50 to-emerald-50', iconGradient: 'from-green-600 to-emerald-500', textColor: 'text-green-600', borderColor: 'border-green-100', delay: 0.1 },
+                  { icon: FaClock, text: '2-4', label: 'Weeks', gradient: 'from-orange-50 to-red-50', iconGradient: 'from-orange-600 to-red-500', textColor: 'text-orange-600', borderColor: 'border-orange-100', delay: 0.2 }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
-                    ref={stat.ref}
-                    style={{ y: stat.y }}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: stat.delay }}
+                    transition={{ duration: 0.4, delay: stat.delay }}
                     className="relative group"
-                    whileHover={{ scale: 1.05, y: -5 }}
                   >
-                    <div className={`relative bg-gradient-to-br ${stat.gradient} rounded-xl p-3 sm:p-4 border ${stat.borderColor} shadow-md hover:shadow-xl transition-all`}>
-                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${stat.iconGradient} rounded-lg flex items-center justify-center mb-2 shadow-md group-hover:scale-110 transition-transform mx-auto`}>
+                    <div className={`relative bg-gradient-to-br ${stat.gradient} rounded-xl p-3 sm:p-4 border ${stat.borderColor} shadow-md hover:shadow-xl transition-shadow`}>
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${stat.iconGradient} rounded-lg flex items-center justify-center mb-2 shadow-md mx-auto`}>
                         <stat.icon className="text-white text-lg sm:text-xl" />
                       </div>
                       
@@ -225,11 +200,11 @@ export default function Hero() {
               <p className="text-xs sm:text-sm text-gray-600 mb-2">
                 Trusted by businesses in Patiala:
               </p>
-              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-5">
                 {['Dental', 'Architects', 'Coaching', 'Retail', 'Manufacturing'].map((industry, idx) => (
                   <span
                     key={idx}
-                    className="px-2 sm:px-3 py-1 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-xs text-gray-700 font-medium hover:border-blue-300 hover:bg-blue-50 transition-all"
+                    className="px-2 sm:px-3 py-1 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-xs text-gray-700 font-medium hover:border-blue-300 hover:bg-blue-50 transition-colors"
                   >
                     {industry}
                   </span>

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, useSpring, useTransform, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { 
   FaLaptopCode, 
   FaShoppingCart, 
@@ -14,7 +14,7 @@ import {
   FaEye,
   FaTimes
 } from 'react-icons/fa'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import ScrollReveal from '../animations/ScrollReveal'
 import Link from 'next/link'
 
@@ -111,84 +111,14 @@ const services = [
   },
 ]
 
-// Floating Particles - NO BLUR
-function FloatingParticles() {
-  const [particles, setParticles] = useState([])
-
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 15 }, (_, i) => ({
-        id: i,
-        left: (i * 7 + 13) % 100,
-        top: (i * 11 + 5) % 100,
-        duration: 3 + (i % 3),
-        delay: i * 0.2,
-      }))
-    )
-  }, [])
-
-  if (particles.length === 0) return null
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
-          style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, (particle.id % 3) * 5 - 5, 0],
-            opacity: [0.1, 0.3, 0.1],
-            scale: [1, 1.5, 1]
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: 'easeInOut'
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
-// Service Card - NO BLUR, REDUCED HEIGHT
+// OPTIMIZED Service Card
 function ServiceCard({ service, index }) {
-  const [isHovered, setIsHovered] = useState(false)
   const [isFlipped, setIsFlipped] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: true, margin: '-100px' })
-  
-  const mouseX = useMotionValue(0.5)
-  const mouseY = useMotionValue(0.5)
-  const smoothMouseX = useSpring(mouseX, { stiffness: 100, damping: 20 })
-  const smoothMouseY = useSpring(mouseY, { stiffness: 100, damping: 20 })
-  
-  const rotateX = useTransform(smoothMouseY, [0, 1], [5, -5])
-  const rotateY = useTransform(smoothMouseX, [0, 1], [-5, 5])
 
-  const handleMouseMove = (e) => {
-    if (!cardRef.current || isFlipped) return
-    const rect = cardRef.current.getBoundingClientRect()
-    mouseX.set((e.clientX - rect.left) / rect.width)
-    mouseY.set((e.clientY - rect.top) / rect.height)
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovered(false)
-    mouseX.set(0.5)
-    mouseY.set(0.5)
-  }
-
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped)
-  }
+  const handleFlip = () => setIsFlipped(!isFlipped)
 
   return (
     <>
@@ -197,74 +127,33 @@ function ServiceCard({ service, index }) {
         className="group relative"
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: index * 0.1, type: 'spring' }}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={handleMouseLeave}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
         style={{ perspective: '1500px' }}
       >
-        {/* REDUCED HEIGHT: auto with min */}
         <motion.div
           className="relative h-full min-h-[380px]"
-          style={{
-            transformStyle: 'preserve-3d',
-          }}
-          animate={{
-            rotateY: isFlipped ? 180 : 0,
-            rotateX: !isFlipped && isHovered ? rotateX.get() : 0,
-          }}
-          transition={{ 
-            rotateY: { duration: 0.6, type: 'spring', stiffness: 100, damping: 15 },
-            rotateX: { duration: 0.1 },
-          }}
+          style={{ transformStyle: 'preserve-3d' }}
+          animate={{ rotateY: isFlipped ? 180 : 0 }}
+          transition={{ duration: 0.6, type: 'spring', stiffness: 120, damping: 20 }}
         >
-          {/* FRONT SIDE - NO BLUR */}
+          {/* FRONT SIDE */}
           <div
-            className="absolute inset-0 bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-gray-200 overflow-hidden cursor-pointer"
+            className="absolute inset-0 bg-white rounded-3xl p-5 sm:p-6 shadow-xl border border-gray-200 overflow-hidden cursor-pointer hover:shadow-2xl transition-shadow"
             style={{
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
             }}
             onClick={handleFlip}
           >
-            <motion.div
-              className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient}`}
-              animate={{
-                opacity: isHovered && !isFlipped ? 0.4 : 0,
-                scale: isHovered && !isFlipped ? 1.05 : 1
-              }}
-              transition={{ duration: 0.4 }}
-            />
-
-            {!isFlipped && (
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: `radial-gradient(600px circle at ${smoothMouseX.get() * 100}% ${smoothMouseY.get() * 100}%, rgba(59, 130, 246, 0.12), rgba(0, 0, 0, 0) 40%)`,
-                  opacity: isHovered ? 1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
-
             <div className="relative h-full flex flex-col">
               <div className="flex-grow space-y-3">
-                <motion.div
+                <div
                   className={`relative inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${service.gradient} rounded-2xl shadow-lg`}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    rotate: [0, -5, 5, -5, 0],
-                  }}
-                  transition={{ duration: 0.5 }}
                 >
                   <service.icon className="text-2xl sm:text-3xl text-white" />
-                </motion.div>
+                </div>
 
-                <h3 className={`text-lg sm:text-xl font-bold transition-all duration-300 ${
-                  isHovered && !isFlipped 
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500' 
-                    : 'text-gray-900'
-                }`}>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">
                   {service.title}
                 </h3>
 
@@ -283,34 +172,28 @@ function ServiceCard({ service, index }) {
 
                 <div className="space-y-1.5">
                   {service.features.map((feature, idx) => (
-                    <motion.div
+                    <div
                       key={idx}
                       className="flex items-center gap-1.5"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.3 + idx * 0.1 }}
-                      whileHover={{ x: 5, scale: 1.02 }}
                     >
                       <FaCheckCircle className={`${service.iconColor} text-xs`} />
                       <span className="text-xs text-gray-700">{feature}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
 
               <div className="flex gap-2 mt-4">
-                <motion.button
+                <button
                   onClick={(e) => {
                     e.stopPropagation()
                     setShowModal(true)
                   }}
-                  className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r ${service.gradient} text-white rounded-xl text-xs font-semibold shadow-lg`}
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
-                  whileTap={{ scale: 0.95 }}
+                  className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r ${service.gradient} text-white rounded-xl text-xs font-semibold shadow-lg hover:shadow-xl transition-shadow`}
                 >
                   <FaEye className="text-xs" />
                   <span>Details</span>
-                </motion.button>
+                </button>
                 
                 <Link
                   href={service.link}
@@ -322,11 +205,10 @@ function ServiceCard({ service, index }) {
               </div>
             </div>
 
-            {/* NO BLUR decorative corner */}
             <div className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full pointer-events-none`} />
           </div>
 
-          {/* BACK SIDE - NO BLUR */}
+          {/* BACK SIDE */}
           <div
             className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl p-5 sm:p-6 shadow-xl overflow-hidden cursor-pointer`}
             style={{
@@ -372,68 +254,62 @@ function ServiceCard({ service, index }) {
         </motion.div>
 
         {!isFlipped && (
-          <motion.div
-            className="absolute -top-2 -right-2 px-2 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full shadow-lg pointer-events-none z-10"
-            animate={{
-              y: [0, -5, 0],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          <div className="absolute -top-2 -right-2 px-2 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full shadow-lg pointer-events-none z-10">
             Click to Flip
-          </motion.div>
+          </div>
         )}
       </motion.div>
 
-      <AnimatePresence>
-        {showModal && (
+      {/* MODAL */}
+      {showModal && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowModal(false)}
+        >
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowModal(false)}
+            className="relative max-w-2xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
+            initial={{ scale: 0.9, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              className="relative max-w-2xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.8, y: 50 }}
-              onClick={(e) => e.stopPropagation()}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10"
             >
-              <button
-                onClick={() => setShowModal(false)}
-                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10"
-              >
-                <FaTimes />
-              </button>
+              <FaTimes />
+            </button>
 
-              <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl mb-6`}>
-                <service.icon className="text-3xl text-white" />
-              </div>
+            <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl mb-6`}>
+              <service.icon className="text-3xl text-white" />
+            </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">{service.title}</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">{service.fullDescription}</p>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">{service.title}</h3>
+            <p className="text-gray-600 leading-relaxed mb-6">{service.fullDescription}</p>
 
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                {service.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-2 p-2.5 bg-gray-50 rounded-lg">
-                    <FaCheckCircle className={service.iconColor} />
-                    <span className="text-xs sm:text-sm font-medium">{feature}</span>
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {service.features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-2 p-2.5 bg-gray-50 rounded-lg">
+                  <FaCheckCircle className={service.iconColor} />
+                  <span className="text-xs sm:text-sm font-medium">{feature}</span>
+                </div>
+              ))}
+            </div>
 
-              <Link
-                href={service.link}
-                className={`flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r ${service.gradient} text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all`}
-              >
-                Get Started
-                <FaArrowRight />
-              </Link>
-            </motion.div>
+            <Link
+              href={service.link}
+              className={`flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r ${service.gradient} text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all`}
+            >
+              Get Started
+              <FaArrowRight />
+            </Link>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      )}
     </>
   )
 }
@@ -448,24 +324,19 @@ export default function Services() {
       ref={sectionRef}
       className="relative py-12 bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden"
     >
-      <FloatingParticles />
 
-      {/* NO BLUR on decorative blobs */}
-      <div className="absolute top-20 left-0 w-96 h-96 bg-blue-200/30 rounded-full -translate-x-1/2" />
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-purple-200/30 rounded-full translate-x-1/2" />
+      <div className="absolute top-20 left-0 w-96 h-96 bg-blue-200/20 rounded-full -translate-x-1/2" />
+      <div className="absolute bottom-20 right-0 w-96 h-96 bg-purple-200/20 rounded-full translate-x-1/2" />
 
       <div className="container-custom relative z-10">
         <div className="text-center mb-12 sm:mb-16">
           <ScrollReveal direction="up">
-            <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg border border-blue-100 mb-6"
-              whileHover={{ scale: 1.05 }}
-            >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg border border-blue-100 mb-6">
               <FaLaptopCode className="text-blue-600 text-xl" />
               <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 Our Services
               </span>
-            </motion.div>
+            </div>
           </ScrollReveal>
           
           <ScrollReveal direction="up" delay={0.1}>

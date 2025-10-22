@@ -17,6 +17,7 @@ import {
   FaArrowRight,
   FaStar,
   FaClock,
+  FaPhoneAlt,
 } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
@@ -140,7 +141,7 @@ export default function Footer() {
 
           {/* Column 2 - Company */}
           <div>
-            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
               Company
             </h3>
             <ul className="space-y-2">
@@ -148,7 +149,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
                   >
                     <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                     {link.name}
@@ -160,7 +161,7 @@ export default function Footer() {
 
           {/* Column 3 - Services */}
           <div>
-            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
               Services
             </h3>
             <ul className="space-y-2">
@@ -168,7 +169,7 @@ export default function Footer() {
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="text-xs text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
                   >
                     <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                     {service.name}
@@ -180,7 +181,7 @@ export default function Footer() {
 
           {/* Column 4 - Industries */}
           <div>
-            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
               Industries
             </h3>
             <ul className="space-y-2">
@@ -188,7 +189,7 @@ export default function Footer() {
                 <li key={industry.name}>
                   <Link
                     href={industry.href}
-                    className="text-xs text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
                   >
                     <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                     {industry.name}
@@ -200,7 +201,7 @@ export default function Footer() {
 
           {/* Column 5 - Contact */}
           <div>
-            <h3 className="text-sm font-bold text-white mb-3 pb-2 border-b border-white/10">
+            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
               Contact
             </h3>
             <ul className="space-y-2.5">
@@ -209,7 +210,7 @@ export default function Footer() {
                   href="tel:+916283380110"
                   className="flex items-center gap-2 text-xs text-gray-400 hover:text-blue-400 transition-colors group"
                 >
-                  <FaPhone className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
+                  <FaPhoneAlt className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
                   <span>+91 6283380110</span>
                 </a>
               </li>
@@ -226,11 +227,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@easebuilds.in"
+                  href="mailto:easebuilds.in@gmail.com"
                   className="flex items-center gap-2 text-xs text-gray-400 hover:text-blue-400 transition-colors group"
                 >
                   <FaEnvelope className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
-                  <span>info@easebuilds.in</span>
+                  <span>Email Us</span>
                 </a>
               </li>
               <li className="flex items-start gap-2 text-xs text-gray-400">
@@ -242,8 +243,8 @@ export default function Footer() {
             {/* Business Hours - Compact */}
             <div className="mt-4 p-3 bg-blue-600/10 rounded-lg border border-blue-500/20">
               <div className="flex items-center gap-1.5 mb-2">
-                <FaClock className="text-blue-400 text-xs" />
-                <h4 className="text-xs font-semibold text-white">Hours</h4>
+                <FaClock className="text-blue-400 text-base" />
+                <h4 className="text-base font-semibold text-white">Hours</h4>
               </div>
               <div className="space-y-0.5 text-[11px] text-gray-400">
                 <p className='text-xs'>Mon-Fri: <span className="text-white">9AM-6PM</span></p>

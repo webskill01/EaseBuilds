@@ -23,6 +23,7 @@ import {
   FaPalette,
   FaMobile,
   FaChartLine,
+  FaPhoneAlt,
 } from "react-icons/fa";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
@@ -235,7 +236,7 @@ export default function AboutPage() {
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <FaPhone />
+                    <FaPhoneAlt />
                     Get Started
                   </motion.a>
                 </div>
@@ -605,7 +606,7 @@ export default function AboutPage() {
                       whileHover={{ scale: 1.05, y: -3 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <FaPhone className="text-xl" />
+                      <FaPhoneAlt className="text-xl" />
                       <span>Call Now</span>
                     </motion.a>
                     <motion.a

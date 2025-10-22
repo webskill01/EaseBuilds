@@ -24,7 +24,8 @@ import {
   FaQuoteLeft,
   FaArrowRight,
   FaChevronDown,
-  FaDollarSign
+  FaDollarSign,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import { useState } from 'react'
 import Header from '../components/layout/Header'
@@ -49,7 +50,7 @@ export default function WebsiteDevelopmentPatiala() {
     {
       title: 'Tape India',
       category: 'Retail',
-      image: '/images/tapeindia.png',
+      image: '/images/tapeindia.jpg',
       description: 'Payment integration, 40% sales increase in 3 months'
     },
     {
@@ -171,7 +172,7 @@ export default function WebsiteDevelopmentPatiala() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-2xl text-sm sm:text-base lg:text-lg"
           >
-            <FaPhone className="text-lg sm:text-xl" />
+            <FaPhoneAlt className="text-lg sm:text-xl" />
             Call Now
           </motion.a>
 
@@ -391,7 +392,7 @@ export default function WebsiteDevelopmentPatiala() {
               <ScrollReveal direction="right">
                 <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/hero2.jpg"
+                    src="/images/about-hero.jpg"
                     alt="EaseBuilds Web Development Office in Patiala Punjab India"
                     fill
                     className="object-cover"
@@ -638,7 +639,7 @@ export default function WebsiteDevelopmentPatiala() {
                   whileHover={{ scale: 1.05 }}
                   className="px-5 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-lg inline-flex items-center justify-center gap-2"
                 >
-                  <FaPhone />
+                  <FaPhoneAlt />
                   Call Now
                 </motion.a>
                 
@@ -654,10 +655,10 @@ export default function WebsiteDevelopmentPatiala() {
                 </motion.a>
               </div>
               
-              <p className="text-blue-100 flex items-center justify-center gap-2">
+              <a className="text-blue-100 flex items-center justify-center gap-2" href='mailto:easebuilds.in@gmail.com'>
                 <FaEnvelope />
-                easebuilds.in@gmail.com
-              </p>
+                Email Us
+              </a>
             </ScrollReveal>
           </div>
         </div>

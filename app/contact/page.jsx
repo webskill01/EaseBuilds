@@ -18,7 +18,8 @@ import {
   FaComment,
   FaPaperPlane,
   FaCalendarAlt,
-  FaExclamationCircle
+  FaExclamationCircle,
+  FaPhoneAlt
 } from 'react-icons/fa'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
@@ -221,7 +222,7 @@ const handleSubmit = async (e) => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/90 backdrop-blur-md rounded-full mb-6 border border-blue-100 shadow-lg"
             >
-              <FaPhone className="text-blue-600 text-lg" />
+              <FaPhoneAlt className="text-blue-600 text-lg" />
               <span className="text-sm font-semibold text-gray-800">
                 We're Here to Help!
               </span>
@@ -261,7 +262,7 @@ const handleSubmit = async (e) => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-base sm:text-lg hover:shadow-xl transition-all"
               >
-                <FaPhone className="text-lg" />
+                <FaPhoneAlt className="text-lg" />
                 <span> Call +91 6283380110</span>
               </motion.a>
 
@@ -301,7 +302,7 @@ const handleSubmit = async (e) => {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
             {[
               {
-                icon: FaPhone,
+                icon: FaPhoneAlt,
                 title: 'Call Us',
                 value: '+91 6283380110',
                 link: 'tel:+916283380110',
@@ -319,8 +320,8 @@ const handleSubmit = async (e) => {
               {
                 icon: FaEnvelope,
                 title: 'Email',
-                value: 'info@easebuilds.in',
-                link: 'mailto:info@easebuilds.in',
+                value: 'Email Us',
+                link: 'mailto:easebuilds.in@gmail.com',
                 color: 'from-purple-600 to-pink-600',
                 description: 'Response in 2 hours'
               },
@@ -492,7 +493,7 @@ const handleSubmit = async (e) => {
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                          <FaPhone className="text-gray-400 text-sm" />
+                          <FaPhoneAlt className="text-gray-400 text-sm" />
                         </div>
                         <input
                           type="tel"

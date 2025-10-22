@@ -1,11 +1,11 @@
 'use client'
 
-// Optimized How It Works Section - Fast & Smooth
+// Ultra-Optimized How It Works Section
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { motion, useInView } from 'framer-motion'
-import { FaComments, FaPencilRuler, FaCode, FaRocket, FaArrowRight, FaCheckCircle, FaClock, FaPhone, FaWhatsapp } from 'react-icons/fa'
-import { useState, useEffect, useRef } from 'react'
+import { FaComments, FaPencilRuler, FaCode, FaRocket, FaArrowRight, FaCheckCircle, FaClock, FaPhone, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa'
+import { useState, useRef } from 'react'
 import ScrollReveal from '../animations/ScrollReveal'
 
 const steps = [
@@ -54,25 +54,8 @@ const steps = [
 export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0)
   const [hoveredStep, setHoveredStep] = useState(null)
-  const [isMobile, setIsMobile] = useState(false)
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Auto-advance carousel on mobile only
-  useEffect(() => {
-    if (!isMobile) return
-    const timer = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [isMobile])
 
   return (
     <section 
@@ -81,7 +64,7 @@ export default function HowItWorks() {
       className="relative py-10 bg-gradient-to-br from-gray-50 via-blue-50/30 to-white overflow-hidden"
       aria-labelledby="how-it-works-heading"
     >
-      {/* Simple Static Background Pattern - No Animation */}
+      {/* Simple Static Background Pattern */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none" 
         aria-hidden="true"
@@ -91,9 +74,9 @@ export default function HowItWorks() {
         }}
       />
 
-      {/* Static Decorative Shapes - No Animation */}
-      <div className="absolute top-10 left-10 w-64 h-64 bg-blue-400/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-400/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+      {/* Static Decorative Shapes - Reduced opacity */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-blue-400/3 rounded-full pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-400/3 rounded-full pointer-events-none" aria-hidden="true" />
 
       <div className="container-custom relative z-10">
         {/* Header */}
@@ -126,85 +109,116 @@ export default function HowItWorks() {
           </div>
         </ScrollReveal>
 
-        {/* Mobile Carousel View - Optimized */}
-        <div className="md:hidden">
-          <div className="relative">
-            <div className="overflow-hidden">
+        {/* Mobile Carousel View - With Swipe Support */}
+<div className="md:hidden">
+  <div className="relative">
+    {/* Swipe Instructions */}
+    <p className="text-center text-xs text-gray-500 flex items-center justify-center gap-2">
+      <span>Swipe to navigate</span>
+      <span className="animate-pulse">→</span>
+    </p>
+
+    <div 
+      className="overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar"
+      style={{
+        scrollBehavior: 'smooth',
+        WebkitOverflowScrolling: 'touch'
+      }}
+      onScroll={(e) => {
+        const scrollLeft = e.target.scrollLeft
+        const itemWidth = e.target.scrollWidth / steps.length
+        const newIndex = Math.round(scrollLeft / itemWidth)
+        if (newIndex !== activeStep) {
+          setActiveStep(newIndex)
+        }
+      }}
+    >
+      <div className="flex">
+        {steps.map((step, index) => (
+          <article 
+            key={index} 
+            className="w-full flex-shrink-0 px-4 snap-center"
+          >
+            <div className={`${step.bg} rounded-2xl p-6 shadow-lg border-2 mt-4 border-white relative`}>
+              {/* Step Number Badge */}
               <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${activeStep * 100}%)` }}
+                className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${step.gradient} text-white rounded-full flex items-center justify-center font-bold text-base shadow-lg z-10`}
+                aria-label={`Step ${step.number}`}
               >
-                {steps.map((step, index) => (
-                  <article key={index} className="w-full flex-shrink-0 px-4">
-                    <div className={`${step.bg} rounded-2xl p-6 shadow-lg border-2 border-white relative`}>
-                      {/* Step Number Badge - Static on Mobile */}
-                      <div 
-                        className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${step.gradient} text-white rounded-full flex items-center justify-center font-bold text-base shadow-lg z-10`}
-                        aria-label={`Step ${step.number}`}
-                      >
-                        {step.number}
-                      </div>
-
-                      {/* Icon - Static */}
-                      <div 
-                        className={`w-16 h-16 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center mb-4 shadow-md`}
-                        aria-hidden="true"
-                      >
-                        <step.icon className="text-3xl text-white" />
-                      </div>
-
-                      {/* Duration */}
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full shadow-sm mb-3">
-                        <FaClock className="text-blue-600 text-xs" aria-hidden="true" />
-                        <span className="text-xs font-semibold text-gray-700">{step.duration}</span>
-                      </div>
-
-                      {/* Content */}
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                        {step.description}
-                      </p>
-
-                      {/* Features */}
-                      <ul className="space-y-2" role="list">
-                        {step.features.map((feature, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <FaCheckCircle className="text-sm text-green-500 flex-shrink-0" aria-hidden="true" />
-                            <span className="text-xs text-gray-600">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </article>
-                ))}
+                {step.number}
               </div>
-            </div>
 
-            {/* Carousel Dots */}
-            <div className="flex justify-center items-center gap-2 mt-6" role="tablist" aria-label="Website development steps">
-              {steps.map((step, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveStep(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    activeStep === index 
-                      ? `w-2 h-2 bg-gradient-to-r ${step.gradient}` 
-                      : 'w-2 h-2 bg-gray-300'
-                  }`}
-                  role="tab"
-                  aria-selected={activeStep === index}
-                  aria-label={`View step ${index + 1}: ${step.title}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+              {/* Icon */}
+              <div 
+                className={`w-16 h-16 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center mb-4 shadow-md`}
+                aria-hidden="true"
+              >
+                <step.icon className="text-3xl text-white" />
+              </div>
 
-        {/* Desktop Grid View - Optimized */}
+              {/* Duration */}
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full shadow-sm mb-3">
+                <FaClock className="text-blue-600 text-xs" aria-hidden="true" />
+                <span className="text-xs font-semibold text-gray-700">{step.duration}</span>
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                {step.title}
+              </h3>
+              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                {step.description}
+              </p>
+
+              {/* Features */}
+              <ul className="space-y-2" role="list">
+                {step.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-2">
+                    <FaCheckCircle className="text-sm text-green-500 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-xs text-gray-600">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    {/* Carousel Dots - Manual Control */}
+    <div className="flex justify-center items-center gap-2 mt-6" role="tablist" aria-label="Website development steps">
+      {steps.map((step, index) => (
+        <button
+          key={index}
+          onClick={() => {
+            setActiveStep(index)
+            // Scroll to the corresponding item
+            const container = document.querySelector('.overflow-x-auto')
+            if (container) {
+              const itemWidth = container.scrollWidth / steps.length
+              container.scrollTo({
+                left: itemWidth * index,
+                behavior: 'smooth'
+              })
+            }
+          }}
+          className={`transition-all duration-300 rounded-full ${
+            activeStep === index 
+              ? `w-2 h-2 bg-gradient-to-r ${step.gradient}` 
+              : 'w-2 h-2 bg-gray-300'
+          }`}
+          role="tab"
+          aria-selected={activeStep === index}
+          aria-label={`View step ${index + 1}: ${step.title}`}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
+        {/* Desktop Grid View */}
         <div className="hidden md:block">
-          {/* Timeline Connector - Simple Animation */}
+          {/* Timeline Connector */}
           <div className="relative mb-8">
             <div className="absolute top-16 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-purple-200 via-green-200 to-orange-200 rounded-full hidden lg:block" aria-hidden="true">
               <motion.div
@@ -230,7 +244,7 @@ export default function HowItWorks() {
                   {/* Arrow Between Steps */}
                   {index < steps.length - 1 && (
                     <div className="hidden lg:flex absolute top-16 left-full w-full items-center justify-center z-0" aria-hidden="true">
-                      <FaArrowRight className={`text-xl text-gray-300 transition-colors duration-300 ${hoveredStep === index ? 'text-blue-500' : ''}`} />
+                      <FaArrowRight className={`text-xl transition-colors duration-300 ${hoveredStep === index ? 'text-blue-500' : 'text-gray-300'}`} />
                     </div>
                   )}
 
@@ -240,7 +254,7 @@ export default function HowItWorks() {
                       hoveredStep === index ? 'shadow-2xl -translate-y-2' : ''
                     }`}
                   >
-                    {/* Step Number - Simple Scale on Hover */}
+                    {/* Step Number */}
                     <div 
                       className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${step.gradient} text-white rounded-full flex items-center justify-center font-bold text-base shadow-lg z-10 transition-transform duration-300 ${
                         hoveredStep === index ? 'scale-110' : 'scale-100'
@@ -250,7 +264,7 @@ export default function HowItWorks() {
                       {step.number}
                     </div>
 
-                    {/* Icon - Static with hover effect */}
+                    {/* Icon */}
                     <div 
                       className={`w-16 h-16 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center mb-4 shadow-md transition-transform duration-300 ${
                         hoveredStep === index ? 'scale-110' : 'scale-100'
@@ -306,7 +320,7 @@ export default function HowItWorks() {
                 href="tel:+916283380110"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-lg hover:bg-blue-50 transition-colors duration-300 text-sm"
               >
-                <FaPhone />
+                <FaPhoneAlt />
                 Call Now
               </a>
               <a
