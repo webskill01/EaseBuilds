@@ -208,9 +208,9 @@ export default function Footer() {
               <li className='text-sm'>
                 <a
                   href="tel:+916283380110"
-                  className="flex items-center gap-2 text-xs text-gray-400 hover:text-blue-400 transition-colors group"
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors group"
                 >
-                  <FaPhoneAlt className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
+                  <FaPhoneAlt className="text-blue-400 text-sm group-hover:scale-110 transition-transform" />
                   <span>+91 6283380110</span>
                 </a>
               </li>
@@ -219,23 +219,23 @@ export default function Footer() {
                   href="https://wa.me/916283380110"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-xs text-gray-400 hover:text-green-400 transition-colors group"
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-green-400 transition-colors group"
                 >
-                  <FaWhatsapp className="text-green-400 text-xs group-hover:scale-110 transition-transform" />
+                  <FaWhatsapp className="text-green-400 text-sm group-hover:scale-110 transition-transform" />
                   <span>WhatsApp</span>
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:easebuilds.in@gmail.com"
-                  className="flex items-center gap-2 text-xs text-gray-400 hover:text-blue-400 transition-colors group"
+                  className="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors group"
                 >
-                  <FaEnvelope className="text-blue-400 text-xs group-hover:scale-110 transition-transform" />
+                  <FaEnvelope className="text-blue-400 text-sm group-hover:scale-110 transition-transform" />
                   <span>Email Us</span>
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-xs text-gray-400">
-                <FaMapMarkerAlt className="text-blue-400 text-xs mt-0.5" />
+              <li className="flex items-start gap-2 text-sm text-gray-400">
+                <FaMapMarkerAlt className="text-blue-400 text-sm mt-0.5" />
                 <span>Patiala, Punjab 147001</span>
               </li>
             </ul>

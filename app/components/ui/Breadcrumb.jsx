@@ -96,9 +96,9 @@ export default function Breadcrumb() {
       {/* Breadcrumb Navigation with High Z-Index */}
       <nav 
         aria-label="Breadcrumb" 
-        className="sticky top-16 sm:top-20 z-40 bg-gradient-to-r from-gray-50 to-blue-50/30 border-b border-gray-200 shadow-sm"
+        className="top-14 sm:top-20 z-40 bg-gradient-to-r from-gray-50 to-blue-50/30 border-b border-gray-200 shadow-sm"
       >
-        <div className="container-custom py-3 sm:py-4">
+        <div className="container-custom py-2 sm:py-3">
           <ol className="flex flex-wrap items-center gap-2 text-sm">
             {breadcrumbItems.map((item, index) => (
               <li key={item.href} className="flex items-center gap-2">

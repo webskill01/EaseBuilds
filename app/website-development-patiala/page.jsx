@@ -44,7 +44,7 @@ export default function WebsiteDevelopmentPatiala() {
     {
       title: 'Modgill Travels Website',
       category: 'Taxi Service',
-      image: '/images/modgilltravels.png',
+      image: '/images/modgilltravels.jpg',
       description: 'Online Booking, Dynamic Routes, 50+ monthly bookings'
     },
     {
@@ -56,7 +56,7 @@ export default function WebsiteDevelopmentPatiala() {
     {
       title: 'Pariksha',
       category: 'Educational',
-      image: '/images/pariksha.png',
+      image: '/images/pariksha.jpg',
       description: 'Unlimited PYQs Download , Student Login/Signup'
     },
   ]
