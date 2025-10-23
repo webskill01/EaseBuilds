@@ -1,4 +1,6 @@
 import dynamic from 'next/dynamic'
+import Script from 'next/script'
+import { faqSchema } from '@/lib/seo'
 import Hero from './components/home/Hero'
 
 // Dynamic imports for performance
@@ -41,6 +43,16 @@ export default function Home() {
       <Projects />
       <FAQ />
       <Contact />
+      
+      {/* FAQ Schema - Homepage Only */}
+      <Script
+        id="homepage-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+        strategy="afterInteractive"
+      />
     </>
   )
 }

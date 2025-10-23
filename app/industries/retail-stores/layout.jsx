@@ -1,6 +1,7 @@
 // Layout for Retail Stores Industry Page
 // SEO-optimized metadata and schema markup
 
+import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
 import Script from 'next/script'
 
@@ -47,51 +48,12 @@ export const metadata = {
 }
 
 export default function RetailStoresLayout({ children }) {
-  // Schema markup for e-commerce services
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'E-commerce Website Development',
-    provider: {
-      '@type': 'Organization',
-      name: 'EaseBuilds',
-      url: 'https://easebuilds.in',
-      telephone: '+916283380110',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Patiala',
-        addressRegion: 'Punjab',
-        addressCountry: 'IN',
-      },
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'Punjab',
-      containsPlace: {
-        '@type': 'City',
-        name: 'Patiala',
-      },
-    },
-    description: 'Professional e-commerce website development in Patiala with payment gateway, inventory management, and delivery integration for retail stores.',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: '5999',
-      availability: 'https://schema.org/InStock',
-      url: 'https://easebuilds.in/industries/retail-stores',
-    },
-  }
-
   return (
     <>
-      {/* Service Schema */}
-      <Script
-        id="retail-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
+      <IndustrySchemas 
+        industryData={industryData} 
+        industrySlug="retail-stores" 
       />
-      
       {children}
     </>
   )

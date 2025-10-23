@@ -51,7 +51,7 @@ export async function POST(request) {
     // Send notification email to you (business owner)
     const { data, error } = await resend.emails.send({
       from: 'EaseBuilds <onboarding@resend.dev>',
-      to: ['easebuilds.in@gmail.com'],
+      to: ['nitinemailss@gmail.com'],
       replyTo: email,
       subject: `${withinFomoOffer ? '🔥 FOMO OFFER!' : '📬'} New Contact: ${service} - ${name}`,
       html: `

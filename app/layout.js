@@ -113,14 +113,6 @@ export default function RootLayout({ children }) {
           }}
           strategy="afterInteractive"
         />
-        <Script
-          id="faq-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
-          }}
-          strategy="afterInteractive"
-        />
 
         {/* Google Tag Manager */}
         <Script

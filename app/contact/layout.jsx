@@ -116,7 +116,72 @@ export default function ContactLayout({ children }) {
       ]
     }
   }
+const contactFaqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How quickly will you respond to my inquiry?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We respond to all inquiries within 2 hours during business hours (Mon-Fri 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you offer free consultations?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! We offer free 30-minute consultations for all new projects. You can visit our office in Patiala or schedule a video call at your convenience.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What information should I include in my message?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Please include: 1) Type of website you need, 2) Your budget range, 3) Timeline expectations, 4) Any specific features you want. The more details, the better we can help!'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I visit your office without an appointment?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, walk-ins are welcome during business hours! However, we recommend calling ahead to ensure someone is available to give you full attention.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you work on weekends?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Our office is open Saturdays 10AM-4PM. For urgent support, you can reach us via WhatsApp 24/7. We prioritize client emergencies even outside business hours.'
+        }
+      }
+    ]
+  }
 
+  // Breadcrumb Schema
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://easebuilds.in'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: 'https://easebuilds.in/contact'
+      }
+    ]
+  }
   return (
     <>
       {/* Contact Schema */}
@@ -126,7 +191,21 @@ export default function ContactLayout({ children }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
         strategy="beforeInteractive"
       />
-      
+      {/* FAQ Schema */}
+       <Script
+        id="contact-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactFaqSchema) }}
+        strategy="beforeInteractive"
+      />
+
+      {/*  Breadcrumb Schema */}
+      <Script
+        id="contact-breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        strategy="beforeInteractive"
+      />
       {children}
     </>
   )

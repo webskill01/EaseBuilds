@@ -147,44 +147,6 @@ export default async function ServiceLayout({ children, params }) {
     ]
   }
 
-  // 5. ✅ NEW: Organization Schema with LocalBusiness
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'EaseBuilds',
-    image: 'https://easebuilds.in/images/logo.png',
-    '@id': 'https://easebuilds.in',
-    url: 'https://easebuilds.in',
-    telephone: '+916283380110',
-    priceRange: '₹₹',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Patiala',
-      addressLocality: 'Patiala',
-      addressRegion: 'Punjab',
-      postalCode: '147001',
-      addressCountry: 'IN'
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: 30.3398,
-      longitude: 76.3869
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '18:00'
-      }
-    ],
-    sameAs: [
-      'https://facebook.com/easebuilds',
-      'https://linkedin.com/company/easebuilds',
-      'https://instagram.com/easebuilds'
-    ]
-  }
-
   return (
     <>
       {/* Service Schema */}

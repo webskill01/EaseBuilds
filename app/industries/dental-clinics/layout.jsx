@@ -1,6 +1,7 @@
 // Layout for Dental Clinics Industry Page
 // SEO-optimized metadata and schema markup
 
+import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
 import Script from 'next/script'
 
@@ -47,49 +48,12 @@ export const metadata = {
 }
 
 export default function DentalClinicsLayout({ children }) {
-  // Schema markup for dental clinic services
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'Dental Clinic Website Development',
-    provider: {
-      '@type': 'Organization',
-      name: 'EaseBuilds',
-      url: 'https://easebuilds.in',
-      telephone: '+916283380110',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Patiala',
-        addressRegion: 'Punjab',
-        addressCountry: 'IN',
-      },
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'Punjab',
-      containsPlace: {
-        '@type': 'City',
-        name: 'Patiala',
-      },
-    },
-    description: 'Professional dental clinic website development services in Patiala with online appointment booking, patient portal, and SEO optimization.',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: '4999',
-      availability: 'https://schema.org/InStock',
-      url: 'https://easebuilds.in/industries/dental-clinics',
-    },
-  }
-
   return (
     <>
-      {/* Service Schema */}
-      <Script
-        id="dental-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
+      {/* Add the reusable schema component */}
+      <IndustrySchemas 
+        industryData={industryData} 
+        industrySlug="dental-clinics" 
       />
       
       {children}

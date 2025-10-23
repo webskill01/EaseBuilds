@@ -1,6 +1,7 @@
 // Layout for Architects Industry Page
 // SEO-optimized metadata and schema markup
 
+import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
 import Script from 'next/script'
 
@@ -47,51 +48,12 @@ export const metadata = {
 }
 
 export default function ArchitectsLayout({ children }) {
-  // Schema markup for architecture services
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'Architecture Portfolio Website Development',
-    provider: {
-      '@type': 'Organization',
-      name: 'EaseBuilds',
-      url: 'https://easebuilds.in',
-      telephone: '+916283380110',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Patiala',
-        addressRegion: 'Punjab',
-        addressCountry: 'IN',
-      },
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'Punjab',
-      containsPlace: {
-        '@type': 'City',
-        name: 'Patiala',
-      },
-    },
-    description: 'Professional architecture portfolio website development in Patiala with advanced galleries, 3D rendering integration, and SEO optimization for architects.',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: '4999',
-      availability: 'https://schema.org/InStock',
-      url: 'https://easebuilds.in/industries/architects',
-    },
-  }
-
   return (
     <>
-      {/* Service Schema */}
-      <Script
-        id="architecture-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
+      <IndustrySchemas
+        industryData={industryData} 
+        industrySlug="architects" 
       />
-      
       {children}
     </>
   )

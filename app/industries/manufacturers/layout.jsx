@@ -1,6 +1,7 @@
 // Layout for Manufacturers Industry Page
 // SEO-optimized metadata and schema markup
 
+import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
 import Script from 'next/script'
 
@@ -47,51 +48,12 @@ export const metadata = {
 }
 
 export default function ManufacturersLayout({ children }) {
-  // Schema markup for manufacturing services
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'Manufacturing Company Website Development',
-    provider: {
-      '@type': 'Organization',
-      name: 'EaseBuilds',
-      url: 'https://easebuilds.in',
-      telephone: '+916283380110',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Patiala',
-        addressRegion: 'Punjab',
-        addressCountry: 'IN',
-      },
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'Punjab',
-      containsPlace: {
-        '@type': 'City',
-        name: 'Patiala',
-      },
-    },
-    description: 'Professional B2B website development for manufacturers in Patiala with product catalog, distributor portal, bulk ordering, and inventory management.',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: '5999',
-      availability: 'https://schema.org/InStock',
-      url: 'https://easebuilds.in/industries/manufacturers',
-    },
-  }
-
   return (
     <>
-      {/* Service Schema */}
-      <Script
-        id="manufacturing-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
+      <IndustrySchemas
+        industryData={industryData} 
+        industrySlug="manufacturers" 
       />
-      
       {children}
     </>
   )

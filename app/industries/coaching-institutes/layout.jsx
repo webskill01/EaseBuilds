@@ -1,6 +1,7 @@
 // Layout for Coaching Institutes Industry Page
 // SEO-optimized metadata and schema markup
 
+import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
 import Script from 'next/script'
 
@@ -47,51 +48,12 @@ export const metadata = {
 }
 
 export default function CoachingInstitutesLayout({ children }) {
-  // Schema markup for education services
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'Coaching Institute Website Development',
-    provider: {
-      '@type': 'Organization',
-      name: 'EaseBuilds',
-      url: 'https://easebuilds.in',
-      telephone: '+916283380110',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Patiala',
-        addressRegion: 'Punjab',
-        addressCountry: 'IN',
-      },
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'Punjab',
-      containsPlace: {
-        '@type': 'City',
-        name: 'Patiala',
-      },
-    },
-    description: 'Professional coaching institute website development in Patiala with online admission, fee payment, student portal, and result management.',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: '4999',
-      availability: 'https://schema.org/InStock',
-      url: 'https://easebuilds.in/industries/coaching-institutes',
-    },
-  }
-
   return (
     <>
-      {/* Service Schema */}
-      <Script
-        id="coaching-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
+      <IndustrySchemas 
+        industryData={industryData} 
+        industrySlug="coaching-institutes" 
       />
-      
       {children}
     </>
   )
