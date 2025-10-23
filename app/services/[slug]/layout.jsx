@@ -107,7 +107,7 @@ export default async function ServiceLayout({ children, params }) {
     }
   }
 
-  // 3. ✅ NEW: FAQ Schema for Rich Snippets
+  // 3.  FAQ Schema for Rich Snippets
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -121,7 +121,7 @@ export default async function ServiceLayout({ children, params }) {
     }))
   }
 
-  // 4. ✅ NEW: Breadcrumb Schema
+  // 4. Breadcrumb Schema
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -165,7 +165,7 @@ export default async function ServiceLayout({ children, params }) {
         strategy="beforeInteractive"
       />
       
-      {/* ✅ NEW: FAQ Schema */}
+      {/* FAQ Schema */}
       <Script
         id={`faq-schema-${slug}`}
         type="application/ld+json"
@@ -173,19 +173,11 @@ export default async function ServiceLayout({ children, params }) {
         strategy="beforeInteractive"
       />
       
-      {/* ✅ NEW: Breadcrumb Schema */}
+      {/* Breadcrumb Schema */}
       <Script
         id={`breadcrumb-schema-${slug}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
-      
-      {/* ✅ NEW: Organization Schema */}
-      <Script
-        id={`organization-schema-${slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         strategy="beforeInteractive"
       />
       
