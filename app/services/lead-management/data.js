@@ -121,6 +121,10 @@ export const FAQS = [
     answer: 'No, and that is deliberate. EaseBot writes the message and opens WhatsApp with it ready - your staff reads it and taps send themselves. Messages go from your own number with your own branding, so your customers see you rather than a broadcast.',
   },
   {
+    question: 'Do I need a WhatsApp Business account or the WhatsApp API?',
+    answer: 'No. There is no Meta verification to pass, no API access to apply for and no message templates to get approved. EaseBot writes the message and opens WhatsApp with the text ready - your staff taps send, from whichever WhatsApp they already use, personal or Business. That means no per-conversation charges, no waiting on template approval, and no automated sender for WhatsApp to flag. If your volume ever genuinely needs the official API, we will tell you rather than sell you one.',
+  },
+  {
     question: "What if my business isn't a gym or a salon?",
     answer: 'It works for anyone who gets enquiries and needs to follow up - agencies, coaching centres, clinics, real estate, insurance and service businesses. Your buttons, messages and the things you track are set up around how you work.',
   },
@@ -131,6 +135,10 @@ export const FAQS = [
   {
     question: 'How much does EaseBot cost?',
     answer: 'Plans start at Rs 1,499 per month for your whole team, not per person. The exact price depends on how many people handle your enquiries. Setup is Rs 3,000 one time, free if you pay yearly.',
+  },
+  {
+    question: 'How is this cheaper than a CRM?',
+    answer: 'Most CRM software charges per user per month, so the bill grows every time someone joins the team. EaseBot is Rs 1,499 a month for the whole team - five people or fifteen, the price does not change. There is also no migration project and no training budget: the work happens in Telegram and WhatsApp, which the people handling your enquiries already know how to use.',
   },
   {
     question: 'Can I get my data out?',

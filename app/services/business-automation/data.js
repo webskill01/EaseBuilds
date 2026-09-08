@@ -148,9 +148,9 @@ export const FAQS = [
       'Mostly no, and we would rather say so. Most of what saves you time is reliable rules — capture this, remind that, move it there. Rules do not misread a phone number. Where a language model genuinely helps we will use one and tell you it is there, but we do not label ordinary automation as AI to make it sound expensive.',
   },
   {
-    question: 'Do you use the official WhatsApp API?',
+    question: 'Can you automate WhatsApp without a WhatsApp Business account?',
     answer:
-      'Not by default, and that is deliberate. The official API means Meta verification, per-conversation charges and pre-approved message templates. For most small businesses we build so the system composes the message and your staff sends it from your own number — no per-message cost, and your customer sees you rather than a broadcast. If your volume genuinely needs the official API, we will say so.',
+      'Yes, and for most small businesses that is what we build. The official WhatsApp API means Meta verification, per-conversation charges and pre-approved message templates. Instead we build so the system composes the message and your staff sends it from your own number — no per-message cost, and your customer sees you rather than a broadcast. If your volume genuinely needs the official API, we will say so.',
   },
   {
     question: 'Will my staff have to learn new software?',

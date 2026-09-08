@@ -127,7 +127,7 @@ export default function LeadManagementPage() {
             {/* ponytail: H1 is plain text, not wrapped in motion with an opacity
                 start - that is what made the hero H1 the CLS/LCP problem in Phase 2. */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
-              Lead Management for Small Businesses
+              WhatsApp Lead Management for Small Business
             </h1>
 
             <h2 className="text-xl sm:text-2xl md:text-3xl text-blue-100 mb-6 font-semibold">
@@ -137,7 +137,8 @@ export default function LeadManagementPage() {
             <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
               Your staff types a name and number into Telegram — EaseBot saves it, writes the
               WhatsApp message, and reminds you to follow up. Messages go from your own number, so
-              your customers see you, not a broadcast.
+              your customers see you, not a broadcast. No WhatsApp Business API, no Meta
+              verification, no per-message charges.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8">

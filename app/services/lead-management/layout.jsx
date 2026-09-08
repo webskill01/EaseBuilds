@@ -7,18 +7,22 @@ import { FAQS, PRICE } from './data'
 
 const URL = 'https://easebuilds.in/services/lead-management'
 
-const TITLE = 'Lead Management for Small Businesses on WhatsApp & Telegram | EaseBuilds'
+const TITLE = 'WhatsApp Lead Management & CRM for Small Business | EaseBuilds'
 const DESCRIPTION =
-  'EaseBot records every enquiry, writes a ready-to-send WhatsApp message from your own number, and reminds you to follow up. Runs in Telegram plus your own web app. From Rs 1,499/month for the whole team, not per person.'
+  'Record every enquiry, send a ready-written WhatsApp from your own number, never miss a follow-up. No WhatsApp Business API or Meta verification needed. Rs 1,499/month for the whole team, not per user.'
 
 export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
   keywords: [
     'lead management software india',
+    'lead management software for small business',
     'whatsapp lead management',
-    'telegram bot for business',
+    'whatsapp automation without business account',
+    'whatsapp crm',
+    'low cost crm for small business india',
     'small business crm india',
+    'telegram bot for business',
     'follow up reminder software',
   ],
   openGraph: {
