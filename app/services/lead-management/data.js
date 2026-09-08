@@ -139,9 +139,11 @@ export const FAQS = [
 ]
 
 export const STEPS = [
-  { key: 'biz', q: "What's your business called?", ph: 'e.g. FitZone Gym', type: 'text' },
-  { key: 'does', q: 'And what do you do?', ph: 'e.g. gym, salon, coaching centre', type: 'text' },
-  { key: 'team', q: 'How many people handle your enquiries?', type: 'choice', opts: ['Just me', '2-5 people', '6-10 people', '11-20 people', '20+ people'] },
-  { key: 'track', q: 'What would you most like to keep track of?', ph: 'e.g. renewals, follow-ups, who signed up', type: 'text' },
-  { key: 'phone', q: 'Last one - your WhatsApp number?', ph: '10-digit mobile number', type: 'tel' },
+  { key: 'biz', label: 'Business', q: "What's your business called?", ph: 'e.g. FitZone Gym', type: 'text' },
+  { key: 'does', label: 'What we do', q: 'And what do you do?', ph: 'e.g. gym, salon, coaching centre', type: 'text' },
+  { key: 'team', label: 'People handling enquiries', q: 'How many people handle your enquiries?', type: 'choice', opts: ['Just me', '2-5 people', '6-10 people', '11-20 people', '20+ people'] },
+  { key: 'track', label: 'Most want to track', q: 'What would you most like to keep track of?', ph: 'e.g. renewals, follow-ups, who signed up', type: 'text' },
+  { key: 'phone', label: 'My WhatsApp', q: 'Last one - your WhatsApp number?', ph: '10-digit mobile number', type: 'tel' },
 ]
+
+export const QUOTE_INTRO = 'Hi EaseBuilds, I would like a price for EaseBot.'

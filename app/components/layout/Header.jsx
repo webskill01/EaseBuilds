@@ -76,6 +76,12 @@ export default function Header() {
             description: 'Keep your site secure & updated'
           },
           { 
+            name: 'Business Automation', 
+            href: '/services/business-automation',
+            icon: FaTools,
+            description: 'Replace the work you still do by hand'
+          },
+          { 
             name: 'Lead Management (EaseBot)', 
             href: '/services/lead-management',
             icon: FaWhatsapp,

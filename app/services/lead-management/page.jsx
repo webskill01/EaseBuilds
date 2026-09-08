@@ -24,8 +24,8 @@ import {
 } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import EaseBotDemo from './EaseBotDemo'
-import QuoteForm from './QuoteForm'
-import { FEATURES, VERTICALS, FAQS, PRICE, WHATSAPP } from './data'
+import QuoteForm from '@/app/components/QuoteForm'
+import { FEATURES, VERTICALS, FAQS, PRICE, WHATSAPP, STEPS, QUOTE_INTRO } from './data'
 
 const WA_HREF = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
   'Hi EaseBuilds, I would like a price for EaseBot.'
@@ -541,7 +541,7 @@ export default function LeadManagementPage() {
             </div>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.1}>
-            <QuoteForm />
+            <QuoteForm steps={STEPS} intro={QUOTE_INTRO} whatsapp={WHATSAPP} title="EaseBot" />
           </ScrollReveal>
         </div>
       </section>
@@ -586,10 +586,10 @@ export default function LeadManagementPage() {
               Call Now
             </motion.a>
             <Link
-              href="/pricing"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold underline underline-offset-4 text-sm sm:text-base"
+              href="/services/business-automation"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-md border-2 border-white/40 text-white font-bold rounded-xl text-sm sm:text-base"
             >
-              See all pricing
+              Need something custom?
             </Link>
           </div>
         </div>

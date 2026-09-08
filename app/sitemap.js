@@ -18,7 +18,8 @@ export default function sitemap() {
     'seo-services',
     'website-maintenance',
     // merged in from bots.easebuilds.in, 2026-09-08
-    'lead-management'
+    'lead-management',
+    'business-automation'
   ]
 
   // Industry slugs (from your industry pages)
