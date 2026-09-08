@@ -45,7 +45,7 @@ const services = [
     features: ['Payment Gateway', 'Inventory', 'Analytics', 'Mobile Shopping'],
     link: '/services/ecommerce-development',
     rating: 5,
-    deliveryTime: '3-4 weeks'
+    deliveryTime: '3 weeks'
   },
   {
     id: 'mobile-design',

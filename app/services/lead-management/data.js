@@ -39,7 +39,7 @@ export const BIZ = [
     id: 'agency', label: 'Agency', biz: 'EaseBuilds', who: 'Amit', num: '98140 11223',
     keys: [
       { k: 'Portfolio', m: "Hi Amit! Great speaking with you - this is Nitin from EaseBuilds.\n\nHere's some of our recent work: easebuilds.in/portfolio\n\nWhat kind of business is the website for? A word or two is enough." },
-      { k: 'Pricing', m: "Hi Amit! As promised, our full pricing: easebuilds.in/pricing\n\nWebsites start at Rs 2,999 and most go live in 2-4 weeks, with no hidden costs.\n\nWhich package looks closest to what you need?" },
+      { k: 'Pricing', m: "Hi Amit! As promised, our full pricing: easebuilds.in/pricing\n\nWebsites start at Rs 2,999 and most go live in 2-3 weeks, with no hidden costs.\n\nWhich package looks closest to what you need?" },
       { k: 'Get Started', m: "Hi Amit! Happy to get started whenever you are.\n\nAll I need to begin: your business name, a logo if you have one, and a rough idea of the pages you want.\n\nShall I send over the details?" },
       { k: 'Ask for Review', m: "Hi Amit! Hope the new site is working well for you.\n\nIf you're happy with it, a quick Google review would genuinely help us: g.page/r/easebuilds/review\n\nThanks a lot!" },
     ],

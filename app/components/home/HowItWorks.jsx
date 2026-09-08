@@ -96,7 +96,7 @@ export default function HowItWorks() {
           </h2>
           
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4 mb-4">
-            From initial consultation to website launch in just <strong className="text-blue-600">2-4 weeks</strong>. 
+            From initial consultation to website launch in just <strong className="text-blue-600">2-3 weeks</strong>. 
             Professional web development services by the{' '}
             <strong className="text-gray-900">best web developer in Patiala</strong>{' '}
             with complete transparency and dedicated support.
@@ -105,7 +105,7 @@ export default function HowItWorks() {
           {/* Timeline Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full shadow-lg text-sm font-semibold">
             <FaClock className="text-base" />
-            Total Duration: 11-16 Days (2-4 Weeks)
+            Total Duration: 11-16 Days (2-3 Weeks)
           </div>
         </ScrollReveal>
 
@@ -313,7 +313,7 @@ export default function HowItWorks() {
               Ready to Start Your Website Project?
             </h3>
             <p className="text-sm sm:text-base text-blue-100 mb-6">
-              Join the businesses already running on EaseBuilds. Your website in 2-4 weeks.
+              Join the businesses already running on EaseBuilds. Your website in 2-3 weeks.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a

@@ -77,7 +77,7 @@ export default function PricingPage() {
     { label: 'Blog Section', basic: false, standard: true, premium: true },
     { label: 'E-commerce Features', basic: false, standard: false, premium: true },
     { label: 'Custom Animations', basic: false, standard: true, premium: true },
-    { label: 'Delivery Time', basic: '1 Week', standard: '2-3 Weeks', premium: '3-4 Weeks' },
+    { label: 'Delivery Time', basic: '1 Week', standard: '2-3 Weeks', premium: '3 Weeks' },
     { label: 'Social Media Integration', basic: true, standard: true, premium: true },
     { label: 'Contact Form', basic: true, standard: true, premium: true },
     { label: 'Google Maps', basic: true, standard: true, premium: true },
@@ -159,7 +159,7 @@ export default function PricingPage() {
               <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm">
                 {[
                   { icon: <FaRupeeSign/>, text: 'Transparent Pricing' },
-                  { icon: <FaBoltLightning/>, text: '2-4 Week Delivery' },
+                  { icon: <FaBoltLightning/>, text: '2-3 Week Delivery' },
                   { icon: <FaGift/>, text: 'Free Support' },
                   { icon: <FaLock/>, text: 'Secure Payment' },
                 ].map((item, i) => (

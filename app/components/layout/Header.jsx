@@ -17,6 +17,7 @@ import {
   FaSearch,
   FaTools,
   FaWhatsapp,
+  FaRobot,
   FaPhoneAlt
 } from 'react-icons/fa'
 
@@ -42,7 +43,7 @@ export default function Header() {
     main: [
       { name: 'Home', href: '/' },
       { 
-        name: 'Services', 
+        name: 'Web Services', 
         href: '#',
         hasDropdown: true,
         items: [
@@ -70,10 +71,17 @@ export default function Header() {
             icon: FaTools,
             description: 'Keep your site secure & updated'
           },
+        ]
+      },
+      { 
+        name: 'Automation', 
+        href: '/services/business-automation',
+        hasDropdown: true,
+        items: [
           { 
             name: 'Business Automation', 
             href: '/services/business-automation',
-            icon: FaTools,
+            icon: FaRobot,
             description: 'Replace the work you still do by hand'
           },
           { 

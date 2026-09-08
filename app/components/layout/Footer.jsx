@@ -38,6 +38,11 @@ export default function Footer() {
       { name: 'E-commerce Development', href: '/services/ecommerce-development' },
       { name: 'SEO Services', href: '/services/seo-services' },
       { name: 'Website Maintenance', href: '/services/website-maintenance' },
+    ],
+    // Task 3.6: kept apart from web services on purpose. The two lines have
+    // opposite economics - web queries sit behind a local pack we cannot win
+    // with content, automation queries have no pack at all.
+    automation: [
       { name: 'Business Automation', href: '/services/business-automation' },
       { name: 'Lead Management (EaseBot)', href: '/services/lead-management' },
     ],
@@ -75,7 +80,7 @@ export default function Footer() {
       {/* Main Footer - Compact 2-col mobile grid */}
       <div className="container-custom pt-12 sm:pt-14 lg:pt-16 pb-8">
         {/* Mobile: 2 cols, Tablet: 3 cols, Desktop: 5 cols */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
           
           {/* Column 1 - Brand (spans 2 cols on mobile) */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
@@ -154,10 +159,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 - Services */}
+          {/* Column 3 - Web Services */}
           <div>
             <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
-              Services
+              Web Services
             </h3>
             <ul className="space-y-2">
               {footerData.services.map((service) => (
@@ -174,7 +179,27 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 - Contact */}
+          {/* Column 4 - Automation */}
+          <div>
+            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
+              Automation
+            </h3>
+            <ul className="space-y-2">
+              {footerData.automation.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                  >
+                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5 - Contact */}
           <div>
             <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
               Contact

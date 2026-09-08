@@ -19,7 +19,7 @@ const benefits = [
   {
     icon: FaClock,
     title: 'Lightning Fast Delivery',
-    description: 'Professional websites launched in just 2-4 weeks. 60% faster than industry average (6-8 weeks) while maintaining top quality standards.',
+    description: 'Professional websites launched in just 2-3 weeks. 60% faster than industry average (6-8 weeks) while maintaining top quality standards.',
     gradient: 'from-blue-400 to-blue-500',
   },
   {

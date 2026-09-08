@@ -352,7 +352,7 @@ export default function Contact() {
                 <div className="space-y-4 sm:space-y-5 mb-6 sm:mb-8">
                   {[
                     { text: "15 Projects Shipped" },
-                    { text: "Fast 2-4 Weeks Delivery" },
+                    { text: "Fast 2-3 Weeks Delivery" },
                     { text: "Direct Access to the Developer" },
                     { text: "Free Consultation & Ongoing Support" },
                   ].map((item, index) => (

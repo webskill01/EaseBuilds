@@ -58,7 +58,7 @@ export default function AboutPage() {
       icon: FaBolt,
       title: "Speed & Performance",
       description:
-        "Lightning-fast delivery in 2-4 weeks. Websites optimized for speed with 95+ PageSpeed scores. Your time and customer experience matter.",
+        "Lightning-fast delivery in 2-3 weeks. Websites optimized for speed with 95+ PageSpeed scores. Your time and customer experience matter.",
       gradient: "from-blue-400 via-cyan-400 to-blue-500",
       shadowColor: "shadow-blue-500/20",
       iconBg: "bg-gradient-to-br from-blue-100 to-cyan-100",
