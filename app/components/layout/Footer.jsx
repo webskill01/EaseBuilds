@@ -38,6 +38,7 @@ export default function Footer() {
       { name: 'E-commerce Development', href: '/services/ecommerce-development' },
       { name: 'SEO Services', href: '/services/seo-services' },
       { name: 'Website Maintenance', href: '/services/website-maintenance' },
+      { name: 'Lead Management (EaseBot)', href: '/services/lead-management' },
     ],
     industries: [
       { name: 'Dental Clinics', href: '/industries/dental-clinics' },
