@@ -86,3 +86,5 @@ public/robots.txt
 *.backup
 *.bak
 *.old
+
+gsc_reports/
