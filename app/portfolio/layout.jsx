@@ -1,4 +1,5 @@
 import JsonLd from '../components/JsonLd'
+import { portfolioProjects } from '@/lib/portfolioData'
 // Layout for Portfolio/Work Showcase Page
 // SEO-optimized metadata and schema markup for portfolio
 
@@ -49,48 +50,17 @@ export default function PortfolioLayout({ children }) {
     '@type': 'ItemList',
     name: 'EaseBuilds Web Development Portfolio',
     description: 'Portfolio of websites built by EaseBuilds for businesses in Patiala Punjab India',
-    numberOfItems: 50,
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        item: {
-          '@type': 'CreativeWork',
-          name: 'Kumar Dental Clinic Website',
-          description: 'Professional dental clinic website with online appointment booking in Patiala',
-          creator: {
-            '@type': 'Organization',
-            name: 'EaseBuilds'
-          }
-        }
+    numberOfItems: portfolioProjects.length,
+    itemListElement: portfolioProjects.map((project, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: project.title,
+        description: project.description,
+        creator: { '@type': 'Organization', name: 'EaseBuilds' },
       },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        item: {
-          '@type': 'CreativeWork',
-          name: 'Kaur Architects Portfolio Website',
-          description: 'Architecture portfolio website with 3D rendering integration in Patiala Punjab',
-          creator: {
-            '@type': 'Organization',
-            name: 'EaseBuilds'
-          }
-        }
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        item: {
-          '@type': 'CreativeWork',
-          name: 'Singh Manufacturing E-commerce',
-          description: 'B2B e-commerce platform for valve manufacturing company in Patiala',
-          creator: {
-            '@type': 'Organization',
-            name: 'EaseBuilds'
-          }
-        }
-      },
-    ]
+    })),
   }
 
   // Service Schema for Portfolio Services

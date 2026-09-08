@@ -111,6 +111,16 @@ const nextConfig = {
       // doorway pages deleted 2026-09-08 — near-duplicates cannibalising `/`
       { source: '/website-development-patiala', destination: '/', permanent: true },
       { source: '/web-developer-near-me-patiala', destination: '/', permanent: true },
+
+      // industry pages deleted 2026-09-08 (Task 3.5) - 134 impressions / 1 click
+      // in 90 days at ~100% wrong intent, and no industry x geo search demand.
+      // Retail goes to ecommerce; the rest are custom-build enquiries.
+      { source: '/industries/retail-stores', destination: '/services/ecommerce-development', permanent: true },
+      { source: '/industries/dental-clinics', destination: '/services/custom-website-design', permanent: true },
+      { source: '/industries/architects', destination: '/services/custom-website-design', permanent: true },
+      { source: '/industries/coaching-institutes', destination: '/services/custom-website-design', permanent: true },
+      { source: '/industries/manufacturers', destination: '/services/custom-website-design', permanent: true },
+      { source: '/industries', destination: '/services/custom-website-design', permanent: true },
     ]
   },
   

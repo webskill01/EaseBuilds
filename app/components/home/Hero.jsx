@@ -190,28 +190,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="pt-4 px-4"
-            >
-              <p className="text-xs sm:text-sm text-gray-600 mb-2">
-                Trusted by businesses in Patiala:
-              </p>
-              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-5">
-                {['Dental', 'Architects', 'Coaching', 'Retail', 'Manufacturing'].map((industry, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2 sm:px-3 py-1 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-xs text-gray-700 font-medium hover:border-blue-300 hover:bg-blue-50 transition-colors"
-                  >
-                    {industry}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
           </div>
         </div>
       </div>

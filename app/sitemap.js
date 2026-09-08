@@ -22,15 +22,6 @@ export default function sitemap() {
     'business-automation'
   ]
 
-  // Industry slugs (from your industry pages)
-  const industries = [
-    'dental-clinics',
-    'architects',
-    'coaching-institutes',
-    'retail-stores',
-    'manufacturers'
-  ]
-
   // Extract blog slugs dynamically from blogData
   const blogSlugs = blogPosts.map(post => post.slug)
 
@@ -83,14 +74,6 @@ export default function sitemap() {
       lastModified: oneWeekAgo,
       changeFrequency: 'weekly',
       priority: 0.88,
-    })),
-
-    // ===== TIER 5: INDUSTRY PAGES (Niche Targeting) =====
-    ...industries.map((industry) => ({
-      url: `${baseUrl}/industries/${industry}`,
-      lastModified: twoWeeksAgo,
-      changeFrequency: 'monthly',
-      priority: 0.83,
     })),
 
     // ===== TIER 6: BLOG POSTS (Dynamic - Auto-generated from blogData) =====

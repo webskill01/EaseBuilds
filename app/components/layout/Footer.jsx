@@ -41,13 +41,6 @@ export default function Footer() {
       { name: 'Business Automation', href: '/services/business-automation' },
       { name: 'Lead Management (EaseBot)', href: '/services/lead-management' },
     ],
-    industries: [
-      { name: 'Dental Clinics', href: '/industries/dental-clinics' },
-      { name: 'Architects', href: '/industries/architects' },
-      { name: 'Coaching Institutes', href: '/industries/coaching-institutes' },
-      { name: 'Retail Stores', href: '/industries/retail-stores' },
-      { name: 'Manufacturers', href: '/industries/manufacturers' },
-    ],
     socialLinks: [
       { 
         icon: FaFacebook, 
@@ -82,7 +75,7 @@ export default function Footer() {
       {/* Main Footer - Compact 2-col mobile grid */}
       <div className="container-custom pt-12 sm:pt-14 lg:pt-16 pb-8">
         {/* Mobile: 2 cols, Tablet: 3 cols, Desktop: 5 cols */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-6">
           
           {/* Column 1 - Brand (spans 2 cols on mobile) */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
@@ -181,27 +174,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 - Industries */}
-          <div>
-            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
-              Industries
-            </h3>
-            <ul className="space-y-2">
-              {footerData.industries.map((industry) => (
-                <li key={industry.name}>
-                  <Link
-                    href={industry.href}
-                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
-                  >
-                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {industry.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 5 - Contact */}
+          {/* Column 4 - Contact */}
           <div>
             <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
               Contact

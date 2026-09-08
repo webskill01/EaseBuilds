@@ -16,11 +16,6 @@ import {
   FaShoppingCart,
   FaSearch,
   FaTools,
-  FaTooth,
-  FaBuilding,
-  FaGraduationCap,
-  FaStore,
-  FaIndustry,
   FaWhatsapp,
   FaPhoneAlt
 } from 'react-icons/fa'
@@ -86,43 +81,6 @@ export default function Header() {
             href: '/services/lead-management',
             icon: FaWhatsapp,
             description: 'Never lose an enquiry or a follow-up'
-          },
-        ]
-      },
-      { 
-        name: 'Industries', 
-        href: '#',
-        hasDropdown: true,
-        items: [
-          { 
-            name: 'Dental Clinics', 
-            href: '/industries/dental-clinics',
-            icon: FaTooth,
-            description: 'Websites for dental practices'
-          },
-          { 
-            name: 'Architects', 
-            href: '/industries/architects',
-            icon: FaBuilding,
-            description: 'Portfolio sites for architects'
-          },
-          { 
-            name: 'Coaching Institutes', 
-            href: '/industries/coaching-institutes',
-            icon: FaGraduationCap,
-            description: 'Educational institute websites'
-          },
-          { 
-            name: 'Retail Stores', 
-            href: '/industries/retail-stores',
-            icon: FaStore,
-            description: 'E-commerce for retail businesses'
-          },
-          { 
-            name: 'Manufacturers', 
-            href: '/industries/manufacturers',
-            icon: FaIndustry,
-            description: 'Industrial business websites'
           },
         ]
       },

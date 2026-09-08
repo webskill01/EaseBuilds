@@ -19,7 +19,6 @@ export default function Breadcrumb() {
   // Routes that don't have pages (only children) - make them non-clickable
   const nonClickableRoutes = [
     '/services',
-    '/industries',
   ]
 
   // Split pathname into segments and filter empty strings
@@ -28,7 +27,6 @@ export default function Breadcrumb() {
   // Custom labels for routes
   const labelMap = {
     'services': 'Services',
-    'industries': 'Industries',
     'custom-website-design': 'Custom Website Design',
     'ecommerce-development': 'E-commerce Development',
     'seo-services': 'SEO Services',

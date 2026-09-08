@@ -370,10 +370,10 @@ export default function PricingPage() {
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 {[
-                  { icon: <FaHospital/>, title: 'Healthcare', count: '12+' },
-                  { icon: <FaBuilding/>, title: 'Architecture', count: '8+' },
-                  { icon: <FaBook/>, title: 'Education', count: '15+' },
-                  { icon: <FaStore/>, title: 'Retail', count: '18+' },
+                  { icon: <FaHospital/>, title: 'Home Services', count: 'Melbourne' },
+                  { icon: <FaBuilding/>, title: 'Travel', count: 'Patiala' },
+                  { icon: <FaBook/>, title: 'Education', count: 'Patiala' },
+                  { icon: <FaStore/>, title: 'E-commerce', count: 'Chennai' },
                 ].map((item, idx) => (
                   <div key={idx} className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow flex items-center flex-col">
                     <div className="text-4xl mb-2 text-blue-600 ">{item.icon}</div>
