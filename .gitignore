@@ -88,3 +88,6 @@ public/robots.txt
 *.old
 
 gsc_reports/
+# working docs stay local — only README.md is tracked
+*.md
+!README.md
