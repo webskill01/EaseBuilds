@@ -9,20 +9,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { blurData } from '@/lib/blurData'
 import { useRef } from 'react'
-import RotatingText from '../animations/RotatingText'
-import CountUp from '../animations/CountUp'
 
 export default function Hero() {
   const statsRef = useRef(null)
   const isInView = useInView(statsRef, { once: true, margin: "-50px" })
 
-  const rotatingTexts = [
-    'Stunning Websites',
-    'E-commerce Stores', 
-    'Mobile Apps',
-    'SEO Services',
-    'Digital Solutions'
-  ]
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
@@ -100,16 +91,13 @@ export default function Hero() {
                   Professional
                 </span>
                 
-                <div className="mb-2 flex justify-center min-h-[1.5em]">
-                  <RotatingText
-                    texts={rotatingTexts}
-                    mainClassName="inline-block font-extrabold"
-                    elementLevelClassName="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent"
-                    splitBy="words"
-                    staggerDuration={0.05}
-                    rotationInterval={2500}
-                  />
-                </div>
+                {/* static, deliberately: RotatingText here cycled 5 strings of
+                    different widths inside the H1 - a layout shift every 2.5s,
+                    an LCP that waited on client JS, and an H1 that Google saw
+                    differently on every crawl */}
+                <span className="block mb-2 font-extrabold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
+                  Websites &amp; Automation
+                </span>
 
                 <span className="block text-gray-900 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                   for Businesses in{' '}
@@ -171,8 +159,8 @@ export default function Hero() {
             <div ref={statsRef} className="pt-6 sm:pt-8 px-4">
               <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
                 {[
-                  { icon: FaUsers, value: 50, suffix: '+', label: 'Clients', gradient: 'from-blue-50 to-cyan-50', iconGradient: 'from-blue-600 to-cyan-500', textColor: 'text-blue-600', borderColor: 'border-blue-100', delay: 0 },
-                  { icon: FaAward, value: 100, suffix: '%', label: 'Satisfied', gradient: 'from-green-50 to-emerald-50', iconGradient: 'from-green-600 to-emerald-500', textColor: 'text-green-600', borderColor: 'border-green-100', delay: 0.1 },
+                  { icon: FaUsers, value: 15, suffix: '', label: 'Projects', gradient: 'from-blue-50 to-cyan-50', iconGradient: 'from-blue-600 to-cyan-500', textColor: 'text-blue-600', borderColor: 'border-blue-100', delay: 0 },
+                  { icon: FaAward, value: 10, suffix: '', label: 'Systems Live', gradient: 'from-green-50 to-emerald-50', iconGradient: 'from-green-600 to-emerald-500', textColor: 'text-green-600', borderColor: 'border-green-100', delay: 0.1 },
                   { icon: FaClock, text: '2-4', label: 'Weeks', gradient: 'from-orange-50 to-red-50', iconGradient: 'from-orange-600 to-red-500', textColor: 'text-orange-600', borderColor: 'border-orange-100', delay: 0.2 }
                 ].map((stat, index) => (
                   <motion.div
@@ -187,8 +175,11 @@ export default function Hero() {
                         <stat.icon className="text-white text-lg sm:text-xl" />
                       </div>
                       
-                      <div className={`text-2xl sm:text-3xl font-extrabold ${stat.textColor} mb-1`}>
-                        {stat.text ? stat.text : isInView && <CountUp value={stat.value} suffix={stat.suffix} duration={2} />}
+                      {/* plain number, not CountUp: the animated span renders
+                          empty until hydration, which collapsed the slot and
+                          shifted layout. Counting 0->15 was not worth that. */}
+                      <div className={`text-2xl sm:text-3xl font-extrabold tabular-nums ${stat.textColor} mb-1`}>
+                        {stat.text ? stat.text : `${stat.value}${stat.suffix}`}
                       </div>
                       
                       <div className="text-xs sm:text-sm font-semibold text-gray-600">

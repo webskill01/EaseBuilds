@@ -12,7 +12,7 @@ export const metadata = {
   description: industryData.seo.description, // 158 chars
   openGraph: {
     title: 'Dental Clinic Website Design Patiala | EaseBuilds',
-    description: 'Professional dental website with online booking. Get 50+ monthly appointments. Trusted by 10+ clinics in Punjab.',
+    description: 'Professional dental website with online booking. Get 50+ monthly appointments.',
     type: 'website',
     locale: 'en_IN',
     url: industryData.seo.canonical,

@@ -268,7 +268,7 @@ export default function PricingCard({
                       </div>
                     </div>
                     <p className="text-[10px] sm:text-xs text-gray-600">
-                      Includes updates, security, backups & 24/7 support
+                      Includes updates, security, backups & priority support
                     </p>
                   </div>
                 </label>

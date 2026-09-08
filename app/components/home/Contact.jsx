@@ -185,7 +185,7 @@ export default function Contact() {
       value: "Instant Response",
       href: "https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I%20need%20a%20professional%20website%20for%20my%20business",
       gradient: "from-green-500 to-green-600",
-      description: "24/7 Quick Replies",
+      description: "Fast WhatsApp Replies",
       ariaLabel: "Chat with EaseBuilds on WhatsApp",
     },
     {
@@ -409,7 +409,7 @@ export default function Contact() {
                           <strong>Sunday:</strong> Closed
                           <br />
                           <span className="text-green-300 font-semibold mt-1 block">
-                            ⚡ WhatsApp: 24/7 Available
+                            ⚡ WhatsApp: Mon-Sat, 9am-6pm
                           </span>
                         </span>
                       </p>

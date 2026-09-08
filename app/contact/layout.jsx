@@ -156,7 +156,7 @@ const contactFaqSchema = {
         name: 'Do you work on weekends?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Our office is open Saturdays 10AM-4PM. For urgent support, you can reach us via WhatsApp 24/7. We prioritize client emergencies even outside business hours.'
+          text: 'Hours are Monday to Saturday, 9am to 6pm. WhatsApp is the fastest way to reach me, and messages sent outside those hours get answered the next working morning.'
         }
       }
     ]

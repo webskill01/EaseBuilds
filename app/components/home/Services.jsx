@@ -31,7 +31,6 @@ const services = [
     features: ['Responsive Design', 'Fast Loading', 'SEO Ready', 'Custom Features'],
     link: '/services/custom-website-design',
     rating: 5,
-    clients: '20+',
     deliveryTime: '2-3 weeks'
   },
   {
@@ -46,7 +45,6 @@ const services = [
     features: ['Payment Gateway', 'Inventory', 'Analytics', 'Mobile Shopping'],
     link: '/services/ecommerce-development',
     rating: 5,
-    clients: '15+',
     deliveryTime: '3-4 weeks'
   },
   {
@@ -61,7 +59,6 @@ const services = [
     features: ['Mobile First', 'Touch Optimized', 'Fast on 4G', 'PWA Ready'],
     link: '/services/custom-website-design',
     rating: 5,
-    clients: '15',
     deliveryTime: '2 weeks'
   },
   {
@@ -76,7 +73,6 @@ const services = [
     features: ['Core Web Vitals', 'Image Optimization', 'Code Splitting', 'CDN Setup'],
     link: '/services/website-maintenance',
     rating: 5,
-    clients: '30+',
     deliveryTime: '1 week'
   },
   {
@@ -91,7 +87,6 @@ const services = [
     features: ['Brand Identity', 'User Research', 'Wireframing', 'Prototyping'],
     link: '/services/custom-website-design',
     rating: 5,
-    clients: '40+',
     deliveryTime: '2-3 weeks'
   },
   {
@@ -106,7 +101,6 @@ const services = [
     features: ['Local SEO', 'Keyword Research', 'On-Page SEO', 'Link Building'],
     link: '/services/seo-services',
     rating: 5,
-    clients: '25+',
     deliveryTime: 'Ongoing'
   },
 ]
@@ -167,7 +161,7 @@ function ServiceCard({ service, index }) {
                       <FaStar key={i} className="text-yellow-400 text-xs" />
                     ))}
                   </div>
-                  <span className="text-xs font-semibold text-blue-600">{service.clients} Projects</span>
+                  <span className="text-xs font-semibold text-blue-600">{service.deliveryTime}</span>
                 </div>
 
                 <div className="space-y-1.5">
@@ -228,10 +222,6 @@ function ServiceCard({ service, index }) {
                 <div className="flex justify-between items-center p-2 bg-white/20 rounded-lg">
                   <span className="text-xs">Delivery Time</span>
                   <span className="text-sm font-bold">{service.deliveryTime}</span>
-                </div>
-                <div className="flex justify-between items-center p-2 bg-white/20 rounded-lg">
-                  <span className="text-xs">Completed Projects</span>
-                  <span className="text-sm font-bold">{service.clients}</span>
                 </div>
               </div>
 

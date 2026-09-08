@@ -180,7 +180,7 @@ export default function Error({ error, reset }) {
           transition={{ delay: 1 }}
           className="text-center text-sm text-gray-500 mt-6"
         >
-          EaseBuilds - Best Web Developer in Patiala Punjab | Professional Support 24/7
+          EaseBuilds - Web Development in Patiala Punjab
         </motion.p>
       </motion.div>
     </div>

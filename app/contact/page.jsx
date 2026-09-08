@@ -312,7 +312,7 @@ const handleSubmit = async (e) => {
                 value: 'Chat Instantly',
                 link: 'https://wa.me/916283380110',
                 color: 'from-green-500 to-emerald-600',
-                description: '24/7 Available'
+                description: 'Mon-Sat, 9am-6pm'
               },
               {
                 icon: FaEnvelope,
@@ -745,7 +745,7 @@ const handleSubmit = async (e) => {
               },
               {
                 question: 'Do you work on weekends?',
-                answer: 'Our office is open Saturdays 10AM-4PM. For urgent support, you can reach us via WhatsApp 24/7. We prioritize client emergencies even outside business hours.'
+                answer: 'Hours are Monday to Saturday, 9am to 6pm. WhatsApp is the fastest way to reach me, and messages sent outside those hours get answered the next working morning.'
               }
             ].map((faq, index) => (
               <ScrollReveal key={index} direction="up" delay={index * 0.05}>

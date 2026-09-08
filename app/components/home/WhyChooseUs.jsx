@@ -38,16 +38,16 @@ const benefits = [
 
 const stats = [
   { 
-    value: 50, 
-    suffix: '+',
-    label: 'Happy Clients in Patiala', 
+    value: 15,
+    suffix: '',
+    label: 'Projects Shipped',
     gradient: 'from-blue-500 to-blue-700',
     icon: FaUsers
   },
   { 
-    value: 100, 
-    suffix: '%',
-    label: 'Client Satisfaction', 
+    value: 10,
+    suffix: '',
+    label: 'Systems in Production',
     gradient: 'from-green-500 to-green-700', 
     delay: true,
     icon: FaStar
@@ -61,9 +61,9 @@ const stats = [
     icon: FaRocket
   },
   { 
-    value: 24, 
-    suffix: '/7',
-    label: 'WhatsApp Support', 
+    value: 5,
+    suffix: '.0',
+    label: 'Rated on Google',
     gradient: 'from-orange-500 to-orange-700', 
     delay: true,
     icon: FaHeadset
@@ -71,7 +71,7 @@ const stats = [
 ]
 
 const achievements = [
-  { icon: FaAward, text: 'Award-Winning Design Quality' },
+  { icon: FaAward, text: 'Built on React & Next.js' },
   { icon: FaShieldAlt, text: 'Secure & SSL Certified' },
   { icon: FaStar, text: '5.0 Google Rating' },
 ]
