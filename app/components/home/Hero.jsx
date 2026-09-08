@@ -81,10 +81,11 @@ export default function Hero() {
 
             {/* Headline */}
             <div className="space-y-2 sm:space-y-3">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.6 }}
+              {/* no entrance animation: this is the LCP element. Wrapped in
+                  motion with initial opacity 0 it stayed invisible until
+                  framer-motion downloaded and hydrated, then waited a further
+                  0.15s delay + 0.6s fade - which was most of a 5.8s LCP. */}
+              <h1
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight px-4"
               >
                 <span className="block text-gray-900 mb-2">
@@ -103,14 +104,12 @@ export default function Hero() {
                   for Businesses in{' '}
                   <span className="text-blue-600 font-extrabold">Patiala</span>
                 </span>
-              </motion.h1>
+              </h1>
             </div>
 
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+            {/* also a LCP candidate on narrow screens - render it immediately */}
+            <p
               className="text-sm sm:text-base lg:text-lg text-gray-950 leading-relaxed max-w-3xl mx-auto px-4"
             >
               <strong className="text-blue-600">Websites and automation, built in Patiala.</strong> Client sites
@@ -119,7 +118,7 @@ export default function Hero() {
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-600">₹2,999</span>
                 <span className="text-base sm:text-lg line-through text-gray-950">₹5,999</span>
               </span>
-            </motion.p>
+            </p>
 
             {/* CTA Buttons - Simplified animations */}
             <motion.div

@@ -1,36 +1,14 @@
-import dynamic from 'next/dynamic'
 import { faqSchema } from '@/lib/seo'
 import Hero from './components/home/Hero'
 import JsonLd from './components/JsonLd'
 
-// Dynamic imports for performance
-const Services = dynamic(() => import('./components/home/Services'), { 
-  loading: () => <div className="min-h-[400px] bg-gray-50 animate-pulse" />
-})
-
-const ClientReviews = dynamic(() => import('./components/home/ClientReviews'), { 
-  loading: () => <div className="min-h-[400px] bg-white animate-pulse" />
-})
-
-const HowItWorks = dynamic(() => import('./components/home/HowItWorks'), { 
-  loading: () => <div className="min-h-[400px] bg-gray-50 animate-pulse" />
-})
-
-const WhyChooseUs = dynamic(() => import('./components/home/WhyChooseUs'), { 
-  loading: () => <div className="min-h-[400px] bg-white animate-pulse" />
-})
-
-const Projects = dynamic(() => import('./components/home/Projects'), { 
-  loading: () => <div className="min-h-[400px] bg-gray-50 animate-pulse" />
-})
-
-const FAQ = dynamic(() => import('./components/home/FAQ'), { 
-  loading: () => <div className="min-h-[400px] bg-white animate-pulse" />
-})
-
-const Contact = dynamic(() => import('./components/home/Contact'), { 
-  loading: () => <div className="min-h-[500px] bg-gray-50 animate-pulse" />
-})
+import Services from './components/home/Services'
+import ClientReviews from './components/home/ClientReviews'
+import HowItWorks from './components/home/HowItWorks'
+import WhyChooseUs from './components/home/WhyChooseUs'
+import Projects from './components/home/Projects'
+import FAQ from './components/home/FAQ'
+import Contact from './components/home/Contact'
 
 export default function Home() {
   return (
