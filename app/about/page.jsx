@@ -410,8 +410,8 @@ export default function AboutPage() {
                   <strong>
                     most trusted web developer in Patiala Punjab India
                   </strong>
-                  , earning us 100% client satisfaction and 50+ successful
-                  projects.
+                  , with 15 projects shipped — 5 client websites and 10
+                  automation systems running in production.
                 </p>
               </div>
             </ScrollReveal>

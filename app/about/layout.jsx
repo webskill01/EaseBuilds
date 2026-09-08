@@ -6,11 +6,11 @@ import JsonLd from '../components/JsonLd'
 // OPTIMIZED Metadata (Title: 58 chars, Description: 155 chars)
 export const metadata = {
   title: 'About EaseBuilds | Best Web Developer Patiala - Our Story',
-  description: 'Meet the team behind EaseBuilds, Patiala\'s top web development company. 50+ happy clients, 100% satisfaction. Expert website design since 2023.',
+  description: 'EaseBuilds is a one-developer web studio in Patiala. 15 projects shipped — 5 client websites, including one in Melbourne, and 10 automation systems in production.',
   
   openGraph: {
     title: 'About EaseBuilds - Best Web Developer in Patiala Punjab India',
-    description: 'Learn about EaseBuilds, the top-rated web development company in Patiala. Meet our expert team and discover our mission.',
+    description: 'About EaseBuilds — a one-developer web studio in Patiala building websites and automation for local businesses.',
     type: 'website',
     locale: 'en_IN',
     url: 'https://easebuilds.in/about',
@@ -26,7 +26,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'About EaseBuilds - Best Web Developer Patiala',
-    description: 'Meet the team behind Patiala\'s top web development company. 50+ clients, 5.0 rating.',
+    description: 'The developer behind EaseBuilds in Patiala. 15 projects shipped, rated 5.0 on Google.',
     images: ['https://easebuilds.in/opengraph-image.png'],
   },
   
@@ -118,7 +118,7 @@ export default function AboutLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'About EaseBuilds - Best Web Developer in Patiala Punjab India',
-    description: 'Learn about EaseBuilds, the leading web development company in Patiala. Meet our expert team, discover our mission to help local businesses succeed online, and see why 50+ Patiala clients trust us.',
+    description: 'Learn about EaseBuilds, a one-developer web studio in Patiala. Websites and automation for local businesses — you work directly with the developer who builds your site.',
     url: 'https://easebuilds.in/about',
     mainEntity: {
       '@type': 'Organization',

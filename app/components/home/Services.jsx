@@ -61,7 +61,7 @@ const services = [
     features: ['Mobile First', 'Touch Optimized', 'Fast on 4G', 'PWA Ready'],
     link: '/services/custom-website-design',
     rating: 5,
-    clients: '50+',
+    clients: '15',
     deliveryTime: '2 weeks'
   },
   {

@@ -125,8 +125,8 @@ export default function Hero() {
               transition={{ delay: 0.3, duration: 0.5 }}
               className="text-sm sm:text-base lg:text-lg text-gray-950 leading-relaxed max-w-3xl mx-auto px-4"
             >
-              The <strong className="text-blue-600">best web development company in Patiala</strong> trusted 
-              by 50+ local businesses. Get a stunning website starting at{' '}
+              <strong className="text-blue-600">Websites and automation, built in Patiala.</strong> Client sites
+              live from Patiala to Melbourne. Get yours starting at{' '}
               <span className="inline-flex items-baseline gap-2 flex-wrap justify-center">
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-600">₹2,999</span>
                 <span className="text-base sm:text-lg line-through text-gray-950">₹5,999</span>

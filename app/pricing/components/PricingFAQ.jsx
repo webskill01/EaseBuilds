@@ -119,7 +119,7 @@ export default function PricingFAQ({ faqs }) {
               Still Have Questions?
             </h3>
             <p className="text-sm sm:text-base text-blue-100 mb-4 sm:mb-6 max-w-xl mx-auto">
-              Talk to our team about website development pricing in Patiala Punjab India
+              Talk to the developer about website pricing in Patiala Punjab India
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
              <motion.a

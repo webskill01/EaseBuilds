@@ -204,9 +204,9 @@ const processSteps = [
               className="flex flex-wrap justify-center gap-6 sm:gap-8 text-gray-900"
             >
               {[
-                { number: '50+', label: 'Projects Delivered' },
-                { number: '100%', label: 'Client Satisfaction' },
-                { number: '5.0', label: 'Star Rating' },
+                { number: '15', label: 'Projects Shipped' },
+                { number: '10', label: 'Systems in Production' },
+                { number: '5.0', label: 'Google Rating' },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center">
                   <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-1">

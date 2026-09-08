@@ -8,48 +8,11 @@ import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaRocket, FaPhone, Fa
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import ScrollReveal from '../animations/ScrollReveal'
+import { getFeaturedProjects } from '@/lib/portfolioData'
 
-const projects = [
-  {
-    title: 'Modgill Travels - Taxi Booking Platform',
-    category: 'Travel & Tourism',
-    description: 'Professional taxi rental website for Patiala businesses with real-time booking system, fleet management, and seamless customer experience. Increased online bookings by 60% within first month.',
-    image: '/images/modgilltravels.webp',
-    gradient: 'from-blue-500 to-cyan-600',
-    tags: ['Next.js', 'Real-time Booking', 'Mobile App PWA', 'Payment Integration'],
-    link: 'https://modgilltravels.in',
-    location: 'Patiala Punjab India',
-    featured: true,
-    metrics: '60% Booking Increase',
-    clientType: 'Local Business'
-  },
-  {
-    title: 'Tape India - E-commerce Store',
-    category: 'E-Commerce Development',
-    description: 'Modern online store for adhesive tape products serving Chennai with advanced product catalog, secure payment gateway (Razorpay, PayPal), automated inventory management, and lightning-fast checkout. Sales tripled in 3 months.',
-    image: '/images/tapeindia.webp',
-    gradient: 'from-orange-500 to-red-600',
-    tags: ['E-commerce', 'Payment Integration', 'Inventory System', 'Fast Checkout'],
-    link: 'https://tapeindia.shop',
-    location: 'Chennai',
-    featured: true,
-    metrics: '3x Sales Growth',
-    clientType: 'Manufacturing'
-  },
-  {
-    title: 'Pariksha - Education Platform',
-    category: 'Education Technology',
-    description: 'Serverless question paper bank providing students across Punjab India with organized access to 10,000+ previous year exam papers. Features advanced search, filtering by subject/year, bookmark system, and fully responsive mobile design for on-the-go learning.',
-    image: '/images/pariksha.webp',
-    gradient: 'from-purple-500 to-pink-600',
-    tags: ['Serverless Architecture', 'Search Engine', 'Cloud Hosting', 'Mobile Learning'],
-    link: 'https://pariksha-serverless.vercel.app',
-    location: 'Punjab India',
-    featured: true,
-    metrics: 'Easy Access',
-    clientType: 'Education'
-  },
-]
+// single source of truth — see lib/portfolioData.js
+const projects = getFeaturedProjects()
+
 
 export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -123,10 +86,10 @@ export default function Projects() {
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-4 sm:mt-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 rounded-full">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-xs sm:text-sm font-semibold text-green-700">50+ Live Projects</span>
+              <span className="text-xs sm:text-sm font-semibold text-green-700">5 Live Client Sites</span>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 rounded-full">
-              <span className="text-xs sm:text-sm font-semibold text-blue-700">100% Client Satisfaction</span>
+              <span className="text-xs sm:text-sm font-semibold text-blue-700">10 Automation Systems</span>
             </div>
           </div>
         </ScrollReveal>

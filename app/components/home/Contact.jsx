@@ -351,9 +351,9 @@ export default function Contact() {
                 {/* Trust Indicators */}
                 <div className="space-y-4 sm:space-y-5 mb-6 sm:mb-8">
                   {[
-                    { text: "50+ Successful Projects" },
+                    { text: "15 Projects Shipped" },
                     { text: "Fast 2-4 Weeks Delivery" },
-                    { text: "100% Client Satisfaction Rate" },
+                    { text: "Direct Access to the Developer" },
                     { text: "Free Consultation & Ongoing Support" },
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">

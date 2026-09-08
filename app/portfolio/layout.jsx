@@ -6,10 +6,10 @@ import JsonLd from '../components/JsonLd'
 // SEO Metadata - Optimized title and description lengths
 export const metadata = {
   title: 'Portfolio - Web Development Projects Patiala | EaseBuilds Work', // 59 chars
-  description: 'View our portfolio of 50+ websites built for Patiala businesses. Custom websites, e-commerce, SEO projects. See real results: dental clinics, architects, manufacturers, retail stores.', // 159 chars
+  description: 'Live client websites built by EaseBuilds — taxi booking in Patiala, e-commerce in Chennai, home services in Melbourne. Click through to every one of them.',
   openGraph: {
     title: 'Web Development Portfolio - Patiala Punjab India',
-    description: '50+ successful website projects for Patiala businesses. View our work, case studies, and client results.',
+    description: 'Live client websites from Patiala to Melbourne. Click through to every one of them.',
     type: 'website',
     locale: 'en_IN',
     url: 'https://easebuilds.in/portfolio',
@@ -25,7 +25,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Web Development Portfolio Patiala',
-    description: '50+ successful projects. Dental clinics, architects, e-commerce, manufacturers. View results.',
+    description: '5 live client websites and 10 automation systems in production. View the work.',
   },
   alternates: {
     canonical: 'https://easebuilds.in/portfolio',

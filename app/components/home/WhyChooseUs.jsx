@@ -13,7 +13,7 @@ const benefits = [
   {
     icon: FaCheckCircle,
     title: 'Proven Track Record',
-    description: '50+ successful websites delivered for businesses across Patiala Punjab India with measurable results, increased online sales, and improved customer engagement.',
+    description: 'Websites and automation delivered for businesses in Patiala, Chennai and Melbourne — built on a modern stack, not a page builder.',
     gradient: 'from-green-400 to-emerald-500',
   },
   {
@@ -239,7 +239,7 @@ export default function WhyChooseUs() {
                   </div>
                   <div>
                     <div className="text-sm font-bold text-gray-900">Trusted By</div>
-                    <div className="text-xs text-gray-600">50+ Local Businesses</div>
+                    <div className="text-xs text-gray-600">Patiala to Melbourne</div>
                   </div>
                 </div>
               </div>

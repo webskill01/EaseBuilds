@@ -366,7 +366,7 @@ export default function PricingPage() {
 
             <div className="container mx-auto max-w-6xl px-4 text-center relative z-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
-                Trusted by 50+ Businesses in Patiala Punjab India
+                Built for Businesses from Patiala to Melbourne
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 {[

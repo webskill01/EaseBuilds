@@ -313,7 +313,7 @@ export default function HowItWorks() {
               Ready to Start Your Website Project?
             </h3>
             <p className="text-sm sm:text-base text-blue-100 mb-6">
-              Join 50+ successful businesses in Patiala. Get your professional website in 2-4 weeks!
+              Join the businesses already running on EaseBuilds. Your website in 2-4 weeks.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
