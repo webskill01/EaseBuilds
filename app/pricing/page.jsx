@@ -113,7 +113,7 @@ export default function PricingPage() {
                   ))}
                 </div>
                 <span className="text-sm font-semibold text-gray-900">
-                  5.0 • 50+ Happy Clients
+                  5.0 on Google
                 </span>
               </div>
 

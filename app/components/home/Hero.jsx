@@ -84,7 +84,7 @@ export default function Hero() {
                   ))}
                 </div>
                 <span className="text-xs sm:text-sm font-bold text-gray-900">5.0</span>
-                <span className="text-xs text-gray-500 hidden sm:inline">• 50+</span>
+                <span className="text-xs text-gray-500 hidden sm:inline">• on Google</span>
               </div>
             </motion.div>
 

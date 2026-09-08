@@ -119,7 +119,7 @@ export default function Footer() {
                 ))}
               </div>
               <span className="text-xs font-bold text-white">5.0</span>
-              <span className="text-xs text-gray-400">• 50+ Reviews</span>
+              <span className="text-xs text-gray-400">• on Google</span>
             </div>
 
             {/* Social */}

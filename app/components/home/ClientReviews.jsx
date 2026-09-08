@@ -77,7 +77,7 @@ export default function ClientReviews() {
               </div>
               
               <span className="text-sm text-gray-600 font-medium">
-                50+ Google Reviews
+                Verified Google Reviews
               </span>
             </motion.div>
             
@@ -229,9 +229,9 @@ export default function ClientReviews() {
           <ScrollReveal direction="up" delay={0.3}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-10 max-w-4xl mx-auto">
               {[
-                { value: '50+', label: 'Google Reviews', icon: '⭐' },
-                { value: '100%', label: 'Verified', icon: '✓' },
-                { value: '5.0', label: 'Average Rating', icon: '🏆' },
+                { value: '5.0', label: 'Google Rating', icon: '⭐' },
+                { value: '100%', label: 'Verified Reviews', icon: '✓' },
+                { value: 'Since 2024', label: 'Building in Punjab', icon: '🏆' },
                 { value: '2-4 Weeks', label: 'Delivery Time', icon: '⚡' },
               ].map((stat, index) => (
                 <motion.div
