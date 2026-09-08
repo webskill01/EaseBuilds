@@ -145,14 +145,12 @@ export default function BlogPostPage() {
             </motion.div>
 
             {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight"
-            >
+            {/* ponytail: plain <h1>, never motion starting at opacity 0 - the post
+                title is the LCP element on every blog page, and animating it in
+                is the same CLS/LCP defect Phase 2 fixed on the other heroes. */}
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               {post.title}
-            </motion.h1>
+            </h1>
 
             {/* Meta Info */}
             <motion.div
