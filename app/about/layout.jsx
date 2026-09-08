@@ -57,7 +57,7 @@ export default function AboutLayout({ children }) {
     logo: 'https://easebuilds.in/images/logo.png',
     description: 'Best web development company in Patiala Punjab India, specializing in custom website design, e-commerce solutions, and SEO services for local businesses.',
     
-    foundingDate: '2023',
+    foundingDate: '2025-10-22',
     foundingLocation: {
       '@type': 'Place',
       address: {
