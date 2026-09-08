@@ -3,7 +3,6 @@
 
 import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
-import Script from 'next/script'
 
 const industryData = industries.manufacturers
 
@@ -11,7 +10,6 @@ const industryData = industries.manufacturers
 export const metadata = {
   title: industryData.seo.title,
   description: industryData.seo.description,
-  keywords: industryData.seo.keywords,
   openGraph: {
     title: 'Manufacturing Website Development Patiala | EaseBuilds',
     description: 'B2B website for manufacturers with product catalog, distributor portal. Expand business pan-India.',
@@ -20,7 +18,7 @@ export const metadata = {
     url: industryData.seo.canonical,
     images: [
       {
-        url: 'https://easebuilds.in/images/industries/manufacturers-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Manufacturing Company Website Design in Patiala',

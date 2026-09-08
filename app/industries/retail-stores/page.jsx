@@ -46,10 +46,10 @@ export default function RetailStoresPage() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
   const productShowcase = [
-    { id: 1, name: 'Fashion Products', image: '/images/industries/retail/accessories.jpg', category: 'Clothing' },
-    { id: 2, name: 'Electronics', image: '/images/industries/retail/electronics.jpg', category: 'Tech' },
-    { id: 3, name: 'Home Decor', image: '/images/industries/retail/decor.jpg', category: 'Lifestyle' },
-    { id: 4, name: 'Accessories', image: '/images/industries/retail/fashion.jpg', category: 'Fashion' },
+    { id: 1, name: 'Fashion Products', image: '/images/industries/retail/accessories.webp', category: 'Clothing' },
+    { id: 2, name: 'Electronics', image: '/images/industries/retail/electronics.webp', category: 'Tech' },
+    { id: 3, name: 'Home Decor', image: '/images/industries/retail/decor.webp', category: 'Lifestyle' },
+    { id: 4, name: 'Accessories', image: '/images/industries/retail/fashion.webp', category: 'Fashion' },
   ]
 
   return (
@@ -64,7 +64,7 @@ export default function RetailStoresPage() {
           className="absolute inset-0 z-0"
         >
           <HeroImage
-            src="/images/industries/retail/hero.jpg"
+            src="/images/industries/retail/hero.webp"
             alt="Modern retail store - E-commerce website development in Patiala"
           />
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
@@ -266,7 +266,7 @@ export default function RetailStoresPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/retail/cart.jpg"
+                    src="/images/industries/retail/cart.webp"
                     alt="Smart shopping cart and checkout system"
                     fill
                     className="object-cover"
@@ -292,7 +292,7 @@ export default function RetailStoresPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/retail/payment.jpg"
+                    src="/images/industries/retail/payment.webp"
                     alt="Secure payment gateway integration"
                     fill
                     className="object-cover"
@@ -318,7 +318,7 @@ export default function RetailStoresPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/retail/tracking.jpg"
+                    src="/images/industries/retail/tracking.webp"
                     alt="Real-time order tracking system"
                     fill
                     className="object-cover"
@@ -344,7 +344,7 @@ export default function RetailStoresPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/retail/inventory.jpg"
+                    src="/images/industries/retail/inventory.webp"
                     alt="Inventory management system"
                     fill
                     className="object-cover"

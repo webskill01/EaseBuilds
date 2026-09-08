@@ -12,6 +12,7 @@ import {
   faqSchema 
 } from '@/lib/seo'
 import Script from 'next/script'
+import JsonLd from './components/JsonLd'
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -37,10 +38,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+        {/* ponytail: no font preconnects — next/font self-hosts Inter, so
+            fonts.googleapis.com and fonts.gstatic.com are never contacted. */}
         {/* Favicon and App Icons */}
         <link rel="icon" href="/favicon.png" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -89,30 +88,9 @@ export default function RootLayout({ children }) {
         <FloatingWhatsApp />
 
         {/* Structured Data for SEO */}
-        <Script
-          id="organization-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-          strategy="afterInteractive"
-        />
-        <Script
-          id="local-business-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
-          }}
-          strategy="afterInteractive"
-        />
-        <Script
-          id="website-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-          strategy="afterInteractive"
-        />
+        <JsonLd id="organization-schema" data={organizationSchema} />
+        <JsonLd id="local-business-schema" data={localBusinessSchema} />
+        <JsonLd id="website-schema" data={websiteSchema} />
 
         {/* Google Tag Manager */}
         <Script

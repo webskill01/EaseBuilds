@@ -58,7 +58,7 @@ export default function CoachingInstitutesPage() {
           className="absolute inset-0 z-0"
         >
           <HeroImage
-            src="/images/industries/coaching/coaching-hero.jpg"
+            src="/images/industries/coaching/coaching-hero.webp"
             alt="Modern coaching institute - Professional website development in Patiala"
           />
            <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
@@ -204,7 +204,7 @@ export default function CoachingInstitutesPage() {
                         </div>
                         <div className="bg-white rounded-lg overflow-hidden aspect-[16/10] relative">
                           <Image
-                            src="/images/industries/coaching/desktop-coaching.png"
+                            src="/images/industries/coaching/desktop-coachin.webp"
                             alt="Dental clinic website desktop view"
                             fill
                             className="object-cover object-top"
@@ -234,9 +234,9 @@ export default function CoachingInstitutesPage() {
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
-              { image: '/images/industries/coaching/admission.jpg', icon: FaUserGraduate, title: 'Student Portal' },
-              { image: '/images/industries/coaching/portal.jpg', icon: FaClipboardList, title: 'Online Admission' },
-              { image: '/images/industries/coaching/fee1.jpg', icon: FaCreditCard, title: 'Online Fee Payment' }
+              { image: '/images/industries/coaching/admission.webp', icon: FaUserGraduate, title: 'Student Portal' },
+              { image: '/images/industries/coaching/portal.webp', icon: FaClipboardList, title: 'Online Admission' },
+              { image: '/images/industries/coaching/fee1.webp', icon: FaCreditCard, title: 'Online Fee Payment' }
             ].map((feature, index) => (
               <ScrollReveal key={index} direction="up" delay={index * 0.1}>
                 <div className="relative group">
@@ -310,25 +310,25 @@ export default function CoachingInstitutesPage() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             {[
               { 
-                image: '/images/industries/coaching/admission2.jpg',
+                image: '/images/industries/coaching/admission2.webp',
                 icon: FaClipboardList,
                 title: 'Online Admission Form',
                 description: 'Digital admission with document upload, course selection, payment integration. Increase enrollments by 2x.'
               },
               { 
-                image: '/images/industries/coaching/catalog.jpg',
+                image: '/images/industries/coaching/catalog.webp',
                 icon: FaBook,
                 title: 'Course Catalog & Details',
                 description: 'Detailed course pages with syllabus, faculty, batch timings, fees. Parents get complete information.'
               },
               { 
-                image: '/images/industries/coaching/fee.jpg',
+                image: '/images/industries/coaching/fee.webp',
                 icon: FaCreditCard,
                 title: 'Fee Payment Integration',
                 description: 'Accept fees via UPI, cards, net banking. Automatic receipts and payment reminders. 90% online collection.'
               },
               { 
-                image: '/images/industries/coaching/result.jpg',
+                image: '/images/industries/coaching/result.webp',
                 icon: FaUserGraduate,
                 title: 'Student Portal & Results',
                 description: 'Students access assignments, materials, lectures, test results. Reduces admin workload significantly.'

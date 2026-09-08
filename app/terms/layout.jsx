@@ -1,13 +1,12 @@
+import JsonLd from '../components/JsonLd'
 // Terms of Service Layout - SEO Optimized
 // Metadata and Schema Markup for Terms of Service Page
 
-import Script from 'next/script'
 
 // SEO Metadata - Optimized lengths
 export const metadata = {
   title: 'Terms of Service - EaseBuilds Web Development Patiala', // 56 chars
   description: 'Terms of Service for EaseBuilds web development services in Patiala Punjab. Service agreements, refund policy, intellectual property rights. Contact +91 6283380110', // 159 chars
-  keywords: 'terms of service, easebuilds terms, web developer patiala terms, service agreement, refund policy, website terms and conditions',
   openGraph: {
     title: 'Terms of Service - EaseBuilds',
     description: 'Terms and conditions for using EaseBuilds web development services in Patiala Punjab.',
@@ -16,7 +15,7 @@ export const metadata = {
     url: 'https://easebuilds.in/terms',
     images: [
       {
-        url: 'https://easebuilds.in/images/terms-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'EaseBuilds Terms of Service',
@@ -84,7 +83,7 @@ export default function TermsLayout({ children }) {
     '@type': 'Organization',
     name: 'EaseBuilds',
     url: 'https://easebuilds.in',
-    logo: 'https://easebuilds.in/logo.png',
+    logo: 'https://easebuilds.in/images/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+91-6283380110',
@@ -162,28 +161,13 @@ export default function TermsLayout({ children }) {
   return (
     <>
       {/* Terms Schema */}
-      <Script
-        id="terms-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="terms-schema" data={termsSchema} />
       
       {/* Organization Schema */}
-      <Script
-        id="organization-terms-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="organization-terms-schema" data={organizationSchema} />
 
       {/* Service Schema */}
-      <Script
-        id="service-terms-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="service-terms-schema" data={serviceSchema} />
       
       {children}
     </>

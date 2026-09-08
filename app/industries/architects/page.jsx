@@ -47,12 +47,12 @@ export default function ArchitectsPage() {
 
   // Portfolio samples with local image paths
   const portfolioSamples = [
-    { id: 1, title: 'Modern Villa Design', category: 'residential', image: '/images/industries/architect/villa.jpg' },
-    { id: 2, title: 'Commercial Complex', category: 'commercial', image: '/images/industries/architect/complex.jpg' },
-    { id: 3, title: 'Contemporary Home', category: 'residential', image: '/images/industries/architect/home.jpg' },
-    { id: 4, title: 'Office Building', category: 'commercial', image: '/images/industries/architect/office.jpg' },
-    { id: 5, title: 'Interior Design', category: 'interior', image: '/images/industries/architect/interior.jpg' },
-    { id: 6, title: 'Luxury Apartment', category: 'residential', image: '/images/industries/architect/luxury.jpg' },
+    { id: 1, title: 'Modern Villa Design', category: 'residential', image: '/images/industries/architect/villa.webp' },
+    { id: 2, title: 'Commercial Complex', category: 'commercial', image: '/images/industries/architect/complex.webp' },
+    { id: 3, title: 'Contemporary Home', category: 'residential', image: '/images/industries/architect/home.webp' },
+    { id: 4, title: 'Office Building', category: 'commercial', image: '/images/industries/architect/office.webp' },
+    { id: 5, title: 'Interior Design', category: 'interior', image: '/images/industries/architect/interior.webp' },
+    { id: 6, title: 'Luxury Apartment', category: 'residential', image: '/images/industries/architect/luxury.webp' },
   ]
 
   const filteredProjects = activeCategory === 'all' 
@@ -72,7 +72,7 @@ export default function ArchitectsPage() {
           className="absolute inset-0 z-0"
         >
           <HeroImage
-            src="/images/industries/architect/hero.jpg"
+            src="/images/industries/architect/hero.webp"
             alt="Modern architecture design - Professional website development in Patiala"
           />
           
@@ -302,7 +302,7 @@ export default function ArchitectsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/architect/gallery.jpg"
+                    src="/images/industries/architect/gallery.webp"
                     alt="Advanced project gallery for architects"
                     fill
                     className="object-cover"
@@ -329,7 +329,7 @@ export default function ArchitectsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/architect/3d.jpg"
+                    src="/images/industries/architect/3d.webp"
                     alt="3D rendering integration for architecture websites"
                     fill
                     className="object-cover"
@@ -356,7 +356,7 @@ export default function ArchitectsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/architect/case-study.jpg"
+                    src="/images/industries/architect/case-study.webp"
                     alt="Detailed architecture case studies"
                     fill
                     className="object-cover"
@@ -383,7 +383,7 @@ export default function ArchitectsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/architect/pdf.jpg"
+                    src="/images/industries/architect/pdf.webp"
                     alt="Download portfolio PDF feature"
                     fill
                     className="object-cover"

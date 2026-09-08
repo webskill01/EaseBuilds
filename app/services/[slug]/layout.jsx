@@ -1,9 +1,9 @@
 // Dynamic Layout for All Service Pages - FULL SEO OPTIMIZED
 // Handles SEO metadata + ALL Schema types dynamically
 
-import Script from 'next/script'
 import { services, generateServiceSchema } from '@/lib/servicesData'
 import { notFound } from 'next/navigation'
+import JsonLd from '../../components/JsonLd'
 
 // Generate static params for all services
 export async function generateStaticParams() {
@@ -27,7 +27,6 @@ export async function generateMetadata({ params }) {
   return {
     title: service.seo.title,
     description: service.seo.description,
-    keywords: service.seo.keywords,
     openGraph: {
       title: service.seo.title,
       description: service.seo.description,
@@ -85,7 +84,8 @@ export default async function ServiceLayout({ children, params }) {
     priceCurrency: 'INR',
     availability: 'https://schema.org/InStock',
     url: service.seo.canonical,
-    priceValidUntil: '2025-12-31',
+    // rolls forward on every build; the hardcoded date had been expired for 9 months
+    priceValidUntil: new Date(Date.now() + 365 * 864e5).toISOString().slice(0, 10),
     seller: {
       '@type': 'Organization',
       name: 'EaseBuilds',
@@ -150,36 +150,16 @@ export default async function ServiceLayout({ children, params }) {
   return (
     <>
       {/* Service Schema */}
-      <Script
-        id={`service-schema-${slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={serviceSchema} />
       
       {/* Offer Schema */}
-      <Script
-        id={`offer-schema-${slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(offerSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={offerSchema} />
       
       {/* FAQ Schema */}
-      <Script
-        id={`faq-schema-${slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={faqSchema} />
       
       {/* Breadcrumb Schema */}
-      <Script
-        id={`breadcrumb-schema-${slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={breadcrumbSchema} />
       
       {children}
     </>

@@ -1,4 +1,4 @@
-import Script from 'next/script'
+import JsonLd from '../../components/JsonLd'
 
 export default function IndustrySchemas({ industryData, industrySlug }) {
   // Service Schema
@@ -79,28 +79,13 @@ export default function IndustrySchemas({ industryData, industrySlug }) {
   return (
     <>
       {/* Service Schema */}
-      <Script
-        id={`${industrySlug}-service-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={serviceSchema} />
 
       {/* FAQ Schema */}
-      <Script
-        id={`${industrySlug}-faq-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={faqSchema} />
 
       {/* Breadcrumb Schema */}
-      <Script
-        id={`${industrySlug}-breadcrumb-schema`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd data={breadcrumbSchema} />
     </>
   )
 }

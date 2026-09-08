@@ -2,7 +2,6 @@ import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Zod validation schema
 const contactSchema = z.object({
@@ -49,7 +48,7 @@ export async function POST(request) {
     console.log('📧 Form data received:', { name, email, service, withinFomoOffer })
 
     // Send notification email to you (business owner)
-    const { data, error } = await resend.emails.send({
+    const { data, error } = await new Resend(process.env.RESEND_API_KEY).emails.send({
       from: 'EaseBuilds <onboarding@resend.dev>',
       to: ['nitinemailss@gmail.com'],
       replyTo: email,

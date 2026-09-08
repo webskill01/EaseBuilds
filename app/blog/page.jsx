@@ -52,7 +52,7 @@ export default function BlogPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <HeroImage
-          src="/images/blog-hero.jpg" 
+          src="/images/blog-hero.webp" 
           alt="EaseBuilds Blog - Web Development Insights"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-gray-600/40 via-gray-500/30 to-gray-700/40" />

@@ -8,6 +8,8 @@ const nextConfig = {
   
   images: {
     formats: ['image/avif', 'image/webp'],
+    // required from Next 16; 80 is what the heroes use, 75 is the default
+    qualities: [75, 80],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 90, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
@@ -106,12 +108,9 @@ const nextConfig = {
   
   async redirects() {
     return [
-      // ✅ ADD: Common redirects
-      // {
-      //   source: '/old-blog/:slug',
-      //   destination: '/blog/:slug',
-      //   permanent: true,
-      // },
+      // doorway pages deleted 2026-09-08 — near-duplicates cannibalising `/`
+      { source: '/website-development-patiala', destination: '/', permanent: true },
+      { source: '/web-developer-near-me-patiala', destination: '/', permanent: true },
     ]
   },
   

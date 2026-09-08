@@ -1,13 +1,12 @@
+import JsonLd from '../components/JsonLd'
 // Pricing Page Layout - SEO Optimized with Schema Markup
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
-import Script from 'next/script'
 
 // OPTIMIZED Metadata (Title: 59 chars, Description: 155 chars)
 export const metadata = {
   title: 'Website Pricing Patiala | ₹2,999+ | EaseBuilds Packages',
   description: 'Affordable website development pricing in Patiala. Basic ₹2,999, Business ₹5,999, E-commerce ₹9,999. Free maintenance, fast delivery. Call +91 6283380110!',
-  keywords: 'website pricing patiala, web development cost patiala punjab india, affordable website packages patiala, web design pricing patiala, website development rates patiala, best value web developer patiala',
   
   openGraph: {
     title: 'Website Development Pricing in Patiala | Starting ₹2,999',
@@ -17,7 +16,7 @@ export const metadata = {
     url: 'https://easebuilds.in/pricing',
     siteName: 'EaseBuilds',
     images: [{
-      url: 'https://easebuilds.in/images/pricing-packages-patiala.jpg',
+      url: 'https://easebuilds.in/opengraph-image.png',
       width: 1200,
       height: 630,
       alt: 'EaseBuilds Pricing Packages - Web Development in Patiala'
@@ -28,7 +27,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Website Pricing Patiala | Starting ₹2,999 - EaseBuilds',
     description: 'Professional web development packages. Basic ₹2,999, Business ₹5,999, E-commerce ₹9,999. Patiala.',
-    images: ['https://easebuilds.in/images/pricing-packages-patiala.jpg'],
+    images: ['https://easebuilds.in/opengraph-image.png'],
   },
   
   alternates: {
@@ -48,107 +47,6 @@ export const metadata = {
 }
 
 export default function PricingLayout({ children }) {
-  // Product Schema for Pricing Packages (CRITICAL for Rich Snippets)
-  const productsSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        item: {
-          '@type': 'Product',
-          name: 'Basic Website Package - Patiala',
-          description: '3-page professional website with SEO optimization and responsive design for businesses in Patiala Punjab India',
-          brand: {
-            '@type': 'Brand',
-            name: 'EaseBuilds'
-          },
-          offers: {
-            '@type': 'Offer',
-            url: 'https://easebuilds.in/pricing',
-            priceCurrency: 'INR',
-            price: '2999',
-            priceValidUntil: '2025-12-31',
-            itemCondition: 'https://schema.org/NewCondition',
-            availability: 'https://schema.org/InStock',
-            seller: {
-              '@type': 'Organization',
-              name: 'EaseBuilds'
-            }
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '5.0',
-            reviewCount: '50'
-          }
-        }
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        item: {
-          '@type': 'Product',
-          name: 'Business Website Package - Patiala',
-          description: '8-page website with blog, advanced SEO, and premium features for Patiala businesses',
-          brand: {
-            '@type': 'Brand',
-            name: 'EaseBuilds'
-          },
-          offers: {
-            '@type': 'Offer',
-            url: 'https://easebuilds.in/pricing',
-            priceCurrency: 'INR',
-            price: '5999',
-            priceValidUntil: '2025-12-31',
-            itemCondition: 'https://schema.org/NewCondition',
-            availability: 'https://schema.org/InStock',
-            seller: {
-              '@type': 'Organization',
-              name: 'EaseBuilds'
-            }
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '5.0',
-            reviewCount: '50'
-          }
-        }
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        item: {
-          '@type': 'Product',
-          name: 'E-commerce Website Package - Patiala',
-          description: 'Full-featured online store with unlimited pages, payment gateway, and product catalog for Patiala businesses',
-          brand: {
-            '@type': 'Brand',
-            name: 'EaseBuilds'
-          },
-          offers: {
-            '@type': 'Offer',
-            url: 'https://easebuilds.in/pricing',
-            priceCurrency: 'INR',
-            price: '9999',
-            priceValidUntil: '2025-12-31',
-            itemCondition: 'https://schema.org/NewCondition',
-            availability: 'https://schema.org/InStock',
-            seller: {
-              '@type': 'Organization',
-              name: 'EaseBuilds'
-            }
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '5.0',
-            reviewCount: '50'
-          }
-        }
-      }
-    ]
-  }
-
   // AggregateOffer Schema (Shows price range in search results)
   const aggregateOfferSchema = {
     '@context': 'https://schema.org',
@@ -251,37 +149,14 @@ export default function PricingLayout({ children }) {
 
   return (
     <>
-      {/* Product Schema for Pricing Packages */}
-      <Script
-        id="products-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productsSchema) }}
-        strategy="beforeInteractive"
-      />
-
       {/* AggregateOffer Schema */}
-      <Script
-        id="aggregate-offer-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateOfferSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="aggregate-offer-schema" data={aggregateOfferSchema} />
 
       {/* FAQ Schema */}
-      <Script
-        id="pricing-faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricingFaqSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="pricing-faq-schema" data={pricingFaqSchema} />
 
       {/* Breadcrumb Schema */}
-      <Script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
       {children}
     </>

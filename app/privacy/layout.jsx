@@ -1,13 +1,12 @@
+import JsonLd from '../components/JsonLd'
 // Privacy Policy Layout - SEO Optimized
 // Metadata and Schema Markup for Privacy Policy Page
 
-import Script from 'next/script'
 
 // SEO Metadata - Optimized lengths
 export const metadata = {
   title: 'Privacy Policy - EaseBuilds Web Development Patiala', // 53 chars
   description: 'Privacy Policy for EaseBuilds web development services. Learn how we collect, use, and protect your personal information. GDPR compliant. Contact +91 6283380110', // 159 chars
-  keywords: 'privacy policy, easebuilds privacy, web developer patiala privacy, data protection, gdpr compliance, personal information protection',
   openGraph: {
     title: 'Privacy Policy - EaseBuilds Web Development',
     description: 'Learn about our data protection and privacy practices for web development services.',
@@ -16,7 +15,7 @@ export const metadata = {
     url: 'https://easebuilds.in/privacy',
     images: [
       {
-        url: 'https://easebuilds.in/images/privacy-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'EaseBuilds Privacy Policy',
@@ -84,7 +83,7 @@ export default function PrivacyLayout({ children }) {
     '@type': 'Organization',
     name: 'EaseBuilds',
     url: 'https://easebuilds.in',
-    logo: 'https://easebuilds.in/logo.png',
+    logo: 'https://easebuilds.in/images/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+91-6283380110',
@@ -105,20 +104,10 @@ export default function PrivacyLayout({ children }) {
   return (
     <>
       {/* Privacy Policy Schema */}
-      <Script
-        id="privacy-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacySchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="privacy-schema" data={privacySchema} />
       
       {/* Organization Schema */}
-      <Script
-        id="organization-privacy-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="organization-privacy-schema" data={organizationSchema} />
       
       {children}
     </>

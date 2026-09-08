@@ -195,7 +195,7 @@ const handleSubmit = async (e) => {
         {/* Background Image with Light Overlay */}
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           <HeroImage
-            src="/images/contact-hero.jpg"
+            src="/images/contact-hero.webp"
             alt="Contact Us - EaseBuilds Patiala"
           />
           {/* LIGHT Gradient Overlay - 40% opacity */}

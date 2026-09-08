@@ -1,13 +1,12 @@
+import JsonLd from '../components/JsonLd'
 // About Page Layout - SEO Optimized
 // EaseBuilds - Best Web Developer in Patiala Punjab India
 
-import Script from 'next/script'
 
 // OPTIMIZED Metadata (Title: 58 chars, Description: 155 chars)
 export const metadata = {
   title: 'About EaseBuilds | Best Web Developer Patiala - Our Story',
   description: 'Meet the team behind EaseBuilds, Patiala\'s top web development company. 50+ happy clients, 100% satisfaction. Expert website design since 2023.',
-  keywords: 'about easebuilds, best web developer patiala, web development company patiala punjab india, meet the team, why choose easebuilds, trusted web developer patiala',
   
   openGraph: {
     title: 'About EaseBuilds - Best Web Developer in Patiala Punjab India',
@@ -17,7 +16,7 @@ export const metadata = {
     url: 'https://easebuilds.in/about',
     siteName: 'EaseBuilds',
     images: [{
-      url: 'https://easebuilds.in/images/about-easebuilds-team.jpg',
+      url: 'https://easebuilds.in/opengraph-image.png',
       width: 1200,
       height: 630,
       alt: 'EaseBuilds Team - Best Web Developer in Patiala'
@@ -28,7 +27,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'About EaseBuilds - Best Web Developer Patiala',
     description: 'Meet the team behind Patiala\'s top web development company. 50+ clients, 5.0 rating.',
-    images: ['https://easebuilds.in/images/about-easebuilds-team.jpg'],
+    images: ['https://easebuilds.in/opengraph-image.png'],
   },
   
   alternates: {
@@ -55,7 +54,7 @@ export default function AboutLayout({ children }) {
     name: 'EaseBuilds',
     alternateName: 'EaseBuilds Web Development',
     url: 'https://easebuilds.in',
-    logo: 'https://easebuilds.in/logo.png',
+    logo: 'https://easebuilds.in/images/logo.png',
     description: 'Best web development company in Patiala Punjab India, specializing in custom website design, e-commerce solutions, and SEO services for local businesses.',
     
     foundingDate: '2023',
@@ -86,13 +85,6 @@ export default function AboutLayout({ children }) {
       availableLanguage: ['English', 'Hindi', 'Punjabi'],
     }],
     
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '50',
-      bestRating: '5',
-      worstRating: '1',
-    },
     
     sameAs: [
       'https://facebook.com/easebuilds',
@@ -180,36 +172,16 @@ export default function AboutLayout({ children }) {
   return (
     <>
       {/* Organization Schema */}
-      <Script
-        id="organization-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="organization-schema" data={organizationSchema} />
 
       {/* AboutPage Schema */}
-      <Script
-        id="about-page-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="about-page-schema" data={aboutPageSchema} />
 
       {/* Breadcrumb Schema */}
-      <Script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
       {/* Team Schema (Optional - add if you have team info) */}
-      <Script
-        id="team-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="team-schema" data={teamSchema} />
 
       {children}
     </>

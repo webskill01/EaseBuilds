@@ -6,6 +6,8 @@
 import { motion, useInView } from 'framer-motion'
 import { FaRocket, FaPhone, FaWhatsapp, FaStar, FaUsers, FaAward, FaClock, FaRupeeSign, FaPhoneAlt } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
+import { blurData } from '@/lib/blurData'
 import { useRef } from 'react'
 import RotatingText from '../animations/RotatingText'
 import CountUp from '../animations/CountUp'
@@ -26,11 +28,19 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Background Image - Optimized */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/images/main-hero.jpg)',
-          }}
+        {/* ponytail: was a CSS background-image, which the preload scanner cannot
+            see — it only surfaces after CSS parses, and it skips next/image's
+            AVIF/WebP + srcset entirely. That was the 7.1s mobile LCP. */}
+        <Image
+          src="/images/main-hero.webp"
+          alt=""
+          fill
+          priority
+          quality={80}
+          sizes="100vw"
+          className="object-cover object-center"
+          placeholder="blur"
+          blurDataURL={blurData['/images/main-hero.webp']}
         />
         {/* Lighter Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/10 via-white/65 to-cyan-50/10" />

@@ -42,18 +42,6 @@ export default function sitemap() {
 
     // ===== TIER 2: PRIMARY LANDING PAGES (Critical for SEO) =====
     {
-      url: `${baseUrl}/website-development-patiala`,
-      lastModified: oneWeekAgo,
-      changeFrequency: 'weekly',
-      priority: 0.95, // Slightly adjusted
-    },
-    {
-      url: `${baseUrl}/web-developer-near-me-patiala`,
-      lastModified: oneWeekAgo,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
       url: `${baseUrl}/pricing`,
       lastModified: oneWeekAgo,
       changeFrequency: 'weekly',

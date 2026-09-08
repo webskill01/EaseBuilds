@@ -14,7 +14,7 @@ const projects = [
     title: 'Modgill Travels - Taxi Booking Platform',
     category: 'Travel & Tourism',
     description: 'Professional taxi rental website for Patiala businesses with real-time booking system, fleet management, and seamless customer experience. Increased online bookings by 60% within first month.',
-    image: '/images/modgilltravels.jpg',
+    image: '/images/modgilltravels.webp',
     gradient: 'from-blue-500 to-cyan-600',
     tags: ['Next.js', 'Real-time Booking', 'Mobile App PWA', 'Payment Integration'],
     link: 'https://modgilltravels.in',
@@ -27,7 +27,7 @@ const projects = [
     title: 'Tape India - E-commerce Store',
     category: 'E-Commerce Development',
     description: 'Modern online store for adhesive tape products serving Chennai with advanced product catalog, secure payment gateway (Razorpay, PayPal), automated inventory management, and lightning-fast checkout. Sales tripled in 3 months.',
-    image: '/images/tapeindia.jpg',
+    image: '/images/tapeindia.webp',
     gradient: 'from-orange-500 to-red-600',
     tags: ['E-commerce', 'Payment Integration', 'Inventory System', 'Fast Checkout'],
     link: 'https://tapeindia.shop',
@@ -40,7 +40,7 @@ const projects = [
     title: 'Pariksha - Education Platform',
     category: 'Education Technology',
     description: 'Serverless question paper bank providing students across Punjab India with organized access to 10,000+ previous year exam papers. Features advanced search, filtering by subject/year, bookmark system, and fully responsive mobile design for on-the-go learning.',
-    image: '/images/pariksha.jpg',
+    image: '/images/pariksha.webp',
     gradient: 'from-purple-500 to-pink-600',
     tags: ['Serverless Architecture', 'Search Engine', 'Cloud Hosting', 'Mobile Learning'],
     link: 'https://pariksha-serverless.vercel.app',
@@ -209,7 +209,7 @@ export default function Projects() {
                           fill
                           className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                           sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          priority={index === 0}
+                          loading="lazy"
                         />
 
                         {/* Hover overlay */}

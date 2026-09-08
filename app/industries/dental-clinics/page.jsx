@@ -58,7 +58,7 @@ export default function DentalClinicsPage() {
           className="absolute inset-0 z-0"
         >
           <HeroImage
-            src="/images/industries/dental/dental-hero.jpg"
+            src="/images/industries/dental/dental-hero.webp"
             alt="Modern dental clinic - Professional website development in Patiala"
           />
           
@@ -206,7 +206,7 @@ export default function DentalClinicsPage() {
                   </div>
                   <div className="bg-white rounded-lg overflow-hidden aspect-[16/10] relative">
                     <Image
-                      src="/images/industries/dental/dental-desktop.jpg"
+                      src="/images/industries/dental/dental-desktop.webp"
                       alt="Dental clinic website desktop view"
                       fill
                       className="object-cover object-top"
@@ -269,7 +269,7 @@ export default function DentalClinicsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/dental/online-booking.jpg"
+                    src="/images/industries/dental/online-booking.webp"
                     alt="Online appointment booking system for dental clinics"
                     fill
                     className="object-cover"
@@ -297,7 +297,7 @@ export default function DentalClinicsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/dental/patient-portal.jpg"
+                    src="/images/industries/dental/patient-portal.webp"
                     alt="Secure patient portal for dental records"
                     fill
                     className="object-cover"
@@ -324,7 +324,7 @@ export default function DentalClinicsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/dental/gallery.jpg"
+                    src="/images/industries/dental/gallery.webp"
                     alt="Before and after dental treatment gallery"
                     fill
                     className="object-cover"
@@ -351,7 +351,7 @@ export default function DentalClinicsPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/dental/seo.jpg"
+                    src="/images/industries/dental/seo.webp"
                     alt="SEO optimization for dental clinic websites"
                     fill
                     className="object-cover"

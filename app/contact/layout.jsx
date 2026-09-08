@@ -1,13 +1,12 @@
+import JsonLd from '../components/JsonLd'
 // Contact Page Layout - SEO Optimized
 // Metadata and Schema Markup for Contact Page
 
-import Script from 'next/script'
 
 // SEO Metadata - Optimized lengths
 export const metadata = {
   title: 'Contact Us - Web Developer Patiala Punjab | EaseBuilds', // 57 chars
   description: 'Contact EaseBuilds for website development in Patiala Punjab. Call +91 6283380110, WhatsApp, Email. Free consultation. Visit our office in Patiala. Fast response!', // 159 chars
-  keywords: 'contact web developer patiala, website developer contact patiala punjab, easebuilds contact, web design patiala contact number',
   openGraph: {
     title: 'Contact Web Developer in Patiala Punjab India',
     description: 'Get in touch with EaseBuilds for website development. Call, WhatsApp, or visit our Patiala office.',
@@ -16,7 +15,7 @@ export const metadata = {
     url: 'https://easebuilds.in/contact',
     images: [
       {
-        url: 'https://easebuilds.in/images/contact-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Contact EaseBuilds - Web Developer Patiala',
@@ -55,7 +54,7 @@ export default function ContactLayout({ children }) {
       '@type': 'Organization',
       name: 'EaseBuilds',
       url: 'https://easebuilds.in',
-      logo: 'https://easebuilds.in/logo.png',
+      logo: 'https://easebuilds.in/images/logo.png',
       contactPoint: [
         {
           '@type': 'ContactPoint',
@@ -185,27 +184,12 @@ const contactFaqSchema = {
   return (
     <>
       {/* Contact Schema */}
-      <Script
-        id="contact-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="contact-schema" data={contactSchema} />
       {/* FAQ Schema */}
-       <Script
-        id="contact-faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactFaqSchema) }}
-        strategy="beforeInteractive"
-      />
+       <JsonLd id="contact-faq-schema" data={contactFaqSchema} />
 
       {/*  Breadcrumb Schema */}
-      <Script
-        id="contact-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="contact-breadcrumb-schema" data={breadcrumbSchema} />
       {children}
     </>
   )

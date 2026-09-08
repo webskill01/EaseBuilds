@@ -57,7 +57,7 @@ export default function ManufacturersPage() {
           className="absolute inset-0 z-0"
         >
           <Image
-            src="/images/industries/manufacturer/hero.jpg"
+            src="/images/industries/manufacturer/hero.webp"
             alt="Modern manufacturing facility - B2B website development in Patiala"
             fill
             priority
@@ -208,7 +208,7 @@ export default function ManufacturersPage() {
                         </div>
                         <div className="bg-white rounded-lg overflow-hidden aspect-[16/10] relative">
                           <Image
-                            src="/images/industries/manufacturer/manufacturer-desktop1.jpg"
+                            src="/images/industries/manufacturer/manufacturer-desktop1.webp"
                             alt="Manufacturer website desktop view"
                             fill
                             className="object-cover object-top"
@@ -270,7 +270,7 @@ export default function ManufacturersPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/manufacturer/catalog.jpg"
+                    src="/images/industries/manufacturer/catalog.webp"
                     alt="Detailed product catalog for manufacturers"
                     fill
                     className="object-cover"
@@ -296,7 +296,7 @@ export default function ManufacturersPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/manufacturer/order.jpg"
+                    src="/images/industries/manufacturer/order.webp"
                     alt="B2B bulk ordering system"
                     fill
                     className="object-cover"
@@ -322,7 +322,7 @@ export default function ManufacturersPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <Image
-                    src="/images/industries/manufacturer/login.jpg"
+                    src="/images/industries/manufacturer/login.webp"
                     alt="Distributor login portal"
                     fill
                     className="object-cover"
@@ -348,7 +348,7 @@ export default function ManufacturersPage() {
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-blue-100 to-cyan-100 relative">
                   <HeroImage
-                    src="/images/industries/manufacturer/invoice.jpg"
+                    src="/images/industries/manufacturer/invoice.webp"
                     alt="Automatic invoice generation system"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent" />

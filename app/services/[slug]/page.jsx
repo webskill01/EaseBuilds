@@ -112,7 +112,7 @@ export default function DynamicServicePage() {
       return serviceData.valueProps[index].image
     }
     // Fallback to placeholder or hero image
-    return serviceData.hero.image || '/images/main-hero.jpg'
+    return serviceData.hero.image || '/images/main-hero.webp'
   }
 
   return (

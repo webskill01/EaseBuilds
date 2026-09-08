@@ -93,7 +93,7 @@ export default function PricingPage() {
   {/* Custom Image Background Layer */}
   <div className="absolute inset-0 opacity-50">
     <HeroImage
-      src="/images/blog2.jpg"
+      src="/images/blog2.webp"
       alt="Website development pricing background - EaseBuilds office in Patiala Punjab India"
     />
   </div>
@@ -334,7 +334,7 @@ export default function PricingPage() {
         </section>
         <p className="text-sm sm:text-base text-gray-600 max-w-5xl mx-auto mb-4 sm:mb-6 px-4">
   Transparent, affordable website packages from the{' '}
-  <Link href="/website-development-patiala" className="text-blue-600 hover:text-blue-700 font-semibold underline">
+  <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold underline">
     best web developer in Patiala
   </Link>. 
   Choose from{' '}

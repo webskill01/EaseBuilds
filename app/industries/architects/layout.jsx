@@ -3,7 +3,6 @@
 
 import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
-import Script from 'next/script'
 
 const industryData = industries.architects
 
@@ -11,7 +10,6 @@ const industryData = industries.architects
 export const metadata = {
   title: industryData.seo.title,
   description: industryData.seo.description,
-  keywords: industryData.seo.keywords,
   openGraph: {
     title: 'Architecture Portfolio Website Patiala | EaseBuilds',
     description: 'Stunning portfolio website for architects. Showcase projects, 3D renderings. Get 10x more clients in Punjab.',
@@ -20,7 +18,7 @@ export const metadata = {
     url: industryData.seo.canonical,
     images: [
       {
-        url: 'https://easebuilds.in/images/industries/architects-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Architecture Portfolio Website Design in Patiala',

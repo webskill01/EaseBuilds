@@ -3,7 +3,6 @@
 
 import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
-import Script from 'next/script'
 
 const industryData = industries.coachingInstitutes
 
@@ -11,7 +10,6 @@ const industryData = industries.coachingInstitutes
 export const metadata = {
   title: industryData.seo.title,
   description: industryData.seo.description,
-  keywords: industryData.seo.keywords,
   openGraph: {
     title: 'Coaching Institute Website Patiala | EaseBuilds',
     description: 'Modern education website with online admission & fee payment. Get 2x enrollments. Trusted by 5+ institutes.',
@@ -20,7 +18,7 @@ export const metadata = {
     url: industryData.seo.canonical,
     images: [
       {
-        url: 'https://easebuilds.in/images/industries/coaching-institute-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Coaching Institute Website Design in Patiala',

@@ -41,7 +41,7 @@ export default function TermsPage() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
           <HeroImage
-            src="/images/terms-hero.jpg"
+            src="/images/terms-hero.webp"
             alt="Terms of Service"
           />
         </div>

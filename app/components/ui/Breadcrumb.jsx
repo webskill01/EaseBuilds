@@ -6,7 +6,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { FaHome, FaChevronRight } from 'react-icons/fa'
-import Script from 'next/script'
+import JsonLd from '../../components/JsonLd'
 
 export default function Breadcrumb() {
   const pathname = usePathname()
@@ -89,12 +89,7 @@ export default function Breadcrumb() {
   return (
     <>
       {/* JSON-LD Schema for SEO */}
-      <Script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
       {/* Breadcrumb Navigation */}
       <nav 

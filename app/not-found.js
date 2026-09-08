@@ -33,7 +33,6 @@ export default function NotFound() {
                   alt="404 Error Illustration"
                   fill
                   className="object-contain drop-shadow-2xl animate-float"
-                  priority
                 />
               </div>
             </div>

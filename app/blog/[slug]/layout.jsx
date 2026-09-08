@@ -1,9 +1,9 @@
 // Dynamic Blog Post Layout - SEO Optimized per Article
 // Generates unique metadata for each blog post
 
-import Script from 'next/script'
 import { getPostBySlug, getAllPosts } from '@/lib/blogData'
 import { notFound } from 'next/navigation'
+import JsonLd from '../../components/JsonLd'
 
 // Generate static params for all blog posts (for static generation)
 export async function generateStaticParams() {
@@ -28,7 +28,6 @@ export async function generateMetadata({ params }) {
   return {
     title: post.metaTitle,
     description: post.metaDescription,
-    keywords: post.keywords,
     
     authors: [{ name: post.author.name }],
     
@@ -162,29 +161,14 @@ export default async function BlogPostLayout({ children, params }) {
   return (
     <>
       {/* Article Schema */}
-      <Script
-        id="article-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="article-schema" data={articleSchema} />
 
       {/* Breadcrumb Schema */}
-      <Script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
       {/* FAQ Schema (if exists) */}
       {faqSchema && (
-        <Script
-          id="faq-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-          strategy="beforeInteractive"
-        />
+        <JsonLd id="faq-schema" data={faqSchema} />
       )}
 
       {children}

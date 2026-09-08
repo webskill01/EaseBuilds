@@ -3,7 +3,6 @@
 
 import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
-import Script from 'next/script'
 
 const industryData = industries.retailStores
 
@@ -11,7 +10,6 @@ const industryData = industries.retailStores
 export const metadata = {
   title: industryData.seo.title,
   description: industryData.seo.description,
-  keywords: industryData.seo.keywords,
   openGraph: {
     title: 'E-commerce Website for Retail Stores Patiala | EaseBuilds',
     description: 'Start selling online with professional e-commerce website. Payment gateway, inventory, delivery. Get 30% more revenue.',
@@ -20,7 +18,7 @@ export const metadata = {
     url: industryData.seo.canonical,
     images: [
       {
-        url: 'https://easebuilds.in/images/industries/retail-stores-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'E-commerce Website for Retail Stores in Patiala',

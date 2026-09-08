@@ -1,12 +1,11 @@
+import JsonLd from '../components/JsonLd'
 // Blog Layout - SEO Optimized with Schema Markup
 // Handles metadata and structured data for blog section
 
-import Script from 'next/script'
 
 export const metadata = {
   title: 'Web Development Blog - Tips, Guides & Insights | EaseBuilds Patiala',
   description: 'Expert web development blog from Patiala. Learn about website design, SEO, e-commerce, maintenance, and choosing developers. Updated guides and tips for businesses.',
-  keywords: 'web development blog, patiala blog, website tips, seo guide, web design articles, ecommerce guide, developer blog patiala',
   
   openGraph: {
     title: 'Web Development Blog - EaseBuilds Patiala',
@@ -17,7 +16,7 @@ export const metadata = {
     siteName: 'EaseBuilds',
     images: [
       {
-        url: 'https://easebuilds.in/images/blog-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'EaseBuilds Blog - Web Development Guides',
@@ -29,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Web Development Blog - EaseBuilds Patiala',
     description: 'Expert guides on web development, SEO, and digital marketing.',
-    images: ['https://easebuilds.in/images/blog-og.jpg'],
+    images: ['https://easebuilds.in/opengraph-image.png'],
   },
   
   alternates: {
@@ -126,28 +125,13 @@ export default function BlogLayout({ children }) {
   return (
     <>
       {/* Organization Schema */}
-      <Script
-        id="organization-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="organization-schema" data={organizationSchema} />
 
       {/* Blog Collection Schema */}
-      <Script
-        id="blog-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="blog-schema" data={blogSchema} />
 
       {/* Breadcrumb Schema */}
-      <Script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
       {children}
     </>

@@ -36,7 +36,7 @@ export default function PrivacyPage() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-10">
         <div className="absolute inset-0 z-0">
           <HeroImage
-            src="/images/privacy-hero.jpg"
+            src="/images/privacy-hero.webp"
             alt="Privacy and Security"
           />
         </div>

@@ -3,7 +3,6 @@
 
 import IndustrySchemas from '@/app/components/schemas/IndustrySchema'
 import { industries } from '@/lib/industriesData'
-import Script from 'next/script'
 
 const industryData = industries.dentalClinics
 
@@ -11,7 +10,6 @@ const industryData = industries.dentalClinics
 export const metadata = {
   title: industryData.seo.title, // 59 chars
   description: industryData.seo.description, // 158 chars
-  keywords: industryData.seo.keywords,
   openGraph: {
     title: 'Dental Clinic Website Design Patiala | EaseBuilds',
     description: 'Professional dental website with online booking. Get 50+ monthly appointments. Trusted by 10+ clinics in Punjab.',
@@ -20,7 +18,7 @@ export const metadata = {
     url: industryData.seo.canonical,
     images: [
       {
-        url: 'https://easebuilds.in/images/industries/dental-clinic-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Dental Clinic Website Design in Patiala',

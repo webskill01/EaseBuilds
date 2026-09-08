@@ -1,13 +1,12 @@
+import JsonLd from '../components/JsonLd'
 // Layout for Portfolio/Work Showcase Page
 // SEO-optimized metadata and schema markup for portfolio
 
-import Script from 'next/script'
 
 // SEO Metadata - Optimized title and description lengths
 export const metadata = {
   title: 'Portfolio - Web Development Projects Patiala | EaseBuilds Work', // 59 chars
   description: 'View our portfolio of 50+ websites built for Patiala businesses. Custom websites, e-commerce, SEO projects. See real results: dental clinics, architects, manufacturers, retail stores.', // 159 chars
-  keywords: 'web developer portfolio patiala, website examples patiala punjab, web development work showcase, patiala web design portfolio, case studies',
   openGraph: {
     title: 'Web Development Portfolio - Patiala Punjab India',
     description: '50+ successful website projects for Patiala businesses. View our work, case studies, and client results.',
@@ -16,7 +15,7 @@ export const metadata = {
     url: 'https://easebuilds.in/portfolio',
     images: [
       {
-        url: 'https://easebuilds.in/images/portfolio-og.jpg',
+        url: 'https://easebuilds.in/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'EaseBuilds Portfolio - Web Development Projects',
@@ -125,20 +124,10 @@ export default function PortfolioLayout({ children }) {
   return (
     <>
       {/* Portfolio ItemList Schema */}
-      <Script
-        id="portfolio-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="portfolio-schema" data={portfolioSchema} />
       
       {/* Service Schema */}
-      <Script
-        id="portfolio-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-        strategy="beforeInteractive"
-      />
+      <JsonLd id="portfolio-service-schema" data={serviceSchema} />
       
       {children}
     </>

@@ -161,7 +161,7 @@ export default function AboutPage() {
         >
           {/* Background Image Layer */}
           <HeroImage
-         src="/images/about-hero.jpg"
+         src="/images/about-hero.webp"
         alt="EaseBuilds Web Development Team Background"
       />
 
@@ -567,7 +567,7 @@ export default function AboutPage() {
                   className="absolute inset-0 rounded-3xl opacity-80"
                   style={{
                     backgroundImage:
-                      'url("/images/services/custom4.jpg")',
+                      'url("/images/services/custom4.webp")',
                        backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

@@ -148,7 +148,7 @@ const processSteps = [
           {/* Light overlay for readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 to-gray-600/10 z-10" />
           <HeroImage
-  src="/images/portfolio-hero.jpg"
+  src="/images/portfolio-hero.webp"
   alt="Web Development Portfolio Patiala Punjab"
 />
         </motion.div>
@@ -297,7 +297,7 @@ const processSteps = [
                   {/* Project Image */}
                   <div className="relative h-64 sm:h-72 overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-100">
                     <Image
-                      src={project.image || "/images/image4.jpg"}
+                      src={project.image || "/opengraph-image.png"}
                       alt={`${project.businessName} - ${project.industry} Website Project in Patiala Punjab`}
 
                       fill

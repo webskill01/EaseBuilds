@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
-import Script from 'next/script'
 import { faqSchema } from '@/lib/seo'
 import Hero from './components/home/Hero'
+import JsonLd from './components/JsonLd'
 
 // Dynamic imports for performance
 const Services = dynamic(() => import('./components/home/Services'), { 
@@ -45,14 +45,7 @@ export default function Home() {
       <Contact />
       
       {/* FAQ Schema - Homepage Only */}
-      <Script
-        id="homepage-faq-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-        strategy="afterInteractive"
-      />
+      <JsonLd id="homepage-faq-schema" data={faqSchema} />
     </>
   )
 }
