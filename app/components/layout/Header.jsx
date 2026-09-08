@@ -75,6 +75,12 @@ export default function Header() {
             icon: FaTools,
             description: 'Keep your site secure & updated'
           },
+          { 
+            name: 'Lead Management (EaseBot)', 
+            href: '/services/lead-management',
+            icon: FaWhatsapp,
+            description: 'Never lose an enquiry or a follow-up'
+          },
         ]
       },
       { 
