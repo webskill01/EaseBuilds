@@ -60,7 +60,7 @@ export default function HowItWorks() {
     <section 
       ref={sectionRef}
       id="how-it-works"
-      className="section-padding relative bg-gradient-to-br from-gray-50 via-blue-50/30 to-white overflow-hidden"
+      className="section-padding relative bg-gradient-to-b from-white via-blue-50/30 to-gray-50 overflow-hidden"
       aria-labelledby="how-it-works-heading"
     >
       {/* Simple Static Background Pattern */}

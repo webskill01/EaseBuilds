@@ -23,8 +23,8 @@ const benefits = [
   },
   {
     icon: FaUsers,
-    title: 'Dedicated Local Team in Patiala',
-    description: 'Based in Patiala Punjab India. Personal service, quick responses within 2-4 hours, and ongoing support in your timezone and language (Hindi, Punjabi, English).',
+    title: 'One Developer, Based in Patiala',
+    description: 'You deal with the person writing the code, not an account manager. Same timezone, same city if you want to meet, and support in Hindi, Punjabi or English.',
     gradient: 'from-purple-400 to-purple-500',
   },
   {
@@ -145,7 +145,7 @@ export default function WhyChooseUs() {
   return (
     <section 
       id="why-choose-us"
-      className="section-padding relative bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden"
+      className="section-padding relative bg-gradient-to-b from-gray-50 via-white to-white overflow-hidden"
       aria-labelledby="why-choose-heading"
     >
       {/* Decorative Elements - Static */}

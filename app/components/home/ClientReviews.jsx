@@ -80,7 +80,7 @@ export default function ClientReviews() {
 
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Every site is written in React and Next.js from scratch — no page
-            builders, no themes. Scroll down and click through to any of them.
+            builders, no themes. The work itself is right below.
           </p>
         </ScrollReveal>
 

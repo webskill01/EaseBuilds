@@ -10,7 +10,9 @@ import ScrollReveal from '../animations/ScrollReveal'
 import { getFeaturedProjects } from '@/lib/portfolioData'
 
 // single source of truth — see lib/portfolioData.js
-const projects = getFeaturedProjects()
+// Task 7.6: three is a glance, the full set lives on /portfolio and the
+// "See all our work" link below routes there.
+const projects = getFeaturedProjects().slice(0, 3)
 
 
 export default function Projects() {
@@ -52,7 +54,7 @@ export default function Projects() {
   return (
     <section 
       id="portfolio" 
-      className="relative pb-6 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden"
+      className="section-padding relative bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       aria-labelledby="portfolio-heading"
     >
       {/* Simplified Background Elements */}

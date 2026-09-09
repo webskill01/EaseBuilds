@@ -7,7 +7,7 @@
 // Task 7.2/7.4 have since landed, so this now uses the shared .section-padding,
 // .btn and .btn-whatsapp tokens rather than its own spacing.
 import Link from 'next/link'
-import { FaWhatsapp, FaPhoneAlt, FaRegEdit } from 'react-icons/fa'
+import { FaWhatsapp, FaPhoneAlt, FaRegEdit, FaStar } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 
 const PHONE = '+916283380110'
@@ -17,7 +17,7 @@ const WA_HREF =
 
 export default function HomeCta() {
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-50 to-white" aria-labelledby="home-cta-heading">
+    <section className="section-padding bg-gradient-to-b from-blue-50 to-white" aria-labelledby="home-cta-heading">
       <div className="container-custom">
         <ScrollReveal direction="up">
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-10 sm:px-10 sm:py-12 text-center shadow-xl">
@@ -46,6 +46,24 @@ export default function HomeCta() {
                 <FaPhoneAlt className="w-4 h-4" />
                 Call +91 62833 80110
               </a>
+            </div>
+
+            {/* Task 7.6: proof sits AT the button, not in a section far above
+                it - hesitation peaks here. Every figure repeats one already
+                published on this page; do not add a number that is not. */}
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/90">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="flex gap-0.5" aria-hidden="true">
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-300 text-xs" />
+                  ))}
+                </span>
+                <span className="font-semibold">5.0 on Google</span>
+              </span>
+              <span className="hidden sm:inline text-white/40" aria-hidden="true">|</span>
+              <span>15 projects shipped</span>
+              <span className="hidden sm:inline text-white/40" aria-hidden="true">|</span>
+              <span>Live in 2-3 weeks</span>
             </div>
 
             <div className="mt-6 flex justify-center">
