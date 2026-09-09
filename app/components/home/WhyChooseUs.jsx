@@ -146,7 +146,7 @@ export default function WhyChooseUs() {
   return (
     <section 
       id="why-choose-us"
-      className="relative py-12 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden"
+      className="section-padding relative bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden"
       aria-labelledby="why-choose-heading"
     >
       {/* Decorative Elements - Static */}

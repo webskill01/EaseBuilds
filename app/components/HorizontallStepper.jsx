@@ -173,7 +173,7 @@ export default function HorizontalStepper({ steps }) {
           whileHover={{ scale: isFirst ? 1 : 1.05 }}
           whileTap={{ scale: isFirst ? 1 : 0.95 }}
           className={`
-            w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm sm:text-base
+            w-full sm:w-auto btn font-bold text-sm sm:text-base
             transition-all duration-300 flex items-center justify-center gap-2
             ${isFirst
               ? "bg-gray-200 text-gray-400 cursor-not-allowed"
@@ -193,7 +193,7 @@ export default function HorizontalStepper({ steps }) {
           whileHover={{ scale: isLast ? 1 : 1.05 }}
           whileTap={{ scale: isLast ? 1 : 0.95 }}
           className={`
-            w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm sm:text-base
+            w-full sm:w-auto btn font-bold text-sm sm:text-base
             transition-all duration-300 flex items-center justify-center gap-2
             ${isLast
               ? "bg-green-500 text-white"

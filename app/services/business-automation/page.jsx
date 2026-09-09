@@ -3,7 +3,6 @@
 // Business Automation - the Cluster C pillar.
 // Same visual language as /services/lead-management and the industry pages.
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -21,6 +20,7 @@ import {
   FaClipboardList,
 } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
+import Accordion from '@/app/components/ui/Accordion'
 import QuoteForm from '@/app/components/QuoteForm'
 import { BUILDS, PROCESS, PROOF, WHY, FAQS, STEPS, QUOTE_INTRO, WHATSAPP } from './data'
 
@@ -34,44 +34,8 @@ const FACTS = [
   { icon: FaBell, value: 'Daily', label: 'We run EaseBot on ourselves' },
 ]
 
-function FaqItem({ faq, isOpen, onToggle }) {
-  return (
-    <div
-      className={`rounded-2xl border-2 overflow-hidden transition-colors ${
-        isOpen ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
-      }`}
-    >
-      <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        className="w-full text-left p-5 sm:p-6 flex justify-between items-center gap-4"
-      >
-        <h3
-          className={`flex-1 text-base sm:text-lg font-bold ${
-            isOpen ? 'text-blue-600' : 'text-gray-900'
-          }`}
-        >
-          {faq.question}
-        </h3>
-        <span
-          className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${
-            isOpen ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-500'
-          }`}
-        >
-          {isOpen ? <FaMinus className="w-3 h-3" /> : <FaPlus className="w-3 h-3" />}
-        </span>
-      </button>
-      {isOpen && (
-        <p className="px-5 sm:px-6 pb-6 -mt-1 text-sm sm:text-base text-gray-600 leading-relaxed">
-          {faq.answer}
-        </p>
-      )}
-    </div>
-  )
-}
 
 export default function BusinessAutomationPage() {
-  const [openFaq, setOpenFaq] = useState(null)
 
   return (
     <>
@@ -145,7 +109,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Facts strip ──────────────────────────────────── */}
-      <section className="py-8 bg-white border-y border-gray-200">
+      <section className="section-padding bg-white border-y border-gray-200">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {FACTS.map((fact, index) => (
@@ -167,7 +131,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Problem ──────────────────────────────────────── */}
-      <section className="py-10 sm:py-14 bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center max-w-3xl mx-auto">
@@ -191,7 +155,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── What we build ────────────────────────────────── */}
-      <section className="py-10 sm:py-14 bg-white">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -234,7 +198,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Process ──────────────────────────────────────── */}
-      <section className="py-10 sm:py-14 bg-gradient-to-b from-white to-blue-50">
+      <section className="section-padding bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -264,7 +228,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Proof ────────────────────────────────────────── */}
-      <section className="py-10 sm:py-14 bg-white">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -305,7 +269,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Why us ───────────────────────────────────────── */}
-      <section className="py-10 sm:py-14 bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -333,7 +297,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────── */}
-      <section className="py-10 sm:py-14 bg-white">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -343,22 +307,13 @@ export default function BusinessAutomationPage() {
             </div>
           </ScrollReveal>
 
-          <div className="max-w-3xl mx-auto space-y-4">
-            {FAQS.map((faq, index) => (
-              <ScrollReveal key={faq.question} direction="up" delay={index * 0.05}>
-                <FaqItem
-                  faq={faq}
-                  isOpen={openFaq === index}
-                  onToggle={() => setOpenFaq(openFaq === index ? null : index)}
-                />
-              </ScrollReveal>
-            ))}
-          </div>
+          {/* the one accordion, Task 7.3 */}
+          <Accordion items={FAQS} className="max-w-3xl mx-auto" />
         </div>
       </section>
 
       {/* ── Quote ────────────────────────────────────────── */}
-      <section id="quote" className="py-10 sm:py-14 bg-gradient-to-b from-white to-blue-50">
+      <section id="quote" className="section-padding bg-gradient-to-b from-white to-blue-50">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -386,7 +341,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Closing CTA ──────────────────────────────────── */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-blue-700 via-blue-600 to-cyan-600 relative overflow-hidden">
+      <section className="section-padding bg-gradient-to-br from-blue-700 via-blue-600 to-cyan-600 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
@@ -410,7 +365,7 @@ export default function BusinessAutomationPage() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-sm sm:text-base"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-2xl text-sm sm:text-base"
             >
               <FaWhatsapp className="text-lg sm:text-xl" />
               WhatsApp Us

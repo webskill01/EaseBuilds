@@ -18,7 +18,7 @@ const WA_HREF =
 
 export default function HomeCta() {
   return (
-    <section className="py-10 bg-gradient-to-b from-gray-50 to-white" aria-labelledby="home-cta-heading">
+    <section className="section-padding bg-gradient-to-b from-gray-50 to-white" aria-labelledby="home-cta-heading">
       <div className="container-custom">
         <ScrollReveal direction="up">
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-10 sm:px-10 sm:py-12 text-center shadow-xl">
@@ -35,14 +35,14 @@ export default function HomeCta() {
                 href={WA_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-lg bg-white text-blue-600 font-bold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn bg-green-500 hover:bg-green-600 text-white font-bold transition-colors"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 Message on WhatsApp
               </a>
               <a
                 href={`tel:${PHONE}`}
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-lg border-2 border-white/70 text-white font-bold hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn border-2 border-white/70 text-white font-bold hover:bg-white/10 transition-colors"
               >
                 <FaPhoneAlt className="w-4 h-4" />
                 Call +91 62833 80110

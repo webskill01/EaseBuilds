@@ -15,74 +15,13 @@ import {
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
+import Accordion from '@/app/components/ui/Accordion'
 import { services } from '@/lib/servicesData'
 import { notFound } from 'next/navigation'
 import HorizontalStepper from '@/app/components/HorizontallStepper'
 import HeroImage from '@/app/components/HeroImage'
 
 // ✅ SEO: FAQ Component with proper H3 tags
-const FAQItem = ({ faq, index }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    <ScrollReveal direction="up" delay={index * 0.05}>
-      <motion.article
-        initial={false}
-        animate={{ backgroundColor: isOpen ? '#EFF6FF' : '#FFFFFF' }}
-        className="rounded-2xl border-2 overflow-hidden"
-        style={{ borderColor: isOpen ? '#3B82F6' : '#E5E7EB' }}
-        itemScope
-        itemProp="mainEntity"
-        itemType="https://schema.org/Question"
-      >
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="w-full text-left p-6 flex justify-between items-center gap-4"
-          aria-expanded={isOpen}
-        >
-          
-
-          {/* ✅ SEO: H3 for FAQ questions */}
-          <h3 
-            className={`flex-1 text-lg font-bold pr-4 ${isOpen ? 'text-blue-600' : 'text-gray-900'}`}
-            itemProp="name"
-          >
-            {faq.question}
-          </h3>
-          <motion.div
-            animate={{
-              backgroundColor: isOpen ? '#3B82F6' : '#F3F4F6',
-              scale: isOpen ? 1.1 : 1,
-            }}
-            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <motion.div animate={{ rotate: isOpen ? 45 : 0 }}>
-              <svg className={`w-5 h-5 ${isOpen ? 'text-white' : 'text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-            </motion.div>
-          </motion.div>
-        </button>
-
-        <motion.div
-          initial={false}
-          animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-          className="overflow-hidden"
-          itemScope
-          itemProp="acceptedAnswer"
-          itemType="https://schema.org/Answer"
-        >
-          <div className="px-6 pb-6">
-            <div className="w-full h-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full mb-4"/>
-            <p className="text-gray-700 leading-relaxed" itemProp="text">
-              {faq.answer}
-            </p>
-          </div>
-        </motion.div>
-      </motion.article>
-    </ScrollReveal>
-  )
-}
 
 export default function DynamicServicePage() {
   const params = useParams()
@@ -354,7 +293,7 @@ export default function DynamicServicePage() {
           </div>
         </section>
         {/* ✅ SEO: Features section with H2 + ENHANCED ANIMATIONS */}
-<section className="py-10 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden" aria-labelledby="features-heading">
+<section className="section-padding bg-gradient-to-b from-gray-50 to-white relative overflow-hidden" aria-labelledby="features-heading">
   {/* Animated Background Elements */}
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
     <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl animate-pulse-slow" />
@@ -529,7 +468,7 @@ export default function DynamicServicePage() {
 
 
         {/* Process Section */}
-        <section className="py-10 bg-white" aria-labelledby="process-heading">
+        <section className="section-padding bg-white" aria-labelledby="process-heading">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-8">
@@ -598,7 +537,7 @@ export default function DynamicServicePage() {
         )}
 
         {/* Pricing */}
-        <section className="py-10 bg-white" aria-labelledby="pricing-heading">
+        <section className="section-padding bg-white" aria-labelledby="pricing-heading">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-16">
@@ -652,7 +591,7 @@ export default function DynamicServicePage() {
                     <motion.a
                       href="tel:+916283380110"
                       whileHover={{ scale: 1.05 }}
-                      className={`block text-center px-6 py-4 rounded-xl font-bold ${
+                      className={`block text-center btn font-bold ${
                         plan.popular
                           ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white'
                           : 'bg-gray-100 text-gray-900'
@@ -668,7 +607,7 @@ export default function DynamicServicePage() {
         </section>
 
         {/* ✅ NEW: Related Services (Internal Linking) */}
-        <section className="py-10 bg-gray-50" aria-labelledby="related-heading">
+        <section className="section-padding bg-gray-50" aria-labelledby="related-heading">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
@@ -712,7 +651,7 @@ export default function DynamicServicePage() {
         </section>
 
         {/* FAQ with proper schema */}
-        <section className="py-10 bg-white" aria-labelledby="faq-heading" itemScope itemType="https://schema.org/FAQPage">
+        <section className="section-padding bg-white" aria-labelledby="faq-heading" itemScope itemType="https://schema.org/FAQPage">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-12 w-full">
@@ -725,16 +664,14 @@ export default function DynamicServicePage() {
               </div>
             </ScrollReveal>
 
-            <div className="max-w-4xl mx-auto space-y-4">
-              {serviceData.faqs.map((faq, index) => (
-                <FAQItem key={index} faq={faq} index={index} />
-              ))}
-            </div>
+            {/* the one accordion, Task 7.3. microdata=true keeps the
+                FAQPage itemProps this page has always emitted. */}
+            <Accordion items={serviceData.faqs} microdata className="max-w-4xl mx-auto" />
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-10 bg-gradient-to-br from-blue-600 to-cyan-600 text-white">
+        <section className="section-padding bg-gradient-to-br from-blue-600 to-cyan-600 text-white">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto text-center">
               <ScrollReveal direction="up">

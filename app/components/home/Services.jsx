@@ -314,7 +314,7 @@ export default function Services() {
     <section 
       id="services" 
       ref={sectionRef}
-      className="relative py-12 bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden"
+      className="section-padding relative bg-gradient-to-b from-white via-blue-50/30 to-white overflow-hidden"
     >
 
       <div className="absolute top-20 left-0 w-96 h-96 bg-blue-200/20 rounded-full -translate-x-1/2" />

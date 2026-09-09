@@ -181,7 +181,7 @@ export default function PricingPage() {
         </AnimatePresence>
 
         {/* Comparison Table Section */}
-        <section className="py-8 bg-gradient-to-b from-gray-50 to-white">
+        <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6">
             <ScrollReveal direction="up" className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
@@ -301,7 +301,7 @@ export default function PricingPage() {
         </section>
 
         {/* Pricing Cards (Full Details) */}
-        <section className="py-10 bg-white">
+        <section className="section-padding bg-white">
           <div className="container mx-auto max-w-7xl px-4 lg:px-8">
             <ScrollReveal direction="up" className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
@@ -353,7 +353,7 @@ export default function PricingPage() {
 
         {/* Trust Section - Social Proof */}
         <ScrollReveal direction="up">
-          <section className="py-10 bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
+          <section className="section-padding bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-20">
               <GridBackground 
@@ -387,7 +387,7 @@ export default function PricingPage() {
         </ScrollReveal>
 
         {/* Custom Solution CTA */}
-        <section className="py-10 bg-gradient-to-br from-blue-600 to-cyan-600 text-white relative overflow-hidden">
+        <section className="section-padding bg-gradient-to-br from-blue-600 to-cyan-600 text-white relative overflow-hidden">
           {/* Animated Background */}
           <div className="absolute inset-0 opacity-10">
             <GridBackground 

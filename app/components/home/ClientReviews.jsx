@@ -43,7 +43,7 @@ const STATS = [
 
 export default function ClientReviews() {
   return (
-    <section className="py-10 bg-gradient-to-b from-white to-gray-50">
+    <section className="section-padding bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
 
         <ScrollReveal direction="up" className="text-center mb-8 sm:mb-10">

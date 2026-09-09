@@ -243,7 +243,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Story Section - Glassmorphism Card */}
-        <section id="our-story" className="py-10 relative">
+        <section id="our-story" className="section-padding relative">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="max-w-5xl mx-auto">
@@ -352,7 +352,7 @@ export default function AboutPage() {
         </section>
 
         {/* Expertise Section - Icon Grid */}
-        <section className="py-10 bg-gradient-to-br from-slate-50 to-blue-50/30">
+        <section className="section-padding bg-gradient-to-br from-slate-50 to-blue-50/30">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
@@ -389,7 +389,7 @@ export default function AboutPage() {
         </section>
 
         {/* Values Section - FIXED: Removed text color change on hover */}
-        <section className="py-10">
+        <section className="section-padding">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
@@ -469,7 +469,7 @@ export default function AboutPage() {
         {/* Stats Section - Dark Theme */}
         <section
           ref={statsRef}
-          className="relative py-10 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden"
+          className="section-padding relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden"
         >
           {/* Animated Background */}
           <div className="absolute inset-0 opacity-20">
@@ -557,7 +557,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section - Premium Glass Card */}
-        <section className="py-10 bg-gradient-to-b from-slate-50 to-white">
+        <section className="section-padding bg-gradient-to-b from-slate-50 to-white">
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="max-w-5xl mx-auto relative">

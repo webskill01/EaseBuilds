@@ -224,7 +224,7 @@ const processSteps = [
 
       {/* Infinite Logo Loop for Technologies */}
       {/* Infinite Logo Loop for Technologies */}
-<section className="py-8 bg-white border-y border-gray-200 overflow-hidden">
+<section className="section-padding bg-white border-y border-gray-200 overflow-hidden">
   <div className="mb-6 text-center">
     <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
       Technologies We Master
@@ -272,7 +272,7 @@ const processSteps = [
 
 
       {/* Projects Grid (No Filters) */}
-      <section className="py-10 bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-custom">
           
           <ScrollReveal direction="up">
@@ -372,7 +372,7 @@ const processSteps = [
 
 
       {/* Improved Stepper with Next/Previous Buttons */}
-<section className="py-10 bg-white">
+<section className="section-padding bg-white">
   <div className="container-custom">
     <ScrollReveal direction="up">
       <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
@@ -506,7 +506,7 @@ const processSteps = [
                 disabled={activeStep === 0}
                 whileHover={{ scale: activeStep === 0 ? 1 : 1.05 }}
                 whileTap={{ scale: activeStep === 0 ? 1 : 0.95 }}
-                className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`inline-flex items-center gap-2 btn font-semibold transition-all ${
                   activeStep === 0
                     ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg'
@@ -536,7 +536,7 @@ const processSteps = [
                 disabled={activeStep === 3}
                 whileHover={{ scale: activeStep === 3 ? 1 : 1.05 }}
                 whileTap={{ scale: activeStep === 3 ? 1 : 0.95 }}
-                className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`inline-flex items-center gap-2 btn font-semibold transition-all ${
                   activeStep === 3
                     ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                     : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg'
@@ -560,7 +560,7 @@ const processSteps = [
               <button
                 key={index}
                 onClick={() => setActiveStep(index)}
-                className={`flex-shrink-0 flex items-center gap-2 px-4 py-3 rounded-lg font-semibold transition-all ${
+                className={`flex-shrink-0 flex items-center gap-2 btn font-semibold transition-all ${
                   index === activeStep
                     ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-600'
@@ -615,7 +615,7 @@ const processSteps = [
             <button
               onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
               disabled={activeStep === 0}
-              className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-semibold ${
+              className={`flex-1 inline-flex items-center justify-center gap-2 btn font-semibold ${
                 activeStep === 0
                   ? 'bg-gray-100 text-gray-400'
                   : 'bg-blue-600 text-white'
@@ -627,7 +627,7 @@ const processSteps = [
             <button
               onClick={() => setActiveStep(Math.min(3, activeStep + 1))}
               disabled={activeStep === 3}
-              className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-semibold ${
+              className={`flex-1 inline-flex items-center justify-center gap-2 btn font-semibold ${
                 activeStep === 3
                   ? 'bg-gray-100 text-gray-400'
                   : 'bg-blue-600 text-white'
@@ -659,7 +659,7 @@ const processSteps = [
 
 
       {/* CTA Section */}
-      <section className="py-10 bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600 text-white">
+      <section className="section-padding bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600 text-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <ScrollReveal direction="up">

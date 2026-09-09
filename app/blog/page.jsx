@@ -123,7 +123,7 @@ export default function BlogPage() {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="py-12 bg-gray-50">
+        <section className="section-padding bg-gray-50">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -205,7 +205,7 @@ export default function BlogPage() {
       )}
 
       {/* Search & Filters */}
-      <section className="py-8 bg-white border-b">
+      <section className="section-padding bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Search Bar */}
@@ -230,7 +230,7 @@ export default function BlogPage() {
                   setSelectedCategory('All')
                   setCurrentPage(1)
                 }}
-                className={`px-4 py-2 rounded-lg font-semibold transition ${
+                className={`btn font-semibold transition ${
                   selectedCategory === 'All'
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -245,7 +245,7 @@ export default function BlogPage() {
                     setSelectedCategory(category)
                     setCurrentPage(1)
                   }}
-                  className={`px-4 py-2 rounded-lg font-semibold transition ${
+                  className={`btn font-semibold transition ${
                     selectedCategory === category
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -266,7 +266,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-16 bg-gray-50">
+      <section className="section-padding bg-gray-50">
         <div className="container mx-auto px-4">
           <AnimatePresence mode="wait">
             {currentPosts.length > 0 ? (
@@ -398,7 +398,7 @@ export default function BlogPage() {
               <button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-4 py-2 rounded-lg border-2 border-gray-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition"
+                className="btn border-2 border-gray-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition"
               >
                 Previous
               </button>
@@ -407,7 +407,7 @@ export default function BlogPage() {
                 <button
                   key={i}
                   onClick={() => setCurrentPage(i + 1)}
-                  className={`px-4 py-2 rounded-lg font-semibold transition ${
+                  className={`btn font-semibold transition ${
                     currentPage === i + 1
                       ? 'bg-blue-600 text-white'
                       : 'bg-white border-2 border-gray-300 hover:bg-gray-100'
@@ -420,7 +420,7 @@ export default function BlogPage() {
               <button
                 onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded-lg border-2 border-gray-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition"
+                className="btn border-2 border-gray-300 font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition"
               >
                 Next
               </button>

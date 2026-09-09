@@ -280,7 +280,7 @@ const handleSubmit = async (e) => {
       </section>
 
       {/* Contact Methods Grid */}
-      <section className="py-10 bg-white">
+      <section className="section-padding bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -362,7 +362,7 @@ const handleSubmit = async (e) => {
       </section>
 
       {/* Contact Form & Map */}
-      <section className="py-10 bg-gray-50">
+      <section className="section-padding bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 max-w-7xl mx-auto">
             
@@ -709,7 +709,7 @@ const handleSubmit = async (e) => {
       </section>
 
       {/* FAQ Section - FIXED with Smooth Animations */}
-      <section className="py-10 bg-white">
+      <section className="section-padding bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
