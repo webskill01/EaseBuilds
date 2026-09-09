@@ -48,7 +48,7 @@ export default function AboutPage() {
       icon: FaLightbulb,
       title: "Innovation & Simplicity",
       description:
-        "We combine cutting-edge technology with simple, user-friendly designs. No confusing tech jargon - just clean, beautiful websites that work.",
+        "You get a site your customers can use without thinking about it, and that I can explain to you without jargon.",
       gradient: "from-amber-400 via-orange-400 to-yellow-500",
       shadowColor: "shadow-amber-500/20",
       iconBg: "bg-gradient-to-br from-amber-100 to-orange-100",
@@ -58,7 +58,7 @@ export default function AboutPage() {
       icon: FaBolt,
       title: "Speed & Performance",
       description:
-        "Lightning-fast delivery in 2-3 weeks. Websites optimized for speed with 95+ PageSpeed scores. Your time and customer experience matter.",
+        "Your site is live in two to three weeks, and it loads fast on the mid-range Android phone most of your customers are actually using.",
       gradient: "from-blue-400 via-cyan-400 to-blue-500",
       shadowColor: "shadow-blue-500/20",
       iconBg: "bg-gradient-to-br from-blue-100 to-cyan-100",
@@ -68,7 +68,7 @@ export default function AboutPage() {
       icon: FaHandshake,
       title: "Partnership & Trust",
       description:
-        "We build lasting relationships, not just websites. Dedicated support in your language (Hindi, Punjabi, English) with local Patiala presence.",
+        "You reach me directly after launch, in Hindi, Punjabi or English, and I am in Patiala if it is easier to meet.",
       gradient: "from-purple-400 via-pink-400 to-purple-500",
       shadowColor: "shadow-purple-500/20",
       iconBg: "bg-gradient-to-br from-purple-100 to-pink-100",
@@ -78,7 +78,7 @@ export default function AboutPage() {
       icon: FaHeart,
       title: "Passion & Excellence",
       description:
-        "Every project gets our full dedication. We genuinely care about your success and pour our expertise into creating exceptional websites.",
+        "I take on few projects at a time, so yours is not queued behind a dozen others waiting for attention.",
       gradient: "from-rose-400 via-pink-400 to-red-500",
       shadowColor: "shadow-rose-500/20",
       iconBg: "bg-gradient-to-br from-rose-100 to-pink-100",
@@ -162,7 +162,7 @@ export default function AboutPage() {
           {/* Background Image Layer */}
           <HeroImage
          src="/images/about-hero.webp"
-        alt="EaseBuilds Web Development Team Background"
+        alt="Web development workspace at EaseBuilds, Patiala"
       />
 
            <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
@@ -193,21 +193,19 @@ export default function AboutPage() {
 
               <ScrollReveal direction="up" delay={0.1}>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-                  <span className="block">Best Web Development Company</span>
+                  <span className="block">You talk to the person</span>
                   <span className="block mt-2 bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                    in Patiala Punjab India
+                    who builds your site
                   </span>
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.2}>
                 <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-3xl mx-auto mb-6">
-                  The{" "}
-                  <strong className="text-white">
-                    best web development company in Patiala Punjab{" "}
-                  </strong>
-                  , transforming local businesses with stunning websites that
-                  deliver real results.
+                  No account manager, no handover, no team you never meet.
+                  EaseBuilds is one developer in Patiala — I scope your project,
+                  write the code and stay on the other end of the phone after it
+                  ships.
                 </p>
               </ScrollReveal>
 
@@ -259,43 +257,42 @@ export default function AboutPage() {
                     <div className="flex items-center gap-3 mb-6">
                       <div className="w-1 h-12 bg-gradient-to-b from-blue-600 to-cyan-500 rounded-full" />
                       <h2>
-                        About EaseBuilds - Your Trusted Web Developer in Patiala
+                        Why EaseBuilds is one person, and why that suits you
                       </h2>
                     </div>
 
                     <div className="prose prose-lg max-w-none">
                       <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6">
-                        At{" "}
+                        If you run a business in{" "}
+                        <strong className="text-slate-900">
+                          Patiala
+                        </strong>
+                        , you have probably been quoted a lot of money for a
+                        website by someone who then handed you to a team you
+                        never met. I started{" "}
                         <strong className="text-blue-600 font-bold">
                           EaseBuilds
-                        </strong>
-                        , we started with a vision: to make professional web
-                        development accessible to every business in{" "}
-                        <strong className="text-slate-900">
-                          Patiala Punjab India
-                        </strong>
-                        . We saw talented local businesses struggling with
-                        expensive, complicated web services that didn't deliver
-                        results.
+                        </strong>{" "}
+                        to do the opposite: one developer, one price agreed
+                        before the work starts, and a site you can actually get
+                        changed later.
                       </p>
 
                       <p className="text-base sm:text-lg text-slate-700 leading-relaxed mb-6">
-                        Today, we've helped over{" "}
+                        So far that is{" "}
                         <strong className="text-blue-600 font-bold">
-                          50 businesses across Patiala
+                          15 projects shipped
                         </strong>{" "}
-                        launch stunning websites. From dental clinics and
-                        architecture firms to e-commerce stores and educational
-                        institutions, we've witnessed firsthand how the right
-                        website can transform a business's growth trajectory.
+                        — 5 client websites, one of them for a business in
+                        Melbourne, and 10 automation systems running in
+                        production right now. It is a short list, and I would
+                        rather show you it than round it up.
                       </p>
                       <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
-                        Being based in Patiala means we understand local
-                        business needs. We speak your language (Hindi, Punjabi,
-                        English), we know the market, and we're available for
-                        face-to-face meetings whenever you need us. This local
-                        connection, combined with world-class technical
-                        expertise in{" "}
+                        Being in Patiala means we can meet in person when
+                        that is easier, and talk in Hindi, Punjabi or English —
+                        whichever you would rather explain your business in.
+                        That, plus the work itself:{" "}
                         <Link
                           href="/services/custom-website-design"
                           className="text-blue-600 hover:text-blue-700 font-semibold underline"
@@ -316,11 +313,8 @@ export default function AboutPage() {
                         >
                           SEO services
                         </Link>{" "}
-                        makes us the{" "}
-                        <strong className="text-blue-600 font-bold">
-                          best web developer in Patiala Punjab India
-                        </strong>
-                        .
+                        — all built on React and Next.js rather than a page
+                        builder, so the site stays fast and stays yours.
                       </p>
 
                       <motion.div
@@ -331,14 +325,14 @@ export default function AboutPage() {
                           <FaHeart className="text-3xl text-blue-600 mt-1 flex-shrink-0" />
                           <div>
                             <p className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
-                              "Your Success is Our Success"
+                              The site does not end at handover
                             </p>
                             <p className="text-base text-slate-700">
-                              This philosophy drives everything we do. We don't
-                              just build websites - we build partnerships. When
-                              your business grows, we celebrate with you. When
-                              you face challenges, we're here to help solve
-                              them.
+                              When you need a price changed, a page added or
+                              something fixed six months from now, you message
+                              the same number and reach the same developer. No
+                              ticket queue, and nobody has to be brought up to
+                              speed on your project first.
                             </p>
                           </div>
                         </div>
@@ -356,9 +350,9 @@ export default function AboutPage() {
           <div className="container-custom">
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
-                <h2>Web Development Expertise in Patiala Punjab</h2>
+                <h2>What you get built</h2>
                 <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                  Combining creativity with cutting-edge technology
+                  The stack behind every EaseBuilds site
                 </p>
               </div>
             </ScrollReveal>
@@ -396,14 +390,14 @@ export default function AboutPage() {
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-4">
                   <FaStar className="text-purple-600" />
                   <span className="text-sm font-bold text-purple-700">
-                    Our Core Values
+                    How I work
                   </span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-                  What Drives Us Forward
+                  What you can hold me to
                 </h2>
                 <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                  The principles that guide every project we deliver
+                  Four commitments, on every project
                 </p>
                 <p>
                   These values have made EaseBuilds the{" "}
@@ -493,10 +487,10 @@ export default function AboutPage() {
             <ScrollReveal direction="up">
               <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-                  Our Impact in Numbers
+                  The work so far
                 </h2>
                 <p className="text-lg text-blue-200">
-                  Real results for real businesses
+                  Every number here is one you can ask me to show you
                 </p>
               </div>
             </ScrollReveal>

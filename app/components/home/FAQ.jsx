@@ -1,7 +1,6 @@
 'use client'
 
 // Optimized FAQ Component
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { FaQuestionCircle } from 'react-icons/fa'
 import ScrollReveal from '../animations/ScrollReveal'
@@ -29,10 +28,8 @@ export default function FAQ() {
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-            Everything you need to know about the{' '}
-            <span className="font-semibold text-blue-600">
-              best web developer in Patiala 
-            </span>
+            What it costs, how long it takes, and what you get — answered
+            before you have to ask.
           </p>
         </ScrollReveal>
 

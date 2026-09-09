@@ -1,15 +1,15 @@
 import JsonLd from '../components/JsonLd'
 // About Page Layout - SEO Optimized
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 
 // OPTIMIZED Metadata (Title: 58 chars, Description: 155 chars)
 export const metadata = {
-  title: 'About EaseBuilds | Best Web Developer Patiala - Our Story',
+  // Task 7.5: no superlative that is not first-person true.
+  title: 'About EaseBuilds | Web Developer in Patiala, Punjab',
   description: 'EaseBuilds is a one-developer web studio in Patiala. 15 projects shipped — 5 client websites, including one in Melbourne, and 10 automation systems in production.',
   
   openGraph: {
-    title: 'About EaseBuilds - Best Web Developer in Patiala Punjab India',
+    title: 'About EaseBuilds - Web Developer in Patiala, Punjab',
     description: 'About EaseBuilds — a one-developer web studio in Patiala building websites and automation for local businesses.',
     type: 'website',
     locale: 'en_IN',
@@ -19,13 +19,13 @@ export const metadata = {
       url: 'https://easebuilds.in/opengraph-image.png',
       width: 1200,
       height: 630,
-      alt: 'EaseBuilds Team - Best Web Developer in Patiala'
+      alt: 'EaseBuilds - web development in Patiala, Punjab'
     }]
   },
   
   twitter: {
     card: 'summary_large_image',
-    title: 'About EaseBuilds - Best Web Developer Patiala',
+    title: 'About EaseBuilds - Web Developer in Patiala',
     description: 'The developer behind EaseBuilds in Patiala. 15 projects shipped, rated 5.0 on Google.',
     images: ['https://easebuilds.in/opengraph-image.png'],
   },
@@ -55,7 +55,7 @@ export default function AboutLayout({ children }) {
     alternateName: 'EaseBuilds Web Development',
     url: 'https://easebuilds.in',
     logo: 'https://easebuilds.in/images/logo.png',
-    description: 'Best web development company in Patiala Punjab India, specializing in custom website design, e-commerce solutions, and SEO services for local businesses.',
+    description: 'A one-developer web studio in Patiala, Punjab, building custom websites, online stores, SEO and WhatsApp automation for local businesses.',
     
     foundingDate: '2025-10-22',
     foundingLocation: {
@@ -154,7 +154,7 @@ export default function AboutLayout({ children }) {
     roleName: 'Founder & Lead Developer',
     member: {
       '@type': 'Person',
-      name: 'EaseBuilds Team', // Replace with actual founder name
+      name: 'Nitin',
       jobTitle: 'Web Developer',
       worksFor: {
         '@type': 'Organization',
