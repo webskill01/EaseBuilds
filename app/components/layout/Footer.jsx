@@ -35,9 +35,7 @@ export default function Footer() {
     ],
     services: [
       { name: 'Custom Website Design', href: '/services/custom-website-design' },
-      { name: 'E-commerce Development', href: '/services/ecommerce-development' },
       { name: 'SEO Services', href: '/services/seo-services' },
-      { name: 'Website Maintenance', href: '/services/website-maintenance' },
     ],
     // Task 3.6: kept apart from web services on purpose. The two lines have
     // opposite economics - web queries sit behind a local pack we cannot win

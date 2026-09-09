@@ -43,7 +43,8 @@ const services = [
     bgGradient: 'from-green-50 to-emerald-100',
     iconColor: 'text-green-600',
     features: ['Payment Gateway', 'Inventory', 'Analytics', 'Mobile Shopping'],
-    link: '/services/ecommerce-development',
+    // 7.1b: page deleted; store builds are custom-design scope now
+    link: '/services/custom-website-design',
     rating: 5,
     deliveryTime: '3 weeks'
   },
@@ -71,7 +72,8 @@ const services = [
     bgGradient: 'from-orange-50 to-red-100',
     iconColor: 'text-orange-600',
     features: ['Core Web Vitals', 'Image Optimization', 'Code Splitting', 'CDN Setup'],
-    link: '/services/website-maintenance',
+    // 7.1b: page deleted; Core Web Vitals work belongs with SEO
+    link: '/services/seo-services',
     rating: 5,
     deliveryTime: '1 week'
   },

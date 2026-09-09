@@ -13,9 +13,7 @@ import {
   FaTimes, 
   FaChevronDown,
   FaCode,
-  FaShoppingCart,
   FaSearch,
-  FaTools,
   FaWhatsapp,
   FaRobot,
   FaPhoneAlt
@@ -54,22 +52,10 @@ export default function Header() {
             description: 'Bespoke websites tailored to your brand'
           },
           { 
-            name: 'E-commerce Development', 
-            href: '/services/ecommerce-development',
-            icon: FaShoppingCart,
-            description: 'Online stores that drive sales'
-          },
-          { 
             name: 'SEO Services', 
             href: '/services/seo-services',
             icon: FaSearch,
             description: 'Rank higher on Google searches'
-          },
-          { 
-            name: 'Website Maintenance', 
-            href: '/services/website-maintenance',
-            icon: FaTools,
-            description: 'Keep your site secure & updated'
           },
         ]
       },

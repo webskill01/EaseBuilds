@@ -28,9 +28,7 @@ export default function Breadcrumb() {
   const labelMap = {
     'services': 'Services',
     'custom-website-design': 'Custom Website Design',
-    'ecommerce-development': 'E-commerce Development',
     'seo-services': 'SEO Services',
-    'website-maintenance': 'Website Maintenance',
     'pricing': 'Pricing',
     'about': 'About Us',
     'contact': 'Contact',

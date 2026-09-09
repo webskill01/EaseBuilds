@@ -115,12 +115,23 @@ const nextConfig = {
       // industry pages deleted 2026-09-08 (Task 3.5) - 134 impressions / 1 click
       // in 90 days at ~100% wrong intent, and no industry x geo search demand.
       // Retail goes to ecommerce; the rest are custom-build enquiries.
-      { source: '/industries/retail-stores', destination: '/services/ecommerce-development', permanent: true },
+      // retail-stores used to land on /services/ecommerce-development; that page
+      // was deleted 2026-09-09 (Task 7.1b), so this is repointed to avoid a
+      // redirect chain into a 404.
+      { source: '/industries/retail-stores', destination: '/services/custom-website-design', permanent: true },
       { source: '/industries/dental-clinics', destination: '/services/custom-website-design', permanent: true },
       { source: '/industries/architects', destination: '/services/custom-website-design', permanent: true },
       { source: '/industries/coaching-institutes', destination: '/services/custom-website-design', permanent: true },
       { source: '/industries/manufacturers', destination: '/services/custom-website-design', permanent: true },
       { source: '/industries', destination: '/services/custom-website-design', permanent: true },
+
+      // service pages deleted 2026-09-09 (Task 7.1b) on the Phase 7.1 research.
+      // ecommerce: 17 impressions at position 85.9 over 90 days, and the queries
+      // wanted sellers rather than builders. maintenance: 1 impression, and
+      // `website maintenance patiala` has no autocomplete demand at all.
+      // Both capabilities survive as copy — only the URLs go.
+      { source: '/services/ecommerce-development', destination: '/services/custom-website-design', permanent: true },
+      { source: '/services/website-maintenance', destination: '/pricing', permanent: true },
     ]
   },
   

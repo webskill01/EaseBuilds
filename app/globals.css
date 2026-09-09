@@ -139,37 +139,58 @@
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Primary Button */
-  .btn-primary {
+  /* ---------------------------------------------------------------------
+     Design primitives (Task 7.2, 2026-09-09).
+
+     These classes already existed and were used ZERO times - every page
+     hand-rolled its own utilities instead, which is how the site ended up
+     with 7 button shapes and 6 section paddings. The values below are not
+     invented: each one is the shape already most common in the codebase, so
+     adopting them changes as few pixels as possible.
+
+     Audited 2026-09-09 across 82 <section> tags and 19 inline buttons:
+       py-10 sm:py-14   40 sections   <- section rhythm
+       rounded-xl      131 uses       <- default radius
+       shadow-lg       102 uses       <- default shadow
+       rounded-2xl      95 uses       <- card radius
+       max-w-7xl       .container-custom, already adopted 73x
+     --------------------------------------------------------------------- */
+
+  /* Button base - shared by all three variants */
+  .btn {
     @apply inline-flex items-center justify-center gap-2;
-    @apply px-6 sm:px-8 py-3 sm:py-4;
-    @apply bg-gradient-to-r from-blue-600 to-cyan-500 text-white;
-    @apply font-semibold rounded-lg sm:rounded-xl shadow-lg;
-    @apply hover:shadow-xl transform hover:scale-105;
-    @apply transition-all duration-300;
-    @apply text-sm sm:text-base;
+    @apply px-6 py-3 text-sm sm:text-base font-semibold;
+    @apply rounded-xl transition-all duration-300;
+    /* 44px is the WCAG 2.5.5 target size floor - do not shrink it */
     min-height: 44px;
     min-width: 44px;
   }
 
-  /* Secondary Button */
+  /* Primary Button - the WhatsApp/contact CTA */
+  .btn-primary {
+    @apply btn;
+    @apply bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg;
+    @apply hover:shadow-xl hover:scale-105;
+  }
+
+  /* Secondary Button - phone, and any second-choice action */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2;
-    @apply px-6 sm:px-8 py-3 sm:py-4;
+    @apply btn;
     @apply bg-white text-blue-600 border-2 border-blue-600;
-    @apply font-semibold rounded-lg sm:rounded-xl;
-    @apply hover:bg-blue-50 transform hover:scale-105;
-    @apply transition-all duration-300;
-    @apply text-sm sm:text-base;
-    min-height: 44px;
-    min-width: 44px;
+    @apply hover:bg-blue-50 hover:scale-105;
+  }
+
+  /* Ghost Button - tertiary, in-page navigation */
+  .btn-ghost {
+    @apply btn;
+    @apply text-blue-600 hover:bg-blue-50;
   }
 
   /* Card Component */
   .card {
-    @apply bg-white rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl;
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl;
     @apply transition-shadow duration-300;
-    @apply p-4 sm:p-6 lg:p-8;
+    @apply p-6 sm:p-8;
   }
 
   /* Gradient Text */
@@ -177,9 +198,9 @@
     @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500;
   }
 
-  /* Section Padding */
+  /* Section rhythm - the one vertical gap. 40 of 82 sections already use it. */
   .section-padding {
-    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+    @apply py-10 sm:py-14;
   }
 
   /* Screen Reader Only (Accessibility) */

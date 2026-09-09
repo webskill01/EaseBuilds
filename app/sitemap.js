@@ -14,9 +14,7 @@ export default function sitemap() {
   // Service slugs (from your dynamic routes)
   const services = [
     'custom-website-design',
-    'ecommerce-development',
     'seo-services',
-    'website-maintenance',
     // merged in from bots.easebuilds.in, 2026-09-08
     'lead-management',
     'business-automation'

@@ -341,7 +341,7 @@ export default function PricingPage() {
   <Link href="/services/custom-website-design" className="text-blue-600 hover:underline">
     custom design
   </Link>,{' '}
-  <Link href="/services/ecommerce-development" className="text-blue-600 hover:underline">
+  <Link href="/services/custom-website-design" className="text-blue-600 hover:underline">
     e-commerce
   </Link>, or business packages with{' '}
   <strong className="text-green-600">FREE maintenance & support</strong>!
