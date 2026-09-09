@@ -298,7 +298,7 @@ const processSteps = [
                   <div className="relative h-64 sm:h-72 overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-100">
                     <Image
                       src={project.image || "/opengraph-image.png"}
-                      alt={`${project.businessName} - ${project.industry} Website Project in Patiala Punjab`}
+                      alt={`${project.businessName} - ${project.category}, ${project.location}`}
 
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"

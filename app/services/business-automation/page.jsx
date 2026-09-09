@@ -419,7 +419,7 @@ export default function BusinessAutomationPage() {
               href="/services/lead-management"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/15 backdrop-blur-md border-2 border-white/40 text-white font-bold rounded-xl text-sm sm:text-base"
             >
-              See EaseBot &mdash; from &#8377;1,499/mo
+              See EaseBot &mdash; from &#8377;1,199/mo
             </Link>
           </div>
         </div>

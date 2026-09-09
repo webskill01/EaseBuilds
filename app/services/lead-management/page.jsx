@@ -55,7 +55,7 @@ const HOW = [
 // ponytail: product facts, not invented metrics. This page ships with no
 // client numbers because there are no bot clients yet - see PHASES.md Phase 4.
 const FACTS = [
-  { icon: FaRupeeSign, value: '1,499', label: 'Per month, whole team' },
+  { icon: FaRupeeSign, value: '1,199', label: 'Per month, whole team' },
   { icon: FaRegClock, value: '30 min', label: 'From signup to running' },
   { icon: FaUsers, value: 'Flat', label: 'Never charged per person' },
   { icon: FaTable, value: 'Yours', label: 'Live Google Sheet you own' },

@@ -9,7 +9,7 @@ const URL = 'https://easebuilds.in/services/lead-management'
 
 const TITLE = 'WhatsApp Lead Management & CRM for Small Business | EaseBuilds'
 const DESCRIPTION =
-  'Record every enquiry, send a ready-written WhatsApp from your own number, never miss a follow-up. No WhatsApp Business API or Meta verification needed. Rs 1,499/month for the whole team, not per user.'
+  'Record every enquiry, send a ready-written WhatsApp from your own number, never miss a follow-up. No WhatsApp Business API or Meta verification needed. From Rs 1,199/month for the whole team, not per user.'
 
 export const metadata = {
   title: TITLE,

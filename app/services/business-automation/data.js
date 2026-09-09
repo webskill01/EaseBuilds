@@ -64,7 +64,9 @@ export const BUILDS = [
   },
   {
     title: 'Custom management systems',
-    body: 'When a spreadsheet has outgrown itself — admissions, inventory, bookings, records — a small system with proper accounts, search and permissions.',
+    body: 'When a spreadsheet has outgrown itself — admissions, inventory, bookings, records — a small system with proper accounts, search and permissions. Usually the point is not features, it is that several people need the same data at once without overwriting each other. Pariksha is ours: accounts, uploads, categorisation and search, running for a college.',
+    href: '/portfolio',
+    linkText: 'See Pariksha',
   },
   {
     title: 'Reminders and due dates',
@@ -140,7 +142,22 @@ export const FAQS = [
   {
     question: 'What does automation actually cost?',
     answer:
-      'It depends entirely on what is being replaced, which is why this page asks rather than publishes a number. Our productised lead-management system, EaseBot, starts at Rs 1,499 per month for the whole team. Custom builds are quoted once we understand the process — a fixed price for the build and a monthly figure to run it, both agreed before anything starts.',
+      'It depends entirely on what is being replaced, which is why this page asks rather than publishes a number. Our productised lead-management system, EaseBot, starts at Rs 1,199 per month for the whole team. Custom builds are quoted once we understand the process — a fixed price for the build and a monthly figure to run it, both agreed before anything starts.',
+  },
+  {
+    question: 'How much does custom software development cost in India?',
+    answer:
+      'Honestly, the published numbers you find are mostly meaningless, because the same phrase covers a two-week internal tool and an eighteen-month ERP. What we can tell you is what moves the figure: how many people use it at once, whether it has to talk to software you already run, whether money passes through it, and how much of your process is unusual enough that it cannot be a standard screen. A system that replaces one spreadsheet is a different order of cost from one that replaces your accounts package. We quote a fixed price for the build plus a monthly figure to run it, both agreed before anything starts, and we would rather scope it down than take on something you do not need.',
+  },
+  {
+    question: 'Should we buy off-the-shelf software or have something built?',
+    answer:
+      'Buy, in most cases, and we will say so. If a product already does eighty per cent of what you need at a few hundred rupees a month, building is the wrong call. Custom is worth it in three situations: the off-the-shelf option charges per seat and your team is growing, your process genuinely differs from how the product assumes you work, or you need two systems you already pay for to talk to each other and neither vendor will help. If none of those apply to you, we will tell you which product to buy instead of quoting you for a build.',
+  },
+  {
+    question: 'Can you build a custom CRM?',
+    answer:
+      'Yes, though check EaseBot first — it is our own lead-management system from Rs 1,199 per month for the whole team, and for most small businesses it is what a custom CRM would end up being anyway. A bespoke build makes sense when your sales process has steps a general CRM cannot represent, or when it has to sit on top of data you already keep somewhere else. The difference matters: buying EaseBot is a monthly figure starting today; a custom build is a scoping call, a fixed quote and a timeline.',
   },
   {
     question: 'Is this AI?',

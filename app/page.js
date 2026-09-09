@@ -8,7 +8,7 @@ import HowItWorks from './components/home/HowItWorks'
 import WhyChooseUs from './components/home/WhyChooseUs'
 import Projects from './components/home/Projects'
 import FAQ from './components/home/FAQ'
-import Contact from './components/home/Contact'
+import HomeCta from './components/home/HomeCta'
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
       <WhyChooseUs />
       <Projects />
       <FAQ />
-      <Contact />
+      <HomeCta />
       
       {/* FAQ Schema - Homepage Only */}
       <JsonLd id="homepage-faq-schema" data={faqSchema} />

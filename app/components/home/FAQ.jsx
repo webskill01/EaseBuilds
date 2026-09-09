@@ -45,7 +45,10 @@ export default function FAQ() {
 
         {/* FAQ Grid */}
         <div className="w-full mx-auto space-y-3 sm:space-y-4 px-2 sm:px-4">
-          {faqs.slice(0, 10).map((faq, index) => (
+          {/* ponytail: render them all. slice(0, 10) silently dropped any FAQ added
+              past the tenth - a trap you only find by diffing rendered HTML.
+              Homepage length is decided in Phase 7.6, not by a magic number here. */}
+          {faqs.map((faq, index) => (
             <ScrollReveal
               key={faq.id}
               direction="up"

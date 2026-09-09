@@ -105,7 +105,7 @@ export default function PricingLayout({ children }) {
         name: 'Are there any hidden costs in website development?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No hidden costs! EaseBuilds offers 100% transparent pricing. The package price is what you pay. Optional add-ons like logo design (₹1,999), extra pages (₹799 each), or premium hosting (₹3,999/year) are clearly listed separately and completely optional.'
+          text: 'No hidden costs! EaseBuilds offers 100% transparent pricing. The package price is what you pay. Optional add-ons like logo design (₹1,999), extra pages (₹699-799 depending on package), or premium hosting (₹3,999/year) are clearly listed separately and completely optional.'
         }
       },
       {

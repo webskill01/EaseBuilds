@@ -10,7 +10,7 @@
 export const WHATSAPP = '916283380110'
 
 export const PRICE = {
-  monthly: 1499,
+  monthly: 1199,
   setup: 3000,
   note: 'Per month for your whole team, not per person. The exact price depends on how many people handle your enquiries. Setup is free if you pay yearly.',
 }
@@ -134,11 +134,11 @@ export const FAQS = [
   },
   {
     question: 'How much does EaseBot cost?',
-    answer: 'Plans start at Rs 1,499 per month for your whole team, not per person. The exact price depends on how many people handle your enquiries. Setup is Rs 3,000 one time, free if you pay yearly.',
+    answer: 'Plans start at Rs 1,199 per month for your whole team, not per person. The exact price depends on how many people handle your enquiries. Setup is Rs 3,000 one time, free if you pay yearly.',
   },
   {
     question: 'How is this cheaper than a CRM?',
-    answer: 'Most CRM software charges per user per month, so the bill grows every time someone joins the team. EaseBot is Rs 1,499 a month for the whole team - five people or fifteen, the price does not change. There is also no migration project and no training budget: the work happens in Telegram and WhatsApp, which the people handling your enquiries already know how to use.',
+    answer: 'Most CRM software charges per user per month, so the bill grows every time someone joins the team. EaseBot starts at Rs 1,199 a month for the whole team - five people or fifteen, the price does not change. There is also no migration project and no training budget: the work happens in Telegram and WhatsApp, which the people handling your enquiries already know how to use.',
   },
   {
     question: 'Can I get my data out?',

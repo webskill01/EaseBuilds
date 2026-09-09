@@ -89,7 +89,7 @@ export default function Hero() {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight px-4"
               >
                 <span className="block text-gray-900 mb-2">
-                  Professional
+                  Website Design
                 </span>
                 
                 {/* static, deliberately: RotatingText here cycled 5 strings of
@@ -97,7 +97,7 @@ export default function Hero() {
                     an LCP that waited on client JS, and an H1 that Google saw
                     differently on every crawl */}
                 <span className="block mb-2 font-extrabold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
-                  Websites &amp; Automation
+                  Development &amp; Automation
                 </span>
 
                 <span className="block text-gray-900 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
@@ -112,11 +112,11 @@ export default function Hero() {
             <p
               className="text-sm sm:text-base lg:text-lg text-gray-950 leading-relaxed max-w-3xl mx-auto px-4"
             >
-              <strong className="text-blue-600">Websites and automation, built in Patiala.</strong> Client sites
+              <strong className="text-blue-600">Web design, development and automation in Patiala.</strong> Client sites
               live from Patiala to Melbourne. Get yours starting at{' '}
               <span className="inline-flex items-baseline gap-2 flex-wrap justify-center">
                 <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-600">₹2,999</span>
-                <span className="text-base sm:text-lg line-through text-gray-950">₹5,999</span>
+                <span className="text-base sm:text-lg line-through text-gray-950">₹4,999</span>
               </span>
             </p>
 
