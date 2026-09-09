@@ -1,3 +1,14 @@
+import {
+  FaBriefcase,
+  FaBuilding,
+  FaChalkboardTeacher,
+  FaComments,
+  FaCut,
+  FaDumbbell,
+  FaShieldAlt,
+  FaStethoscope,
+} from 'react-icons/fa'
+
 // Content for /services/lead-management (EaseBot).
 // Ported from bots.easebuilds.in on 2026-09-08 when that subdomain was merged
 // into the main domain. Copy is unchanged except where it referenced the
@@ -93,14 +104,14 @@ export const FEATURES = [
 ]
 
 export const VERTICALS = [
-  ['Gyms & fitness', 'Track membership renewals'],
-  ['Salons & spas', 'Track package expiry'],
-  ['Agencies', 'Track retainers and proposals'],
-  ['Coaching centres', 'Track fee due dates'],
-  ['Clinics', 'Track follow-up visits'],
-  ['Real estate', 'Track site visits and callbacks'],
-  ['Insurance agents', 'Track policy renewals'],
-  ['Anyone who gets enquiries', 'Track whatever matters to you'],
+  ['Gyms & fitness', 'Track membership renewals', FaDumbbell],
+  ['Salons & spas', 'Track package expiry', FaCut],
+  ['Agencies', 'Track retainers and proposals', FaBriefcase],
+  ['Coaching centres', 'Track fee due dates', FaChalkboardTeacher],
+  ['Clinics', 'Track follow-up visits', FaStethoscope],
+  ['Real estate', 'Track site visits and callbacks', FaBuilding],
+  ['Insurance agents', 'Track policy renewals', FaShieldAlt],
+  ['Anyone who gets enquiries', 'Track whatever matters to you', FaComments],
 ]
 
 export const FAQS = [

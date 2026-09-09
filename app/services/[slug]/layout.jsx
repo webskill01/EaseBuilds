@@ -72,6 +72,11 @@ export default async function ServiceLayout({ children, params }) {
   }
 
   // 1. Service Schema
+  // One published floor sitewide (Task 7.10). Keep this in step with the figure
+  // on /pricing and in the services/[slug] pricing section - three places said
+  // three different numbers before that task.
+  const ENTRY_PRICE = 2999
+
   const serviceSchema = generateServiceSchema(service)
   
   // 2. Offer Schema
@@ -80,7 +85,13 @@ export default async function ServiceLayout({ children, params }) {
     '@type': 'Offer',
     name: `${service.name} in Patiala Punjab`,
     description: service.hero.description,
-    price: service.pricing[0]?.price || 'Varies',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      minPrice: ENTRY_PRICE,
+      priceCurrency: 'INR',
+      valueAddedTaxIncluded: true,
+    },
+    price: ENTRY_PRICE,
     priceCurrency: 'INR',
     availability: 'https://schema.org/InStock',
     url: service.seo.canonical,

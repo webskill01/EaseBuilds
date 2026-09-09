@@ -393,12 +393,15 @@ export default function LeadManagementPage() {
           </ScrollReveal>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {VERTICALS.map(([name, what], index) => (
+            {VERTICALS.map(([name, what, Icon], index) => (
               <ScrollReveal key={name} direction="up" delay={(index % 4) * 0.1}>
                 <motion.div
                   whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.2)' }}
                   className="bg-white rounded-xl border border-blue-100 p-4 sm:p-5 h-full"
                 >
+                  <span className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center mb-3">
+                    <Icon className="w-5 h-5" />
+                  </span>
                   <b className="block text-sm sm:text-base text-gray-900 mb-1">{name}</b>
                   <span className="text-xs sm:text-sm text-gray-600">{what}</span>
                 </motion.div>

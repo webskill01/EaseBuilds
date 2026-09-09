@@ -8,14 +8,12 @@ import { motion } from 'framer-motion'
 import {
   FaWhatsapp,
   FaPhoneAlt,
-  FaCheck,
   FaPlus,
   FaMinus,
   FaArrowRight,
   FaTable,
   FaBell,
   FaSitemap,
-  FaLock,
   FaUserCheck,
   FaClipboardList,
 } from 'react-icons/fa'
@@ -177,6 +175,9 @@ export default function BusinessAutomationPage() {
                 <div className="relative group h-full">
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300" />
                   <div className="relative bg-white rounded-2xl shadow-xl p-6 h-full flex flex-col">
+                    <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center mb-4">
+                      <b.icon className="w-6 h-6" />
+                    </span>
                     <h3 className="font-bold text-lg text-gray-900 mb-2">{b.title}</h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-1">
                       {b.body}
@@ -248,7 +249,9 @@ export default function BusinessAutomationPage() {
             {PROOF.map((p, index) => (
               <ScrollReveal key={p.title} direction="up" delay={index * 0.1}>
                 <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 p-6 h-full flex flex-col">
-                  <FaCheck className="text-2xl text-blue-600 mb-4" />
+                  <span className="w-12 h-12 rounded-xl bg-white/70 border border-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                    <p.icon className="w-6 h-6" />
+                  </span>
                   <h3 className="font-bold text-lg text-gray-900 mb-2">{p.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-1">
                     {p.body}
@@ -286,7 +289,9 @@ export default function BusinessAutomationPage() {
             {WHY.map((w, index) => (
               <ScrollReveal key={w.title} direction={index % 2 === 0 ? 'left' : 'right'}>
                 <div className="bg-white rounded-2xl border border-blue-100 p-6 h-full">
-                  <FaLock className="text-2xl text-blue-600 mb-4" />
+                  <span className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                    <w.icon className="w-6 h-6" />
+                  </span>
                   <h3 className="font-bold text-lg text-gray-900 mb-2">{w.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{w.body}</p>
                 </div>

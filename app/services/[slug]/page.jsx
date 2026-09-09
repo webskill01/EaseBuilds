@@ -10,7 +10,7 @@ import {
   FaPhone, FaWhatsapp, FaCheck, FaRocket, FaArrowRight, FaCrown, 
   FaBolt, FaTimes, FaShieldAlt, FaStar, FaHome, FaChevronRight,
   FaMapMarkerAlt, FaQuoteLeft,
-  FaPhoneAlt
+  FaPhoneAlt, FaRobot, FaComments
 } from 'react-icons/fa'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -22,6 +22,28 @@ import HorizontalStepper from '@/app/components/HorizontallStepper'
 import HeroImage from '@/app/components/HeroImage'
 
 // ✅ SEO: FAQ Component with proper H3 tags
+
+// The automation pages are their own routes, not servicesData entries, so they
+// have to be listed to appear in "Other Services". Task 3.6 keeps the two lines
+// apart in the site's navigation on purpose - they have opposite economics - but
+// a related-services block is exactly where a web-service visitor should be able
+// to discover the automation work.
+const AUTOMATION_SERVICES = [
+  {
+    slug: 'business-automation',
+    name: 'Business Automation',
+    icon: FaRobot,
+    description:
+      'Reminders, follow-ups and reports that run themselves, so the work that eats your evening stops being manual.',
+  },
+  {
+    slug: 'lead-management',
+    name: 'Lead Management (EaseBot)',
+    icon: FaComments,
+    description:
+      'A WhatsApp bot that answers enquiries, qualifies them and hands you the ones worth calling. From \u20b91,199/month.',
+  },
+]
 
 export default function DynamicServicePage() {
   const params = useParams()
@@ -536,73 +558,43 @@ export default function DynamicServicePage() {
           </aside>
         )}
 
-        {/* Pricing */}
+        {/* Pricing - one entry price, not a ladder (Task 7.10).
+            Full tier tables let a visitor self-disqualify on price and leave
+            without ever describing what they need. One floor sets the
+            expectation; the real number comes after a conversation. */}
         <section className="section-padding bg-white" aria-labelledby="pricing-heading">
           <div className="container-custom">
             <ScrollReveal direction="up">
-              <div className="text-center mb-16">
-                <h2 id="pricing-heading" className="text-4xl font-bold text-gray-900 mb-4">
-                  {serviceData.name} Pricing in Patiala Punjab
+              <div className="max-w-2xl mx-auto text-center">
+                <h2 id="pricing-heading" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                  What {serviceData.name.toLowerCase()} costs
                 </h2>
-                <p className="text-xl text-gray-600">
-                  Affordable packages for Patiala businesses
+                <p className="text-lg text-gray-600 mb-8">
+                  Websites start at <strong className="text-gray-900">&#8377;2,999</strong>. What
+                  moves the number is how many pages you need, whether anything has to
+                  connect to a system you already use, and how much of the content
+                  exists. Tell me what you are trying to do and you will get a real
+                  figure, not a package.
                 </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href={`https://wa.me/916283380110?text=${encodeURIComponent(
+                      `Hi EaseBuilds, I want a price for ${serviceData.name.toLowerCase()}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto btn-whatsapp"
+                  >
+                    <FaWhatsapp className="w-5 h-5" />
+                    Get a price on WhatsApp
+                  </a>
+                  <Link href="/pricing" className="w-full sm:w-auto btn-secondary">
+                    How pricing works
+                  </Link>
+                </div>
               </div>
             </ScrollReveal>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {serviceData.pricing.map((plan, index) => (
-                <ScrollReveal key={index} direction="up" delay={index * 0.1}>
-                  <motion.div
-                    whileHover={{ y: -10 }}
-                    className={`relative bg-white p-8 rounded-3xl ${
-                      plan.popular 
-                        ? 'border-4 border-blue-600 shadow-2xl' 
-                        : 'border-2 border-gray-200 shadow-lg'
-                    }`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full text-sm font-bold">
-                        Most Popular
-                      </div>
-                    )}
-
-                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                    <p className="text-gray-600 mb-6">{plan.description}</p>
-
-                    <div className="mb-6">
-                      <span className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                        ₹{plan.price.toLocaleString()}
-                      </span>
-                      {plan.billingCycle && (
-                        <span className="text-gray-500">{plan.billingCycle}</span>
-                      )}
-                    </div>
-
-                    <ul className="space-y-3 mb-8">
-                      {plan.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <FaCheck className="text-green-500 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <motion.a
-                      href="tel:+916283380110"
-                      whileHover={{ scale: 1.05 }}
-                      className={`block text-center btn font-bold ${
-                        plan.popular
-                          ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white'
-                          : 'bg-gray-100 text-gray-900'
-                      }`}
-                    >
-                      Get Started
-                    </motion.a>
-                  </motion.div>
-                </ScrollReveal>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -621,8 +613,17 @@ export default function DynamicServicePage() {
             </ScrollReveal>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {Object.values(services)
-                .filter(s => s.slug !== slug)
+              {[
+                ...Object.values(services)
+                  .filter(s => s.slug !== slug)
+                  .map(s => ({
+                    slug: s.slug,
+                    name: s.name,
+                    icon: s.icon,
+                    description: s.hero.description,
+                  })),
+                ...AUTOMATION_SERVICES,
+              ]
                 .slice(0, 3)
                 .map((relatedService, index) => (
                   <ScrollReveal key={index} direction="up" delay={index * 0.1}>
@@ -636,7 +637,7 @@ export default function DynamicServicePage() {
                           {relatedService.name}
                         </h3>
                         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                          {relatedService.hero.description}
+                          {relatedService.description}
                         </p>
                         <span className="text-blue-600 font-semibold flex items-center gap-2">
                           Learn More <FaArrowRight />

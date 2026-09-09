@@ -114,10 +114,7 @@ export default function Hero() {
             >
               <strong className="text-blue-600">Web design, development and automation in Patiala.</strong> Client sites
               live from Patiala to Melbourne. Get yours starting at{' '}
-              <span className="inline-flex items-baseline gap-2 flex-wrap justify-center">
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-600">₹2,999</span>
-                <span className="text-base sm:text-lg line-through text-gray-950">₹4,999</span>
-              </span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-blue-600">₹2,999</span>
             </p>
 
             {/* CTA Buttons - Simplified animations */}

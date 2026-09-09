@@ -1,3 +1,19 @@
+import {
+  FaBell,
+  FaDatabase,
+  FaFlask,
+  FaGraduationCap,
+  FaInfinity,
+  FaLayerGroup,
+  FaPlug,
+  FaRobot,
+  FaSatelliteDish,
+  FaTable,
+  FaUnlock,
+  FaUserPlus,
+  FaUserTie,
+} from 'react-icons/fa'
+
 // Content for /services/business-automation - the Cluster C pillar.
 //
 // Claims discipline (PHASES.md Phase 4): there are no paying automation
@@ -54,30 +70,36 @@ export const STEPS = [
 export const BUILDS = [
   {
     title: 'Lead and follow-up systems',
+    icon: FaUserPlus,
     body: 'Every enquiry captured the moment it arrives, follow-ups that nobody has to remember, and a record of who actually signed up. This one is productised as EaseBot.',
     href: '/services/lead-management',
     linkText: 'See EaseBot',
   },
   {
     title: 'Sheet and data automation',
+    icon: FaTable,
     body: 'The copying, the re-typing, the monthly report someone builds by hand. If it moves between a form, a sheet and a message, it can move without you.',
   },
   {
     title: 'Custom management systems',
+    icon: FaDatabase,
     body: 'When a spreadsheet has outgrown itself — admissions, inventory, bookings, records — a small system with proper accounts, search and permissions. Usually the point is not features, it is that several people need the same data at once without overwriting each other. Pariksha is ours: accounts, uploads, categorisation and search, running for a college.',
     href: '/portfolio',
     linkText: 'See Pariksha',
   },
   {
     title: 'Reminders and due dates',
+    icon: FaBell,
     body: 'Renewals, fees, appointments, payments. The thing that costs you money when it is forgotten gets a reminder before it is forgotten.',
   },
   {
     title: 'Bots as the front door',
+    icon: FaRobot,
     body: 'Telegram, WhatsApp, or a web panel with your own address — whichever your staff will actually open. The bot is the interface; the system behind it is the product.',
   },
   {
     title: 'Joining up what you already pay for',
+    icon: FaPlug,
     body: 'Your website form, your sheet, your phone. Most businesses do not need new software so much as the things they own talking to each other.',
   },
 ]
@@ -105,16 +127,19 @@ export const PROCESS = [
 export const PROOF = [
   {
     title: 'We built it for ourselves first',
+    icon: FaFlask,
     body: 'EaseBot exists because we were losing our own enquiries in a spreadsheet. It runs our follow-ups and renewals every day. We are not selling you something we do not use.',
   },
   {
     title: 'Pariksha — a system with real users',
+    icon: FaGraduationCap,
     body: 'Built as our own project and adopted by a college for its students. Exam papers had been circulating through scattered WhatsApp groups; it replaced that with accounts, uploads, categorisation and search.',
     href: '/portfolio',
     linkText: 'See the project',
   },
   {
     title: 'Bots running in the field',
+    icon: FaSatelliteDish,
     body: 'Taxi booking and dispatch bots we built for people we know, running on live infrastructure. Not paying clients — we would rather tell you that than invent a case study.',
   },
 ]
@@ -122,18 +147,22 @@ export const PROOF = [
 export const WHY = [
   {
     title: 'We are not reselling a messaging plan',
+    icon: FaLayerGroup,
     body: 'Most "WhatsApp automation" companies resell the same Meta API and compete on price per message. We build the system underneath. The channel is a delivery choice, decided in your scoping call.',
   },
   {
     title: 'No per-person, no per-message',
+    icon: FaInfinity,
     body: 'Software that charges per seat punishes you for growing. A team of five should not pay five times. You get a figure for the whole thing.',
   },
   {
     title: 'Your data is never hostage',
+    icon: FaUnlock,
     body: 'Everything mirrors to a Google Sheet you own. No export request, no lock-in, no leverage over you at renewal time.',
   },
   {
     title: 'Built by the person you speak to',
+    icon: FaUserTie,
     body: 'One person builds it and one person answers when it breaks. You are not handed to an account manager.',
   },
 ]
