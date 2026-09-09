@@ -1,7 +1,6 @@
 'use client'
 
 // Ultra-Optimized How It Works Section
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { motion, useInView } from 'framer-motion'
 import { FaComments, FaPencilRuler, FaCode, FaRocket, FaArrowRight, FaCheckCircle, FaClock, FaPhone, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa'
@@ -96,10 +95,10 @@ export default function HowItWorks() {
           </h2>
           
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4 mb-4">
-            From initial consultation to website launch in just <strong className="text-blue-600">2-3 weeks</strong>. 
-            Professional web development services by the{' '}
-            <strong className="text-gray-900">best web developer in Patiala</strong>{' '}
-            with complete transparency and dedicated support.
+            From first conversation to a live site in{' '}
+            <strong className="text-blue-600">2-3 weeks</strong>. You get a fixed
+            price before anything starts, and you deal with the developer building
+            it at every step.
           </p>
 
           {/* Timeline Badge */}

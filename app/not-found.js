@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export const metadata = {
-  title: '404 - Page Not Found | EaseBuilds - Best Web Developer in Patiala',
+  title: '404 - Page Not Found | EaseBuilds',
   description: 'The page you are looking for does not exist. Explore EaseBuilds web development services in Patiala Punjab India.',
 }
 
@@ -109,7 +109,7 @@ export default function NotFound() {
           <div className="mt-16 text-center">
             <div className="inline-block bg-white rounded-2xl shadow-xl p-6 max-w-2xl">
               <p className="text-gray-700 leading-relaxed">
-                <span className="font-bold text-blue-600">Looking for the best web developer in Patiala?</span> 
+                <span className="font-bold text-blue-600">Looking for a web developer in Patiala?</span> 
                 {' '}EaseBuilds creates stunning, fast, and SEO-optimized websites for businesses in 
                 Punjab starting at just <span className="font-bold text-green-600">₹2,999</span>. 
                 Let&apos;s build something amazing together!

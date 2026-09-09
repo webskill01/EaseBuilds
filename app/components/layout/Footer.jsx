@@ -3,7 +3,6 @@
 import Image from 'next/image'
 // Compact Footer - Restructured with 2-col mobile grid
 // Industries/Areas integrated into link sections
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import Link from 'next/link'
 import { 
@@ -105,8 +104,8 @@ export default function Footer() {
 
             
             <p className="text-sm leading-relaxed mb-4 text-gray-400 max-w-xs">
-              <strong className="text-white">Best web development</strong> in Patiala Punjab. 
-              Fast, SEO-optimized websites.
+              <strong className="text-white">Websites and automation</strong> built
+              in Patiala, Punjab. One developer, fixed prices, live in 2-3 weeks.
             </p>
 
             {/* Rating */}
@@ -260,7 +259,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
             <div className="text-center sm:text-left text-gray-400">
               <p>© {currentYear} <strong className="text-white">EaseBuilds</strong>. All rights reserved.</p>
-              <p className="mt-0.5 text-[11px]">Best Web Developer in Patiala Punjab</p>
+              <p className="mt-0.5 text-[11px]">Web development in Patiala, Punjab</p>
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 text-gray-400">

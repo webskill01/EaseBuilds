@@ -1,7 +1,6 @@
 'use client'
 
 // OPTIMIZED Hero - High Performance
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { motion, useInView } from 'framer-motion'
 import { FaRocket, FaPhone, FaWhatsapp, FaStar, FaUsers, FaAward, FaClock, FaRupeeSign, FaPhoneAlt } from 'react-icons/fa'
@@ -58,7 +57,7 @@ export default function Hero() {
               <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full shadow-lg">
                 <FaRocket className="text-base" />
                 <span className="text-xs sm:text-sm font-bold">
-                  #1 Web Developer in Patiala Punjab
+                  15 projects shipped from Patiala
                 </span>
               </div>
 

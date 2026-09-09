@@ -96,7 +96,7 @@ const services = [
     icon: FaSearch,
     title: 'SEO Services',
     description: 'Rank higher on Google with expert SEO services.',
-    fullDescription: 'Get found by local customers! Our SEO services help you rank #1 for keywords like "best [your business] in Patiala". More visibility = more customers.',
+    fullDescription: 'For local searches, Google puts three businesses in a map block above every organic result. We audit that block first and tell you honestly whether your money is better spent there or on the site.',
     gradient: 'from-cyan-400 to-blue-600',
     bgGradient: 'from-cyan-50 to-blue-100',
     iconColor: 'text-cyan-600',
@@ -344,7 +344,7 @@ export default function Services() {
           <ScrollReveal direction="up" delay={0.2}>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Complete solutions from the{' '}
-              <span className="font-bold text-blue-600">best web developer in Patiala</span>
+              <span className="font-bold text-blue-600">web development in Patiala</span>
               . Click cards to explore!
             </p>
           </ScrollReveal>

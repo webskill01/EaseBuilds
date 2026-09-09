@@ -1,7 +1,6 @@
 'use client'
 
 // Pricing FAQ Component - SEO Optimized
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { FaQuestionCircle } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'

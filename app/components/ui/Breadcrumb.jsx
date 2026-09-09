@@ -1,7 +1,6 @@
 'use client'
 
 // Dynamic Breadcrumb Component with Schema Markup
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'

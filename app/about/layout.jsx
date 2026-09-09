@@ -117,7 +117,7 @@ export default function AboutLayout({ children }) {
   const aboutPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    name: 'About EaseBuilds - Best Web Developer in Patiala Punjab India',
+    name: 'About EaseBuilds - Web Developer in Patiala, Punjab',
     description: 'Learn about EaseBuilds, a one-developer web studio in Patiala. Websites and automation for local businesses — you work directly with the developer who builds your site.',
     url: 'https://easebuilds.in/about',
     mainEntity: {

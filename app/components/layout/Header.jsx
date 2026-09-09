@@ -1,7 +1,6 @@
 'use client'
 
 // Simplified Header - Mobile Menu Fixed Overlay
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -276,7 +275,7 @@ export default function Header() {
                   <div>
                     <div className="text-lg font-bold text-gray-900">EaseBuilds</div>
                     <div className="text-[10px] text-blue-600 font-medium">
-                      Best Web Developer in Patiala
+                      Web development in Patiala
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,5 @@
 "use client";
 
-// Premium About Page - EaseBuilds - Best Web Developer in Patiala Punjab India
 // Professional Design with Custom Background, Glassmorphism & Interactive Elements
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
@@ -586,7 +585,7 @@ export default function AboutPage() {
                   </h2>
                   <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
                     Ready to transform your business with a professional
-                    website? Get a free consultation with the best web
+                    website? Tell me what you need and get a fixed price from the
                     development team in Patiala.
                   </p>
 

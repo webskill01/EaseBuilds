@@ -1,7 +1,6 @@
 'use client'
 
 // Ultra-Optimized Portfolio Projects Section
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { motion } from 'framer-motion'
 import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaRocket, FaPhone, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa'
@@ -71,15 +70,16 @@ export default function Projects() {
           </div>
           
           <h2 id="portfolio-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-            Website Portfolio by{' '}
+            Work we have{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-              Best Web Developer Patiala
+              actually shipped
             </span>
           </h2>
           
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4 mb-2">
-            Explore professional websites built by <strong className="text-blue-600">EaseBuilds - Best Web Developer in Patiala</strong>. 
-            From e-commerce to education platforms, we deliver measurable results for local businesses.
+            Every site below is live and linked, so you can open it and judge it
+            yourself. From a taxi booking service in Patiala to a cleaning company
+            in Melbourne.
           </p>
           
           {/* Success Metrics Badge */}

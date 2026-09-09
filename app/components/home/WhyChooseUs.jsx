@@ -1,7 +1,6 @@
 'use client'
 
 // Ultra-Optimized Why Choose Us Section
-// EaseBuilds - Best Web Developer in Patiala Punjab India
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
@@ -19,7 +18,7 @@ const benefits = [
   {
     icon: FaClock,
     title: 'Lightning Fast Delivery',
-    description: 'Professional websites launched in just 2-3 weeks. 60% faster than industry average (6-8 weeks) while maintaining top quality standards.',
+    description: 'Your site is live in 2-3 weeks, with the delivery date agreed before work starts rather than estimated and then moved.',
     gradient: 'from-blue-400 to-blue-500',
   },
   {
@@ -177,14 +176,15 @@ export default function WhyChooseUs() {
                 </span>
               </div>
               <h2 id="why-choose-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-                Best Web Developer in{' '}
+                Why businesses in{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
                   Patiala
-                </span>
+                </span>{' '}
+                pick us
               </h2>
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
-                Your trusted partner for professional website development. Here's what makes EaseBuilds the{' '}
-                <strong className="text-blue-600">#1 choice for local businesses in Patiala</strong>:
+                Not the cheapest and not the biggest. Here is what you actually
+                get, so you can weigh it against anyone else you are talking to:
               </p>
             </div>
 
