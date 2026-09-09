@@ -1,432 +1,295 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { FaStar, FaPhone, FaWhatsapp, FaCheckCircle, FaTimes, FaLock, FaGift, FaCheck, FaMoneyBill, FaRupeeSign, FaHospital, FaBuilding, FaBook, FaStore, FaPhoneAlt } from 'react-icons/fa'
-import FomoBanner from './components/FomoBanner'
-import PricingCard from './components/PricingCard'
-import PricingFAQ from './components/PricingFAQ'
+// /pricing - "how pricing works", not a package menu (Task 7.10, 2026-09-09).
+//
+// The URL is kept deliberately. It has drawn more impressions than any page on
+// this site except the homepage and /services/seo-services, and it is one of the
+// few that has ever earned a click - so deleting it to remove the tier tables
+// would have thrown away the traffic along with the problem.
+//
+// What went: the three-tier comparison table, the PricingCard tier grid with its
+// add-on calculator, and the countdown "FOMO" banner. The banner was a fake
+// deadline, which fails the project's rule that every published number has to be
+// checkable. Their components and the useFomoCountdown hook were deleted with
+// them - nothing else imported any of it.
+//
+// Note the page used to render `faqs.slice(0, 6)` from faqData, i.e. the
+// HOMEPAGE FAQs, while lib/pricingData exported an unused pricingFAQs. It now
+// renders the pricing ones.
+
+import { motion } from 'framer-motion'
+import {
+  FaStar, FaWhatsapp, FaCheck, FaRupeeSign,
+  FaBoltLightning, FaLock, FaRobot,
+} from 'react-icons/fa6'
+import { FaCheckCircle, FaPhoneAlt } from 'react-icons/fa'
+import Link from 'next/link'
 import ScrollReveal from '../components/animations/ScrollReveal'
 import GridBackground from '../components/animations/GridBackground'
-import { pricingPlans } from '@/lib/pricingData'
-import { faqs } from '@/lib/faqData'
-import { useFomoCountdown } from '@/hooks/useFomoCountdown'
-import Image from 'next/image'
-import Link from 'next/link'
-import { FaBoltLightning } from 'react-icons/fa6'
-import HeroImage from '../components/HeroImage'
+import PricingFAQ from './components/PricingFAQ'
+import {
+  ENTRY_PRICE, MAINTENANCE_MONTHLY, EASEBOT_MONTHLY,
+  PRICE_DRIVERS, ALWAYS_INCLUDED, QUOTE_STEPS, pricingFAQs,
+} from '@/lib/pricingData'
+
+const rupees = (n) => `₹${n.toLocaleString('en-IN')}`
+
+const WA_HREF =
+  'https://wa.me/916283380110?text=' +
+  encodeURIComponent('Hi EaseBuilds, I would like a price for a website.')
 
 export default function PricingPage() {
-  const [selectedAddons, setSelectedAddons] = useState({})
-  const [fastDelivery, setFastDelivery] = useState({})
-  const [maintenance, setMaintenance] = useState({})
-  const { showFomo, hours, minutes, seconds } = useFomoCountdown()
-
-  const toggleAddon = (planId, addonId) => {
-    setSelectedAddons(prev => ({
-      ...prev,
-      [planId]: {
-        ...(prev[planId] || {}),
-        [addonId]: !prev[planId]?.[addonId]
-      }
-    }))
-  }
-
-  const hasHostingSelected = (planId) => {
-    return selectedAddons[planId]?.['hosting-package']
-  }
-
-  const calculateTotal = (plan) => {
-    let total = plan.price
-    
-    if (fastDelivery[plan.id]) {
-      total += plan.fastDeliveryCost
-    }
-    
-    if (selectedAddons[plan.id] && plan.addons) {
-      Object.keys(selectedAddons[plan.id]).forEach(addonId => {
-        if (selectedAddons[plan.id][addonId]) {
-          const addon = plan.addons.find(a => a.id === addonId)
-          if (addon) total += addon.price
-        }
-      })
-    }
-
-    if (maintenance[plan.id]) {
-      total += (plan.maintenancePerMonth * 12)
-    }
-    
-    return total
-  }
-
-  const getDiscountPercent = (plan) => {
-    if (plan.originalPrice && plan.price && plan.originalPrice > plan.price) {
-      return Math.round(((plan.originalPrice - plan.price) / plan.originalPrice) * 100)
-    }
-    return 0
-  }
-
-  // Comparison features for table
-  const comparisonFeatures = [
-    { label: 'Starting Price', key: 'price' },
-    { label: 'Number of Pages', basic: '3-4', standard: '8-10', premium: 'Custom' },
-    { label: 'Mobile Responsive', basic: true, standard: true, premium: true },
-    { label: 'SEO Optimized', basic: true, standard: true, premium: true },
-    { label: 'Free Maintenance', basic: '1 Month', standard: '2 Months', premium: '3 Months' },
-    { label: 'Free Support', basic: '1 Month', standard: '2 Months', premium: '3 Months' },
-    { label: 'Blog Section', basic: false, standard: true, premium: true },
-    { label: 'E-commerce Features', basic: false, standard: false, premium: true },
-    { label: 'Custom Animations', basic: false, standard: true, premium: true },
-    { label: 'Delivery Time', basic: '1 Week', standard: '2-3 Weeks', premium: '3 Weeks' },
-    { label: 'Social Media Integration', basic: true, standard: true, premium: true },
-    { label: 'Contact Form', basic: true, standard: true, premium: true },
-    { label: 'Google Maps', basic: true, standard: true, premium: true },
-    { label: 'Analytics Setup', basic: false, standard: true, premium: true },
-  ]
-
   return (
-    <>
-      <main className="pt-10">
-        
-       <section className="relative pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8  overflow-hidden">
-  
-  {/* Custom Image Background Layer */}
-  <div className="absolute inset-0 opacity-50">
-    <HeroImage
-      src="/images/blog2.webp"
-      alt="Website development pricing background - EaseBuilds office in Patiala Punjab India"
-    />
-  </div>
-
-
-  {/* Gradient Overlay for Better Text Readability */}
-  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/60 to-white pointer-events-none" />
-
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <ScrollReveal direction="up" className="text-center mb-6">
-              
-              {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md mb-4 sm:mb-6">
+    <main className="pt-10">
+      {/* ── What it costs ─────────────────────────────────── */}
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+        <div className="container-custom">
+          <ScrollReveal direction="up">
+            <div className="max-w-3xl mx-auto text-center">
+              {/* the 5.0 rating is fine to show; the review count is not */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md mb-6">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <FaStar key={i} className="text-yellow-400 text-sm" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-gray-900">
-                  5.0 on Google
-                </span>
+                <span className="text-sm font-semibold text-gray-900">5.0 on Google</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6">
-  <span className="text-gray-900">Affordable Website </span>
-  <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
-    Development Pricing
-  </span>
-</h1>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5">
+                <span className="text-gray-900">What a website </span>
+                <span className="gradient-text">actually costs</span>
+              </h1>
 
-              
-              <p className="text-sm sm:text-base lg:text-lg text-gray-900 max-w-3xl mx-auto mb-4 sm:mb-6 px-4">
-                Transparent, affordable website packages from the{' '}
-                <strong className="text-blue-700">best web developer in Patiala</strong>. 
-                Choose your plan and get started today with <strong className="text-green-600">FREE maintenance & support</strong>!
+              <p className="text-base sm:text-lg text-gray-600 mb-8">
+                Builds start at{' '}
+                <strong className="text-gray-900">{rupees(ENTRY_PRICE)}</strong>. There is no
+                package ladder above that, because the real number depends on what you
+                are building. Tell me what you need and you get one fixed figure for
+                your actual scope &mdash; agreed before any work starts.
               </p>
 
-              {/* Contact CTAs - Mobile Optimized */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8">
-                <motion.a
-                  href="tel:+916283380110"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaPhoneAlt className="text-lg" />
-                  <span>Call Us</span>
-                </motion.a>
-                <motion.a
-                  href="https://wa.me/916283380110?text=Hi%2C%20I%20want%20to%20know%20about%20website%20pricing%20in%20Patiala"
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href={WA_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto btn-whatsapp"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  <FaWhatsapp className="text-xl" />
-                  <span>WhatsApp Us</span>
-                </motion.a>
+                  <FaWhatsapp className="w-5 h-5" />
+                  Get a price on WhatsApp
+                </a>
+                <a href="tel:+916283380110" className="w-full sm:w-auto btn-secondary">
+                  <FaPhoneAlt className="w-4 h-4" />
+                  Call +91 62833 80110
+                </a>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm">
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm mt-8">
                 {[
-                  { icon: <FaRupeeSign/>, text: 'Transparent Pricing' },
-                  { icon: <FaBoltLightning/>, text: '2-3 Week Delivery' },
-                  { icon: <FaGift/>, text: 'Free Support' },
-                  { icon: <FaLock/>, text: 'Secure Payment' },
+                  { icon: <FaRupeeSign />, text: 'One figure, agreed up front' },
+                  { icon: <FaBoltLightning />, text: '2-3 week delivery' },
+                  { icon: <FaLock />, text: 'You own the code' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-2 text-gray-600">
-                    <span className="text-base sm:text-lg">{item.icon}</span>
+                    <span className="text-base sm:text-lg text-blue-600">{item.icon}</span>
                     <span className="font-medium">{item.text}</span>
                   </div>
                 ))}
               </div>
-            </ScrollReveal>
-          </div>
-        </section>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
 
-        {/* FOMO Banner */}
-        <AnimatePresence>
-          {showFomo && (
-            <FomoBanner hours={hours} minutes={minutes} seconds={seconds} />
-          )}
-        </AnimatePresence>
-
-        {/* Comparison Table Section */}
-        <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6">
-            <ScrollReveal direction="up" className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-                Package Comparison Table
+      {/* ── What moves the number ─────────────────────────── */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <ScrollReveal direction="up">
+            <div className="text-center mb-10 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                What moves the number
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-                Compare all features and choose the perfect plan for your business
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                Four things decide what a build costs. None of them is a tier you have to
+                pick from.
               </p>
-            </ScrollReveal>
+            </div>
+          </ScrollReveal>
 
-            {/* Mobile: Horizontal Scroll with Sticky Column */}
-            <div className="relative">
-              <div className="overflow-x-auto rounded-xl sm:rounded-2xl shadow-xl border border-gray-200">
-                <table className="w-full bg-white">
-                  <thead>
-                    <tr className="bg-gradient-to-r from-blue-600 to-cyan-500">
-                      <th className="sticky left-0 z-20 bg-gradient-to-r from-blue-600 to-cyan-500 px-4 sm:px-6 py-4 text-left text-xs sm:text-sm font-bold text-white uppercase tracking-wider min-w-[140px] sm:min-w-[180px]">
-                        Features
-                      </th>
-                      {pricingPlans.map((plan) => (
-                        <th key={plan.id} className="px-4 sm:px-6 py-4 text-center min-w-[120px] sm:min-w-[180px]">
-                          <div className="text-white">
-                            {plan.popular && (
-                              <div className="mb-2">
-                                <span className="inline-block bg-yellow-400 text-gray-900 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold">
-                                  ⭐ POPULAR
-                                </span>
-                              </div>
-                            )}
-                            <div className="text-base sm:text-lg font-bold mb-1">{plan.name}</div>
-                            <div className="flex flex-col items-center gap-1">
-                              <div className="flex items-baseline gap-1">
-                                <span className="text-xl sm:text-2xl font-extrabold">₹{plan.price.toLocaleString('en-IN')}</span>
-                              </div>
-                              {plan.originalPrice > plan.price && (
-                                <span className="text-xs line-through text-blue-200">₹{plan.originalPrice.toLocaleString('en-IN')}</span>
-                              )}
-                            </div>
-                          </div>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {comparisonFeatures.map((feature, idx) => (
-                      <tr key={idx} className={`${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 transition-colors`}>
-                        <td className="sticky left-0 z-10 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-gray-900 bg-inherit">
-                          {feature.label}
-                        </td>
-                        {feature.key === 'price' ? (
-                          pricingPlans.map((plan) => (
-                            <td key={plan.id} className="px-4 sm:px-6 py-3 sm:py-4 text-center">
-                              <div className="flex flex-col items-center">
-                                <span className="text-lg sm:text-xl font-bold text-blue-600">
-                                  ₹{plan.price.toLocaleString('en-IN')}
-                                </span>
-                                {getDiscountPercent(plan) > 0 && (
-                                  <span className="text-[10px] sm:text-xs text-green-600 font-semibold">
-                                    Save {getDiscountPercent(plan)}%
-                                  </span>
-                                )}
-                              </div>
-                            </td>
-                          ))
-                        ) : (
-                          ['basic', 'standard', 'premium'].map((planType) => (
-                            <td key={planType} className="px-4 sm:px-6 py-3 sm:py-4 text-center">
-                              {typeof feature[planType] === 'boolean' ? (
-                                feature[planType] ? (
-                                  <FaCheckCircle className="inline text-green-500 text-lg sm:text-xl" />
-                                ) : (
-                                  <FaTimes className="inline text-gray-300 text-lg sm:text-xl" />
-                                )
-                              ) : (
-                                <span className="text-xs sm:text-sm text-gray-700 font-medium">
-                                  {feature[planType]}
-                                </span>
-                              )}
-                            </td>
-                          ))
-                        )}
-                      </tr>
-                    ))}
-                    
-                    {/* CTA Row */}
-                    <tr className="bg-gray-100">
-                      <td className="sticky left-0 z-10 px-4 sm:px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-100">
-                        Choose Plan
-                      </td>
-                      {pricingPlans.map((plan) => (
-                        <td key={plan.id} className="px-4 sm:px-6 py-4 text-center">
-                          <a
-                            href="tel:+916283380110"
-                            className={`inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all duration-300 ${
-                              plan.popular
-                                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-xl'
-                                : 'bg-blue-600 text-white hover:bg-blue-700'
-                            }`}
-                          >
-                            Get Started
-                          </a>
-                        </td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              
-              {/* Mobile Scroll Hint */}
-              <div className="lg:hidden mt-4 text-center">
-                <p className="text-xs text-gray-500">
-                  👉 Scroll horizontally to see all features
+          <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {PRICE_DRIVERS.map((d, index) => (
+              <ScrollReveal key={d.title} direction="up" delay={(index % 2) * 0.1}>
+                <div className="card h-full">
+                  <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center font-bold text-lg mb-4">
+                    {index + 1}
+                  </span>
+                  <h3 className="font-bold text-lg text-gray-900 mb-2">{d.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{d.body}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Included regardless ───────────────────────────── */}
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <ScrollReveal direction="up">
+              <div className="text-center mb-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                  In every build, at any price
+                </h2>
+                <p className="text-base sm:text-lg text-gray-600">
+                  These are not upgrades. A cheap site that skips them is not cheaper, it
+                  is unfinished.
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Cards (Full Details) */}
-        <section className="section-padding bg-white">
-          <div className="container mx-auto max-w-7xl px-4 lg:px-8">
-            <ScrollReveal direction="up" className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-                Detailed Package Information & Price Calculator
-              </h2>
-              <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
-                All packages include free maintenance, training, and support for businesses 
-              </p>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-              {pricingPlans.map((plan, index) => (
-                <PricingCard
-                  key={plan.id}
-                  plan={plan}
-                  index={index}
-                  selectedAddons={selectedAddons}
-                  fastDelivery={fastDelivery}
-                  maintenance={maintenance}
-                  toggleAddon={toggleAddon}
-                  setFastDelivery={setFastDelivery}
-                  setMaintenance={setMaintenance}
-                  calculateTotal={calculateTotal}
-                  hasHostingSelected={hasHostingSelected}
-                  getDiscountPercent={getDiscountPercent}
-                />
+            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+              {ALWAYS_INCLUDED.map((item, index) => (
+                <ScrollReveal key={item} direction="up" delay={(index % 2) * 0.05}>
+                  <div className="flex gap-3 items-start">
+                    <span className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <FaCheck className="w-3 h-3" />
+                    </span>
+                    <span className="text-gray-700">{item}</span>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
-        </section>
-        <p className="text-sm sm:text-base text-gray-600 max-w-5xl mx-auto mb-4 sm:mb-6 px-4">
-  Transparent, affordable website packages from the{' '}
-  <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold underline">
-    best web developer in Patiala
-  </Link>. 
-  Choose from{' '}
-  <Link href="/services/custom-website-design" className="text-blue-600 hover:underline">
-    custom design
-  </Link>,{' '}
-  <Link href="/services/custom-website-design" className="text-blue-600 hover:underline">
-    e-commerce
-  </Link>, or business packages with{' '}
-  <strong className="text-green-600">FREE maintenance & support</strong>!
-</p>
+        </div>
+      </section>
 
-        {/* FAQ */}
-        <PricingFAQ faqs={faqs.slice(0, 6)} />
-
-
-        {/* Trust Section - Social Proof */}
-        <ScrollReveal direction="up">
-          <section className="section-padding bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <GridBackground 
-                dotColor="rgba(59, 130, 246, 0.3)" 
-                lineColor="rgba(59, 130, 246, 0.06)"
-                gridSize={50}
-                animated={false}
-              />
-            </div>
-
-            <div className="container mx-auto max-w-6xl px-4 text-center relative z-10">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
-                Built for Businesses from Patiala to Melbourne
+      {/* ── The two monthly prices ────────────────────────── */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <ScrollReveal direction="up">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                The two things that do have a fixed price
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-                {[
-                  { icon: <FaHospital/>, title: 'Home Services', count: 'Melbourne' },
-                  { icon: <FaBuilding/>, title: 'Travel', count: 'Patiala' },
-                  { icon: <FaBook/>, title: 'Education', count: 'Patiala' },
-                  { icon: <FaStore/>, title: 'E-commerce', count: 'Chennai' },
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow flex items-center flex-col">
-                    <div className="text-4xl mb-2 text-blue-600 ">{item.icon}</div>
-                    <div className="text-2xl font-bold text-black">{item.count}</div>
-                    <div className="text-sm text-gray-600">{item.title}</div>
-                  </div>
-                ))}
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                Both are optional, and both are the same price for everyone.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <ScrollReveal direction="up">
+              <div className="card h-full flex flex-col">
+                <span className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                  <FaCheckCircle className="w-6 h-6" />
+                </span>
+                <h3 className="font-bold text-lg text-gray-900 mb-1">Website maintenance</h3>
+                <p className="text-2xl font-extrabold text-blue-600 mb-3">
+                  {rupees(MAINTENANCE_MONTHLY)}
+                  <span className="text-base font-semibold text-gray-500">/month</span>
+                </p>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-1">
+                  Content updates, security patches, backups and uptime monitoring. Plenty
+                  of clients do not take it, and that is fine &mdash; you own the site
+                  either way.
+                </p>
               </div>
-            </div>
-          </section>
-        </ScrollReveal>
+            </ScrollReveal>
 
-        {/* Custom Solution CTA */}
-        <section className="section-padding bg-gradient-to-br from-blue-600 to-cyan-600 text-white relative overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 opacity-10">
-            <GridBackground 
-              dotColor="rgba(255, 255, 255, 0.5)" 
-              lineColor="rgba(255, 255, 255, 0.1)"
-              gridSize={60}
-              animated={true}
-            />
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="card h-full flex flex-col">
+                <span className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                  <FaRobot className="w-6 h-6" />
+                </span>
+                <h3 className="font-bold text-lg text-gray-900 mb-1">EaseBot lead management</h3>
+                <p className="text-2xl font-extrabold text-blue-600 mb-3">
+                  from {rupees(EASEBOT_MONTHLY)}
+                  <span className="text-base font-semibold text-gray-500">/month</span>
+                </p>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-1">
+                  Records every enquiry, writes the follow-up and reminds you before a
+                  renewal is due. For the whole team, not per person.
+                </p>
+                <Link href="/services/lead-management" className="btn-ghost mt-4 self-start">
+                  See how it works
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
+        </div>
+      </section>
 
-          <div className="container mx-auto max-w-4xl px-4 text-center relative z-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
-              Need a Custom Solution?
+      {/* ── How a quote happens ───────────────────────────── */}
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+        <div className="container-custom">
+          <ScrollReveal direction="up">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                How you get a number
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <ol className="grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {QUOTE_STEPS.map((step, index) => (
+              <ScrollReveal key={step.title} direction="up" delay={index * 0.1}>
+                <li className="bg-white rounded-2xl border border-blue-100 p-6 h-full">
+                  <span className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center font-bold text-lg mb-4">
+                    {index + 1}
+                  </span>
+                  <h3 className="font-bold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{step.body}</p>
+                </li>
+              </ScrollReveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ── FAQ ───────────────────────────────────────────── */}
+      <PricingFAQ faqs={pricingFAQs} />
+
+      {/* ── Closing CTA ───────────────────────────────────── */}
+      <section className="section-padding bg-gradient-to-br from-blue-600 to-cyan-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <GridBackground
+            dotColor="rgba(255, 255, 255, 0.5)"
+            lineColor="rgba(255, 255, 255, 0.1)"
+            gridSize={60}
+            animated
+          />
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+              Tell me what you are building
             </h2>
-            <p className="text-blue-100 mb-6 sm:mb-8 text-sm sm:text-base max-w-2xl mx-auto">
-              Have unique requirements for your Patiala business? Let's discuss a custom package tailored to your specific needs and budget.
+            <p className="text-blue-100 mb-8 text-sm sm:text-base">
+              Describe it in a message and you will get a real figure back, from the
+              person who would build it.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <motion.a
-                href="tel:+916283380110"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 font-bold rounded-xl shadow-lg hover:bg-blue-50 transition-all duration-300 text-sm sm:text-base"
+                href={WA_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto btn-whatsapp"
               >
-                <FaPhoneAlt />
-                Call for Custom Quote
+                <FaWhatsapp className="w-5 h-5" />
+                Message on WhatsApp
               </motion.a>
-              <motion.a
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 text-sm sm:text-base"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Contact Us
-              </motion.a>
+              <Link href="/contact" className="w-full sm:w-auto btn border-2 border-white/70 text-white hover:bg-white/10">
+                Use the contact form
+              </Link>
             </div>
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </main>
   )
 }

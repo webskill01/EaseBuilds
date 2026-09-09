@@ -1,16 +1,34 @@
 import JsonLd from '../components/JsonLd'
-// Pricing Page Layout - SEO Optimized with Schema Markup
-// EaseBuilds - Best Web Developer in Patiala Punjab India
+import { ENTRY_PRICE, MAINTENANCE_MONTHLY, pricingFAQs } from '@/lib/pricingData'
 
+// /pricing metadata and schema.
+//
+// Task 7.10, 2026-09-09. Everything here used to describe three packages -
+// "Basic Rs2,999, Business Rs5,999, E-commerce Rs9,999" - in the meta
+// description, the OG and Twitter cards, an AggregateOffer of three offers, and
+// a hand-written FAQPage. That was a FOURTH price ladder: it matched neither
+// lib/pricingData nor the servicesData tiers nor the blog. The packages no
+// longer exist, so all of it is rewritten against the real numbers.
+//
+// The FAQ schema is now GENERATED FROM pricingFAQs, the same array the page
+// renders, so the two cannot drift apart. Google requires FAQ markup to match
+// visible content, and hand-maintaining a second copy is precisely how this
+// project ended up with a homepage declaring 14 FAQs while showing 11.
+//
+// Title targets cost intent per Task 7.7: /pricing owns "cost" and "charges",
+// while the homepage keeps the "web design in patiala" family. Do not retarget
+// this at "web design in patiala" - all three of those pages were competing for
+// it and /pricing lost at position 52.8.
 
-// OPTIMIZED Metadata (Title: 59 chars, Description: 155 chars)
+const price = ENTRY_PRICE.toLocaleString('en-IN')
+
 export const metadata = {
-  title: 'Website Pricing Patiala | ₹2,999+ | EaseBuilds Packages',
-  description: 'Affordable website development pricing in Patiala. Basic ₹2,999, Business ₹5,999, E-commerce ₹9,999. Free maintenance, fast delivery. Call +91 6283380110!',
-  
+  title: 'Website Cost in Patiala | Web Design Charges | EaseBuilds',
+  description: `What a website actually costs in Patiala. Builds start at ₹${price}, quoted against your real scope rather than a package tier. Maintenance ₹${MAINTENANCE_MONTHLY}/month. Talk to the developer who builds it.`,
+
   openGraph: {
-    title: 'Website Development Pricing in Patiala | Starting ₹2,999',
-    description: 'Transparent pricing for professional websites in Patiala. 3 packages, no hidden costs, free maintenance included.',
+    title: `Website Cost in Patiala | From ₹${price}`,
+    description: 'What a website costs, what moves the number, and how a quote actually happens. One published floor, no package ladder.',
     type: 'website',
     locale: 'en_IN',
     url: 'https://easebuilds.in/pricing',
@@ -19,21 +37,21 @@ export const metadata = {
       url: 'https://easebuilds.in/opengraph-image.png',
       width: 1200,
       height: 630,
-      alt: 'EaseBuilds Pricing Packages - Web Development in Patiala'
-    }]
+      alt: 'EaseBuilds — website pricing in Patiala',
+    }],
   },
-  
+
   twitter: {
     card: 'summary_large_image',
-    title: 'Website Pricing Patiala | Starting ₹2,999 - EaseBuilds',
-    description: 'Professional web development packages. Basic ₹2,999, Business ₹5,999, E-commerce ₹9,999. Patiala.',
+    title: `Website Cost in Patiala | From ₹${price}`,
+    description: 'What a website costs and what moves the number. Quoted against your scope, not a tier.',
     images: ['https://easebuilds.in/opengraph-image.png'],
   },
-  
+
   alternates: {
     canonical: 'https://easebuilds.in/pricing',
   },
-  
+
   robots: {
     index: true,
     follow: true,
@@ -47,16 +65,18 @@ export const metadata = {
 }
 
 export default function PricingLayout({ children }) {
-  // AggregateOffer Schema (Shows price range in search results)
-  const aggregateOfferSchema = {
+  // One published floor and no ceiling, because everything above the entry
+  // price is quoted. This replaced an AggregateOffer claiming three offers
+  // between Rs2,999 and Rs9,999 - offers that no longer exist.
+  const offerSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Website Development Services Patiala',
-    description: 'Professional website development services in Patiala Punjab India with transparent pricing and guaranteed satisfaction',
+    name: 'Website design and development in Patiala',
+    description: 'Website design and development for businesses in Patiala and Punjab, quoted against scope rather than sold as fixed packages.',
     provider: {
       '@type': 'Organization',
       name: 'EaseBuilds',
-      url: 'https://easebuilds.in'
+      url: 'https://easebuilds.in',
     },
     areaServed: {
       '@type': 'City',
@@ -64,100 +84,46 @@ export default function PricingLayout({ children }) {
       containedInPlace: {
         '@type': 'State',
         name: 'Punjab',
-        containedInPlace: {
-          '@type': 'Country',
-          name: 'India'
-        }
-      }
+        containedInPlace: { '@type': 'Country', name: 'India' },
+      },
     },
     offers: {
-      '@type': 'AggregateOffer',
+      '@type': 'Offer',
       priceCurrency: 'INR',
-      lowPrice: '2999',
-      highPrice: '9999',
-      offerCount: '3'
-    }
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        minPrice: ENTRY_PRICE,
+        priceCurrency: 'INR',
+      },
+      url: 'https://easebuilds.in/pricing',
+    },
   }
 
-  // FAQ Schema for Pricing Questions
+  // Generated from the same array the page renders - see the note at the top.
   const pricingFaqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How much does website development cost in Patiala?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Website development in Patiala starts at ₹2,999 for a basic 3-page website. Our Business package costs ₹5,999 for 8 pages with blog, and Premium E-commerce package is ₹9,999 with unlimited pages. All packages include responsive design, SEO optimization, and free maintenance for 1-3 months.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is included in the website development pricing?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'All packages include: responsive mobile-friendly design, SEO optimization, content upload, social media integration, speed optimization, free SSL certificate, and free maintenance (1-3 months depending on package). Business and Premium packages also include free hosting for 1-2 years.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Are there any hidden costs in website development?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No hidden costs! EaseBuilds offers 100% transparent pricing. The package price is what you pay. Optional add-ons like logo design (₹1,999), extra pages (₹699-799 depending on package), or premium hosting (₹3,999/year) are clearly listed separately and completely optional.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I upgrade my website package later?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes! You can upgrade from Basic to Business or Premium at any time. We will credit your initial payment towards the upgrade cost. Many Patiala clients start with Basic and upgrade as their business grows.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What payment methods do you accept in Patiala?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We accept all payment methods: UPI, bank transfer, credit/debit cards, and online payment gateways. Payment is split into 50% advance to start the project and 50% upon completion and delivery.'
-        }
-      }
-    ]
+    mainEntity: pricingFAQs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
   }
 
-  // Breadcrumb Schema
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://easebuilds.in'
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pricing',
-        item: 'https://easebuilds.in/pricing'
-      }
-    ]
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easebuilds.in' },
+      { '@type': 'ListItem', position: 2, name: 'Pricing', item: 'https://easebuilds.in/pricing' },
+    ],
   }
 
   return (
     <>
-      {/* AggregateOffer Schema */}
-      <JsonLd id="aggregate-offer-schema" data={aggregateOfferSchema} />
-
-      {/* FAQ Schema */}
+      <JsonLd id="pricing-offer-schema" data={offerSchema} />
       <JsonLd id="pricing-faq-schema" data={pricingFaqSchema} />
-
-      {/* Breadcrumb Schema */}
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
-
       {children}
     </>
   )
