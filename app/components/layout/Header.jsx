@@ -348,7 +348,7 @@ export default function Header() {
                     href="https://wa.me/916283380110"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-green-500 text-white font-semibold rounded-lg shadow-lg text-sm focus:outline-none"
+                    className="w-full btn-whatsapp"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <FaWhatsapp />

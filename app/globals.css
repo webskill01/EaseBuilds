@@ -180,6 +180,15 @@
     @apply hover:bg-blue-50 hover:scale-105;
   }
 
+  /* WhatsApp Button - the primary CTA sitewide (Task 7.4).
+     Green because that is the colour people recognise as WhatsApp, including
+     on the blue cards where white was originally chosen for contrast. */
+  .btn-whatsapp {
+    @apply btn;
+    @apply bg-green-500 text-white shadow-lg;
+    @apply hover:bg-green-600 hover:shadow-xl;
+  }
+
   /* Ghost Button - tertiary, in-page navigation */
   .btn-ghost {
     @apply btn;

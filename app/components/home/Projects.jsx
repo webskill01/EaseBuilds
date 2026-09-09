@@ -290,7 +290,7 @@ export default function Projects() {
                 href="https://wa.me/916283380110?text=Hi%2C%20I%20want%20a%20website%20like%20your%20portfolio%20projects" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-all text-sm sm:text-base"
+                className="btn-whatsapp"
               >
                 <FaWhatsapp className="text-xl" />
                 WhatsApp Us

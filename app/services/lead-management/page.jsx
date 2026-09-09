@@ -116,7 +116,7 @@ export default function LeadManagementPage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-2xl transition-all text-sm sm:text-base lg:text-lg"
+                className="w-full sm:w-auto btn-whatsapp"
               >
                 <FaWhatsapp className="text-lg sm:text-xl" />
                 Get My Price
@@ -455,7 +455,7 @@ export default function LeadManagementPage() {
                   href={WA_HREF}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                  className="w-full btn-whatsapp"
                 >
                   <FaWhatsapp className="text-lg" />
                   Get My Price
@@ -531,7 +531,7 @@ export default function LeadManagementPage() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-2xl text-sm sm:text-base"
+              className="w-full sm:w-auto btn-whatsapp"
             >
               <FaWhatsapp className="text-lg sm:text-xl" />
               WhatsApp Us

@@ -258,7 +258,7 @@ export default function WhyChooseUs() {
                 href="https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I%20want%20a%20website%20for%20my%20Patiala%20business"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-all text-sm sm:text-base"
+                className="btn-whatsapp"
               >
                 <FaWhatsapp className="text-xl" />
                 WhatsApp Us

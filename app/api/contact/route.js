@@ -25,6 +25,27 @@ const contactSchema = z.object({
   submittedAt: z.string().optional(),
 })
 
+// Task 7.4, 2026-09-09.
+//
+// This used to be hardcoded to 'EaseBuilds <onboarding@resend.dev>' - Resend's
+// shared onboarding domain, not a verified easebuilds.in sender. Mail from that
+// domain is far more likely to be filtered, and this route is how contact-form
+// enquiries reach the owner, so a filtered notification is a lost customer.
+//
+// It is NOT hardcoded to noreply@easebuilds.in either, because sending from an
+// unverified domain makes Resend reject the send outright - which would lose
+// every enquiry rather than just some. So it reads an env var and falls back to
+// the old behaviour.
+//
+// TO ACTUALLY FIX THIS (dashboard work, cannot be done from the repo):
+//   1. Resend -> Domains -> add easebuilds.in, then add the SPF/DKIM records it
+//      gives you to the DNS for the domain.
+//   2. Once it shows Verified, set RESEND_FROM in the Vercel project env:
+//        RESEND_FROM="EaseBuilds <noreply@easebuilds.in>"
+//   3. Redeploy. Send a test enquiry and confirm it lands in the inbox, not spam.
+// Until step 2 is done this behaves exactly as it did before.
+const FROM_ADDRESS = process.env.RESEND_FROM || 'EaseBuilds <onboarding@resend.dev>'
+
 export async function POST(request) {
   console.log('✅ Contact API route hit!')
 
@@ -49,7 +70,7 @@ export async function POST(request) {
 
     // Send notification email to you (business owner)
     const { data, error } = await new Resend(process.env.RESEND_API_KEY).emails.send({
-      from: 'EaseBuilds <onboarding@resend.dev>',
+      from: FROM_ADDRESS,
       to: ['nitinemailss@gmail.com'],
       replyTo: email,
       subject: `${withinFomoOffer ? '🔥 FOMO OFFER!' : '📬'} New Contact: ${service} - ${name}`,

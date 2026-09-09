@@ -327,7 +327,7 @@ export default function HowItWorks() {
                 href="https://wa.me/916283380110?text=Hi%2C%20I%20want%20to%20start%20my%20website%20project%20in%20Patiala"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg transition-colors duration-300 text-sm"
+                className="btn-whatsapp"
               >
                 <FaWhatsapp />
                 WhatsApp Us

@@ -4,11 +4,10 @@
 // homepage, where the market answers on WhatsApp rather than filling in fields.
 // The link to /contact stays so the form is never more than one click away.
 //
-// ponytail: a plain section, not a shared CTA primitive. Phase 7 extracts the
-// button and section tokens sitewide; building the abstraction here would just
-// freeze today's spacing as the standard before that decision is made.
+// Task 7.2/7.4 have since landed, so this now uses the shared .section-padding,
+// .btn and .btn-whatsapp tokens rather than its own spacing.
 import Link from 'next/link'
-import { FaWhatsapp, FaPhoneAlt } from 'react-icons/fa'
+import { FaWhatsapp, FaPhoneAlt, FaRegEdit } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 
 const PHONE = '+916283380110'
@@ -35,27 +34,26 @@ export default function HomeCta() {
                 href={WA_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn bg-green-500 hover:bg-green-600 text-white font-bold transition-colors"
+                className="w-full sm:w-auto btn-whatsapp"
               >
                 <FaWhatsapp className="w-5 h-5" />
                 Message on WhatsApp
               </a>
               <a
                 href={`tel:${PHONE}`}
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn border-2 border-white/70 text-white font-bold hover:bg-white/10 transition-colors"
+                className="w-full sm:w-auto btn border-2 border-white/70 text-white hover:bg-white/10"
               >
                 <FaPhoneAlt className="w-4 h-4" />
                 Call +91 62833 80110
               </a>
             </div>
 
-            <p className="mt-6 text-sm text-white/80">
-              Prefer to write it out?{' '}
-              <Link href="/contact" className="underline font-semibold hover:text-white">
-                Use the contact form
+            <div className="mt-6 flex justify-center">
+              <Link href="/contact" className="btn-ghost w-full sm:w-auto bg-white/10 text-white hover:bg-white/20">
+                <FaRegEdit className="w-4 h-4" />
+                Prefer to write it out? Use the contact form
               </Link>
-              .
-            </p>
+            </div>
           </div>
         </ScrollReveal>
       </div>

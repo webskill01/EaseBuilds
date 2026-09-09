@@ -146,7 +146,7 @@ export default function PricingPage() {
                   href="https://wa.me/916283380110?text=Hi%2C%20I%20want%20to%20know%20about%20website%20pricing%20in%20Patiala"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 text-sm sm:text-base"
+                  className="w-full sm:w-auto btn-whatsapp"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

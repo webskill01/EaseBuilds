@@ -610,7 +610,7 @@ export default function AboutPage() {
                       href="https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I'd%20like%20to%20discuss%20my%20project"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-2xl transition-all text-lg"
+                      className="btn-whatsapp"
                       whileHover={{ scale: 1.05, y: -3 }}
                       whileTap={{ scale: 0.95 }}
                     >
