@@ -349,18 +349,38 @@ const processSteps = [
                       ))}
                     </div>
 
-                    {/* Results */}
-                    {project.results && (
-                      <div className="pt-4 border-t border-gray-100">
-                        <div className="grid grid-cols-2 gap-3 text-xs">
-                          {Object.entries(project.results).slice(0, 2).map(([key, value], idx) => (
-                            <div key={idx} className="flex items-start gap-2">
-                              <FaCheck className="text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-600 leading-tight">{value}</span>
+                    {/* Case study: problem -> build -> what changed (Task 7.5).
+                        Was `project.results`, a key no project has, so this
+                        never rendered. Native <details> keeps it collapsed
+                        without a new component or any client state. */}
+                    {project.challenge && (
+                      <details className="pt-4 border-t border-gray-100 group/case">
+                        <summary className="cursor-pointer list-none text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-2">
+                          <FaCheck className="text-green-500 flex-shrink-0" />
+                          Read the case study
+                        </summary>
+
+                        <div className="mt-4 space-y-3 text-sm text-gray-600 leading-relaxed">
+                          <div>
+                            <p className="font-semibold text-gray-900">The problem</p>
+                            <p>{project.challenge}</p>
+                          </div>
+
+                          {project.solution && (
+                            <div>
+                              <p className="font-semibold text-gray-900">What we built</p>
+                              <p>{project.solution}</p>
                             </div>
-                          ))}
+                          )}
+
+                          {project.metrics && (
+                            <div>
+                              <p className="font-semibold text-gray-900">What changed</p>
+                              <p>{project.metrics}</p>
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      </details>
                     )}
                   </div>
                 </motion.div>
