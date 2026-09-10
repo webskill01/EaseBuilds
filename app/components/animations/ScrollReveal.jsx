@@ -43,7 +43,12 @@ export default function ScrollReveal({
         delay,
         ease: [0.25, 0.4, 0.25, 1]
       }}
-      className={className}
+      /* ponytail: h-full by default. Nearly every card on this site sits in a
+         ScrollReveal inside a grid, and the card already carries h-full - which
+         did nothing, because it resolved against this auto-height wrapper. On a
+         block child of an auto-height parent height:100% computes to auto, so
+         this is inert everywhere except the grid items it is meant to fix. */
+      className={`h-full ${className}`}
     >
       {children}
     </motion.div>

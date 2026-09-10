@@ -521,7 +521,7 @@ export default function PrivacyPage() {
                     className="inline-flex items-center gap-2 px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-bold rounded-xl border-2 border-white hover:bg-white hover:text-blue-600 transition-all"
                   >
                     <FaPhoneAlt />
-                    +91 6283380110
+                    Call Us
                   </Link>
                 </div>
               </ScrollReveal>

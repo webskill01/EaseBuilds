@@ -254,7 +254,7 @@ const technologies = [
               <ScrollReveal key={project.id} direction="up" delay={index * 0.1}>
                 <motion.div
                   whileHover={{ y: -10 }}
-                  className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
+                  className="h-full flex flex-col group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
                 >
                   {/* Project Image */}
                   <div className="relative h-64 sm:h-72 overflow-hidden bg-gradient-to-br from-blue-100 to-cyan-100">
@@ -291,7 +291,7 @@ const technologies = [
                   </div>
 
                   {/* Project Info */}
-                  <div className="p-6">
+                  <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {project.businessName}
                     </h3>
@@ -316,7 +316,7 @@ const technologies = [
                         never rendered. Native <details> keeps it collapsed
                         without a new component or any client state. */}
                     {project.challenge && (
-                      <details className="pt-4 border-t border-gray-100 group/case">
+                      <details className="mt-auto pt-4 border-t border-gray-100 group/case">
                         <summary className="cursor-pointer list-none text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-2">
                           <FaCheck className="text-green-500 flex-shrink-0" />
                           Read the case study

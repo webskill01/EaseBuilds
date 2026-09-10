@@ -81,7 +81,7 @@ export default function PricingPage() {
                 </a>
                 <a href="tel:+916283380110" className="w-full sm:w-auto btn-secondary">
                   <FaPhoneAlt className="w-4 h-4" />
-                  Call +91 62833 80110
+                  Call Us
                 </a>
               </div>
 

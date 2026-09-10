@@ -418,7 +418,7 @@ export default function AboutPage() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.02, y: -5 }}
-                    className={`group relative bg-white rounded-3xl p-8 sm:p-10 shadow-xl hover:${value.shadowColor} hover:shadow-2xl transition-all duration-500 border ${value.borderColor} overflow-hidden`}
+                    className={`h-full group relative bg-white rounded-3xl p-8 sm:p-10 shadow-xl hover:${value.shadowColor} hover:shadow-2xl transition-all duration-500 border ${value.borderColor} overflow-hidden`}
                   >
                     {/* Animated Gradient Overlay */}
                     <motion.div
@@ -510,7 +510,7 @@ export default function AboutPage() {
                     type: "spring",
                   }}
                   whileHover={{ scale: 1.05, y: -10 }}
-                  className={`relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 sm:p-8 border border-white/20 ${
+                  className={`h-full relative bg-white/10 backdrop-blur-lg rounded-3xl p-6 sm:p-8 border border-white/20 ${
                     stat.delay ? "lg:mt-12" : ""
                   }`}
                 >

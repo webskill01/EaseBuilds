@@ -208,7 +208,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors group"
                 >
                   <FaPhoneAlt className="text-blue-400 text-sm group-hover:scale-110 transition-transform" />
-                  <span>+91 6283380110</span>
+                  <span>Call Us</span>
                 </a>
               </li>
               <li>
@@ -233,7 +233,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-gray-400">
                 <FaMapMarkerAlt className="text-blue-400 text-sm mt-0.5" />
-                <span>Patiala, Punjab 147001</span>
+                <span>Balbir Colony, Opp. Urban Estate,<br />Patiala, Punjab 147001</span>
               </li>
             </ul>
 
@@ -244,8 +244,10 @@ export default function Footer() {
                 <h4 className="text-base font-semibold text-white">Hours</h4>
               </div>
               <div className="space-y-0.5 text-[11px] text-gray-400">
-                <p className='text-xs'>Mon-Fri: <span className="text-white">9AM-6PM</span></p>
-                <p className='text-xs'>Sat: <span className="text-white">10AM-4PM</span></p>
+                {/* ponytail: source of truth is siteConfig.business.hoursAvailable in
+                    lib/seo.js and GBP-PLAYBOOK.md section 3. Five copies of these
+                    hours disagreed before Phase 8; change them together or not at all. */}
+                <p className='text-xs'>Mon-Sat: <span className="text-white">9AM-6PM</span></p>
                 <p className='text-red-600 text-xs'>Sun: <span className="text-white">Closed</span></p>
               </div>
             </div>

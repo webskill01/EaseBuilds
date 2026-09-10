@@ -260,7 +260,7 @@ const handleSubmit = async (e) => {
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-blue-600 font-bold rounded-xl shadow-2xl text-base sm:text-lg hover:shadow-xl transition-all"
               >
                 <FaPhoneAlt className="text-lg" />
-                <span> Call +91 6283380110</span>
+                <span>Call Us</span>
               </motion.a>
 
               <motion.a
@@ -301,7 +301,7 @@ const handleSubmit = async (e) => {
               {
                 icon: FaPhoneAlt,
                 title: 'Call Us',
-                value: '+91 6283380110',
+                value: 'Tap to Call',
                 link: 'tel:+916283380110',
                 color: 'from-blue-600 to-cyan-500',
                 description: 'Mon-Sat: 9AM-6PM'
@@ -325,19 +325,19 @@ const handleSubmit = async (e) => {
               {
                 icon: FaMapMarkerAlt,
                 title: 'Visit Office',
-                value: 'Patiala, Punjab',
-                link: 'https://maps.google.com/?q=Patiala+Punjab',
+                value: 'Balbir Colony, Patiala',
+                link: 'https://maps.google.com/?q=8CQQ%2BQXF+Balbir+Colony+Patiala+Punjab+147001',
                 color: 'from-orange-500 to-red-600',
                 description: 'Free consultation'
               }
             ].map((method, index) => (
-              <ScrollReveal key={index} direction="up" delay={index * 0.1}>
+              <ScrollReveal key={index} direction="up" delay={index * 0.1} className="h-full">
                 <motion.a
                   href={method.link}
                   target={method.link.startsWith('http') ? '_blank' : '_self'}
                   rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="block p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all"
+                  className="h-full flex flex-col p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all"
                 >
                   <div className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${method.color} rounded-xl flex items-center justify-center mb-5 mx-auto`}>
                     <method.icon className="text-white text-2xl sm:text-3xl" />
@@ -643,7 +643,9 @@ const handleSubmit = async (e) => {
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-2 text-lg">Address</h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Patiala, Punjab 147001, India
+                          Balbir Colony, Near Balson Palace,<br />
+                          Opp. Urban Estate, Patiala,<br />
+                          Punjab 147001, India
                         </p>
                       </div>
                     </div>
@@ -656,8 +658,7 @@ const handleSubmit = async (e) => {
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-2 text-lg">Business Hours</h4>
                         <p className="text-gray-600 leading-relaxed">
-                          Monday - Friday: 9:00 AM - 6:00 PM<br />
-                          Saturday: 10:00 AM - 4:00 PM<br />
+                          Monday - Saturday: 9:00 AM - 6:00 PM<br />
                           Sunday: Closed
                         </p>
                       </div>
@@ -682,7 +683,7 @@ const handleSubmit = async (e) => {
                 <div className="bg-white p-4 rounded-3xl shadow-xl border-2 border-gray-100">
                   <div className="h-[400px] rounded-2xl overflow-hidden mb-4">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110452!2d76.38553!3d30.33977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391028ab86ef0c07%3A0x3d64b5d3c474830f!2sPatiala%2C%20Punjab!5e0!3m2!1sen!2sin!4v1698765432100!5m2!1sen!2sin"
+                      src="https://maps.google.com/maps?q=8CQQ%2BQXF%20Balbir%20Colony%2C%20Patiala%2C%20Punjab%20147001&z=16&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
@@ -693,7 +694,7 @@ const handleSubmit = async (e) => {
                     />
                   </div>
                   <motion.a
-                    href="https://maps.google.com/?q=Patiala+Punjab+147001+India"
+                    href="https://maps.google.com/?q=8CQQ%2BQXF+Balbir+Colony+Patiala+Punjab+147001"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.02 }}
@@ -729,7 +730,7 @@ const handleSubmit = async (e) => {
             {[
               {
                 question: 'How quickly will you respond to my inquiry?',
-                answer: 'We respond to all inquiries within 2 hours during business hours (Mon-Fri 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
+                answer: 'We respond to all inquiries within 2 hours during business hours (Mon-Sat 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
               },
               {
                 question: 'Do you offer free consultations?',

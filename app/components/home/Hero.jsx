@@ -15,7 +15,7 @@ export default function Hero() {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-20">
       {/* Background Image - Optimized */}
       <div className="absolute inset-0 z-0">
         {/* ponytail: was a CSS background-image, which the preload scanner cannot
@@ -151,7 +151,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Simplified Stats Cards - NO PARALLAX */}
-            <div ref={statsRef} className="pt-6 sm:pt-8 px-4">
+            <div ref={statsRef} className="pt-6 sm:pt-8 sm:px-4">
               <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-3xl mx-auto">
                 {[
                   { icon: FaUsers, value: 15, suffix: '', label: 'Projects', gradient: 'from-blue-50 to-cyan-50', iconGradient: 'from-blue-600 to-cyan-500', textColor: 'text-blue-600', borderColor: 'border-blue-100', delay: 0 },

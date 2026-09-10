@@ -147,7 +147,7 @@ export default function LeadManagementPage() {
             {FACTS.map((fact, index) => (
               <ScrollReveal key={fact.label} direction="up" delay={index * 0.1}>
                 <motion.div
-                  className="text-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100"
+                  className="h-full text-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100"
                   whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.2)' }}
                 >
                   <fact.icon className="text-3xl sm:text-4xl text-blue-600 mx-auto mb-2 sm:mb-3" />

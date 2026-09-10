@@ -88,6 +88,7 @@ export default function ContactLayout({ children }) {
       ],
       address: {
         '@type': 'PostalAddress',
+        streetAddress: 'Balbir Colony, Near Balson Palace, Opp. Urban Estate',
         addressLocality: 'Patiala',
         addressRegion: 'Punjab',
         postalCode: '147001',
@@ -95,22 +96,16 @@ export default function ContactLayout({ children }) {
       },
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: 30.3398,
-        longitude: 76.3869
+        latitude: 30.3394,
+        longitude: 76.4400
       },
       email: 'info@easebuilds.in',
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
           opens: '09:00',
           closes: '18:00'
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Saturday',
-          opens: '10:00',
-          closes: '16:00'
         }
       ]
     }
@@ -124,7 +119,7 @@ const contactFaqSchema = {
         name: 'How quickly will you respond to my inquiry?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We respond to all inquiries within 2 hours during business hours (Mon-Fri 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
+          text: 'We respond to all inquiries within 2 hours during business hours (Mon-Sat 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
         }
       },
       {

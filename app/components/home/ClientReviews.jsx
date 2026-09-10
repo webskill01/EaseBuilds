@@ -91,6 +91,7 @@ export default function ClientReviews() {
                 key={index}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.2 }}
+                className="h-full"
               >
                 <div className="h-full flex justify-center items-center flex-col text-center p-4 sm:p-6 bg-white rounded-xl sm:rounded-2xl shadow-lg border-2 border-gray-100 hover:border-blue-200 transition-all duration-300">
                   <div className="text-3xl sm:text-4xl mb-2">{stat.icon}</div>

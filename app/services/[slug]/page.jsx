@@ -589,11 +589,11 @@ export default function DynamicServicePage() {
               ]
                 .slice(0, 3)
                 .map((relatedService, index) => (
-                  <ScrollReveal key={index} direction="up" delay={index * 0.1}>
-                    <Link href={`/services/${relatedService.slug}`}>
+                  <ScrollReveal key={index} direction="up" delay={index * 0.1} className="h-full">
+                    <Link href={`/services/${relatedService.slug}`} className="block h-full">
                       <motion.div
                         whileHover={{ y: -5, scale: 1.02 }}
-                        className="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all"
+                        className="h-full flex flex-col bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all"
                       >
                         <relatedService.icon className="text-4xl text-blue-600 mb-4" />
                         <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -602,7 +602,7 @@ export default function DynamicServicePage() {
                         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                           {relatedService.description}
                         </p>
-                        <span className="text-blue-600 font-semibold flex items-center gap-2">
+                        <span className="mt-auto text-blue-600 font-semibold flex items-center gap-2">
                           Learn More <FaArrowRight />
                         </span>
                       </motion.div>

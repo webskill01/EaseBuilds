@@ -341,7 +341,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <FaPhoneAlt />
-                    Call +91 6283380110
+                    Call Us
                   </a>
                   <a
                     href="https://wa.me/916283380110"

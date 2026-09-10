@@ -283,8 +283,9 @@ export default function BlogPage() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
+                    className="h-full"
                   >
-                    <Link href={`/blog/${post.slug}`}>
+                    <Link href={`/blog/${post.slug}`} className="block h-full">
                       <motion.article
                         whileHover={{ y: -8 }}
                         className="bg-white rounded-2xl shadow-lg overflow-hidden h-full flex flex-col"

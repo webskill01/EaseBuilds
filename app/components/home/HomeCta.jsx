@@ -44,7 +44,7 @@ export default function HomeCta() {
                 className="w-full sm:w-auto btn border-2 border-white/70 text-white hover:bg-white/10"
               >
                 <FaPhoneAlt className="w-4 h-4" />
-                Call +91 62833 80110
+                Call Us
               </a>
             </div>
 

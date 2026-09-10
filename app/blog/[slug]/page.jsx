@@ -294,7 +294,7 @@ export default function BlogPostPage() {
                 {/* Blog Content */}
                 <div
                   ref={contentRef}
-                  className="bg-white rounded-2xl shadow-lg p-8 md:p-12 prose prose-lg max-w-none
+                  className="bg-white rounded-2xl shadow-lg p-5 sm:p-8 md:p-12 prose prose-base sm:prose-lg max-w-none
                     prose-headings:font-bold prose-headings:text-gray-900
                     prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
                     prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4

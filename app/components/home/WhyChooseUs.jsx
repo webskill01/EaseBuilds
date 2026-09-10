@@ -252,7 +252,7 @@ export default function WhyChooseUs() {
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all text-sm sm:text-base"
               >
                 <FaPhoneAlt className="text-lg" />
-                Call Now: +91 6283380110
+                Call Us
               </a>
               <a
                 href="https://wa.me/916283380110?text=Hi%20EaseBuilds,%20I%20want%20a%20website%20for%20my%20Patiala%20business"
