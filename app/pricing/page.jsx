@@ -25,6 +25,7 @@ import {
 import { FaCheckCircle, FaPhoneAlt } from 'react-icons/fa'
 import Link from 'next/link'
 import ScrollReveal from '../components/animations/ScrollReveal'
+import HeroImage from '@/app/components/HeroImage'
 import GridBackground from '../components/animations/GridBackground'
 import PricingFAQ from './components/PricingFAQ'
 import {
@@ -44,10 +45,25 @@ export default function PricingPage() {
       {/* ── What it costs ─────────────────────────────────── */}
       {/* This page had no hero at all - it opened straight into a padded
           section, which is why it read as a different site from every other
-          page. Same hero-viewport height as the rest; no invented imagery,
-          the sand surface carries it. */}
-      <section className="hero-viewport flex items-center tone-sand py-14">
-        <div className="container-custom">
+          page. Same hero-viewport height as the rest. */}
+      <section className="relative hero-viewport flex items-center tone-sand py-14 overflow-hidden">
+        {/* the pricing hero image, restored. HeroImage carries the inlined blur
+            placeholder, so it paints with the text instead of a beat behind it. */}
+        <div className="absolute inset-0 opacity-50">
+          <HeroImage
+            src="/images/blog2.webp"
+            alt="Website development pricing background - EaseBuilds office in Patiala Punjab India"
+          />
+        </div>
+
+        {/* Fades to the sand surface, not to white: a white fade would leave a
+            seam where the hero meets the rest of the section. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-[#f6f4ef]/20 via-[#f6f4ef]/70 to-[#f6f4ef] pointer-events-none"
+        />
+
+        <div className="container-custom relative z-10">
           <ScrollReveal direction="up">
             <div className="max-w-3xl mx-auto text-center">
               {/* the 5.0 rating is fine to show; the review count is not */}
