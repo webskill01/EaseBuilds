@@ -65,7 +65,7 @@ export default function PricingPage() {
                 Builds start at{' '}
                 <strong className="text-gray-900">{rupees(ENTRY_PRICE)}</strong>. There is no
                 package ladder above that, because the real number depends on what you
-                are building. Tell me what you need and you get one fixed figure for
+                are building. Tell us what you need and you get one fixed figure for
                 your actual scope &mdash; agreed before any work starts.
               </p>
 
@@ -265,7 +265,7 @@ export default function PricingPage() {
         <div className="container-custom relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
-              Tell me what you are building
+              Tell us what you are building
             </h2>
             <p className="text-blue-100 mb-8 text-sm sm:text-base">
               Describe it in a message and you will get a real figure back, from the

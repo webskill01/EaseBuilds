@@ -14,6 +14,7 @@ import {
 import { useParams } from 'next/navigation'
 import { notFound } from 'next/navigation'
 import { getPostBySlug, getRelatedPosts } from '@/lib/blogData'
+import Accordion from '@/app/components/ui/Accordion'
 
 export default function BlogPostPage() {
   const params = useParams()
@@ -308,6 +309,23 @@ export default function BlogPostPage() {
                     prose-td:p-3 prose-td:border prose-td:border-gray-200"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
+
+                {/* Task 7.11: these questions were declared as FAQPage
+                    structured data in layout.jsx and rendered NOWHERE. Google
+                    requires FAQ markup to match visible content, so this is a
+                    correctness fix, not a design one.
+
+                    Accordion keeps answers mounted at height:0 - do not swap it
+                    for one that unmounts, or the schema goes back to describing
+                    content that is not on the page. */}
+                {post.faqSchema?.length > 0 && (
+                  <section className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mt-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                      Frequently asked questions
+                    </h2>
+                    <Accordion items={post.faqSchema} />
+                  </section>
+                )}
 
                 {/* Tags */}
                 <div className="bg-white rounded-2xl shadow-lg p-8 mt-8">
