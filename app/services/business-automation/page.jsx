@@ -107,21 +107,18 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Facts strip ──────────────────────────────────── */}
-      <section className="section-padding bg-white border-y border-gray-200">
+      <section className="section-padding tone-ink">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 max-w-5xl mx-auto">
             {FACTS.map((fact, index) => (
-              <ScrollReveal key={fact.label} direction="up" delay={index * 0.1}>
-                <motion.div
-                  className="text-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100 h-full"
-                  whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.2)' }}
-                >
-                  <fact.icon className="text-3xl sm:text-4xl text-blue-600 mx-auto mb-2 sm:mb-3" />
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-1 sm:mb-2">
+              <ScrollReveal key={fact.label} direction="up" delay={index * 0.06}>
+                <div className="h-full px-5 py-6 sm:px-7 sm:py-8 border-l border-white/10 first:border-l-0 md:border-l">
+                  <fact.icon className="text-xl text-sky-400/90 mb-4" aria-hidden="true" />
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold tabular-nums tracking-tight text-white">
                     {fact.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-600 font-medium">{fact.label}</div>
-                </motion.div>
+                  <div className="mt-2 text-sm leading-snug tone-muted">{fact.label}</div>
+                </div>
               </ScrollReveal>
             ))}
           </div>
@@ -129,13 +126,10 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Problem ──────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center max-w-3xl mx-auto">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                The problem
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 The work nobody scheduled, that somebody still does
               </h2>
@@ -153,13 +147,10 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── What we build ────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                What we build
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Six things that usually pay for themselves
               </h2>
@@ -199,13 +190,10 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Process ──────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-white to-blue-50">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                How it works
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Four steps, and you know the price at step two
               </h2>
@@ -229,17 +217,14 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Proof ────────────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-ink">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                What we have actually built
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                 Running systems, not a slide deck
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg tone-muted max-w-3xl mx-auto">
                 We are early in selling this, so here is exactly what exists and who uses it.
               </p>
             </div>
@@ -248,18 +233,18 @@ export default function BusinessAutomationPage() {
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {PROOF.map((p, index) => (
               <ScrollReveal key={p.title} direction="up" delay={index * 0.1}>
-                <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 p-6 h-full flex flex-col">
-                  <span className="w-12 h-12 rounded-xl bg-white/70 border border-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                <div className="tone-card rounded-2xl border p-6 h-full flex flex-col shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6)]">
+                  <span className="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-400/25 text-sky-300 flex items-center justify-center mb-4">
                     <p.icon className="w-6 h-6" />
                   </span>
-                  <h3 className="font-bold text-lg text-gray-900 mb-2">{p.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-1">
+                  <h3 className="font-bold text-lg text-white mb-2">{p.title}</h3>
+                  <p className="text-sm sm:text-base tone-muted leading-relaxed flex-1">
                     {p.body}
                   </p>
                   {p.href && (
                     <Link
                       href={p.href}
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700"
+                      className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-sky-300 hover:text-sky-200"
                     >
                       {p.linkText} <FaArrowRight className="w-3 h-3" />
                     </Link>
@@ -272,13 +257,10 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Why us ───────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Why us
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 What makes this different from a subscription
               </h2>
@@ -302,7 +284,7 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -318,13 +300,10 @@ export default function BusinessAutomationPage() {
       </section>
 
       {/* ── Quote ────────────────────────────────────────── */}
-      <section id="quote" className="section-padding bg-gradient-to-b from-white to-blue-50">
+      <section id="quote" className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Get a quote
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Five questions and we can price it
               </h2>

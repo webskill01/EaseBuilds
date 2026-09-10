@@ -156,27 +156,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 - Services. Web and automation share a column: two links
-              each wasted a column apiece. Task 3.6 keeps the two LINES apart in
-              nav, page targeting and copy - that is about query families, and a
-              shared footer column does not undo it. */}
+          {/* Column 3 - both service lines stacked in ONE column. Two links each
+              did not justify a column apiece, but the headings stay separate:
+              Task 3.6 keeps web and automation apart because their queries have
+              opposite economics, and collapsing them to one label hides that. */}
           <div>
-            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
-              Services
-            </h3>
-            <ul className="space-y-2">
-              {[...footerData.services, ...footerData.automation].map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
-                  >
-                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {[
+              { title: 'Web Services', links: footerData.services },
+              { title: 'Automation', links: footerData.automation },
+            ].map((group, gi) => (
+              <div key={group.title} className={gi ? 'mt-6' : ''}>
+                <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
+                  {group.title}
+                </h3>
+                <ul className="space-y-2">
+                  {group.links.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
+                      >
+                        <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
           {/* Column 5 - Contact */}

@@ -141,21 +141,18 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Facts strip ──────────────────────────────────── */}
-      <section className="section-padding bg-white border-y border-gray-200">
+      <section className="section-padding tone-ink">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 max-w-5xl mx-auto">
             {FACTS.map((fact, index) => (
-              <ScrollReveal key={fact.label} direction="up" delay={index * 0.1}>
-                <motion.div
-                  className="h-full text-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100"
-                  whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(59, 130, 246, 0.2)' }}
-                >
-                  <fact.icon className="text-3xl sm:text-4xl text-blue-600 mx-auto mb-2 sm:mb-3" />
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-1 sm:mb-2">
+              <ScrollReveal key={fact.label} direction="up" delay={index * 0.06}>
+                <div className="h-full px-5 py-6 sm:px-7 sm:py-8 border-l border-white/10 first:border-l-0 md:border-l">
+                  <fact.icon className="text-xl text-sky-400/90 mb-4" aria-hidden="true" />
+                  <div className="text-3xl sm:text-4xl lg:text-5xl font-bold tabular-nums tracking-tight text-white">
                     {fact.value}
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-600 font-medium">{fact.label}</div>
-                </motion.div>
+                  <div className="mt-2 text-sm leading-snug tone-muted">{fact.label}</div>
+                </div>
               </ScrollReveal>
             ))}
           </div>
@@ -163,13 +160,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Problem ──────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center max-w-3xl mx-auto">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                The problem
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Your staff writes it on a pad. Then everyone forgets.
               </h2>
@@ -184,17 +178,14 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Demo ─────────────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-ink">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                See it working
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                 Try it yourself
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg tone-muted max-w-3xl mx-auto">
                 Pick your kind of business, then tap any button. This is exactly what your staff
                 sees.
               </p>
@@ -207,13 +198,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── How it works ─────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-white to-blue-50">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                How it works
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Here&rsquo;s exactly what happens
               </h2>
@@ -248,13 +236,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Why it works ─────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Why it works
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Your staff will actually use it
               </h2>
@@ -292,13 +277,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── The app ──────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Same customers, two ways in
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 And a proper app, at your own web address
               </h2>
@@ -344,13 +326,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Features ─────────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                What you get
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Everything it does
               </h2>
@@ -376,13 +355,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Verticals ────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-white to-blue-50">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Who it&rsquo;s for
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Works for businesses like yours
               </h2>
@@ -412,13 +388,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Pricing ──────────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Pricing
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 One price for your whole team
               </h2>
@@ -433,7 +406,7 @@ export default function LeadManagementPage() {
             <div className="relative group max-w-md mx-auto">
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300" />
               <div className="relative bg-white rounded-2xl shadow-xl p-8 text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-1">
+                <div className="text-4xl sm:text-5xl font-bold tabular-nums tracking-tight text-blue-700 mb-1">
                   &#8377;{PRICE.monthly.toLocaleString('en-IN')}
                 </div>
                 <p className="text-sm text-gray-500 mb-6">per month &middot; whole team</p>
@@ -471,7 +444,7 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
@@ -487,13 +460,10 @@ export default function LeadManagementPage() {
       </section>
 
       {/* ── Quote ────────────────────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-blue-600 mb-3">
-                Get your quote
-              </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Five quick questions
               </h2>

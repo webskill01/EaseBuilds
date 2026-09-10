@@ -42,7 +42,7 @@ export default function PricingPage() {
   return (
     <main>
       {/* ── What it costs ─────────────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="max-w-3xl mx-auto text-center">
@@ -58,7 +58,7 @@ export default function PricingPage() {
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5">
                 <span className="text-gray-900">What a website </span>
-                <span className="gradient-text">actually costs</span>
+                <span className="text-blue-600">actually costs</span>
               </h1>
 
               <p className="text-base sm:text-lg text-gray-600 mb-8">
@@ -103,7 +103,7 @@ export default function PricingPage() {
       </section>
 
       {/* ── What moves the number ─────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-10 sm:mb-12">
@@ -134,7 +134,7 @@ export default function PricingPage() {
       </section>
 
       {/* ── Included regardless ───────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal direction="up">
@@ -166,7 +166,7 @@ export default function PricingPage() {
       </section>
 
       {/* ── The two monthly prices ────────────────────────── */}
-      <section className="section-padding bg-white">
+      <section className="section-padding tone-paper">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-10">
@@ -222,7 +222,7 @@ export default function PricingPage() {
       </section>
 
       {/* ── How a quote happens ───────────────────────────── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section className="section-padding tone-sand">
         <div className="container-custom">
           <ScrollReveal direction="up">
             <div className="text-center mb-10">

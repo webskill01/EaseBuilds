@@ -212,6 +212,55 @@
     @apply py-10 sm:py-14;
   }
 
+  /* Section tone ladder.
+     The automation and pricing pages ran 13 sections of white and
+     white-to-blue-50 in a row, which is why they read as one endless page
+     however good any single section was. One hue, real range: paper, sand,
+     ink. Alternate by MEANING - ink for the sections that make a claim, sand
+     for the ones that explain, paper for the ones you scan. */
+  .tone-paper {
+    @apply bg-white text-gray-900;
+  }
+
+  .tone-sand {
+    background-color: #f6f4ef;
+    @apply text-gray-900;
+  }
+
+  .tone-ink {
+    background-color: #0b1220;
+    @apply text-slate-100;
+  }
+
+  /* On ink, secondary text is tinted from the surface hue, never gray-500 -
+     gray on near-black falls under 4.5:1 and reads as a rendering fault. */
+  .tone-ink .tone-muted {
+    color: #94a7c4;
+  }
+
+  .tone-sand .tone-muted {
+    color: #6b6459;
+  }
+
+  .tone-paper .tone-muted {
+    @apply text-gray-600;
+  }
+
+  /* A card that belongs to the surface it sits on. */
+  .tone-ink .tone-card {
+    background-color: #131c2e;
+    border-color: #24304a;
+  }
+
+  .tone-sand .tone-card {
+    background-color: #fffdf8;
+    border-color: #e4ded1;
+  }
+
+  .tone-paper .tone-card {
+    @apply bg-white border-gray-200;
+  }
+
   /* Screen Reader Only (Accessibility) */
   .sr-only {
     position: absolute;
@@ -237,6 +286,33 @@
   }
 }
 
+/* Browser surfaces. Selection, caret, focus ring and tabular numerals ship
+   with defaults that belong to no design system; theming them is the cheapest
+   signal a page was built rather than assembled. */
+::selection {
+  background: rgb(37 99 235 / 0.22);
+  color: inherit;
+}
+
+:root {
+  caret-color: rgb(37 99 235);
+  accent-color: rgb(37 99 235);
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid rgb(37 99 235);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.tone-ink ::selection {
+  background: rgb(56 189 248 / 0.3);
+}
+
+.tone-ink :where(a, button, [tabindex]):focus-visible {
+  outline-color: rgb(125 211 252);
+}
+
 @layer utilities {
   /* Text Balance */
   .text-balance {
@@ -246,6 +322,50 @@
   /* FAQ Content Animation */
   .faq-content {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Visible slim scroller for horizontal card strips. The scrollbar IS the
+     affordance here - the projects strip has no chevrons any more, so hiding
+     it would leave a desktop user with nothing saying the row moves. */
+  .scroll-strip {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(59 130 246 / 0.5) rgb(226 232 240);
+    scroll-padding-inline: 1rem;
+  }
+
+  .scroll-strip::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scroll-strip::-webkit-scrollbar-track {
+    background: rgb(226 232 240);
+    border-radius: 9999px;
+  }
+
+  .scroll-strip::-webkit-scrollbar-thumb {
+    background: rgb(59 130 246 / 0.5);
+    border-radius: 9999px;
+  }
+
+  .scroll-strip::-webkit-scrollbar-thumb:hover {
+    background: rgb(59 130 246 / 0.8);
+  }
+
+  /* Hero that accounts for the chrome above it: the fixed header (h-14/h-16)
+     plus the breadcrumb bar. min-h-screen made every hero overflow by exactly
+     that much, and flex centring turned the overflow into a large gap above
+     and below the content. svh overrides vh where supported, so a mobile
+     browser toolbar does not add another 60-100px of phantom height. */
+  .hero-viewport {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+  }
+
+  @screen sm {
+    .hero-viewport {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+    }
   }
 
   /* Hide Scrollbar */

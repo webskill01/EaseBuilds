@@ -71,7 +71,7 @@ export default function Projects() {
             a user it scrolls, and it replaces the chevrons doing that job. */}
         <div className="relative">
           <div
-            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory hide-scrollbar -mx-4 px-4 pb-2 sm:mx-0 sm:px-0"
+            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-strip -mx-4 px-4 pb-4 sm:mx-0 sm:px-0"
             role="group"
             aria-label="Featured projects, scroll horizontally"
           >
@@ -171,7 +171,7 @@ export default function Projects() {
                             ))}
           </div>
 
-          <p className="mt-4 text-center text-xs text-gray-500 sm:hidden">
+          <p className="mt-3 text-center text-xs text-gray-500 sm:hidden">
             Swipe to see more projects
           </p>
         </div>

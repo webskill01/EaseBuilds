@@ -2,7 +2,7 @@
 
 // Contact Page - EaseBuilds (COMPLETE & FIXED)
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { z } from 'zod'
@@ -13,7 +13,6 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaCheckCircle,
-  FaArrowRight,
   FaUser,
   FaComment,
   FaPaperPlane,
@@ -22,6 +21,7 @@ import {
   FaPhoneAlt
 } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
+import Accordion from '@/app/components/ui/Accordion'
 import HeroImage from '../components/HeroImage'
 
 // Zod validation schema
@@ -42,6 +42,31 @@ const contactSchema = z.object({
     .min(20, 'Message must be at least 20 characters')
     .max(1000, 'Message is too long'),
 })
+
+// Must stay identical to contactFaqSchema in app/contact/layout.jsx - Google
+// requires FAQ markup to match what the page actually shows.
+const CONTACT_FAQS = [
+  {
+    question: 'How quickly will you respond to my inquiry?',
+    answer: 'We respond to all inquiries within 2 hours during business hours (Mon-Sat 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
+  },
+  {
+    question: 'Do you offer free consultations?',
+    answer: 'Yes! We offer free 30-minute consultations for all new projects. You can visit our office in Patiala or schedule a video call at your convenience.'
+  },
+  {
+    question: 'What information should I include in my message?',
+    answer: 'Please include: 1) Type of website you need, 2) Your budget range, 3) Timeline expectations, 4) Any specific features you want. The more details, the better we can help!'
+  },
+  {
+    question: 'Can I visit your office without an appointment?',
+    answer: 'Yes, walk-ins are welcome during business hours! However, we recommend calling ahead to ensure someone is available to give you full attention.'
+  },
+  {
+    question: 'Do you work on weekends?',
+    answer: 'Hours are Monday to Saturday, 9am to 6pm. WhatsApp is the fastest way to reach me, and messages sent outside those hours get answered the next working morning.'
+  }
+]
 
 export default function ContactPage() {
   const heroRef = useRef(null)
@@ -69,7 +94,6 @@ export default function ContactPage() {
   })
 
   const [validationErrors, setValidationErrors] = useState({})
-  const [openFaq, setOpenFaq] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -725,82 +749,14 @@ const handleSubmit = async (e) => {
             </div>
           </ScrollReveal>
 
-          {/* FAQ Items - FIXED Accordion Animation */}
-          <div className="max-w-4xl mx-auto space-y-4">
-            {[
-              {
-                question: 'How quickly will you respond to my inquiry?',
-                answer: 'We respond to all inquiries within 2 hours during business hours (Mon-Sat 9AM-6PM). For urgent matters, call or WhatsApp us directly for immediate assistance.'
-              },
-              {
-                question: 'Do you offer free consultations?',
-                answer: 'Yes! We offer free 30-minute consultations for all new projects. You can visit our office in Patiala or schedule a video call at your convenience.'
-              },
-              {
-                question: 'What information should I include in my message?',
-                answer: 'Please include: 1) Type of website you need, 2) Your budget range, 3) Timeline expectations, 4) Any specific features you want. The more details, the better we can help!'
-              },
-              {
-                question: 'Can I visit your office without an appointment?',
-                answer: 'Yes, walk-ins are welcome during business hours! However, we recommend calling ahead to ensure someone is available to give you full attention.'
-              },
-              {
-                question: 'Do you work on weekends?',
-                answer: 'Hours are Monday to Saturday, 9am to 6pm. WhatsApp is the fastest way to reach me, and messages sent outside those hours get answered the next working morning.'
-              }
-            ].map((faq, index) => (
-              <ScrollReveal key={index} direction="up" delay={index * 0.05}>
-                <div className="bg-gray-50 rounded-2xl border-2 border-gray-200 hover:border-blue-300 transition-all overflow-hidden">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex justify-between items-center cursor-pointer p-6 sm:p-8 text-left"
-                    aria-expanded={openFaq === index}
-                  >
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 pr-4">
-                      {faq.question}
-                    </h3>
-                    <motion.div
-                      animate={{ rotate: openFaq === index ? 90 : 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    >
-                      <FaArrowRight className="text-blue-600 flex-shrink-0" />
-                    </motion.div>
-                  </button>
-                  
-                  <AnimatePresence initial={false}>
-                    {openFaq === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ 
-                          height: 'auto', 
-                          opacity: 1,
-                          transition: {
-                            height: { duration: 0.4, ease: 'easeInOut' },
-                            opacity: { duration: 0.3, delay: 0.1 }
-                          }
-                        }}
-                        exit={{ 
-                          height: 0, 
-                          opacity: 0,
-                          transition: {
-                            height: { duration: 0.3, ease: 'easeInOut' },
-                            opacity: { duration: 0.2 }
-                          }
-                        }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 sm:px-8 py-6">
-                          <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          {/* the one accordion (Task 7.3). This page was the last hand-rolled
+              one on the site: gray-50 card, a rotating right-arrow instead of a
+              chevron, and AnimatePresence unmounting the closed answer.
+              Answers must stay mounted - see the note at the top of
+              Accordion.jsx. microdata is off because app/contact/layout.jsx
+              already emits this same FAQ list as JSON-LD; the two must stay in
+              step, so edit both or neither. */}
+          <Accordion items={CONTACT_FAQS} className="max-w-4xl mx-auto" />
         </div>
       </section>
     </>
