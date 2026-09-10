@@ -156,33 +156,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 - Web Services */}
+          {/* Column 3 - Services. Web and automation share a column: two links
+              each wasted a column apiece. Task 3.6 keeps the two LINES apart in
+              nav, page targeting and copy - that is about query families, and a
+              shared footer column does not undo it. */}
           <div>
             <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
-              Web Services
+              Services
             </h3>
             <ul className="space-y-2">
-              {footerData.services.map((service) => (
-                <li key={service.name}>
-                  <Link
-                    href={service.href}
-                    className="text-sm text-gray-400 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5 group"
-                  >
-                    <FaArrowRight className="text-[10px] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4 - Automation */}
-          <div>
-            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
-              Automation
-            </h3>
-            <ul className="space-y-2">
-              {footerData.automation.map((item) => (
+              {[...footerData.services, ...footerData.automation].map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
@@ -233,22 +216,25 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm text-gray-400">
                 <FaMapMarkerAlt className="text-blue-400 text-sm mt-0.5" />
-                <span>Balbir Colony, Opp. Urban Estate,<br />Patiala, Punjab 147001</span>
+                <span>Balbir Colony, Near Balson Palace,<br />Opp. Urban Estate,<br />Patiala, Punjab 147001</span>
               </li>
             </ul>
+          </div>
 
-            {/* Business Hours - Compact */}
-            <div className="mt-4 p-3 bg-blue-600/10 rounded-lg border border-blue-500/20">
-              <div className="flex items-center gap-1.5 mb-2">
-                <FaClock className="text-blue-400 text-base" />
-                <h4 className="text-base font-semibold text-white">Hours</h4>
-              </div>
-              <div className="space-y-0.5 text-[11px] text-gray-400">
+          {/* Column 5 - Hours */}
+          <div>
+            <h3 className="text-base font-bold text-white mb-3 pb-2 border-b border-white/10">
+              Hours
+            </h3>
+            <div className="flex items-start gap-2">
+              <FaClock className="text-blue-400 text-sm mt-1 flex-shrink-0" />
+              <div className="space-y-1 text-sm text-gray-400">
                 {/* ponytail: source of truth is siteConfig.business.hoursAvailable in
                     lib/seo.js and GBP-PLAYBOOK.md section 3. Five copies of these
                     hours disagreed before Phase 8; change them together or not at all. */}
-                <p className='text-xs'>Mon-Sat: <span className="text-white">9AM-6PM</span></p>
-                <p className='text-red-600 text-xs'>Sun: <span className="text-white">Closed</span></p>
+                <p>Mon &ndash; Sat</p>
+                <p className="text-white font-semibold">9:00 AM &ndash; 6:00 PM</p>
+                <p className="pt-1">Sunday <span className="text-red-400">Closed</span></p>
               </div>
             </div>
           </div>

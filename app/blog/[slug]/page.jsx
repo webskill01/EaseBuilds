@@ -119,20 +119,10 @@ export default function BlogPostPage() {
         <div className="container mx-auto px-4 py-12 sm:py-16">
           <div className="max-w-4xl mx-auto">
 
-            {/* Breadcrumb */}
-            <div className="bg-gray-50 py-4 border-b my-2 -mx-4 px-4">
-              <div className="flex items-center gap-2 text-sm">
-                <Link href="/" className="text-gray-600 hover:text-blue-600 transition">
-                  Home
-                </Link>
-                <span className="text-gray-400">/</span>
-                <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition">
-                  Blog
-                </Link>
-                <span className="text-gray-400">/</span>
-                <span className="text-gray-900 font-semibold truncate">{post.title}</span>
-              </div>
-            </div>
+            {/* ponytail: the breadcrumb that used to sit here was a second
+                trail - app/components/ui/Breadcrumb.jsx renders one above every
+                non-home page from the root layout. Two visible trails, and two
+                BreadcrumbList schemas sharing one DOM id. */}
 
             {/* Category Badge */}
             <motion.div

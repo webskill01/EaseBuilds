@@ -93,7 +93,7 @@ export default function DynamicServicePage() {
         {/* ✅ SEO: Hero as header with proper H1 */}
         <header 
           ref={heroRef}
-          className="relative min-h-screen flex items-center justify-center overflow-hidden pt-5"
+          className="relative min-h-screen flex items-center justify-center overflow-hidden"
           style={{ overflow: 'hidden', maxWidth: '100%' }} 
         >
           <motion.div style={{ y }} className="absolute inset-0 z-0">

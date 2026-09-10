@@ -2,9 +2,8 @@
 
 // Ultra-Optimized Portfolio Projects Section
 
-import { motion } from 'framer-motion'
-import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaRocket, FaPhone, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa'
-import { useState, useEffect, useRef } from 'react'
+import { FaExternalLinkAlt, FaRocket, FaPhone, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa'
+
 import Image from 'next/image'
 import ScrollReveal from '../animations/ScrollReveal'
 import { getFeaturedProjects } from '@/lib/portfolioData'
@@ -16,41 +15,12 @@ const projects = getFeaturedProjects().slice(0, 3)
 
 
 export default function Projects() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [itemsPerView, setItemsPerView] = useState(3)
-  const [hoveredIndex, setHoveredIndex] = useState(null)
-
-  // Responsive items per view
-  useEffect(() => {
-    const updateItemsPerView = () => {
-      if (window.innerWidth < 768) {
-        setItemsPerView(1)
-      } else if (window.innerWidth < 1024) {
-        setItemsPerView(2)
-      } else {
-        setItemsPerView(3)
-      }
-    }
-    
-    updateItemsPerView()
-    window.addEventListener('resize', updateItemsPerView)
-    return () => window.removeEventListener('resize', updateItemsPerView)
-  }, [])
-
-  const maxIndex = Math.max(0, projects.length - itemsPerView)
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
-  }
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index)
-  }
-
+  // ponytail: this was a JS carousel - two chevron buttons, a dot row, an index
+  // in state, a resize listener recomputing itemsPerView, and a spring-animated
+  // translate. All of it replaced by overflow-x-auto + scroll snap, which is
+  // what a phone user reaches for anyway: they swipe, they do not hunt for a
+  // 40px chevron. Native scrolling is also keyboard- and screen-reader-native
+  // and costs no JS. Desktop shows all three at once, so nothing scrolls there.
   return (
     <section 
       id="portfolio" 
@@ -96,66 +66,19 @@ export default function Projects() {
           </div>
         </ScrollReveal>
 
-        {/* Carousel Container */}
-        <div className="relative px-0 sm:px-12 lg:px-16">
-          {/* Navigation Buttons */}
-          {maxIndex > 0 && (
-            <>
-              <button
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-                className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-                  currentIndex === 0 
-                    ? 'opacity-30 cursor-not-allowed' 
-                    : 'hover:scale-110 hover:shadow-xl opacity-60 hover:opacity-100'
-                }`}
-                aria-label="Previous project"
-              >
-                <div className={`w-full h-full rounded-full flex items-center justify-center ${currentIndex === 0 ? 'bg-gray-200' : 'bg-gradient-to-r from-blue-600 to-cyan-500'}`}>
-                  <FaChevronLeft className="text-lg sm:text-xl text-white" />
-                </div>
-              </button>
-
-              <button
-                onClick={nextSlide}
-                disabled={currentIndex === maxIndex}
-                className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
-                  currentIndex === maxIndex 
-                    ? 'opacity-30 cursor-not-allowed' 
-                    : 'hover:scale-110 hover:shadow-xl opacity-60 hover:opacity-100'
-                }`}
-                aria-label="Next project"
-              >
-                <div className={`w-full h-full rounded-full flex items-center justify-center ${currentIndex === maxIndex ? 'bg-gray-200' : 'bg-gradient-to-r from-blue-600 to-cyan-500'}`}>
-                  <FaChevronRight className="text-lg sm:text-xl text-white" />
-                </div>
-              </button>
-            </>
-          )}
-
-          {/* Carousel Track - Simplified & Smooth */}
-          <div className="overflow-hidden rounded-2xl">
-            <motion.div
-              className="flex"
-              animate={{
-                x: `${-(currentIndex * (100 / itemsPerView))}%`
-              }}
-              transition={{
-                type: 'spring',
-                stiffness: 300,
-                damping: 30
-              }}
-            >
+                {/* Swipeable track. The last card is deliberately narrower than the
+            viewport on mobile so the next one peeks in - that edge is what tells
+            a user it scrolls, and it replaces the chevrons doing that job. */}
+        <div className="relative">
+          <div
+            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory hide-scrollbar -mx-4 px-4 pb-2 sm:mx-0 sm:px-0"
+            role="group"
+            aria-label="Featured projects, scroll horizontally"
+          >
               {projects.map((project, index) => (
                 <div
                   key={index}
-                  className="px-2 sm:px-3"
-                  style={{ 
-                    minWidth: `${100 / itemsPerView}%`,
-                    maxWidth: `${100 / itemsPerView}%`
-                  }}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="snap-start shrink-0 w-[85%] sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.834rem)]"
                 >
                   <div
                     onClick={() => project.link && window.open(project.link, '_blank', 'noopener,noreferrer')}
@@ -178,7 +101,7 @@ export default function Projects() {
                         />
 
                         {/* Hover overlay */}
-                        <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-center justify-center transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
                           <div className="flex flex-col items-center gap-2 sm:gap-3">
                             <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full flex items-center justify-center">
                               <FaExternalLinkAlt className="text-blue-600 text-xl sm:text-2xl" />
@@ -245,29 +168,12 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-              ))}
-            </motion.div>
+                            ))}
           </div>
 
-          {/* Progress Indicators */}
-          {maxIndex > 0 && (
-            <div className="flex justify-center items-center gap-2 mt-6" role="tablist" aria-label="Project navigation">
-              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    currentIndex === index
-                      ? 'w-2.5 h-2.5 bg-gradient-to-r from-blue-600 to-cyan-500'
-                      : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                  role="tab"
-                  aria-selected={currentIndex === index}
-                  aria-label={`Go to project ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
+          <p className="mt-4 text-center text-xs text-gray-500 sm:hidden">
+            Swipe to see more projects
+          </p>
         </div>
 
         {/* CTA Section */}

@@ -38,7 +38,7 @@ export default function TermsPage() {
     <>
 
       {/* Hero Section - Light Overlay */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-10">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <HeroImage
             src="/images/terms-hero.webp"

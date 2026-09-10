@@ -127,25 +127,10 @@ export default function AboutLayout({ children }) {
     },
   }
 
-  // Breadcrumb Schema
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://easebuilds.in',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'About Us',
-        item: 'https://easebuilds.in/about',
-      },
-    ],
-  }
+  // ponytail: no BreadcrumbList here. app/components/ui/Breadcrumb.jsx is in
+  // the root layout and already emits one for every path, from the same data
+  // that renders the visible trail. Two copies with one DOM id is worse than
+  // none - Google picks one and you cannot tell which.
 
   // Team/Person Schema (if you have team members to showcase)
   const teamSchema = {
@@ -178,7 +163,6 @@ export default function AboutLayout({ children }) {
       <JsonLd id="about-page-schema" data={aboutPageSchema} />
 
       {/* Breadcrumb Schema */}
-      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
       {/* Team Schema (Optional - add if you have team info) */}
       <JsonLd id="team-schema" data={teamSchema} />

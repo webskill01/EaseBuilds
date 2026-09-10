@@ -358,7 +358,7 @@ export default function Header() {
                 {/* Contact Info */}
                 <div className="mt-6 pt-5 border-t border-gray-200 text-xs text-gray-600">
                   <p className="font-semibold text-gray-900 mb-2">EaseBuilds</p>
-                  <p>Patiala, Punjab 147001</p>
+                  <p>Balbir Colony, Near Balson Palace,<br />Opp. Urban Estate, Patiala, Punjab 147001</p>
                   <p className="mt-2">
                     <a href="mailto:easebuilds.in@gmail.com" className="text-blue-600 hover:underline">
                       easebuilds.in@gmail.com

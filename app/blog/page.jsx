@@ -48,7 +48,7 @@ export default function BlogPage() {
     <>
 
       {/* Hero Section with Background Image */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-7">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <HeroImage

@@ -325,7 +325,7 @@ const handleSubmit = async (e) => {
               {
                 icon: FaMapMarkerAlt,
                 title: 'Visit Office',
-                value: 'Balbir Colony, Patiala',
+                value: 'Balbir Colony, Near Balson Palace',
                 link: 'https://maps.google.com/?q=8CQQ%2BQXF+Balbir+Colony+Patiala+Punjab+147001',
                 color: 'from-orange-500 to-red-600',
                 description: 'Free consultation'

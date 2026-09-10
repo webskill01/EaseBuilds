@@ -110,20 +110,15 @@ export default function PricingLayout({ children }) {
     })),
   }
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easebuilds.in' },
-      { '@type': 'ListItem', position: 2, name: 'Pricing', item: 'https://easebuilds.in/pricing' },
-    ],
-  }
+  // ponytail: no BreadcrumbList here. app/components/ui/Breadcrumb.jsx is in
+  // the root layout and already emits one for every path, from the same data
+  // that renders the visible trail. Two copies with one DOM id is worse than
+  // none - Google picks one and you cannot tell which.
 
   return (
     <>
       <JsonLd id="pricing-offer-schema" data={offerSchema} />
       <JsonLd id="pricing-faq-schema" data={pricingFaqSchema} />
-      <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
       {children}
     </>
   )

@@ -40,7 +40,7 @@ const WA_HREF =
 
 export default function PricingPage() {
   return (
-    <main className="pt-10">
+    <main>
       {/* ── What it costs ─────────────────────────────────── */}
       <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-custom">

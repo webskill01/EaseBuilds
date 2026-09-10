@@ -86,19 +86,29 @@ export default function Breadcrumb() {
       {/* JSON-LD Schema for SEO */}
       <JsonLd id="breadcrumb-schema" data={breadcrumbSchema} />
 
-      {/* Breadcrumb Navigation */}
-      <nav 
-        aria-label="Breadcrumb" 
-        className="absolute top-14 sm:top-16 z-30 w-full shadow-sm"
+      {/*
+        ponytail: this bar is IN FLOW. It used to be `absolute top-14 z-30`,
+        positioned against <body> (which globals.css makes `position: relative`),
+        so it floated over whatever hero the page happened to start with. Every
+        hero here is a full-bleed image with its own stacking context, so the
+        links ended up unreachable on most pages and the white-on-anything text
+        was a contrast lottery. A normal block after the fixed header cannot be
+        covered by page content at all, which is the actual fix.
+
+        mt-14/sm:mt-16 clears the fixed header (h-14 mobile, h-16 from sm).
+      */}
+      <nav
+        aria-label="Breadcrumb"
+        className="mt-14 sm:mt-16 bg-gray-50 border-b border-gray-200"
       >
-        <div className="container-custom py-2 sm:py-3">
-          <ol className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+        <div className="container-custom py-2.5 sm:py-3">
+          <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
             {breadcrumbItems.map((item, index) => (
               <li key={item.href} className="flex items-center gap-2">
                 {/* Breadcrumb Link/Text */}
                 {isLastItem(index) ? (
-                  <span 
-                    className="flex items-center gap-1.5 text-blue-200 font-semibold"
+                  <span
+                    className="flex items-center gap-1.5 font-semibold text-gray-900"
                     aria-current="page"
                   >
                     {item.isHome && <FaHome className="text-sm sm:text-base" aria-hidden="true" />}
@@ -107,14 +117,14 @@ export default function Breadcrumb() {
                 ) : item.isClickable ? (
                   <Link
                     href={item.href}
-                    className="flex items-center gap-1.5 text-white hover:text-blue-200 transition-colors duration-200"
+                    className="flex items-center gap-1.5 py-1 text-gray-600 hover:text-blue-600 hover:underline transition-colors duration-200"
                   >
                     {item.isHome && <FaHome className="text-sm sm:text-base" aria-hidden="true" />}
                     {item.label}
                   </Link>
                 ) : (
-                  <span 
-                    className="flex items-center gap-1.5 text-white cursor-default"
+                  <span
+                    className="flex items-center gap-1.5 text-gray-500 cursor-default"
                     title="This section only contains sub-pages"
                   >
                     {item.isHome && <FaHome className="text-sm sm:text-base" aria-hidden="true" />}
@@ -124,9 +134,9 @@ export default function Breadcrumb() {
 
                 {/* Separator */}
                 {!isLastItem(index) && (
-                  <FaChevronRight 
-                    className="text-white text-[10px] sm:text-xs" 
-                    aria-hidden="true" 
+                  <FaChevronRight
+                    className="text-gray-400 text-[10px] sm:text-xs"
+                    aria-hidden="true"
                   />
                 )}
               </li>
