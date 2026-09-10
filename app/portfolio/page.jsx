@@ -15,9 +15,6 @@ import {
   FaArrowRight,
   FaArrowLeft,
   FaCheckCircle,
-  FaLightbulb,
-  FaPaintBrush,
-  FaTools,
   FaReact,
   FaNodeJs,
   FaHtml5,
@@ -53,7 +50,6 @@ import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import portfolioProjects from '@/lib/portfolioData'
 import HeroImage from '../components/HeroImage'
 
-
 export default function PortfolioPage() {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -67,7 +63,6 @@ export default function PortfolioPage() {
   const projects = portfolioProjects.slice(0, 6)
 
   // Active step state for stepper
-  const [activeStep, setActiveStep] = useState(0)
   
 // Technology icons - Essential modern stack
 const technologies = [
@@ -100,38 +95,6 @@ const technologies = [
 
   // Duplicate for seamless loop
   const duplicatedTechnologies = [...technologies, ...technologies]
-
-  // Development process steps
-const processSteps = [
-  { 
-    number: '01', 
-    title: 'Discovery & Planning', 
-    description: 'We understand your business goals, target audience, and project requirements through detailed consultation.',
-    Icon: FaLightbulb,
-    details: ['Requirement analysis', 'Competitor research', 'Strategy planning']
-  },
-  { 
-    number: '02', 
-    title: 'Design & Prototyping', 
-    description: 'Creating beautiful, user-friendly interfaces with modern design principles and your brand identity.',
-    Icon: FaPaintBrush,
-    details: ['Wireframing', 'UI/UX design', 'Interactive prototypes']
-  },
-  { 
-    number: '03', 
-    title: 'Development & Testing', 
-    description: 'Building with modern technologies, writing clean code, and ensuring everything works perfectly.',
-    Icon: FaTools,
-    details: ['Frontend development', 'Backend integration', 'Quality assurance']
-  },
-  { 
-    number: '04', 
-    title: 'Launch & Support', 
-    description: 'Deploying your website, providing training, and offering ongoing maintenance and support.',
-    Icon: FaRocket,
-    details: ['Deployment', 'Training', 'Ongoing support']
-  },
-  ]
 
   return (
     <>
@@ -270,7 +233,6 @@ const processSteps = [
   </div>
 </section>
 
-
       {/* Projects Grid (No Filters) */}
       <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-custom">
@@ -390,293 +352,26 @@ const processSteps = [
         </div>
       </section>
 
-
-      {/* Improved Stepper with Next/Previous Buttons */}
-<section className="section-padding bg-white">
-  <div className="container-custom">
-    <ScrollReveal direction="up">
-      <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Our Development Process
-        </h2>
-        <p className="text-base sm:text-lg text-gray-600">
-          From concept to launch, a proven methodology for success
-        </p>
-      </div>
-    </ScrollReveal>
-
-    <div className="max-w-5xl mx-auto">
-      {/* Desktop Horizontal Stepper */}
-      <div className="hidden lg:block">
-        <div className="relative">
-          {/* Progress Line */}
-          <div className="absolute top-20 left-0 right-0 h-1 bg-gray-200 mx-24">
-            <motion.div
-              className="h-full bg-gradient-to-r from-blue-600 to-cyan-500"
-              animate={{ width: `${(activeStep / 3) * 100}%` }}
-              transition={{ duration: 0.5 }}
-            />
+      {/* Task 7.7: the 4-step process stepper that used to sit here said the
+          same thing as HowItWorks on the homepage, in different words and
+          without the durations. /portfolio's job is to show the work; the
+          homepage explains how it runs. One link replaces 275 lines. */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+              Wondering how a build actually runs?
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 mb-6">
+              Four steps, from the first conversation to a live site, with what
+              each one takes.
+            </p>
+            <Link href="/#how-it-works" className="btn-primary">
+              See the process
+            </Link>
           </div>
-
-          {/* Steps */}
-          <div className="grid grid-cols-4 gap-4">
-            {processSteps.map((step, index) => {
-              const StepIcon = step.Icon
-              return (
-                <div key={index} className="relative">
-                  <motion.div
-                    className="flex flex-col items-center cursor-pointer"
-                    onClick={() => setActiveStep(index)}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {/* Step Circle */}
-                    <motion.div
-                      className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl mb-4 relative z-10 transition-all duration-300 ${
-                        index <= activeStep
-                          ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-xl'
-                          : 'bg-gray-200 text-gray-400'
-                      }`}
-                      animate={index === activeStep ? { scale: [1, 1.08, 1] } : {}}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      {index < activeStep ? (
-                        <FaCheckCircle className="text-3xl" />
-                      ) : (
-                        <StepIcon className="text-3xl" />
-                      )}
-                    </motion.div>
-
-                    {/* Step Number */}
-                    <div className={`text-xs font-bold mb-2 ${
-                      index <= activeStep ? 'text-blue-600' : 'text-gray-400'
-                    }`}>
-                      STEP {step.number}
-                    </div>
-
-                    {/* Step Title */}
-                    <h3 className={`text-center font-bold text-sm ${
-                      index <= activeStep ? 'text-gray-900' : 'text-gray-500'
-                    }`}>
-                      {step.title}
-                    </h3>
-                  </motion.div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Active Step Details Card */}
-          <motion.div
-            key={activeStep}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.4 }}
-            className="mt-12 p-8 bg-gradient-to-br from-blue-50 via-white to-cyan-50 rounded-2xl border-2 border-blue-100 shadow-xl"
-          >
-            <div className="flex items-start gap-6">
-              {/* Large Icon */}
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: 'spring' }}
-                className="flex-shrink-0"
-              >
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  {React.createElement(processSteps[activeStep].Icon, { 
-                    className: "text-4xl text-white" 
-                  })}
-                </div>
-              </motion.div>
-
-              {/* Content */}
-              <div className="flex-1">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <h4 className="text-2xl font-bold text-gray-900 mb-3">
-                    {processSteps[activeStep].title}
-                  </h4>
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    {processSteps[activeStep].description}
-                  </p>
-                  <ul className="space-y-3">
-                    {processSteps[activeStep].details.map((detail, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 + (idx * 0.1) }}
-                        className="flex items-center gap-3 text-gray-700"
-                      >
-                        <FaCheckCircle className="text-green-500 text-lg flex-shrink-0" />
-                        <span className="font-medium">{detail}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-blue-200">
-              <motion.button
-                onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
-                disabled={activeStep === 0}
-                whileHover={{ scale: activeStep === 0 ? 1 : 1.05 }}
-                whileTap={{ scale: activeStep === 0 ? 1 : 0.95 }}
-                className={`inline-flex items-center gap-2 btn font-semibold transition-all ${
-                  activeStep === 0
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg'
-                }`}
-              >
-                <FaArrowLeft />
-                Previous
-              </motion.button>
-
-              {/* Step Indicator */}
-              <div className="flex items-center gap-2">
-                {processSteps.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveStep(idx)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      idx === activeStep 
-                        ? 'w-2 bg-blue-600' 
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <motion.button
-                onClick={() => setActiveStep(Math.min(3, activeStep + 1))}
-                disabled={activeStep === 3}
-                whileHover={{ scale: activeStep === 3 ? 1 : 1.05 }}
-                whileTap={{ scale: activeStep === 3 ? 1 : 0.95 }}
-                className={`inline-flex items-center gap-2 btn font-semibold transition-all ${
-                  activeStep === 3
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg'
-                }`}
-              >
-                Next
-                <FaArrowRight />
-              </motion.button>
-            </div>
-          </motion.div>
         </div>
-      </div>
-
-      {/* Mobile Vertical Stepper with Navigation */}
-      <div className="lg:hidden">
-        {/* Mobile Navigation Tabs */}
-        <div className="flex overflow-x-auto gap-2 mb-8 pb-2">
-          {processSteps.map((step, index) => {
-            const StepIcon = step.Icon
-            return (
-              <button
-                key={index}
-                onClick={() => setActiveStep(index)}
-                className={`flex-shrink-0 flex items-center gap-2 btn font-semibold transition-all ${
-                  index === activeStep
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-600'
-                }`}
-              >
-                <StepIcon className="text-lg" />
-                <span className="text-sm whitespace-nowrap">Step {step.number}</span>
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Mobile Step Content */}
-        <motion.div
-          key={activeStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-          className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border-2 border-blue-100"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center">
-              {React.createElement(processSteps[activeStep].Icon, { 
-                className: "text-2xl text-white" 
-              })}
-            </div>
-            <div>
-              <div className="text-xs font-bold text-blue-600 mb-1">
-                STEP {processSteps[activeStep].number}
-              </div>
-              <h3 className="text-lg font-bold text-gray-900">
-                {processSteps[activeStep].title}
-              </h3>
-            </div>
-          </div>
-
-          <p className="text-sm text-gray-700 mb-4 leading-relaxed">
-            {processSteps[activeStep].description}
-          </p>
-
-          <ul className="space-y-2 mb-6">
-            {processSteps[activeStep].details.map((detail, idx) => (
-              <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                <FaCheckCircle className="text-green-500 flex-shrink-0" />
-                {detail}
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile Navigation Buttons */}
-          <div className="flex gap-3">
-            <button
-              onClick={() => setActiveStep(Math.max(0, activeStep - 1))}
-              disabled={activeStep === 0}
-              className={`flex-1 inline-flex items-center justify-center gap-2 btn font-semibold ${
-                activeStep === 0
-                  ? 'bg-gray-100 text-gray-400'
-                  : 'bg-blue-600 text-white'
-              }`}
-            >
-              <FaArrowLeft />
-              Previous
-            </button>
-            <button
-              onClick={() => setActiveStep(Math.min(3, activeStep + 1))}
-              disabled={activeStep === 3}
-              className={`flex-1 inline-flex items-center justify-center gap-2 btn font-semibold ${
-                activeStep === 3
-                  ? 'bg-gray-100 text-gray-400'
-                  : 'bg-blue-600 text-white'
-              }`}
-            >
-              Next
-              <FaArrowRight />
-            </button>
-          </div>
-        </motion.div>
-
-        {/* Progress Indicator */}
-        <div className="flex items-center justify-center gap-2 mt-6">
-          {processSteps.map((_, idx) => (
-            <div
-              key={idx}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                idx === activeStep 
-                  ? 'w-1.5 bg-blue-600' 
-                  : 'w-1.5 bg-gray-300'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      </section>
 
       {/* CTA Section */}
       <section className="section-padding bg-gradient-to-br from-blue-600 via-blue-700 to-cyan-600 text-white">

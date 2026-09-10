@@ -9,7 +9,7 @@ import { useRef, useState } from 'react'
 import { 
   FaPhone, FaWhatsapp, FaCheck, FaRocket, FaArrowRight, FaCrown, 
   FaBolt, FaTimes, FaShieldAlt, FaStar, FaHome, FaChevronRight,
-  FaMapMarkerAlt, FaQuoteLeft,
+  FaMapMarkerAlt,
   FaPhoneAlt, FaRobot, FaComments
 } from 'react-icons/fa'
 import Link from 'next/link'
@@ -55,6 +55,14 @@ export default function DynamicServicePage() {
     notFound()
   }
 
+  // Task 7.7 - one place decides whether this service is pitched locally.
+  // `scope` lives on the service in lib/servicesData.js. Adding a third
+  // service? Set its scope there, do not hardcode a place name below.
+  const isLocal = serviceData.scope !== 'national'
+  const IN_PLACE = isLocal ? ' in Patiala' : ''
+  const AUDIENCE = isLocal ? 'businesses in Patiala' : 'growing businesses'
+  const INLINE = serviceData.inlineName || serviceData.name.toLowerCase()
+
   const heroRef = useRef(null)
   const [selectedComparison, setSelectedComparison] = useState(
     serviceData.comparison?.options.findIndex(opt => opt.recommended) || 0
@@ -91,7 +99,7 @@ export default function DynamicServicePage() {
           <motion.div style={{ y }} className="absolute inset-0 z-0">
             <HeroImage
               src={serviceData.hero.image}
-              alt={`${serviceData.name} Services in Patiala Punjab India - Professional ${serviceData.name} Company`}
+              alt={`${serviceData.name} by EaseBuilds`}
             />
              <div className="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/50 to-gray-900/60" />
             <div className="absolute inset-0 opacity-5" style={{ maxWidth: '100%' }}>
@@ -113,7 +121,7 @@ export default function DynamicServicePage() {
               >
                 <serviceData.icon className="text-blue-600 text-xl" />
                 <span className="text-sm font-semibold text-gray-900">
-                  {serviceData.name} in Patiala
+                  {serviceData.name}{IN_PLACE}
                 </span>
               </motion.div>
 
@@ -156,7 +164,7 @@ export default function DynamicServicePage() {
                 </motion.a>
 
                 <motion.a
-                  href={`https://wa.me/916283380110?text=I want ${serviceData.name.toLowerCase()} in Patiala`}
+                  href={`https://wa.me/916283380110?text=I want ${serviceData.name.toLowerCase()}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -169,7 +177,7 @@ export default function DynamicServicePage() {
                 </motion.a>
               </motion.div>
 
-              {/* ✅ SEO: Local keywords - Patiala mentioned */}
+              {/* Locale strip - only shown for a locally-pitched service (Task 7.7) */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -178,7 +186,7 @@ export default function DynamicServicePage() {
               >
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg">
                   <FaMapMarkerAlt className="text-cyan-400" />
-                  <span className="text-sm font-medium">Serving Patiala Punjab</span>
+                  <span className="text-sm font-medium">{isLocal ? 'Serving Patiala Punjab' : 'Working across India'}</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg">
                   <FaStar className="text-yellow-400" />
@@ -200,10 +208,10 @@ export default function DynamicServicePage() {
               <div className="text-center mb-12">
                 {/* ✅ SEO: H2 for major section */}
                 <h2 id="benefits-heading" className="text-4xl font-bold text-gray-900 mb-4">
-                  Why Choose {serviceData.name} in Patiala Punjab?
+                  Why Choose {serviceData.name}?
                 </h2>
                 <p className="text-xl text-gray-600">
-                  Top benefits of professional {serviceData.name.toLowerCase()} for Patiala businesses
+                  What you get from professional {INLINE}
                 </p>
               </div>
             </ScrollReveal>
@@ -254,7 +262,7 @@ export default function DynamicServicePage() {
                             {/* ✅ SEO: Better alt text with location */}
                             <Image
                                src={getImagePath(index)}
-                              alt={`${prop.title} - ${serviceData.name} in Patiala Punjab - Benefit ${index + 1}`}
+                              alt={`${prop.title} - ${serviceData.name} benefit ${index + 1}`}
                               fill
                               className="object-cover"
                               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -274,7 +282,7 @@ export default function DynamicServicePage() {
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 z-10" />
                             <Image
                              src={getImagePath(index)}
-                              alt={`${prop.title} - ${serviceData.name} in Patiala Punjab - Benefit ${index + 1}`}
+                              alt={`${prop.title} - ${serviceData.name} benefit ${index + 1}`}
                               fill
                               className="object-cover"
                               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -332,10 +340,10 @@ export default function DynamicServicePage() {
         </div>
         
         <h2 id="features-heading" className="text-4xl font-bold text-gray-900 mb-4">
-          Complete {serviceData.name} Package in Patiala
+          What's included
         </h2>
         <p className="text-xl text-gray-600">
-          Everything included for businesses in Patiala Punjab India
+          Every {INLINE} project for {AUDIENCE} covers this
         </p>
       </div>
     </ScrollReveal>
@@ -495,7 +503,7 @@ export default function DynamicServicePage() {
             <ScrollReveal direction="up">
               <div className="text-center mb-8">
                 <h2 id="process-heading" className="text-4xl font-bold text-gray-900 mb-4">
-                  Our {serviceData.name} Process in Patiala
+                  How the work runs
                 </h2>
                 <p className="text-xl text-gray-600">
                   Step-by-step journey from start to finish
@@ -507,56 +515,11 @@ export default function DynamicServicePage() {
           </div>
         </section>
 
-        {/* ✅ NEW: Testimonial Section (adds content + social proof) */}
-        {serviceData.caseStudy && (
-          <aside className="py-10 bg-gradient-to-r from-blue-50 to-cyan-50" aria-labelledby="testimonial-heading">
-            <div className="container-custom">
-              <ScrollReveal direction="up">
-                <div className="max-w-4xl mx-auto">
-                  <div className="text-center mb-12">
-                    <h2 id="testimonial-heading" className="text-4xl font-bold text-gray-900 mb-4">
-                      Success Story from Patiala
-                    </h2>
-                    <p className="text-xl text-gray-600">
-                      Real results for local businesses
-                    </p>
-                  </div>
-
-                  <div className="bg-white rounded-3xl p-8 shadow-2xl">
-                    <div className="grid md:grid-cols-2 gap-8 items-center">
-                      <div>
-                        <FaQuoteLeft className="text-4xl text-blue-600 mb-4" />
-                        <blockquote className="text-lg text-gray-700 mb-6 italic leading-relaxed">
-                          "{serviceData.caseStudy.testimonial}"
-                        </blockquote>
-                        <div>
-                          <p className="font-bold text-gray-900">{serviceData.caseStudy.client}</p>
-                          <p className="text-gray-600">{serviceData.caseStudy.location}</p>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                          Results Achieved:
-                        </h3>
-                        <ul className="space-y-3">
-                          {serviceData.caseStudy.results.map((result, idx) => (
-                            <li key={idx} className="flex items-start gap-3">
-                              <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <FaCheck className="text-green-600 text-xs" />
-                              </div>
-                              <span className="text-gray-700">{result}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
-          </aside>
-        )}
+        {/* Task 7.7: a "Success Story from Patiala" testimonial block used to
+            live here, guarded by `serviceData.caseStudy`. No service has ever
+            defined caseStudy, so it never rendered - it was an empty slot
+            shaped exactly like the 10 invented testimonials Tasks 3.7/3.8
+            removed. Deleted rather than left waiting to be filled. */}
 
         {/* Pricing - one entry price, not a ladder (Task 7.10).
             Full tier tables let a visitor self-disqualify on price and leave
@@ -567,7 +530,7 @@ export default function DynamicServicePage() {
             <ScrollReveal direction="up">
               <div className="max-w-2xl mx-auto text-center">
                 <h2 id="pricing-heading" className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                  What {serviceData.name.toLowerCase()} costs
+                  What {INLINE} costs
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
                   Websites start at <strong className="text-gray-900">&#8377;2,999</strong>. What
@@ -604,7 +567,7 @@ export default function DynamicServicePage() {
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
                 <h2 id="related-heading" className="text-4xl font-bold text-gray-900 mb-4">
-                  Other Services in Patiala
+                  Other Services
                 </h2>
                 <p className="text-xl text-gray-600">
                   Explore our complete service range
@@ -660,7 +623,7 @@ export default function DynamicServicePage() {
                   Frequently Asked Questions
                 </h2>
                 <p className="text-xl text-gray-600">
-                  Common questions about {serviceData.name.toLowerCase()} in Patiala
+                  Common questions about {serviceData.name.toLowerCase()}
                 </p>
               </div>
             </ScrollReveal>
@@ -678,10 +641,10 @@ export default function DynamicServicePage() {
               <ScrollReveal direction="up">
                 <serviceData.icon className="text-5xl mx-auto mb-6" />
                 <h2 className="text-5xl font-bold mb-6">
-                  Ready for {serviceData.name} in Patiala?
+                  Ready to start?
                 </h2>
                 <p className="text-xl mb-10">
-                  Contact EaseBuilds today - Best {serviceData.name.toLowerCase()} company in Patiala Punjab!
+                  Tell us what you need and get a fixed price for {AUDIENCE}.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
