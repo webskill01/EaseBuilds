@@ -214,7 +214,7 @@ const handleSubmit = async (e) => {
       {/* Hero Section - Light Overlay */}
       <section 
         ref={heroRef}
-        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
+        className="relative hero-viewport flex items-center justify-center overflow-hidden"
       >
         {/* Background Image with Light Overlay */}
         <motion.div style={{ y }} className="absolute inset-0 z-0">

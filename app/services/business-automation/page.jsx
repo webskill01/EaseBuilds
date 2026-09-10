@@ -19,6 +19,7 @@ import {
 } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import Accordion from '@/app/components/ui/Accordion'
+import Tabs from '@/app/components/ui/Tabs'
 import QuoteForm from '@/app/components/QuoteForm'
 import { BUILDS, PROCESS, PROOF, WHY, FAQS, STEPS, QUOTE_INTRO, WHATSAPP } from './data'
 
@@ -38,7 +39,7 @@ export default function BusinessAutomationPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative hero-viewport flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-700 via-blue-600 to-cyan-600" />
         <div className="absolute inset-0 z-0 opacity-10">
           <div
@@ -267,19 +268,7 @@ export default function BusinessAutomationPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {WHY.map((w, index) => (
-              <ScrollReveal key={w.title} direction={index % 2 === 0 ? 'left' : 'right'}>
-                <div className="bg-white rounded-2xl border border-blue-100 p-6 h-full">
-                  <span className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
-                    <w.icon className="w-6 h-6" />
-                  </span>
-                  <h3 className="font-bold text-lg text-gray-900 mb-2">{w.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{w.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          <Tabs idPrefix="whyus" items={WHY} />
         </div>
       </section>
 

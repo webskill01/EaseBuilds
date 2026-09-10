@@ -23,6 +23,7 @@ import {
 } from 'react-icons/fa'
 import ScrollReveal from '@/app/components/animations/ScrollReveal'
 import Accordion from '@/app/components/ui/Accordion'
+import Tabs from '@/app/components/ui/Tabs'
 import EaseBotDemo from './EaseBotDemo'
 import QuoteForm from '@/app/components/QuoteForm'
 import { FEATURES, VERTICALS, FAQS, PRICE, WHATSAPP, STEPS, QUOTE_INTRO } from './data'
@@ -67,7 +68,7 @@ export default function LeadManagementPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative hero-viewport flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-700 via-blue-600 to-cyan-600" />
         <div className="absolute inset-0 z-0 opacity-10">
           <div
@@ -246,8 +247,9 @@ export default function LeadManagementPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[
+          <Tabs
+            idPrefix="why"
+            items={[
               {
                 icon: FaTelegramPlane,
                 title: 'Nothing to install',
@@ -263,16 +265,8 @@ export default function LeadManagementPage() {
                 title: 'Sent from your number',
                 body: 'Messages go from your own WhatsApp, tapped by your own staff. Your customers see you, not a broadcast from some platform.',
               },
-            ].map((item, index) => (
-              <ScrollReveal key={item.title} direction="up" delay={index * 0.1}>
-                <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 p-6 h-full">
-                  <item.icon className="text-3xl text-blue-600 mb-4" />
-                  <h3 className="font-bold text-lg text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.body}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 

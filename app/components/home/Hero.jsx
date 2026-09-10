@@ -15,7 +15,7 @@ export default function Hero() {
 
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-20">
+    <section className="relative hero-home flex items-center justify-center overflow-hidden pt-20 pb-14 sm:pt-24 sm:pb-16">
       {/* Background Image - Optimized */}
       <div className="absolute inset-0 z-0">
         {/* ponytail: was a CSS background-image, which the preload scanner cannot

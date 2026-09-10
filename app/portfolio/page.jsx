@@ -101,7 +101,7 @@ const technologies = [
       {/* Hero Section with Light Opacity Background */}
       <section 
         ref={heroRef}
-        className="relative min-h-[50vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden"
+        className="relative hero-viewport flex items-center justify-center overflow-hidden"
       >
         {/* Background Image with Light Opacity */}
         <motion.div 

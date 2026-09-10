@@ -156,7 +156,7 @@ export default function AboutPage() {
         {/* Hero Section with Custom Background Image */}
         <section
           ref={heroRef}
-          className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden"
+          className="relative hero-viewport flex items-center overflow-hidden"
         >
           {/* Background Image Layer */}
           <HeroImage

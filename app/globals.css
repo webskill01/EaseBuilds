@@ -331,6 +331,21 @@
     scrollbar-width: thin;
     scrollbar-color: rgb(59 130 246 / 0.5) rgb(226 232 240);
     scroll-padding-inline: 1rem;
+    /* Finger-drag on touch. `touch-action: pan-x` claims the horizontal
+       gesture for this element so the browser does not hand an ambiguous
+       diagonal swipe to the page's vertical scroll instead - the usual reason
+       a nested horizontal strip feels stuck on a phone. pan-y stays listed so
+       a straight vertical swipe still scrolls the page through the strip. */
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    /* stops a swipe past the last card from triggering back-navigation */
+    overscroll-behavior-x: contain;
+  }
+
+  /* `scroll-behavior: smooth` is set on <html> globally; inside a snap strip it
+     fights the finger and makes the strip feel like it is resisting. */
+  .scroll-strip {
+    scroll-behavior: auto;
   }
 
   .scroll-strip::-webkit-scrollbar {
@@ -351,21 +366,49 @@
     background: rgb(59 130 246 / 0.8);
   }
 
-  /* Hero that accounts for the chrome above it: the fixed header (h-14/h-16)
-     plus the breadcrumb bar. min-h-screen made every hero overflow by exactly
-     that much, and flex centring turned the overflow into a large gap above
-     and below the content. svh overrides vh where supported, so a mobile
-     browser toolbar does not add another 60-100px of phantom height. */
+  /* ONE hero height for every inner page. They ranged from 50vh to 90vh with
+     no reason behind any of them, which is what made the site feel unrelated
+     page to page.
+
+     svh, not vh: on a phone `100vh` is the viewport with the browser toolbar
+     RETRACTED, so a vh-sized hero is always taller than what you can actually
+     see and its content sits partly under the fold. svh is the visible height.
+     The vh line stays first as the fallback for browsers without svh.
+
+     The rem floor stops the hero collapsing in landscape, where 72svh on a
+     phone is about 160px. */
   .hero-viewport {
-    min-height: calc(100vh - 6rem);
-    min-height: calc(100svh - 6rem);
+    min-height: 72vh;
+    min-height: max(72svh, 26rem);
   }
 
-  @screen sm {
-    .hero-viewport {
-      min-height: calc(100vh - 7rem);
-      min-height: calc(100svh - 7rem);
-    }
+  /* The homepage carries more than the others and has no breadcrumb above it,
+     so it gets more room - but not a full viewport, which pushed the stats
+     cards under the fold on every laptop. */
+  .hero-home {
+    min-height: 86vh;
+    min-height: max(86svh, 34rem);
+  }
+
+  /* Chat surface for the EaseBot demo. The faint cross-hatch is what every
+     messaging app puts behind a thread; on a flat panel the bubbles read as
+     boxes on a page instead of messages in a conversation. */
+  .chat-surface {
+    background-color: #0f1a2a;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.02) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .chat-bubble-in {
+    background-color: #1c2942;
+    color: #e6edf7;
+  }
+
+  .chat-bubble-out {
+    background-color: #124d3d;
+    color: #e8fff5;
   }
 
   /* Hide Scrollbar */
