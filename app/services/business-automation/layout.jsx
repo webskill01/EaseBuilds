@@ -7,9 +7,9 @@ import { FAQS } from './data'
 
 const URL = 'https://easebuilds.in/services/business-automation'
 
-const TITLE = 'Business Automation for Small Businesses in India | EaseBuilds'
+const TITLE = 'Business Automation for Small Businesses in India'
 const DESCRIPTION =
-  'Custom automation for small businesses: lead capture and follow-ups, Google Sheets and data automation, management systems, and reminders — delivered over WhatsApp, Telegram or your own web panel. Fixed quote, never per user.'
+  'Custom automation for small businesses: lead capture, follow-ups, Google Sheets and reminders, over WhatsApp or Telegram. Fixed quote, never per user.'
 
 export const metadata = {
   title: TITLE,

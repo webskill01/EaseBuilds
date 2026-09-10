@@ -6,7 +6,7 @@ import JsonLd from '../components/JsonLd'
 export const metadata = {
   // Task 7.5: no superlative that is not first-person true.
   title: 'About EaseBuilds | Web Developer in Patiala, Punjab',
-  description: 'EaseBuilds is a one-developer web studio in Patiala. 15 projects shipped — 5 client websites, including one in Melbourne, and 10 automation systems in production.',
+  description: 'EaseBuilds is a one-developer web studio in Patiala. 15 projects shipped: 5 client websites, one of them in Melbourne, and 10 automation systems live.',
   
   openGraph: {
     title: 'About EaseBuilds - Web Developer in Patiala, Punjab',

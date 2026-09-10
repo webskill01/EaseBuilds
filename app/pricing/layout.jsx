@@ -24,7 +24,7 @@ const price = ENTRY_PRICE.toLocaleString('en-IN')
 
 export const metadata = {
   title: 'Website Cost in Patiala | Web Design Charges | EaseBuilds',
-  description: `What a website actually costs in Patiala. Builds start at ₹${price}, quoted against your real scope rather than a package tier. Maintenance ₹${MAINTENANCE_MONTHLY}/month. Talk to the developer who builds it.`,
+  description: `What a website actually costs in Patiala. Builds from ₹${price}, quoted against your real scope, not a package tier. Maintenance ₹${MAINTENANCE_MONTHLY}/month.`,
 
   openGraph: {
     title: `Website Cost in Patiala | From ₹${price}`,

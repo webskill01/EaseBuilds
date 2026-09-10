@@ -6,7 +6,7 @@ import JsonLd from '../components/JsonLd'
 // SEO Metadata - Optimized lengths
 export const metadata = {
   title: 'Terms of Service - EaseBuilds Web Development Patiala', // 56 chars
-  description: 'Terms of Service for EaseBuilds web development services in Patiala Punjab. Service agreements, refund policy, intellectual property rights. Contact +91 6283380110', // 159 chars
+  description: 'Terms of Service for EaseBuilds: service agreements, refund policy and intellectual property rights.',
   openGraph: {
     title: 'Terms of Service - EaseBuilds',
     description: 'Terms and conditions for using EaseBuilds web development services in Patiala Punjab.',

@@ -4,8 +4,8 @@ import JsonLd from '../components/JsonLd'
 
 
 export const metadata = {
-  title: 'Web Development Blog - Tips, Guides & Insights | EaseBuilds Patiala',
-  description: 'Expert web development blog from Patiala. Learn about website design, SEO, e-commerce, maintenance, and choosing developers. Updated guides and tips for businesses.',
+  title: 'Web Development Blog | EaseBuilds Patiala',
+  description: 'Guides on website design, SEO, WhatsApp automation and what things actually cost, written from Patiala for small businesses.',
   
   openGraph: {
     title: 'Web Development Blog - EaseBuilds Patiala',

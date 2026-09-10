@@ -6,7 +6,7 @@ import JsonLd from '../components/JsonLd'
 // SEO Metadata - Optimized lengths
 export const metadata = {
   title: 'Contact Us - Web Developer Patiala Punjab | EaseBuilds', // 57 chars
-  description: 'Contact EaseBuilds for website development in Patiala Punjab. Call +91 6283380110, WhatsApp, Email. Free consultation. Visit our office in Patiala. Fast response!', // 159 chars
+  description: 'Talk to the developer who would build your site. WhatsApp or call +91 6283380110, or send the form. Based in Patiala, Punjab.',
   openGraph: {
     title: 'Contact Web Developer in Patiala Punjab India',
     description: 'Get in touch with EaseBuilds for website development. Call, WhatsApp, or visit our Patiala office.',

@@ -6,7 +6,7 @@ import { portfolioProjects } from '@/lib/portfolioData'
 
 // SEO Metadata - Optimized title and description lengths
 export const metadata = {
-  title: 'Portfolio - Web Development Projects Patiala | EaseBuilds Work', // 59 chars
+  title: 'Portfolio - Web Development Projects | EaseBuilds',
   description: 'Live client websites built by EaseBuilds — taxi booking in Patiala, e-commerce in Chennai, home services in Melbourne. Click through to every one of them.',
   openGraph: {
     title: 'Web Development Portfolio - Patiala Punjab India',
