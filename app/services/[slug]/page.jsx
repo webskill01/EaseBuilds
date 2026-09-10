@@ -202,7 +202,7 @@ export default function DynamicServicePage() {
         </header>
 
         {/* ✅ SEO: Section with proper H2 */}
-        <section className="pt-12 pb-5 bg-white" aria-labelledby="benefits-heading" style={{ maxWidth: '100%' }}>
+        <section className="section-padding bg-white" aria-labelledby="benefits-heading" style={{ maxWidth: '100%' }}>
           <div className="container-custom" style={{ maxWidth: '100%' }}>
             <ScrollReveal direction="up">
               <div className="text-center mb-12">
