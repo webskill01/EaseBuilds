@@ -105,9 +105,12 @@ export default function AboutLayout({ children }) {
     areaServed: {
       '@type': 'GeoCircle',
       geoMidpoint: {
+        // the 50km service radius is centred on the office, same coordinates as
+        // the LocalBusiness geo. Two different midpoints for one entity is the
+        // drift Phase 8 was cleaning up.
         '@type': 'GeoCoordinates',
-        latitude: 30.3398,
-        longitude: 76.3869,
+        latitude: 30.3394,
+        longitude: 76.4400,
       },
       geoRadius: '50000', // 50km radius
     },

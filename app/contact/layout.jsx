@@ -8,6 +8,10 @@ export const metadata = {
   title: 'Contact Us - Web Developer Patiala Punjab | EaseBuilds', // 57 chars
   description: 'Talk to the developer who would build your site. WhatsApp or call +91 6283380110, or send the form. Based in Patiala, Punjab.',
   openGraph: {
+    // Next replaces openGraph across segments, it does not deep-merge, so a
+    // child that sets a partial object drops the root layout's og:site_name
+    // and the SERP card shows the bare domain instead of the brand.
+    siteName: 'EaseBuilds',
     title: 'Contact Web Developer in Patiala Punjab India',
     description: 'Get in touch with EaseBuilds for website development. Call, WhatsApp, or visit our Patiala office.',
     type: 'website',

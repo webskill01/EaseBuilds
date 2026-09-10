@@ -28,6 +28,10 @@ export async function generateMetadata({ params }) {
     title: service.seo.title,
     description: service.seo.description,
     openGraph: {
+      // Next replaces openGraph across segments, it does not deep-merge, so a
+      // child that sets a partial object drops the root layout's og:site_name
+      // and the SERP card shows the bare domain instead of the brand.
+      siteName: 'EaseBuilds',
       title: service.seo.title,
       description: service.seo.description,
       type: 'website',

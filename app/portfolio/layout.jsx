@@ -9,6 +9,10 @@ export const metadata = {
   title: 'Portfolio - Web Development Projects | EaseBuilds',
   description: 'Live client websites built by EaseBuilds — taxi booking in Patiala, e-commerce in Chennai, home services in Melbourne. Click through to every one of them.',
   openGraph: {
+    // Next replaces openGraph across segments, it does not deep-merge, so a
+    // child that sets a partial object drops the root layout's og:site_name
+    // and the SERP card shows the bare domain instead of the brand.
+    siteName: 'EaseBuilds',
     title: 'Web Development Portfolio - Patiala Punjab India',
     description: 'Live client websites from Patiala to Melbourne. Click through to every one of them.',
     type: 'website',

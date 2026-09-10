@@ -8,6 +8,10 @@ export const metadata = {
   title: 'Terms of Service - EaseBuilds Web Development Patiala', // 56 chars
   description: 'Terms of Service for EaseBuilds: service agreements, refund policy and intellectual property rights.',
   openGraph: {
+    // Next replaces openGraph across segments, it does not deep-merge, so a
+    // child that sets a partial object drops the root layout's og:site_name
+    // and the SERP card shows the bare domain instead of the brand.
+    siteName: 'EaseBuilds',
     title: 'Terms of Service - EaseBuilds',
     description: 'Terms and conditions for using EaseBuilds web development services in Patiala Punjab.',
     type: 'website',

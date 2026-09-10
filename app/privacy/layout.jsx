@@ -8,6 +8,10 @@ export const metadata = {
   title: 'Privacy Policy - EaseBuilds Web Development Patiala', // 53 chars
   description: 'Privacy Policy for EaseBuilds web development services. Learn how we collect, use, and protect your personal information. GDPR compliant. Contact +91 6283380110', // 159 chars
   openGraph: {
+    // Next replaces openGraph across segments, it does not deep-merge, so a
+    // child that sets a partial object drops the root layout's og:site_name
+    // and the SERP card shows the bare domain instead of the brand.
+    siteName: 'EaseBuilds',
     title: 'Privacy Policy - EaseBuilds Web Development',
     description: 'Learn about our data protection and privacy practices for web development services.',
     type: 'website',
