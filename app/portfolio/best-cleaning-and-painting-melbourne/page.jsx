@@ -8,8 +8,9 @@ import JsonLd from '../../components/JsonLd'
 // which is how the test gets measured. Every claim is from the bestcd-web repo,
 // a PageSpeed run, or the client's own Search Console export (29 Jun - 27 Sep
 // 2026, gsc_reports/bestcd, kept local) - the client approved publishing those
-// on 2026-09-30. No testimonial until the client approves its exact wording; no
-// AUD price. Never add a figure that is not in those sources.
+// on 2026-09-30. The quote is the wording the client approved ("I have no
+// issues, you can put this on the website") - do not edit it. No AUD price.
+// Never add a figure that is not in those sources.
 
 const URL = 'https://easebuilds.in/portfolio/best-cleaning-and-painting-melbourne'
 const TITLE = 'Web Developer in India for a Melbourne Business | EaseBuilds'
@@ -126,6 +127,17 @@ export default function MelbourneCaseStudy() {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto space-y-14">
+            <figure className="border-l-4 border-blue-600 bg-blue-50 rounded-r-2xl p-6 sm:p-8">
+              <blockquote className="text-xl sm:text-2xl font-medium text-gray-900 leading-relaxed">
+                &ldquo;We found EaseBuilds on Google. They showed us a sample homepage before the full
+                build, made every change we asked for, and the site now shows up at the top of Google
+                for mattress cleaning in Melbourne.&rdquo;
+              </blockquote>
+              <figcaption className="mt-4 text-sm font-semibold text-gray-600">
+                Best Cleaning &amp; Painting Services, Melbourne
+              </figcaption>
+            </figure>
+
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">The brief</h2>
               <p className="text-gray-700 mb-3">
