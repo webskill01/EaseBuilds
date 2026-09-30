@@ -66,14 +66,14 @@ export default function PricingPage() {
         <div className="container-custom relative z-10">
           <ScrollReveal direction="up">
             <div className="max-w-3xl mx-auto text-center">
-              {/* the 5.0 rating is fine to show; the review count is not */}
+              {/* the 4.9 rating is fine to show; the review count is not */}
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md mb-6">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <FaStar key={i} className="text-yellow-400 text-sm" />
                   ))}
                 </div>
-                <span className="text-sm font-semibold text-gray-900">5.0 on Google</span>
+                <span className="text-sm font-semibold text-gray-900">4.9 on Google</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5">

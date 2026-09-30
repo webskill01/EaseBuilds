@@ -115,7 +115,7 @@ export default function Footer() {
                   <FaStar key={i} className="text-yellow-400 text-xs" />
                 ))}
               </div>
-              <span className="text-xs font-bold text-white">5.0</span>
+              <span className="text-xs font-bold text-white">4.9</span>
               <span className="text-xs text-gray-400">• on Google</span>
             </div>
 

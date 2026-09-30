@@ -72,7 +72,7 @@ const stats = [
 const achievements = [
   { icon: FaAward, text: 'Built on React & Next.js' },
   { icon: FaShieldAlt, text: 'Secure & SSL Certified' },
-  { icon: FaStar, text: '5.0 Google Rating' },
+  { icon: FaStar, text: '4.9 Google Rating' },
 ]
 
 // Simplified Benefit Card

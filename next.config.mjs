@@ -132,6 +132,15 @@ const nextConfig = {
       // Both capabilities survive as copy — only the URLs go.
       { source: '/services/ecommerce-development', destination: '/services/custom-website-design', permanent: true },
       { source: '/services/website-maintenance', destination: '/pricing', permanent: true },
+
+      // blog posts merged 2026-09-29. Three posts answered "how do I pick a web
+      // developer in Patiala"; Google indexed only the top-10 one (74 impr in 16
+      // months) and left the others crawled-not-indexed or unknown. Its red-flags
+      // section came from the checklist post. The cost guide bid for /pricing's
+      // query family and was not indexed either.
+      { source: '/blog/best-web-developer-patiala-punjab-2025', destination: '/blog/top-10-web-developers-patiala-punjab-india-2025-comparison', permanent: true },
+      { source: '/blog/how-to-choose-web-developer-patiala-complete-checklist', destination: '/blog/top-10-web-developers-patiala-punjab-india-2025-comparison', permanent: true },
+      { source: '/blog/website-development-cost-patiala-punjab-pricing-guide-2025', destination: '/pricing', permanent: true },
     ]
   },
   

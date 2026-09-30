@@ -81,45 +81,22 @@ export default async function ServiceLayout({ children, params }) {
   // three different numbers before that task.
   const ENTRY_PRICE = 2999
 
-  const serviceSchema = generateServiceSchema(service)
-  
-  // 2. Offer Schema
-  const offerSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Offer',
-    name: `${service.name} in Patiala Punjab`,
-    description: service.hero.description,
-    priceSpecification: {
-      '@type': 'PriceSpecification',
-      minPrice: ENTRY_PRICE,
+  // 2. Price floor, nested under the Service. A top-level Offer with price +
+  // availability reads to Google as a product for sale: Search Console flagged
+  // 3 invalid Merchant listings (no image, shipping, returns) on 2026-09-29.
+  const serviceSchema = {
+    ...generateServiceSchema(service),
+    offers: {
+      '@type': 'Offer',
+      url: service.seo.canonical,
       priceCurrency: 'INR',
-      valueAddedTaxIncluded: true,
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        minPrice: ENTRY_PRICE,
+        priceCurrency: 'INR',
+        valueAddedTaxIncluded: true,
+      },
     },
-    price: ENTRY_PRICE,
-    priceCurrency: 'INR',
-    availability: 'https://schema.org/InStock',
-    url: service.seo.canonical,
-    // rolls forward on every build; the hardcoded date had been expired for 9 months
-    priceValidUntil: new Date(Date.now() + 365 * 864e5).toISOString().slice(0, 10),
-    seller: {
-      '@type': 'Organization',
-      name: 'EaseBuilds',
-      telephone: '+916283380110',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Patiala',
-        addressRegion: 'Punjab',
-        addressCountry: 'IN'
-      }
-    },
-    areaServed: {
-      '@type': 'State',
-      name: 'Punjab',
-      containsPlace: {
-        '@type': 'City',
-        name: 'Patiala'
-      }
-    }
   }
 
   // 3.  FAQ Schema for Rich Snippets
@@ -145,9 +122,6 @@ export default async function ServiceLayout({ children, params }) {
     <>
       {/* Service Schema */}
       <JsonLd data={serviceSchema} />
-      
-      {/* Offer Schema */}
-      <JsonLd data={offerSchema} />
       
       {/* FAQ Schema */}
       <JsonLd data={faqSchema} />

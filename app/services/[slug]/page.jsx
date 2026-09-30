@@ -190,7 +190,7 @@ export default function DynamicServicePage() {
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg">
                   <FaStar className="text-yellow-400" />
-                  <span className="text-sm font-medium">5.0 Rating</span>
+                  <span className="text-sm font-medium">4.9 Rating</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg">
                   <FaRocket className="text-cyan-400" />

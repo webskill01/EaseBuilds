@@ -26,7 +26,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'About EaseBuilds - Web Developer in Patiala',
-    description: 'The developer behind EaseBuilds in Patiala. 15 projects shipped, rated 5.0 on Google.',
+    description: 'The developer behind EaseBuilds in Patiala. 15 projects shipped, rated 4.9 on Google.',
     images: ['https://easebuilds.in/opengraph-image.png'],
   },
   

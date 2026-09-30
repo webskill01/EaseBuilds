@@ -169,7 +169,7 @@ const technologies = [
               {[
                 { number: '15', label: 'Projects Shipped' },
                 { number: '10', label: 'Systems in Production' },
-                { number: '5.0', label: 'Google Rating' },
+                { number: '4.9', label: 'Google Rating' },
               ].map((stat, idx) => (
                 <div key={idx} className="text-center">
                   <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 mb-1">

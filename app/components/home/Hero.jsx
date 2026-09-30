@@ -73,7 +73,7 @@ export default function Hero() {
                     <FaStar key={i} className="text-yellow-400 text-xs" />
                   ))}
                 </div>
-                <span className="text-xs sm:text-sm font-bold text-gray-900">5.0</span>
+                <span className="text-xs sm:text-sm font-bold text-gray-900">4.9</span>
                 <span className="text-xs text-gray-500 hidden sm:inline">• on Google</span>
               </div>
             </motion.div>

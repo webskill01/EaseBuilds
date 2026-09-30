@@ -58,7 +58,7 @@ export default function HomeCta() {
                     <FaStar key={i} className="text-yellow-300 text-xs" />
                   ))}
                 </span>
-                <span className="font-semibold">5.0 on Google</span>
+                <span className="font-semibold">4.9 on Google</span>
               </span>
               <span className="hidden sm:inline text-white/40" aria-hidden="true">|</span>
               <span>15 projects shipped</span>

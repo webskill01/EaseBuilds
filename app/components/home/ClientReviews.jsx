@@ -10,7 +10,7 @@
 // cards were a duplicate and are gone. What is left is the part Projects does
 // not cover: the rating, and the claims behind it.
 //
-// Every figure here must be checkable. The 5.0 is the real GBP rating - keep it
+// Every figure here must be checkable. The 4.9 is the real GBP rating (checked 2026-09-29 via seo.py gbp) - keep it
 // accurate or drop it, never round it up. The review COUNT is deliberately not
 // shown anywhere on the site: it is currently low enough to work against us.
 // Do not reintroduce it, or project/client counts, here.
@@ -35,7 +35,7 @@ const GoogleG = ({ className }) => (
 // the same figure lib/faqData.js and lib/seo.js already state. If that number
 // changes, change it in all three or the schema starts contradicting the page.
 const STATS = [
-  { value: '5.0', label: 'Rated on Google', icon: '⭐' },
+  { value: '4.9', label: 'Rated on Google', icon: '⭐' },
   { value: '15', label: 'Projects shipped', icon: '🚀' },
   { value: '2-3 Weeks', label: 'Typical delivery', icon: '⚡' },
   { value: '100%', label: 'Custom-coded, never templates', icon: '🛠️' },
@@ -63,7 +63,7 @@ export default function ClientReviews() {
                   <FaStar key={i} className="text-yellow-400 text-lg" />
                 ))}
               </div>
-              <span className="text-xl font-bold text-gray-900">5.0</span>
+              <span className="text-xl font-bold text-gray-900">4.9</span>
             </div>
             <span className="text-sm text-gray-600 font-medium">
               Rated on Google
