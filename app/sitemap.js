@@ -54,6 +54,13 @@ export default function sitemap() {
       priority: 0.90,
     },
     {
+      // Australia-facing case study (SEO.md Round 8)
+      url: `${baseUrl}/portfolio/best-cleaning-and-painting-melbourne`,
+      lastModified: '2026-09-30',
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/contact`,
       lastModified: oneMonthAgo, // Contact doesn't change daily
       changeFrequency: 'monthly',

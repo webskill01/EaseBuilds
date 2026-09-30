@@ -341,6 +341,12 @@ const technologies = [
                               <p>{project.metrics}</p>
                             </div>
                           )}
+
+                          {project.caseStudy && (
+                            <Link href={project.caseStudy} className="inline-block font-semibold text-blue-600 hover:text-blue-700 underline">
+                              Read the full case study →
+                            </Link>
+                          )}
                         </div>
                       </details>
                     )}
